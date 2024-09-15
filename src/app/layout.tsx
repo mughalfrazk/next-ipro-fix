@@ -1,11 +1,12 @@
 // Import styles of packages that you've installed.
 // All packages except `@mantine/hooks` require styles imports
-import '@mantine/core/styles.css';
+import "@mantine/core/styles.css";
 
-import { ColorSchemeScript, MantineProvider } from '@mantine/core';
+import { ColorSchemeScript, MantineProvider } from "@mantine/core";
+import { SessionProvider } from "next-auth/react";
 
 // import localFont from "next/font/local";
-import "./globals.css";
+import "../styles/globals.css";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -19,8 +20,8 @@ import "./globals.css";
 // });
 
 export const metadata = {
-  title: 'My Mantine app',
-  description: 'I have followed setup instructions carefully',
+  title: "My Mantine app",
+  description: "I have followed setup instructions carefully",
 };
 
 export default function RootLayout({
@@ -29,13 +30,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <ColorSchemeScript />
-      </head>
-      <body>
-        <MantineProvider>{children}</MantineProvider>
-      </body>
-    </html>
+    <SessionProvider>
+      <html lang="en">
+        <head>
+          <ColorSchemeScript defaultColorScheme="auto" />
+        </head>
+        <body>
+          <SessionProvider>
+            <MantineProvider>{children}</MantineProvider>
+          </SessionProvider>
+        </body>
+      </html>
+    </SessionProvider>
   );
 }
