@@ -3,6 +3,21 @@ import Credentials from "next-auth/providers/credentials"
 import { loginUserApi } from "./lib/services/api/auth.service"
 import { LoginFormModel } from "./lib/models/auth.model"
 
+declare module "@auth/core/types" {
+  interface Session {
+    user: {
+      email: string;
+      access_token: string;
+      id: string;
+    }
+  }
+}
+
+type SessionUser = {
+  id: string;
+  email: string;
+  access_token: string;
+}
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -25,8 +40,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
       return token;
     },
-    async session({ session, token }: any) {
-      session.user = token.user;
+    async session({ session, token }) {
+      const user = token.user as SessionUser
+      
+      if (user) {
+        session.user.id = user.id
+        session.user.email = user.email;
+        session.user.access_token = user.access_token;
+      }
+
       return session;
     },
   }

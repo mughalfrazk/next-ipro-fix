@@ -23,6 +23,7 @@ const loginAction = async (_: ActionResult, formData: FormData) => {
 
     return {}
   } catch (error) {
+    // `redirectTo` won't work without this line
     if (isRedirectError(error)) throw error
     return getFormattedError(error)
   }
@@ -32,6 +33,7 @@ const logoutAction = async () => {
   try {
     await signOut({ redirectTo: "/auth" })
   } catch (error) {
+    // `redirectTo` won't work without this line
     if (isRedirectError(error)) throw error
     return getFormattedError(error)
   }
