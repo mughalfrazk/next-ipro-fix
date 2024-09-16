@@ -7,7 +7,6 @@ const defaultOptions = {
 
 const getAuthApiClient = () => {
   const httpClient = axios.create(defaultOptions)
-  console.log(config.IPRO_FIX_API_BASE_URL)
   httpClient.interceptors.request.use(
     async request => {
       const token = "BEARER_TOKEN"

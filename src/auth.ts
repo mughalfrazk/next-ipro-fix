@@ -1,7 +1,7 @@
 import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 import { loginUserApi } from "./lib/services/api/auth.service"
-import { LoginFormSchema } from "./lib/models/auth.model"
+import { LoginFormModel } from "./lib/models/auth.model"
 
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
@@ -14,11 +14,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         password: { label: "Password", type: "password" }
       },
       authorize: async (credentials) => {
-        const payload = await LoginFormSchema.parseAsync(credentials)
-
-        const session = await loginUserApi(payload)
-        console.log("session: ", session)
-        return session
+        return loginUserApi(credentials as LoginFormModel)
       },
     }),
   ],

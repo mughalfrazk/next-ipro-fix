@@ -7,6 +7,7 @@ import { SessionProvider } from "next-auth/react";
 
 // import localFont from "next/font/local";
 import "../styles/globals.css";
+import { iproTheme } from "@/styles/ipro-theme";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -33,11 +34,13 @@ export default function RootLayout({
     <SessionProvider>
       <html lang="en">
         <head>
-          <ColorSchemeScript defaultColorScheme="auto" />
+          <ColorSchemeScript />
         </head>
         <body>
           <SessionProvider>
-            <MantineProvider>{children}</MantineProvider>
+            <MantineProvider defaultColorScheme="light" theme={iproTheme}>
+              {children}
+            </MantineProvider>
           </SessionProvider>
         </body>
       </html>

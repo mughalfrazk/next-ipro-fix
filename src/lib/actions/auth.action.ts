@@ -1,13 +1,28 @@
 "use server";
 
 import { signIn, signOut } from "@/auth";
-import { isRedirectError } from "next/dist/client/components/redirect";
 
-const loginAction = async (formData: any) => {
+import { LoginFormSchema } from "../models/auth.model";
+import { ActionResult } from "@/utils/action-results";
+import { getFormattedError } from "@/utils/format-error";
+import { validatePayload } from "@/utils/validate-payload";
+
+const loginAction = async (_: ActionResult, formData: FormData) => {
+  const { parsed } = await validatePayload(formData, LoginFormSchema)
+  if (!parsed.success) {
+    return getFormattedError(parsed.error)
+  }
+
   try {
-    await signIn("credentials", { email: formData.get("email"), password: formData.get("password"), redirectTo: "/dashboard" });
+    await signIn("credentials", {
+      email: formData.get("email"),
+      password: formData.get("password"),
+      redirectTo: "/dashboard"
+    });
+
+    return {}
   } catch (error) {
-    if (isRedirectError(error)) throw error;
+    return getFormattedError(error)
   }
 };
 
@@ -15,8 +30,7 @@ const logoutAction = async () => {
   try {
     await signOut({ redirectTo: "/auth" })
   } catch (error) {
-    console.log("Error caught...");
-    console.log(error);
+    return getFormattedError(error)
   }
 }
 

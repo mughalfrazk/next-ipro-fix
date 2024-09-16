@@ -1,38 +1,23 @@
-import { Paper, Checkbox, Button, Title } from "@mantine/core";
+import { Container, Anchor, Title, Text } from "@mantine/core";
 
-import IproTextInput from "@/components/core/IproTextInput";
-import { loginAction } from "@/lib/actions/auth.action";
 import classes from "./page.module.css";
+import LoginForm from "@/components/auth/LoginForm";
 
 const Login = () => {
   return (
-    <form className={classes.wrapper} action={loginAction}>
-      <Paper className={classes.form} radius={0} p={30}>
-        <Title order={2} className={classes.title} ta="center" mt="md" mb={50}>
-          Welcome back to Mantine!
-        </Title>
+    <Container size={420} my={40}>
+      <Title ta="center" className={classes.title}>
+        Welcome back!
+      </Title>
+      <Text c="dimmed" size="sm" ta="center" mt={5}>
+        Do not have an account yet?{" "}
+        <Anchor size="sm" component="button">
+          Create account
+        </Anchor>
+      </Text>
 
-        <IproTextInput
-          type="email"
-          label="Email address"
-          name="email"
-          placeholder="hello@gmail.com"
-          size="md"
-        />
-        <IproTextInput
-          type="password"
-          label="Password"
-          name="password"
-          placeholder="Your password"
-          mt="md"
-          size="md"
-        />
-        <Checkbox label="Keep me logged in" mt="xl" size="md" />
-        <Button type="submit" fullWidth mt="xl" size="md">
-          Login
-        </Button>
-      </Paper>
-    </form>
+      <LoginForm />
+    </Container>
   );
 };
 
