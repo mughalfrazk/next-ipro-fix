@@ -25,7 +25,7 @@ const getAuthApiClient = () => {
       return response
     },
     error => {
-      const status = error.response?.status as number
+      // const status = error.response?.status as number
       console.error(`Failed to receive response [${error.message}]: ${error.config.url}`, error)
       return Promise.reject(error)
     }

@@ -18,7 +18,12 @@ const IproTextInput = ({
 }: IproTextInputProps) => {
   return (
     <Box w={"100%"}>
-      <TextInput variant={variant} aria-label={ariaLabel} {...rest} />
+      <TextInput
+        variant={variant}
+        aria-label={ariaLabel}
+        width={width}
+        {...rest}
+      />
     </Box>
   );
 };

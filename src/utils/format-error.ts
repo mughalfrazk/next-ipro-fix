@@ -35,8 +35,6 @@ export function getFieldErrorFromState(state: ActionResult, field: string) {
 
 /// Format an error into an ActionErrors object
 export function getFormattedError(error: unknown): { errors: ActionErrors } {
-  let actionError;
-
   if (error instanceof ZodError) {
     // console.log('ZodError', error);
     return {
