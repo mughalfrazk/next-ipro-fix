@@ -6,6 +6,7 @@ import { LoginFormSchema } from "../models/auth.model";
 import { ActionResult } from "@/utils/action-results";
 import { getFormattedError } from "@/utils/format-error";
 import { validatePayload } from "@/utils/validate-payload";
+import { isRedirectError } from "next/dist/client/components/redirect";
 
 const loginAction = async (_: ActionResult, formData: FormData) => {
   const { parsed } = await validatePayload(formData, LoginFormSchema)
@@ -22,6 +23,7 @@ const loginAction = async (_: ActionResult, formData: FormData) => {
 
     return {}
   } catch (error) {
+    if (isRedirectError(error)) throw error
     return getFormattedError(error)
   }
 };
@@ -30,6 +32,7 @@ const logoutAction = async () => {
   try {
     await signOut({ redirectTo: "/auth" })
   } catch (error) {
+    if (isRedirectError(error)) throw error
     return getFormattedError(error)
   }
 }
