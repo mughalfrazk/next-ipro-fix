@@ -4,10 +4,9 @@ import { Group, Anchor, Paper } from "@mantine/core";
 import { useFormState } from "react-dom";
 
 import { loginAction } from "@/lib/actions/auth.action";
+import { useActionErrors } from "@/hooks/use-action-errors";
 import IproTextInput from "../core/IproTextInput";
 import IproButton from "../core/IproButton";
-import { useActionErrors } from "@/hooks/use-action-errors";
-import { getSession } from "next-auth/react";
 
 const LoginForm = () => {
   const [state, formAction] = useFormState(loginAction, {});
