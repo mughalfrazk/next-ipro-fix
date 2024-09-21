@@ -4,7 +4,6 @@ import { useMantineColorScheme } from "@/app/hooks/use-mantine-color-scheme-wrap
 import IproButton from "@/components/core/IproButton";
 import { Avatar, Burger, Group } from "@mantine/core";
 import { IconMoon, IconSun } from "@tabler/icons-react";
-import { useEffect, useState } from "react";
 
 type HeaderProps = {
   opened: boolean;

@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 import { AppShell, ScrollArea, useMantineTheme } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 
@@ -11,7 +11,7 @@ import { useMantineColorScheme } from "@/app/hooks/use-mantine-color-scheme-wrap
 
 const AppShellLayout = ({ children }: { children: ReactNode }) => {
   const theme = useMantineTheme();
-  const { colorScheme, getColorsByTheme } = useMantineColorScheme();
+  const { getColorsByTheme } = useMantineColorScheme();
   const [opened, { toggle }] = useDisclosure();
 
   return (

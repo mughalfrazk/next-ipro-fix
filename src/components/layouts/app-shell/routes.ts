@@ -1,6 +1,5 @@
 
 import { ForwardRefExoticComponent, ReactNode, RefAttributes } from "react";
-import { NavLink, Title } from "@mantine/core";
 import {
   IconHome,
   IconTool,
@@ -11,7 +10,6 @@ import {
   IconProps,
   Icon,
 } from "@tabler/icons-react";
-import Link from "next/link";
 
 export type NavLinkRoute = {
   href: string;

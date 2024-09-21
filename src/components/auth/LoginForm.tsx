@@ -10,7 +10,6 @@ import { useActionErrors } from "@/hooks/use-action-errors";
 import { getSession } from "next-auth/react";
 
 const LoginForm = () => {
-  const data = getSession()
   const [state, formAction] = useFormState(loginAction, {});
   const { getFieldErrorProps } = useActionErrors(state);
 
