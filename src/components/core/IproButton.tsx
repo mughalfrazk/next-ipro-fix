@@ -1,3 +1,5 @@
+"use client"
+
 import { MouseEventHandler, ReactNode } from "react";
 import { Button, ButtonProps } from "@mantine/core";
 
@@ -38,7 +40,6 @@ const IproButton = ({
   size = "lg",
   onClick,
   isIconOnly = false,
-  isCompact = false,
   isSubmit = false,
   ...defaultProps
 }: IproButtonProps) => {
@@ -48,7 +49,7 @@ const IproButton = ({
       classNames={classes}
       aria-label={ariaLabel}
       h={getHeight(size)}
-      px={isIconOnly && isCompact ? 9 : undefined}
+      px={isIconOnly ? 7 : undefined}
       onClick={onClick}
       style={{ ...defaultProps.style }}
       loaderProps={{ type: "dots" }}

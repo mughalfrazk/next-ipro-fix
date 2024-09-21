@@ -15,7 +15,7 @@
     }
 
     &:disabled {
-      background-color: var(--mantine-color-grey-1);
+      background-color: var(--mantine-color-primary-1);
       cursor: default;
 
       path {
@@ -31,14 +31,14 @@
   }
 
   &[data-variant='light'] {
-    background-color: var(--mantine-color-grey-1);
+    background-color: var(--mantine-color-primary-1);
 
     &:hover {
-      background-color: var(--mantine-color-grey-2);
+      background-color: var(--mantine-color-primary-2);
     }
 
     &:disabled {
-      background-color: var(--mantine-color-grey-1);
+      background-color: var(--mantine-color-primary-1);
       cursor: default;
 
       path {
@@ -87,7 +87,7 @@
 
   &[data-variant='subtle'] {
     &:hover {
-      background-color: var(--mantine-color-grey-1);
+      background-color: var(--mantine-color-primary-1);
     }
 
     &:disabled {

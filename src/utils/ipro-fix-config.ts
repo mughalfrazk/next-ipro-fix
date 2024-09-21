@@ -1,19 +1,19 @@
 const initEnv = {
-  IPRO_FIX_API_BASE_URL: "",
+  NEXT_PUBLIC_IPRO_FIX_BASE_URL: "",
   AUTH_SECRET: ""
 }
 
 const production: typeof initEnv = { ...initEnv }
 production.AUTH_SECRET = process.env.AUTH_SECRET ?? ""
-production.IPRO_FIX_API_BASE_URL = process.env.IPRO_FIX_API_BASE_URL ?? ""
+production.NEXT_PUBLIC_IPRO_FIX_BASE_URL = process.env.NEXT_PUBLIC_IPRO_FIX_BASE_URL ?? ""
 
 const development: typeof initEnv = { ...initEnv }
 development.AUTH_SECRET = process.env.AUTH_SECRET ?? ""
-development.IPRO_FIX_API_BASE_URL = process.env.IPRO_FIX_API_BASE_URL ?? ""
+development.NEXT_PUBLIC_IPRO_FIX_BASE_URL = process.env.NEXT_PUBLIC_IPRO_FIX_BASE_URL ?? ""
 
 
 let config: typeof production
-switch (process.env.NEXT_PUBLIC_GOODWIN_ENV) {
+switch (process.env.NEXT_PUBLIC_IPRO_FIX_ENV) {
   case 'production':
     config = production
     break

@@ -1,14 +1,16 @@
 "use client";
 
-import { Group, Checkbox, Anchor, Paper } from "@mantine/core";
+import { Group, Anchor, Paper } from "@mantine/core";
 import { useFormState } from "react-dom";
 
 import { loginAction } from "@/lib/actions/auth.action";
 import IproTextInput from "../core/IproTextInput";
 import IproButton from "../core/IproButton";
 import { useActionErrors } from "@/hooks/use-action-errors";
+import { getSession } from "next-auth/react";
 
 const LoginForm = () => {
+  const data = getSession()
   const [state, formAction] = useFormState(loginAction, {});
   const { getFieldErrorProps } = useActionErrors(state);
 
@@ -32,8 +34,7 @@ const LoginForm = () => {
           size="md"
           {...getFieldErrorProps("password")}
         />
-        <Group justify="space-between" mt="lg">
-          <Checkbox label="Remember me" />
+        <Group justify="flex-end" mt="lg">
           <Anchor component="button" size="sm">
             Forgot password?
           </Anchor>

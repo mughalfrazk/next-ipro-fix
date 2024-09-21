@@ -31,19 +31,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <SessionProvider>
-      <html lang="en">
-        <head>
-          <ColorSchemeScript />
-        </head>
-        <body>
-          <SessionProvider>
-            <MantineProvider defaultColorScheme="light" theme={iproTheme}>
-              {children}
-            </MantineProvider>
-          </SessionProvider>
-        </body>
-      </html>
-    </SessionProvider>
+    <html lang="en">
+      <head>
+        <ColorSchemeScript />
+      </head>
+      <body>
+        <SessionProvider>
+          <MantineProvider defaultColorScheme="auto" theme={iproTheme}>
+            {children}
+          </MantineProvider>
+        </SessionProvider>
+      </body>
+    </html>
   );
 }

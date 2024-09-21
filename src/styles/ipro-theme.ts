@@ -8,11 +8,11 @@ export const iproTheme: MantineThemeOverride = createTheme({
   black: '#000000',
   colors: {
     // main 7
-    primary: ['', '#C9F7D3', '', '#fa743e', '', '', '', '#f76024', '', '#d43a00'],
+    primary: ['#f1f5f8', '#238be645', '#238be659', '#0f74cc', '', '', '', '#238be6', '', '#238be6'],
     // main 1
     secondary: ['', '#4d4d4d', '', '', '', '', '', '', '', ''],
-    grey: ['#f1f5f8', '#f7602445', '#f760244f', '#b3b3b3', '#999999', '', '', '', '', ''],
-    red: ['', '', '', '#e03131', '', '', '#e03131', '', '', '',]
+    // grey: ['#f1f5f8', '#238be645', '#238be659', '#b3b3b3', '#999999', '', '', '', '', ''],
+    red: ['', '', '', '#e03131', '', '', '#e03131', '', '', '',],
   },
   primaryShade: 3,
   primaryColor: 'primary',
