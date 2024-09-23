@@ -5,7 +5,7 @@ import { notifications } from "@mantine/notifications";
 import { ActionResult } from "@/utils/action-results";
 import { useActionErrors } from "./use-action-errors";
 
-export const useFormAction = (action: (a: ActionResult, b: FormData) => Promise<{}>, initialState: {}) => {
+export const useFormAction = (action: (a: ActionResult, b: FormData) => Promise<ActionResult>, initialState: ActionResult) => {
   const [state, formAction] = useFormState(action, initialState);
   const actionErrors = useActionErrors(state);
 
