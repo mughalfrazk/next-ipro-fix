@@ -41,17 +41,43 @@ export function getFormattedError(error: unknown): { errors: ActionErrors } {
       errors: formatZodError(error)
     }
   }
+
+  if (error instanceof AxiosError) {
+    const e = error as AxiosError;
+    // console.log("AxiosErr: ", error.code)
+    if (error?.code === "ECONNREFUSED") {
+      return {
+        errors: {
+          formErrors: ["Server connection error, please try again later."]
+        }
+      }
+    }
+    const errorBody = e?.response?.data as AxiosErrorBody
+
+    return {
+      errors: {
+        formErrors: [errorBody?.message ?? e.response?.statusText]
+      }
+    }
+  }
+
   if (error instanceof AuthError) {
     const e = error as AuthError;
-    // console.log('AuthError', error);
-
     if (e.cause?.err instanceof AxiosError) {
       const axiosError = e.cause?.err as AxiosError
+      if (axiosError?.code === "ECONNREFUSED") {
+        return {
+          errors: {
+            formErrors: ["Server connection error, please try again later."]
+          }
+        }
+      }
+
       const errorBody = axiosError?.response?.data as AxiosErrorBody
 
       return {
         errors: {
-          formErrors: [errorBody.message ?? axiosError.response?.statusText]
+          formErrors: [errorBody?.message ?? axiosError.response?.statusText]
         }
       }
     }

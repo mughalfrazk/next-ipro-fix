@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { NavLink, Title } from "@mantine/core";
+import { useRouter } from "next/navigation";
+
 import routes, { NavLinkRoute } from "./routes";
 
 const navlinkProps = (item: NavLinkRoute) => ({
@@ -16,9 +18,17 @@ const navlinkProps = (item: NavLinkRoute) => ({
 });
 
 const Navlinks = () => {
+  const router = useRouter()
+
+  const onParentNavlinkClick = (item: NavLinkRoute) => {
+    if (!!item.children?.length && item.href) {
+      router.push(item.href)
+    }
+  }
+
   return routes.map((item, i) =>
     !!item.children?.length ? (
-      <NavLink key={i} {...navlinkProps(item)}>
+      <NavLink key={i} {...navlinkProps(item)} onClick={() => onParentNavlinkClick(item)}>
         {item.children.map((subItem, j) => (
           <NavLink key={j} {...navlinkProps(subItem)} />
         ))}

@@ -1,8 +1,9 @@
 "use client";
 
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+
 import { ProfileModel } from "@/lib/models/user.model";
 import { getProfileApi } from "@/lib/services/api/user.service";
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
 const defaultProfileValues = {
   id: "",
@@ -42,13 +43,8 @@ const ProfileProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    console.log("profile context")
     getUserProfile();
   }, []);
-
-  useEffect(() => {
-    console.log(profile)
-  }, [profile])
 
   return (
     <ProfileContext.Provider value={profile}>

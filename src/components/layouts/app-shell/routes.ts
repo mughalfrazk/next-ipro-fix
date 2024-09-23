@@ -30,17 +30,17 @@ const routes: NavLinkRoute[] = [
     icon: IconUserCircle,
   },
   {
-    href: "/dashboard",
+    href: "/dashboard/job",
     label: "Job",
     icon: IconTool,
     children: [
       {
-        href: "/dashboard",
+        href: "/dashboard/job/add-new",
         label: "Add New Job",
         icon: IconFocus,
       },
       {
-        href: "/dashboard",
+        href: "/dashboard/job/purchases",
         label: "Purchases",
         icon: IconFocus,
       }

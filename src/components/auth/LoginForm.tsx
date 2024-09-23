@@ -1,16 +1,14 @@
 "use client";
 
 import { Group, Anchor, Paper } from "@mantine/core";
-import { useFormState } from "react-dom";
 
 import { loginAction } from "@/lib/actions/auth.action";
-import { useActionErrors } from "@/hooks/use-action-errors";
 import IproTextInput from "../core/IproTextInput";
 import IproButton from "../core/IproButton";
+import { useFormAction } from "@/hooks/use-form-action";
 
 const LoginForm = () => {
-  const [state, formAction] = useFormState(loginAction, {});
-  const { getFieldErrorProps } = useActionErrors(state);
+  const {formAction, getFieldErrorProps} = useFormAction(loginAction, {})
 
   return (
     <form action={formAction}>
