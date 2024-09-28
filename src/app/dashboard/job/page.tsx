@@ -1,5 +1,7 @@
+import Table from "@/components/common/Table";
+
 const JobsPage = () => {
-  return <h1>Jobs Page</h1>;
+  return <Table />;
 };
 
 export default JobsPage;

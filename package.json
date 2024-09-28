@@ -9,12 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mantine/colors-generator": "^7.13.0",
     "@mantine/core": "^7.12.2",
     "@mantine/form": "^7.12.2",
     "@mantine/hooks": "^7.12.2",
     "@mantine/notifications": "^7.12.2",
     "@tabler/icons-react": "^3.17.0",
     "axios": "^1.7.7",
+    "chroma-js": "^3.1.1",
+    "clsx": "^2.1.1",
+    "mantine-datatable": "7.11.3",
     "next": "14.2.9",
     "next-auth": "^5.0.0-beta.20",
     "react": "^18",

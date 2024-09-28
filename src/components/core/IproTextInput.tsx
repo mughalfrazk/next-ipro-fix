@@ -1,3 +1,5 @@
+"use client";
+
 import { Box, TextInput, TextInputProps } from "@mantine/core";
 
 interface IproTextInputProps
@@ -12,18 +14,13 @@ interface IproTextInputProps
 
 const IproTextInput = ({
   ariaLabel,
-  variant = "filled",
+  variant,
   width,
   ...rest
 }: IproTextInputProps) => {
   return (
-    <Box w={"100%"}>
-      <TextInput
-        variant={variant}
-        aria-label={ariaLabel}
-        width={width}
-        {...rest}
-      />
+    <Box w={width}>
+      <TextInput variant={variant} aria-label={ariaLabel} size="md" {...rest} />
     </Box>
   );
 };

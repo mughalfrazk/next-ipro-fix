@@ -1,9 +1,11 @@
 "use client";
 
+import { IconMoon, IconSun } from "@tabler/icons-react";
+import { Burger, Group } from "@mantine/core";
+
 import { useMantineColorScheme } from "@/app/hooks/use-mantine-color-scheme-wrapper";
 import IproButton from "@/components/core/IproButton";
-import { Avatar, Burger, Group } from "@mantine/core";
-import { IconMoon, IconSun } from "@tabler/icons-react";
+import AvatarMenu from "./AvatarMenu";
 
 type HeaderProps = {
   opened: boolean;
@@ -11,7 +13,7 @@ type HeaderProps = {
 };
 
 const Header = ({ opened, toggle: AppshellToggle }: HeaderProps) => {
-  const { colorScheme, toggleColorScheme } = useMantineColorScheme()
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
   return (
     <Group h="100%" justify="space-between" px="md">
@@ -29,11 +31,13 @@ const Header = ({ opened, toggle: AppshellToggle }: HeaderProps) => {
           isIconOnly
           onClick={toggleColorScheme}
         >
-          {colorScheme === "dark" ? <IconSun /> : <IconMoon />}
+          {colorScheme === "dark" ? (
+            <IconSun color="var(--mantine-color-primary-0)" />
+          ) : (
+            <IconMoon color="var(--mantine-color-primary-6)" />
+          )}
         </IproButton>
-        <Avatar
-          src={"https://cdn-icons-png.flaticon.com/512/147/147131.png"}
-        />
+        <AvatarMenu />
       </Group>
     </Group>
   );

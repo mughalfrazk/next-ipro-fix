@@ -33,7 +33,7 @@ const AppShellLayout = ({ children }: { children: ReactNode }) => {
       </AppShell.Navbar>
       <AppShell.Main
         bg={getColorsByTheme({
-          light: theme.colors.gray[2],
+          light: theme.colors.gray[0],
           dark: theme.black,
         })}
       >

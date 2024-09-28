@@ -2,6 +2,8 @@
 // All packages except `@mantine/hooks` require styles imports
 import "@mantine/core/styles.css";
 import '@mantine/notifications/styles.css';
+import 'mantine-datatable/styles.layer.css';
+import '@/styles/datatable.css';
 
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { SessionProvider } from "next-auth/react";
