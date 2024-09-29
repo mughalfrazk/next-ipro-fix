@@ -1,5 +1,13 @@
+import Table from "@/components/common/Table";
+
 const PurchasesPage = () => {
-  return <h1>Purchases Page</h1>;
+  return (
+    <Table
+      title="Total Purchases"
+      description="All Purchases details"
+      search={true}
+    />
+  );
 };
 
 export default PurchasesPage;

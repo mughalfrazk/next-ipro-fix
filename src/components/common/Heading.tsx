@@ -2,7 +2,7 @@ import { Stack, Title, Text, StackProps } from "@mantine/core";
 
 type HeadingProps = {
   title: string;
-  description: string;
+  description?: string;
   color?: string;
 } & StackProps;
 
@@ -17,9 +17,9 @@ const Heading = ({
       <Title order={4} c={color}>
         {title}
       </Title>
-      <Text size="xs" c={color}>
+      {description && <Text size="xs" c={color}>
         {description}
-      </Text>
+      </Text>}
     </Stack>
   );
 };

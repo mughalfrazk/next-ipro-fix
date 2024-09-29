@@ -1,0 +1,28 @@
+.body {
+  h5 {
+    opacity: 1 !important;
+    /* color: light-dark(var(--mantine-color-dark-7), var(--mantine-color-dark-0)); */
+  }
+}
+
+.root {
+  svg {
+    color: var(--mantine-color-dark-2);
+  }
+
+  path {
+    color: var(--mantine-color-dark-2);
+  }
+
+  &[data-active="true"] {
+    color: var(--mantine-color-primary-6);
+
+    svg {
+      color: var(--mantine-color-primary-6);
+    }
+
+    path {
+      color: var(--mantine-color-primary-6);
+    }
+  }
+}

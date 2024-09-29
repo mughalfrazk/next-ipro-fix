@@ -142,28 +142,39 @@ const data = [
   },
 ];
 
-const Table = () => {
+type TableProps = {
+  title?: string;
+  description?: string;
+  search?: boolean;
+  searchProperty?: string;
+  button?: boolean;
+};
+
+const Table = ({ title, description, search, button }: TableProps) => {
   return (
     <Card>
       <Grid align="center" mb={30}>
-        <Grid.Col span={2}>
-          <Heading
-            title="Total Job"
-            description="All job details and job status"
-          />
-        </Grid.Col>
-        <Grid.Col span={8}>
-          <IproTextInput
-            placeholder="Search anything here"
-            width={"100%"}
-            leftSection={<IconSearch />}
-          />
-        </Grid.Col>
-        <Grid.Col span={2}>
-          <IproButton variant="outline" fullWidth>
-            Create New Job
-          </IproButton>
-        </Grid.Col>
+        {title && (
+          <Grid.Col span={2}>
+            <Heading title={title} description={description} />
+          </Grid.Col>
+        )}
+        {search && (
+          <Grid.Col span={!title && !button ? 12 : button ? 8 : 10}>
+            <IproTextInput
+              placeholder="Search anything here"
+              width={"100%"}
+              leftSection={<IconSearch />}
+            />
+          </Grid.Col>
+        )}
+        {button && (
+          <Grid.Col span={2}>
+            <IproButton variant="outline" fullWidth>
+              Create New Job
+            </IproButton>
+          </Grid.Col>
+        )}
       </Grid>
       <DataTable
         columns={columns}

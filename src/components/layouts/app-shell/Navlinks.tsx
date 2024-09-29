@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { NavLink, Title } from "@mantine/core";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
+import classes from "./Navlinks.module.css";
 
 import routes, { NavLinkRoute } from "./routes";
 
@@ -14,27 +17,40 @@ const navlinkProps = (item: NavLinkRoute) => ({
   ),
   px: 25,
   py: 12,
-  leftSection: <item.icon opacity={0.4} />,
+  leftSection: <item.icon />,
 });
 
 const Navlinks = () => {
-  const router = useRouter()
+  const router = useRouter();
+  const pathname = usePathname();
+  console.log(pathname);
 
   const onParentNavlinkClick = (item: NavLinkRoute) => {
     if (!!item.children?.length && item.href) {
-      router.push(item.href)
+      router.push(item.href);
     }
-  }
+  };
 
   return routes.map((item, i) =>
     !!item.children?.length ? (
-      <NavLink key={i} {...navlinkProps(item)} onClick={() => onParentNavlinkClick(item)}>
+      <NavLink
+        key={i}
+        classNames={classes}
+        {...navlinkProps(item)}
+        active={pathname === item.href}
+        onClick={() => onParentNavlinkClick(item)}
+      >
         {item.children.map((subItem, j) => (
-          <NavLink key={j} {...navlinkProps(subItem)} />
+          <NavLink
+            key={j}
+            classNames={classes}
+            {...navlinkProps(subItem)}
+            active={pathname === subItem.href}
+          />
         ))}
       </NavLink>
     ) : (
-      <NavLink key={i} {...navlinkProps(item)} />
+      <NavLink key={i} classNames={classes} {...navlinkProps(item)} />
     )
   );
 };
