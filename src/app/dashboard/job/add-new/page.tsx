@@ -25,7 +25,7 @@ const AddNewJobPage = () => {
     <Tabs variant="unstyled" defaultValue="detail" classNames={classes}>
       <TabsList grow mb={20}>
         {tabs.map((item) => (
-          <TabsTab value={item.value} py={15}>
+          <TabsTab key={item.title} value={item.value} py={15}>
             <Title order={4} fw={600}>
               {item.title}
             </Title>

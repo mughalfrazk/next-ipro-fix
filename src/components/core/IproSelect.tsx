@@ -1,6 +1,6 @@
 import { Select, SelectProps } from "@mantine/core";
 
-type IproSelectProps = {} & SelectProps;
+type IproSelectProps = SelectProps;
 
 const IproSelect = ({ ...otherProps }: IproSelectProps) => {
   return <Select {...otherProps} />;
