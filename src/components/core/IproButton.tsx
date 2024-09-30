@@ -3,8 +3,8 @@
 import { MouseEventHandler, ReactNode } from "react";
 import { Button, ButtonProps } from "@mantine/core";
 
-import classes from "./IproButton.module.css";
 import IproSubmitButton, { SubmitButtonProps } from "./IproSubmitButton";
+import classes from "./IproButton.module.css";
 
 const getHeight = (size: string) => {
   switch (size) {

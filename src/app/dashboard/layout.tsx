@@ -1,14 +1,12 @@
 import AppShellLayout from "@/components/layouts/app-shell";
-import ProfileProvider from "@/context/profile.context";
+import withAuth from "@/hoc/with-auth";
 
-export default function RootLayout({
+const RootLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
-  return (
-    <ProfileProvider>
-      <AppShellLayout>{children}</AppShellLayout>
-    </ProfileProvider>
-  );
-}
+}>) => {
+  return <AppShellLayout>{children}</AppShellLayout>;
+};
+
+export default withAuth(RootLayout);

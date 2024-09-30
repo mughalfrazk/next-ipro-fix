@@ -1,0 +1,5 @@
+@layer mantine, mantine-datatable;
+
+.mantine-datatable-table, .mantine-datatable {
+  background: transparent;
+}

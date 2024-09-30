@@ -1,5 +1,14 @@
+import Table from "@/components/common/Table";
+
 const JobsPage = () => {
-  return <h1>Jobs Page</h1>;
+  return (
+    <Table
+      title="Total Job"
+      description="All job details and job status"
+      search={true}
+      button={true}
+    />
+  );
 };
 
 export default JobsPage;

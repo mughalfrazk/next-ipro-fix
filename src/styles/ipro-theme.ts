@@ -2,21 +2,23 @@
 
 import { DEFAULT_THEME, Loader, MantineThemeOverride, createTheme, mergeMantineTheme } from '@mantine/core'
 import { CssLoader } from './CssLoader'
+import { generateColors } from '@mantine/colors-generator'
 
 export const iproTheme: MantineThemeOverride = createTheme({
   white: '#FFFFFF',
   black: '#000000',
   colors: {
     // main 7
-    primary: ['#f1f5f8', '#238be645', '#238be659', '#0f74cc', '', '', '', '#238be6', '', '#238be6'],
+    // primary: ['#c2e2ff', '#8ccfff40', '#4bb4ff40', '#0f74cc', '', '', '', '#238be6', '', '#238be6'],
+    // main 6
+    primary: generateColors("#238be6"),
     // main 1
-    secondary: ['', '#4d4d4d', '', '', '', '', '', '', '', ''],
-    // grey: ['#f1f5f8', '#238be645', '#238be659', '#b3b3b3', '#999999', '', '', '', '', ''],
+    secondary: ['', '#f8f9fa', '', '', '', '', '', '', '', ''],
     red: ['', '', '', '#e03131', '', '', '#e03131', '', '', '',],
   },
   primaryShade: 3,
   primaryColor: 'primary',
-  defaultRadius: 'sm',
+  defaultRadius: 'md',
   cursorType: 'pointer',
   breakpoints: {
     xs: '36em',

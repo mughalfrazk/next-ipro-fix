@@ -38,8 +38,12 @@ const ProfileProvider = ({ children }: { children: ReactNode }) => {
   const [profile, setProfile] = useState<ProfileModel>(defaultProfileValues);
 
   const getUserProfile = async () => {
-    const profile = await getProfileApi();
-    setProfile(profile);
+    try {
+      const profile = await getProfileApi();
+      setProfile(profile);
+    } catch (error) {
+      
+    }
   };
 
   useEffect(() => {
