@@ -1,0 +1,7 @@
+.input {
+  border-color: white;
+  
+  &::placeholder {
+    color: var(--mantine-color-white);
+  };
+}

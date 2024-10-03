@@ -5,7 +5,7 @@ import { Box, TextInput, TextInputProps } from "@mantine/core";
 interface IproTextInputProps
   extends Omit<
     TextInputProps,
-    "variant" | "classNames" | "aria-label" | "w" | "width"
+    "variant" | "aria-label" | "w" | "width"
   > {
   variant?: string;
   ariaLabel?: string;
