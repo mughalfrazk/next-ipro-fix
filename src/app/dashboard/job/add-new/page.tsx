@@ -1,8 +1,8 @@
 import { Tabs, TabsList, TabsPanel, TabsTab, Title } from "@mantine/core";
 
-import JobDetailTab from "@/components/add-new-job/JobDetailTab";
-import JobPurchasesTab from "@/components/add-new-job/JobPurchasesTab";
-import InvoiceTab from "@/components/add-new-job/InvoiceTab";
+import JobDetailTab from "@/components/add-new-job/job-detail";
+import JobPurchasesTab from "@/components/add-new-job/job-purchases";
+import InvoiceTab from "@/components/add-new-job/invoice";
 import classes from "./add-new.module.css";
 
 const AddNewJobPage = () => {

@@ -23,7 +23,6 @@ const navlinkProps = (item: NavLinkRoute) => ({
 const Navlinks = () => {
   const router = useRouter();
   const pathname = usePathname();
-  console.log(pathname);
 
   const onParentNavlinkClick = (item: NavLinkRoute) => {
     if (!!item.children?.length && item.href) {

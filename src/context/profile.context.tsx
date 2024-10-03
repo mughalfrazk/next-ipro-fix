@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 import { ProfileModel } from "@/lib/models/user.model";
 import { getProfileApi } from "@/lib/services/api/user.service";
@@ -32,17 +38,28 @@ const defaultProfileValues = {
   },
 };
 
-const ProfileContext = createContext<ProfileModel>(defaultProfileValues);
+type ProfileContextType = {
+  loading: boolean;
+  data: ProfileModel;
+};
+
+const ProfileContext = createContext<ProfileContextType>({
+  loading: false,
+  data: defaultProfileValues,
+});
 
 const ProfileProvider = ({ children }: { children: ReactNode }) => {
   const [profile, setProfile] = useState<ProfileModel>(defaultProfileValues);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const getUserProfile = async () => {
     try {
+      setLoading(true);
       const profile = await getProfileApi();
       setProfile(profile);
     } catch (error) {
-      
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -51,11 +68,11 @@ const ProfileProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <ProfileContext.Provider value={profile}>
+    <ProfileContext.Provider value={{ loading, data: profile }}>
       {children}
     </ProfileContext.Provider>
   );
 };
 
 export default ProfileProvider;
-export const useProfileContext = () => useContext(ProfileContext)
+export const useProfileContext = () => useContext(ProfileContext);
