@@ -1,24 +1,31 @@
+"use client";
+
 import {
   Card,
   Divider,
   Grid,
   GridCol,
   Group,
-  Radio,
   Stack,
-  Title,
 } from "@mantine/core";
-import { IconSquareRoundedPlusFilled } from "@tabler/icons-react";
 
-import IproTextInput from "../../core/IproTextInput";
-import IproSelect from "../../core/IproSelect";
 import Heading from "../../common/Heading";
 import CustomerDetail from "./CustomerDetail";
+import CommentDrawer from "./CommentDrawer";
+import IssuesListForm from "./IssuesListForm";
+import { createJobAction } from "@/lib/actions/job.action";
+import { useFormAction } from "@/hooks/use-form-action";
+import IproButton from "@/components/core/IproButton";
+import TechnicianSelect from "./TechnicianSelect";
 
 const JobDetailTab = () => {
+  const { formAction } = useFormAction(createJobAction, {});
+
+
   return (
-    <form>
-      <Stack>
+    <form action={formAction}>
+      <Stack gap={0}>
+        <CommentDrawer />
         <Grid>
           <GridCol span={8}>
             <CustomerDetail />
@@ -32,91 +39,27 @@ const JobDetailTab = () => {
               />
               <Divider mt={10} mb={20} opacity={0} />
 
-              <IproSelect
-                size="md"
-                label="Staff Member"
-                data={["React", "Angular", "Vue", "Svelte"]}
-                styles={{
-                  label: {
-                    color: "white",
-                  },
-                  input: {
-                    backgroundColor: "transparent",
-                    borderColor: "white",
-                    color: "white",
-                  },
-                }}
-              />
+              <TechnicianSelect />
             </Card>
           </GridCol>
           <GridCol span={12}>
-            <Card>
+            <Card pb={100}>
               <Heading
                 title="Job Details"
                 description="Add multiple jobs by clicking the + icon at the end"
               />
               <Divider mt={10} mb={20} />
 
-              <Grid>
-                <GridCol span={12}>
-                  <Group mt={10} mb={20}>
-                    <Title order={5}>Problem Type:</Title>
-                    <Radio
-                      name="problem_type_id"
-                      color="var(--mantine-color-primary-6)"
-                      label="SW-Software"
-                    />
-                    <Radio
-                      name="problem_type_id"
-                      color="var(--mantine-color-primary-6)"
-                      label="HW-Hardware"
-                    />
-                    <Radio
-                      name="problem_type_id"
-                      color="var(--mantine-color-primary-6)"
-                      label="GW-Android"
-                    />
-                    <Radio
-                      name="problem_type_id"
-                      color="var(--mantine-color-primary-6)"
-                      label="AW-Apple Iphone"
-                    />
-                  </Group>
-                </GridCol>
-                <GridCol span={4}>
-                  <IproSelect label="Brand Name" size="md" />
-                </GridCol>
-                <GridCol span={4}>
-                  <IproTextInput name="phone" label="Model Selection" />
-                </GridCol>
-                <GridCol span={4}>
-                  <IproTextInput name="company_name" label="Issue" />
-                </GridCol>
-                <GridCol span={4}>
-                  <IproTextInput name="name" label="Quantity" />
-                </GridCol>
-                <GridCol span={4}>
-                  <IproTextInput name="phone" label="Charges" />
-                </GridCol>
-                <GridCol span={4}>
-                  <IproTextInput name="company_name" label="Total" />
-                </GridCol>
-                <GridCol span={12}>
-                  <Group
-                    justify="center"
-                    w={"100%"}
-                    variant="subtle"
-                    py={14}
-                    opacity={0.3}
-                    style={{
-                      border: "2px dashed var(--mantine-color-dark-1)",
-                      borderRadius: "var(--mantine-radius-default)",
-                    }}
-                  >
-                    <IconSquareRoundedPlusFilled /> Add new task in the job
-                  </Group>
-                </GridCol>
-              </Grid>
+              <IssuesListForm />
+
+              <Group justify="flex-end" mt={20}>
+                <IproButton variant="outline">
+                  Cancal
+                </IproButton>
+                <IproButton isSubmit={true}>
+                  Save Job
+                </IproButton>
+              </Group>
             </Card>
           </GridCol>
         </Grid>

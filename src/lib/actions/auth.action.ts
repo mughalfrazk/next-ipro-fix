@@ -10,8 +10,8 @@ import { isRedirectError } from "next/dist/client/components/redirect";
 
 const loginAction = async (_: ActionResult, formData: FormData) => {
   const { parsed } = await validatePayload(formData, LoginFormSchema)
-  if (!parsed.success) {
-    return getFormattedError(parsed.error)
+  if (!parsed?.success) {
+    return getFormattedError(parsed?.error)
   }
 
   try {

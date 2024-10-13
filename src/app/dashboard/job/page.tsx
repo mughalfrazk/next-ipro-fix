@@ -1,14 +1,10 @@
-import Table from "@/components/common/Table";
+import { getJobListApi } from "@/lib/services/api/job.service";
+import JobList from "@/components/job/JobList";
 
-const JobsPage = () => {
-  return (
-    <Table
-      title="Total Job"
-      description="All job details and job status"
-      search={true}
-      button={true}
-    />
-  );
+const JobsPage = async () => {
+  const result = await getJobListApi();
+
+  return <JobList jobs={result} />;
 };
 
 export default JobsPage;

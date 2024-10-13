@@ -1,8 +1,19 @@
 "use client";
 
+import { ReactNode } from "react";
+import { useDisclosure } from "@mantine/hooks";
 import { DataTable } from "mantine-datatable";
-import { IconSearch } from "@tabler/icons-react";
-import { Avatar, Card, Grid, Group, Stack, Text, Title } from "@mantine/core";
+import { IconFilter, IconSearch } from "@tabler/icons-react";
+import {
+  Avatar,
+  Card,
+  Drawer,
+  Grid,
+  Group,
+  Stack,
+  Text,
+  Title,
+} from "@mantine/core";
 
 import IproButton from "../core/IproButton";
 import IproTextInput from "../core/IproTextInput";
@@ -25,7 +36,7 @@ type RowType = {
   total: string;
 };
 
-const columns = [
+const dummy_columns = [
   {
     accessor: "jobId",
     render: (row: RowType) => {
@@ -75,7 +86,7 @@ const columns = [
   { accessor: "total" },
 ];
 
-const data = [
+const dummy_rows = [
   {
     id: "0",
     jobId: "Job-123",
@@ -144,47 +155,81 @@ const data = [
 
 type TableProps = {
   title?: string;
+  data?: unknown[];
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  columns?: any;
   description?: string;
   search?: boolean;
   searchProperty?: string;
-  button?: boolean;
+  rightSection?: ReactNode;
+  filter?: ReactNode;
 };
 
-const Table = ({ title, description, search, button }: TableProps) => {
+const Table = ({
+  columns = dummy_columns,
+  data = dummy_rows,
+  title,
+  description,
+  search,
+  rightSection,
+  filter,
+}: TableProps) => {
+  const [opened, { open, close }] = useDisclosure();
+
   return (
-    <Card>
-      <Grid align="center" mb={30}>
-        {title && (
-          <Grid.Col span={2}>
-            <Heading title={title} description={description} />
-          </Grid.Col>
-        )}
-        {search && (
-          <Grid.Col span={!title && !button ? 12 : button ? 8 : 10}>
-            <IproTextInput
-              placeholder="Search anything here"
-              width={"100%"}
-              leftSection={<IconSearch />}
-            />
-          </Grid.Col>
-        )}
-        {button && (
-          <Grid.Col span={2}>
-            <IproButton variant="outline" fullWidth>
-              Create New Job
-            </IproButton>
-          </Grid.Col>
-        )}
-      </Grid>
-      <DataTable
-        columns={columns}
-        records={data}
-        minHeight={100}
-        classNames={{
-          root: "mantine-table-root",
-        }}
-      />
-    </Card>
+    <>
+      {!!filter && (
+        <Drawer
+          opened={opened}
+          onClose={close}
+          title="Filters"
+          position="top"
+          size="30%"
+        >
+          {filter}
+        </Drawer>
+      )}
+      <Card>
+        <Grid align="center" mb={30}>
+          {title && (
+            <Grid.Col span={2}>
+              <Heading title={title} description={description} />
+            </Grid.Col>
+          )}
+          {search && (
+            <Grid.Col
+              span={!title && !rightSection ? 12 : rightSection ? 8 : 10}
+            >
+              <IproTextInput
+                placeholder="Search anything here"
+                width={"100%"}
+                leftSection={<IconSearch />}
+                rightSection={
+                  <IproButton
+                    size="md"
+                    px={4}
+                    radius="sm"
+                    isIconOnly
+                    onClick={open}
+                  >
+                    <IconFilter />
+                  </IproButton>
+                }
+              />
+            </Grid.Col>
+          )}
+          {!!rightSection && <Grid.Col span={2}>{rightSection}</Grid.Col>}
+        </Grid>
+        <DataTable
+          columns={columns}
+          records={data}
+          minHeight={100}
+          classNames={{
+            root: "mantine-table-root",
+          }}
+        />
+      </Card>
+    </>
   );
 };
 

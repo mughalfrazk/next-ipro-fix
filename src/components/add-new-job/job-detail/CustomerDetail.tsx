@@ -1,64 +1,95 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import {
-  Card,
-  ComboboxData,
-  Divider,
-  Grid,
-  GridCol,
-  SelectProps,
-  Stack,
-  Text,
-} from "@mantine/core";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Card, ComboboxData, Divider, Grid, GridCol } from "@mantine/core";
 
 import Heading from "@/components/common/Heading";
 import IproSelect from "@/components/core/IproSelect";
 import IproTextInput from "@/components/core/IproTextInput";
-import { CustomerListModel } from "@/lib/models/customer.model";
+import { CustomerListModel, CustomerModel } from "@/lib/models/customer.model";
 import { getCustomerListApi } from "@/lib/services/api/customer.service";
 
 const CustomerDetail = () => {
   const [customers, setCustomers] = useState<CustomerListModel>([]);
-  const [optionsList, setOptionsList] = useState<ComboboxData>([]);
+  const [nameOptionsList, setNameOptionsList] = useState<ComboboxData>([]);
+  const [phoneOptionsList, setPhoneOptionsList] = useState<ComboboxData>([]);
+
+  const [name, setName] = useState<string[]>([]);
+  const [phone, setPhone] = useState<string[]>([]);
+  const [company, setCompany] = useState<string>("");
+  const [nameSearch, setNameSearch] = useState<string>("");
+  const [phoneSearch, setPhoneSearch] = useState<string>("");
+
+  const [customerId, setCustomerId] = useState<string>("");
 
   const getCustomerList = async () => {
     try {
-      const list = await getCustomerListApi();
-      setCustomers(list);
+      const result = await getCustomerListApi();
+      setCustomers(result);
+      setNameOptionsList(
+        result.map((item) => ({ label: item.name, value: item.id }))
+      );
+      setPhoneOptionsList(
+        result.map((item) => ({ label: item.phone, value: item.id }))
+      );
     } catch (error) {
       console.log(error);
     }
   };
 
-  const renderCustomerOption: SelectProps["renderOption"] = ({ option }) => {
-    const [name, phone] = option.label.split(" & ");
-    return (
-      <Stack gap={0}>
-        <Text>{name}</Text>
-        <Text opacity={0.6} size="sm">
-          {phone}
-        </Text>
-      </Stack>
-    );
+  const onNameChange = (value: string | null) => {
+    console.log("onChangeHandler: ", value);
+    const [selectedCustomer] = customers.filter((item) => item.id === value);
+    if (selectedCustomer) onChangeHandler(selectedCustomer);
+    else if (value) setName([value]);
   };
 
-  const onChangeHandler = (value: string | null) => {
-    console.log(value)
-  }
+  const onPhoneChange = (value: string | null) => {
+    console.log("onChangeHandler: ", value);
+    const [selectedCustomer] = customers.filter((item) => item.id === value);
+    if (selectedCustomer) onChangeHandler(selectedCustomer);
+    else if (value) setPhone([value]);
+  };
 
-  useEffect(() => {
-    setOptionsList(
-      customers.map((item) => ({
-        label: `${item.name} & ${item.phone}`,
-        value: item.id,
-      }))
-    );
-  }, [customers]);
+  const onChangeHandler = (value: CustomerModel) => {
+    setName([value.name]);
+    setPhone([value.phone]);
+    setCompany(value.company_name ?? "");
+
+    setCustomerId(value.id);
+  };
+
+  const onNameSearchHandler = (value: string) => {
+    setNameSearch(value);
+  };
+
+  const onPhoneSearchHandler = (value: string) => {
+    setPhoneSearch(value);
+  };
+
+  const onTagRemoveHandler = (
+    value: string,
+    setValue: Dispatch<SetStateAction<string[]>>
+  ) => {
+    if (customerId) {
+      setName([]);
+      setPhone([]);
+      setCompany("");
+
+      setCustomerId("");
+    } else {
+      setValue([]);
+    }
+    console.log("onTagRemoveHandler");
+  };
 
   useEffect(() => {
     getCustomerList();
   }, []);
+
+  useEffect(() => {
+    console.log("customerId: ", customerId);
+  }, [customerId]);
 
   return (
     <Card>
@@ -71,28 +102,50 @@ const CustomerDetail = () => {
       <Grid>
         <GridCol span={4}>
           <IproSelect
+            componentType="tags"
             name="customer_name"
             label="Customer Name"
-            data={optionsList}
-            searchable
+            maxTags={1}
+            value={name as string & string[]}
+            data={nameOptionsList}
+            searchValue={nameSearch}
+            onOptionSubmit={onNameChange}
+            onSearchChange={onNameSearchHandler}
+            onRemove={(value: string) => onTagRemoveHandler(value, setName)}
             maxDropdownHeight={200}
-            renderOption={renderCustomerOption}
-            onOptionSubmit={onChangeHandler}
           />
         </GridCol>
         <GridCol span={4}>
           <IproSelect
+            componentType="tags"
             name="customer_phone"
             label="Mobile Number"
-            data={optionsList}
-            searchable
+            maxTags={1}
+            value={phone as string & string[]}
+            data={phoneOptionsList}
+            searchValue={phoneSearch}
+            onOptionSubmit={onPhoneChange}
+            onSearchChange={onPhoneSearchHandler}
+            onRemove={(value: string) => onTagRemoveHandler(value, setPhone)}
             maxDropdownHeight={200}
-            renderOption={renderCustomerOption}
           />
         </GridCol>
         <GridCol span={4}>
-          <IproTextInput name="customer_company_name" label="Company Name" />
+          <IproTextInput
+            name="customer_company_name"
+            label="Company Name"
+            value={company}
+            readOnly={!!customerId}
+            onChange={(e) => setCompany(e.currentTarget.value)}
+          />
         </GridCol>
+        <IproTextInput
+          name="customer_id"
+          label="Company Name"
+          value={customerId}
+          onChange={(e) => setCustomerId(e.currentTarget.value)}
+          style={{ display: "none" }}
+        />
       </Grid>
     </Card>
   );

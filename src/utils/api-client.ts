@@ -5,6 +5,8 @@ import config from "./ipro-fix-config";
 import { getFormattedError } from "./format-error";
 import { logoutAction } from "@/lib/actions/auth.action";
 import { notifications } from "@mantine/notifications";
+import { auth, signOut } from "@/auth";
+import { redirect } from "next/navigation";
 
 const defaultOptions = {
   baseURL: config.NEXT_PUBLIC_IPRO_FIX_BASE_URL
@@ -15,8 +17,8 @@ const getAuthApiClient = () => {
   httpClient.interceptors.request.use(
     async request => {
       if (typeof window === "undefined") {
-        // const session = await auth()
-        // request.headers.Authorization = `Bearer ${session?.user.access_token ?? ""}`
+        const session = await auth()
+        request.headers.Authorization = `Bearer ${session?.user.access_token ?? ""}`
       } else {
         const session = await getSession()
         request.headers.Authorization = `Bearer ${session?.user.access_token ?? ""}`
@@ -35,6 +37,12 @@ const getAuthApiClient = () => {
     error => {
       if (typeof window === "undefined") {
         console.log("intercepted on server: ", getFormattedError(error))
+        if (error.status === 403) {
+          console.log(error.status)
+          signOut({ redirectTo: "/auth" })
+          redirect("/auth")
+          return Promise.resolve()
+        }
       } else {
         if (error.status === 403) {
           notifications.show({
