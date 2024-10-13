@@ -7,11 +7,11 @@ import { useDisclosure } from "@mantine/hooks";
 import Header from "./Header";
 import Navlinks from "./Navlinks";
 import Footer from "./Footer";
-import { useMantineColorScheme } from "@/app/hooks/use-mantine-color-scheme-wrapper";
+import { useMantineColorScheme } from "@/hooks/use-mantine-color-scheme-wrapper";
 
 const AppShellLayout = ({ children }: { children: ReactNode }) => {
   const theme = useMantineTheme();
-  const { getColorsByTheme } = useMantineColorScheme();
+  const { lightDark } = useMantineColorScheme();
   const [opened, { toggle }] = useDisclosure();
 
   return (
@@ -31,12 +31,7 @@ const AppShellLayout = ({ children }: { children: ReactNode }) => {
           <Footer />
         </AppShell.Section>
       </AppShell.Navbar>
-      <AppShell.Main
-        bg={getColorsByTheme({
-          light: theme.colors.gray[0],
-          dark: theme.black,
-        })}
-      >
+      <AppShell.Main bg={lightDark(theme.colors.gray[0], theme.black)}>
         {children}
       </AppShell.Main>
     </AppShell>

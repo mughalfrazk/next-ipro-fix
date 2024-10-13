@@ -18,12 +18,12 @@ export const useMantineColorScheme = () => {
     setColorScheme(theme.colorScheme)
   }, [theme.colorScheme])
 
-  const getColorsByTheme = (value: { dark: string; light: string; }): string => {
-    const dark = value.dark ?? value.light
-    const light = value.light ?? value.dark
+  const lightDark = (light: string, dark: string): string => {
+    const d = dark ?? light
+    const l = light ?? dark
 
-    return colorScheme === "dark" ? dark : light
+    return colorScheme === "dark" ? d : l
   }
 
-  return { colorScheme, toggleColorScheme: theme.toggleColorScheme, getColorsByTheme }
+  return { colorScheme, toggleColorScheme: theme.toggleColorScheme, lightDark }
 }

@@ -3,7 +3,7 @@
 import { IconMoon, IconSun } from "@tabler/icons-react";
 import { Burger, Group } from "@mantine/core";
 
-import { useMantineColorScheme } from "@/app/hooks/use-mantine-color-scheme-wrapper";
+import { useMantineColorScheme } from "@/hooks/use-mantine-color-scheme-wrapper";
 import IproButton from "@/components/core/IproButton";
 import AvatarMenu from "./AvatarMenu";
 
