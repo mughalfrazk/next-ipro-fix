@@ -156,6 +156,7 @@ const dummy_rows = [
 type TableProps = {
   title?: string;
   data?: unknown[];
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   columns?: any;
   description?: string;
   search?: boolean;

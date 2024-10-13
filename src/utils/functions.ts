@@ -1,7 +1,9 @@
 export const getNestedInputValues = (formData: FormData) => {
   const nestedListRegex = /^([^\[]+)(\[\d+\])(\[[^\]]+\])$/
-  let dataform_obj: any = {}
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  const dataform_obj: any = {}
   for (const [key, value] of Object.entries(Object.fromEntries(formData.entries()))) {
+    /* eslint-disable @typescript-eslint/no-explicit-any */
     const match: any = key.match(nestedListRegex)
 
     const match01 = match?.[1]

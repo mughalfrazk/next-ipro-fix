@@ -153,8 +153,9 @@ const Page = async () => {
               description="Jobs done, earned income and target"
             />
             <ScrollArea mt={10}>
-              {staff.map((item) => (
+              {staff.map((item, idx) => (
                 <Group
+                  key={idx}
                   justify="space-between"
                   align="center"
                   py={12}
@@ -205,8 +206,9 @@ const Page = async () => {
               description="Number of job status wise"
             />
             <ScrollArea mt={10}>
-              {jobStatuses.map((item) => (
+              {jobStatuses.map((item, idx) => (
                 <Group
+                  key={idx}
                   justify="space-between"
                   align="center"
                   py={17}

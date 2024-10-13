@@ -26,7 +26,7 @@ export const createNewJobHandler = () => {
 export const JobColumns = [
   {
     accessor: "jobId",
-    render: (row: JobModel) => {
+    render: (_: JobModel) => {
       return "Job no";
     },
   },

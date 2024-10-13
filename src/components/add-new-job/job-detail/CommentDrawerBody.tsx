@@ -2,7 +2,6 @@ import IproButton from "@/components/core/IproButton";
 import {
   Avatar,
   Badge,
-  Box,
   Group,
   ScrollArea,
   Stack,

@@ -1,16 +1,7 @@
 "use client";
 
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import {
-  Card,
-  ComboboxData,
-  Divider,
-  Grid,
-  GridCol,
-  SelectProps,
-  Stack,
-  Text,
-} from "@mantine/core";
+import { Card, ComboboxData, Divider, Grid, GridCol } from "@mantine/core";
 
 import Heading from "@/components/common/Heading";
 import IproSelect from "@/components/core/IproSelect";
