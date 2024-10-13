@@ -91,7 +91,7 @@ const CustomerDetail = () => {
           />
         </GridCol>
         <GridCol span={4}>
-          <IproTextInput name="customer_company_name" label="Company Name" />
+          <IproTextInput name="customer_company_name" label="Company Name" placeholder="Contoursoftware LTD"/>
         </GridCol>
       </Grid>
     </Card>
