@@ -1,8 +1,9 @@
-import { ProfileSchema, UserListSchema } from "@/lib/models/user.model"
+import { ProfileListSchema, ProfileSchema, UserListSchema } from "@/lib/models/user.model"
 import { getAuthApiClient } from "@/utils/api-client"
 import { parseFactory } from "@/utils/parse-factory"
 
 const ProfileDataParser = parseFactory(ProfileSchema, "ProfileDataParser")
+const ProfileListDataParser = parseFactory(ProfileListSchema, "ProfileListDataParser")
 const UserListDataParser = parseFactory(UserListSchema, "UserListDataParser")
 
 const getProfileApi = async () => {
@@ -15,4 +16,9 @@ const getTechniciansApi = async () => {
   return UserListDataParser(result.data)
 }
 
-export { getProfileApi, getTechniciansApi }
+const getUserListApi = async () => {
+  const result = await getAuthApiClient().get("user")
+  return ProfileListDataParser(result.data)
+}
+
+export { getProfileApi, getTechniciansApi, getUserListApi }
