@@ -1,8 +1,5 @@
-"use client"
+import Home from "@/components/home";
 
 export default function HomePage() {
-
-  return (
-    <h1>Public</h1>
-  );
+  return <Home />;
 }
