@@ -21,5 +21,8 @@ export const ProfileSchema = UserSchema.extend({
   company: CompanySchema
 })
 
+export const ProfileListSchema = z.array(ProfileSchema)
+
 export type ProfileModel = z.infer<typeof ProfileSchema>
+export type ProfileListModel = z.infer<typeof ProfileListSchema>
 export type UserListModel = z.infer<typeof UserListSchema>
