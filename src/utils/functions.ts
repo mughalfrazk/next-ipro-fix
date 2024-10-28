@@ -22,3 +22,16 @@ export const getNestedInputValues = (formData: FormData) => {
 
   return dataform_obj
 }
+
+export const colorForUserRole = (name: string) => {
+  console.log(name)
+  return name === "Admin"
+    ? "grape"
+    : name === "Receptionist"
+    ? "green"
+    : name === "Technician"
+    ? "blue"
+    : name === "Office Boy"
+    ? "red"
+    : "black";
+};
