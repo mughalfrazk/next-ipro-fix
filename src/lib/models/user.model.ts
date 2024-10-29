@@ -7,7 +7,7 @@ export const UserSchema = z.object({
   first_name: z.string(),
   last_name: z.string(),
   email: z.string(),
-  phone: z.string(),
+  phone: z.string().nullish(),
   progress: z.number().nullish(),
   target: z.number().nullish(),
   is_active: z.boolean(),

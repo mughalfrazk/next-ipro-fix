@@ -38,7 +38,6 @@ export const UserColumns = [
       );
     },
   },
-
   {
     accessor: "role",
     render: (row: ProfileModel) => {
@@ -62,18 +61,13 @@ export const UserColumns = [
         ((row.progress ?? 0) / (row.target ?? 1)) *
         100
       ).toFixed(2);
-      console.log("Progress Percentage:", progressPercentage);
       return (
         <ProgressRoot size="xl" w={150}>
-          console.log((row.progress ?? 0) / (row.target ?? 0) * 100))
-          <ProgressSection value={row.target ?? 0} color="primary.6">
-            <ProgressLabel>
-              {((row.progress ?? 0) / (row.target ?? 0)) * 100}%
-            </ProgressLabel>
+          <ProgressSection value={+progressPercentage} color="primary.6">
+            <ProgressLabel>{progressPercentage}%</ProgressLabel>
           </ProgressSection>
         </ProgressRoot>
       );
-      // return <Progress color="var(--mantine-color-primary-6)" radius="xl" value={row.target ?? 0} striped animated />;
     },
   },
 
@@ -88,7 +82,7 @@ export const UserColumns = [
 
   {
     accessor: "actions",
-    render: (row: UserModel) => {
+    render: () => {
       return (
         <Button
           variant="transparent"
@@ -100,72 +94,4 @@ export const UserColumns = [
       );
     },
   },
-
-  // {
-  //   accessor: "user",
-  //   title: "User",
-  //   render: (row: ProfileModel) => {
-  //     return (
-  //       <Group>
-  //         <Avatar
-  //           src="../../assets/Avatar_man.png" alt="user_image"
-  //         />
-  //         <Stack gap={2}>
-  //         <Title
-  //           order={6}
-  //         >{`${row.user.first_name} ${row.user.last_name}`}</Title>
-  //           <Text size={"0.7rem"}>{row.user.email}</Text>
-  //         </Stack>
-  //       </Group>
-  //     );
-  //   },
-  // },
-  // {
-  //   accessor: "role",
-  //   render: (row: ProfileModel) => {
-  //     return (
-  //       <Badge variant="outline" color={colorForUserRole(row.role.name)} radius="sm" p={12}>
-  //         {row.role.name}
-  //       </Badge>
-  //     );
-  //   },
-  // },
-  // {
-  //   accessor: "quantity",
-  //   render: (row: ProfileModel) => {
-  //     return row.issues.reduce((prev, curr) => prev + curr.quantity, 0);
-  //   },
-  // },
-  // {
-  //   title: "Company Name",
-  //   accessor: "customer.company_name",
-  // },
-  // {
-  //   accessor: "technician",
-  //   render: (row: JobModel) => {
-  //     return (
-  //       <Group>
-  //         <Avatar
-  //           key={row.technician.id}
-  //           name={`${row.technician.first_name} ${row.technician.last_name}`}
-  //           color="initials"
-  //         />
-  //         <Stack gap={2}>
-  //           <Title
-  //             order={6}
-  //           >{`${row.technician.first_name} ${row.technician.last_name}`}</Title>
-  //           <Text
-  //             size={"0.7rem"}
-  //           >{`${row.technician.first_name} ${row.technician.last_name}`}</Text>
-  //         </Stack>
-  //       </Group>
-  //     );
-  //   },
-  // },
-  // {
-  //   accessor: "total",
-  //   render: (row: JobModel) => {
-  //     return row.issues.reduce((prev, curr) => prev + curr.total, 0);
-  //   },
-  // },
 ];
