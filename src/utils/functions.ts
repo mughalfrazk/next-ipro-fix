@@ -24,7 +24,6 @@ export const getNestedInputValues = (formData: FormData) => {
 }
 
 export const colorForUserRole = (name: string) => {
-  console.log(name)
   return name === "super_admin"
     ? "grape"
     : name === "receptionist"

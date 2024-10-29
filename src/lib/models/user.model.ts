@@ -17,9 +17,6 @@ export const UserSchema = z.object({
   deleted_at: z.string().nullish(),
 })
 
-
-
-
 export const UserListSchema = z.array(UserSchema)
 
 export const ProfileSchema = UserSchema.extend({
