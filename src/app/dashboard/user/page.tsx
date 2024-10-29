@@ -3,7 +3,6 @@ import UserList from "@/components/user/UserList";
 
 const UsersPage = async () => {
   const result = await getUserListApi();
-  console.log(result);
   return <UserList users={result} />;
 };
 

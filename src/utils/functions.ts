@@ -43,6 +43,3 @@ export const colorForUserRole = (name: string) => {
     ? "red"
     : "black";
 };
-export const showErrorNotification = (message: string = "Something went wrong, please try again.") => {
-  notifications.show({ message, color: 'red', classNames: classes, autoClose: false  })
-}

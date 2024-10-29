@@ -89,7 +89,7 @@ export const UserColumns = [
           size="compact-sm"
           color="var(--mantine-color-primary-6)"
         >
-          {"Open User"}
+          Open User
         </Button>
       );
     },
