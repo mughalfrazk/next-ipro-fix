@@ -1,5 +1,9 @@
-const UserPage = () => {
-  return <h1>Add New User</h1>;
+import { getUserListApi } from "@/lib/services/api/user.service";
+import UserList from "@/components/user/UserTable";
+
+const UsersPage = async () => {
+  const result = await getUserListApi();
+  return <UserList users={result} />;
 };
 
-export default UserPage;
+export default UsersPage;

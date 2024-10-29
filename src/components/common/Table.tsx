@@ -165,7 +165,7 @@ type TableProps = {
   filter?: ReactNode;
 };
 
-const Table = ({
+export const Table = ({
   columns = dummy_columns,
   data = dummy_rows,
   title,
