@@ -1,6 +1,6 @@
 "use client"
 
-import { DEFAULT_THEME, Loader, MantineThemeOverride, createTheme, mergeMantineTheme } from '@mantine/core'
+import { CSSVariablesResolver, DEFAULT_THEME, Loader, MantineThemeOverride, createTheme, mergeMantineTheme } from '@mantine/core'
 import { CssLoader } from './CssLoader'
 import { generateColors } from '@mantine/colors-generator'
 
@@ -14,7 +14,7 @@ export const iproTheme: MantineThemeOverride = createTheme({
     primary: generateColors("#238be6"),
     // main 1
     secondary: ['', '#f8f9fa', '', '', '', '', '', '', '', ''],
-    red: ['', '', '', '#e03131', '', '', '#e03131', '', '', '',],
+    red: generateColors('#e03131')
   },
   primaryShade: 3,
   primaryColor: 'primary',
@@ -56,7 +56,18 @@ export const iproTheme: MantineThemeOverride = createTheme({
         type: 'custom',
       },
     }),
+  }
+})
+
+export const resolver: CSSVariablesResolver = (theme) => ({
+  variables: {},
+  dark: {
+    '--mantine-color-error': theme.colors.red[2],
+    '--mantine-color-red-filled': theme.colors.red[4]
   },
+  light: {
+    '--mantine-color-red-filled': theme.colors.red[4]
+  }
 })
 
 /// For use of theme outside of a component
