@@ -8,6 +8,8 @@ export const UserSchema = z.object({
   last_name: z.string(),
   email: z.string(),
   phone: z.string(),
+  progress: z.number().nullish(),
+  target: z.number().nullish(),
   is_active: z.boolean(),
   is_verified: z.boolean(),
   created_at: z.string(),
@@ -25,6 +27,9 @@ export const ProfileSchema = UserSchema.extend({
   company: CompanySchema
 })
 
+export const ProfileListSchema = z.array(ProfileSchema)
+
 export type ProfileModel = z.infer<typeof ProfileSchema>
 export type UserModel = z.infer<typeof UserSchema>
+export type ProfileListModel = z.infer<typeof ProfileListSchema>
 export type UserListModel = z.infer<typeof UserListSchema>

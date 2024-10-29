@@ -72,7 +72,7 @@ export const JobColumns = [
   {
     accessor: "technician",
     render: (row: JobModel) => {
-      return (
+      return !!row?.technician ? (
         <Group>
           <Avatar
             key={row.technician.id}
@@ -88,7 +88,7 @@ export const JobColumns = [
             >{`${row.technician.first_name} ${row.technician.last_name}`}</Text>
           </Stack>
         </Group>
-      );
+      ) : <Text opacity={0.4}><i>No Staff Assigned</i></Text>;
     },
   },
   {

@@ -26,8 +26,8 @@ import { Notifications } from "@mantine/notifications";
 // });
 
 export const metadata = {
-  title: "My Mantine app",
-  description: "I have followed setup instructions carefully",
+  title: "Ipro Fix",
+  description: "Ipro Fix Web Application",
 };
 
 export default function RootLayout({
