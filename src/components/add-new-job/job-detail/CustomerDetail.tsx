@@ -8,8 +8,9 @@ import IproSelect from "@/components/core/IproSelect";
 import IproTextInput from "@/components/core/IproTextInput";
 import { CustomerListModel, CustomerModel } from "@/lib/models/customer.model";
 import { getCustomerListApi } from "@/lib/services/api/customer.service";
+import { FieldErrorPropsType } from "@/hooks/use-action-errors";
 
-const CustomerDetail = () => {
+const CustomerDetail = ({ getFieldErrorProps }: FieldErrorPropsType) => {
   const [customers, setCustomers] = useState<CustomerListModel>([]);
   const [nameOptionsList, setNameOptionsList] = useState<ComboboxData>([]);
   const [phoneOptionsList, setPhoneOptionsList] = useState<ComboboxData>([]);
@@ -87,10 +88,6 @@ const CustomerDetail = () => {
     getCustomerList();
   }, []);
 
-  useEffect(() => {
-    console.log("customerId: ", customerId);
-  }, [customerId]);
-
   return (
     <Card>
       <Heading
@@ -113,6 +110,7 @@ const CustomerDetail = () => {
             onSearchChange={onNameSearchHandler}
             onRemove={(value: string) => onTagRemoveHandler(value, setName)}
             maxDropdownHeight={200}
+            {...getFieldErrorProps("customer_id")}
           />
         </GridCol>
         <GridCol span={4}>
@@ -128,6 +126,7 @@ const CustomerDetail = () => {
             onSearchChange={onPhoneSearchHandler}
             onRemove={(value: string) => onTagRemoveHandler(value, setPhone)}
             maxDropdownHeight={200}
+            {...getFieldErrorProps("customer_id")}
           />
         </GridCol>
         <GridCol span={4}>

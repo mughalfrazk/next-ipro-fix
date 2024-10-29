@@ -1,3 +1,6 @@
+import { notifications } from "@mantine/notifications"
+import classes from "@/styles/notification.module.css"
+
 export const getNestedInputValues = (formData: FormData) => {
   const nestedListRegex = /^([^\[]+)(\[\d+\])(\[[^\]]+\])$/
   /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -21,6 +24,10 @@ export const getNestedInputValues = (formData: FormData) => {
   }
 
   return dataform_obj
+}
+
+export const showErrorNotification = (message: string = "Something went wrong, please try again.") => {
+  notifications.show({ message, color: 'red', classNames: classes, autoClose: false  })
 }
 
 export const colorForUserRole = (name: string) => {

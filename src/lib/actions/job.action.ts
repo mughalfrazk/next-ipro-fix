@@ -1,7 +1,7 @@
 import { ActionResult } from "@/utils/action-results";
 import { CreateJobPayloadModel, CreateJobPayloadSchema } from "../models/job.model";
 import { getFormattedError } from "@/utils/format-error";
-import { getNestedInputValues } from "@/utils/functions";
+import { getNestedInputValues, showErrorNotification } from "@/utils/functions";
 import { createJobApi } from "../services/api/job.service";
 import { IssueModel } from "../models/issue.model";
 import { redirect } from "next/navigation";
@@ -28,14 +28,15 @@ const createJobAction = async (_: ActionResult, formData: FormData) => {
     }))
   }
 
-  console.log(payload)
   const validatedPayload = await CreateJobPayloadSchema.safeParseAsync(payload)
   if (!validatedPayload.success) {
-    console.log(validatedPayload?.error)
+    console.log(validatedPayload)
+    console.log("getFormattedError(validatedPayload?.error): ", getFormattedError(validatedPayload?.error))
+    showErrorNotification("Validation errors")
     return getFormattedError(validatedPayload?.error)
   }
 
-  console.log(payload)
+  return {}
   try {
     await createJobApi(payload)
     redirect("/dashboard/job")

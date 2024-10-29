@@ -3,9 +3,13 @@
 import { useEffect, useState } from "react";
 import { getTechniciansApi } from "@/lib/services/api/user.service";
 import { ComboboxData } from "@mantine/core";
-import IproSelect from "@/components/core/IproSelect";
 
-const TechnicianSelect = () => {
+import { showErrorNotification } from "@/utils/functions";
+import { getFormattedError } from "@/utils/format-error";
+import IproSelect from "@/components/core/IproSelect";
+import { FieldErrorPropsType } from "@/hooks/use-action-errors";
+
+const TechnicianSelect = ({ getFieldErrorProps }: FieldErrorPropsType) => {
   const [technicianOptions, setTechnicianOptions] = useState<ComboboxData>([]);
 
   const getTechniciansList = async () => {
@@ -18,7 +22,8 @@ const TechnicianSelect = () => {
         }))
       );
     } catch (error) {
-      console.log(error);
+      const e = getFormattedError(error);
+      showErrorNotification(e.errors?.formErrors?.[0]);
     }
   };
 
@@ -42,6 +47,7 @@ const TechnicianSelect = () => {
           color: "white",
         },
       }}
+      {...getFieldErrorProps("technician_id")}
     />
   );
 };
