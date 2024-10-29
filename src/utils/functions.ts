@@ -26,6 +26,10 @@ export const getNestedInputValues = (formData: FormData) => {
   return dataform_obj
 }
 
+export const showErrorNotification = (message: string = "Something went wrong, please try again.") => {
+  notifications.show({ message, color: 'red', classNames: classes, autoClose: false  })
+}
+
 export const colorForUserRole = (name: string) => {
   return name === "super_admin"
     ? "grape"
