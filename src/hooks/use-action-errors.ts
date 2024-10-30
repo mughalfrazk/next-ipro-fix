@@ -3,6 +3,13 @@
 import { useState, useEffect } from "react";
 import { ActionErrors, ActionResult } from "@/utils/action-results";
 
+export type FieldErrorPropsType = {
+  getFieldErrorProps: (value: string) => ({
+    error: string | undefined,
+    onChange: () => void
+  })
+}
+
 export function useActionErrors(state: ActionResult = {}) {
   const [errors, setErrors ] = useState<ActionErrors>();
 

@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  Badge,
   Card,
   Divider,
   Grid,
@@ -19,8 +20,7 @@ import IproButton from "@/components/core/IproButton";
 import TechnicianSelect from "./TechnicianSelect";
 
 const JobDetailTab = () => {
-  const { formAction } = useFormAction(createJobAction, {});
-
+  const { formAction, getFieldErrorProps } = useFormAction(createJobAction, {});
 
   return (
     <form action={formAction}>
@@ -28,7 +28,7 @@ const JobDetailTab = () => {
         <CommentDrawer />
         <Grid>
           <GridCol span={8}>
-            <CustomerDetail />
+            <CustomerDetail getFieldErrorProps={getFieldErrorProps} />
           </GridCol>
           <GridCol span={4}>
             <Card bg="var(--mantine-color-primary-6)">
@@ -39,26 +39,27 @@ const JobDetailTab = () => {
               />
               <Divider mt={10} mb={20} opacity={0} />
 
-              <TechnicianSelect />
+              <TechnicianSelect getFieldErrorProps={getFieldErrorProps} />
             </Card>
           </GridCol>
           <GridCol span={12}>
             <Card pb={100}>
-              <Heading
-                title="Job Details"
-                description="Add multiple jobs by clicking the + icon at the end"
-              />
+              <Group justify="space-between">
+                <Heading
+                  title="Job Details"
+                  description="Add multiple jobs by clicking the + icon at the end"
+                />
+                {getFieldErrorProps("issues").error && (
+                  <Badge color="red">Please fill all the issues details</Badge>
+                )}
+              </Group>
               <Divider mt={10} mb={20} />
 
-              <IssuesListForm />
+              <IssuesListForm getFieldErrorProps={getFieldErrorProps} />
 
               <Group justify="flex-end" mt={20}>
-                <IproButton variant="outline">
-                  Cancal
-                </IproButton>
-                <IproButton isSubmit={true}>
-                  Save Job
-                </IproButton>
+                <IproButton variant="outline">Cancal</IproButton>
+                <IproButton isSubmit={true}>Save Job</IproButton>
               </Group>
             </Card>
           </GridCol>

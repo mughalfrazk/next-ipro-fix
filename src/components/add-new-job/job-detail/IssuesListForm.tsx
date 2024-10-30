@@ -18,8 +18,9 @@ import { useMantineColorScheme } from "@/hooks/use-mantine-color-scheme-wrapper"
 import { ProblemTypeListModel } from "@/lib/models/problem-type.model";
 import { getProblemTypeListApi } from "@/lib/services/api/problem-type.service";
 import { getBrandListApi } from "@/lib/services/api/brand.service";
+import { FieldErrorPropsType } from "@/hooks/use-action-errors";
 
-const IssuesListForm = () => {
+const IssuesListForm = ({ getFieldErrorProps }: FieldErrorPropsType) => {
   const { lightDark } = useMantineColorScheme();
   const [problemTypes, setProblemTypes] = useState<ProblemTypeListModel>([]);
   const [brandOptions, setBrandOptions] = useState<ComboboxData>([]);
@@ -66,6 +67,7 @@ const IssuesListForm = () => {
               color="var(--mantine-color-primary-6)"
               label={item.name}
               value={item.id}
+              {...getFieldErrorProps("problem_type_id")}
             />
           ))}
         </Group>
@@ -109,10 +111,7 @@ const IssuesListForm = () => {
               />
             </GridCol>
             <GridCol span={4}>
-              <IproTextInput
-                name={`issues[${idx}][name]`}
-                label="Issue"
-              />
+              <IproTextInput name={`issues[${idx}][name]`} label="Issue" />
             </GridCol>
             <GridCol span={4}>
               <IproTextInput

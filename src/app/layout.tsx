@@ -1,17 +1,17 @@
 // Import styles of packages that you've installed.
 // All packages except `@mantine/hooks` require styles imports
 import "@mantine/core/styles.css";
-import '@mantine/notifications/styles.css';
-import 'mantine-datatable/styles.layer.css';
-import '@mantine/charts/styles.css';
-import '@/styles/datatable.css';
+import "@mantine/notifications/styles.css";
+import "mantine-datatable/styles.layer.css";
+import "@mantine/charts/styles.css";
+import "@/styles/datatable.css";
 
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { SessionProvider } from "next-auth/react";
 
 // import localFont from "next/font/local";
 import "../styles/globals.css";
-import { iproTheme } from "@/styles/ipro-theme";
+import { iproTheme, resolver } from "@/styles/ipro-theme";
 import { Notifications } from "@mantine/notifications";
 
 // const geistSans = localFont({
@@ -42,7 +42,11 @@ export default function RootLayout({
       </head>
       <body>
         <SessionProvider>
-          <MantineProvider defaultColorScheme="auto" theme={iproTheme}>
+          <MantineProvider
+            defaultColorScheme="auto"
+            theme={iproTheme}
+            cssVariablesResolver={resolver}
+          >
             <Notifications />
             {children}
           </MantineProvider>
