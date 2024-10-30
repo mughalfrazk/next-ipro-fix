@@ -47,12 +47,9 @@ export const createNewJobHandler = () => {
     {
       accessor: "target",
       render: (row:UserModel) => {
-      const progressPercentage = ((row.progress ?? 0) / (row.target ?? 1) * 100).toFixed(2);
-      console.log("Progress Percentage:", progressPercentage);
         return (
           
           <ProgressRoot size="xl" w={150}>
-                       console.log((row.progress ?? 0) / (row.target ?? 0) * 100))
                       <ProgressSection value={row.target ?? 0} color="primary.6">
                         <ProgressLabel>{((row.progress ?? 0) / (row.target ?? 0) * 100)}%</ProgressLabel>
                       </ProgressSection>
