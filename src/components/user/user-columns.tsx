@@ -15,6 +15,7 @@ import {
 import { ProfileModel, UserModel } from "@/lib/models/user.model";
 import { redirect } from "next/navigation";
 import { colorForUserRole } from "@/utils/functions";
+import { title } from "process";
 
 export const createNewJobHandler = () => {
   redirect("/dashboard/user/add-new");
@@ -55,6 +56,15 @@ export const UserColumns = [
   },
 
   {
+    accessor: "phone",
+  },
+  
+  {
+    accessor: "jobs",
+    title: "No of jobs"
+  },
+
+  {
     accessor: "target",
     render: (row: UserModel) => {
       const progressPercentage = (
@@ -74,10 +84,6 @@ export const UserColumns = [
   {
     accessor: "progress",
     title: "Earned Amount",
-  },
-
-  {
-    accessor: "phone",
   },
 
   {
