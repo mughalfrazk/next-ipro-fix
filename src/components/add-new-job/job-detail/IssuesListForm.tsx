@@ -1,42 +1,29 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  CloseButton,
-  ComboboxData,
-  Grid,
-  GridCol,
-  Group,
-  Radio,
-  Title,
-} from "@mantine/core";
+import { Grid, GridCol, Group, Radio, Title } from "@mantine/core";
 import { IconSquareRoundedPlusFilled } from "@tabler/icons-react";
 
-import IproSelect from "@/components/core/IproSelect";
-import IproTextInput from "@/components/core/IproTextInput";
-import { useMantineColorScheme } from "@/hooks/use-mantine-color-scheme-wrapper";
 import { ProblemTypeListModel } from "@/lib/models/problem-type.model";
 import { getProblemTypeListApi } from "@/lib/services/api/problem-type.service";
-import { getBrandListApi } from "@/lib/services/api/brand.service";
 import { FieldErrorPropsType } from "@/hooks/use-action-errors";
 import { JobModel } from "@/lib/models/job.model";
+import IssueItem from "./IssueItem";
 
 type IssuesListFormProps = {
   job: JobModel;
 } & FieldErrorPropsType;
 
 const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
-  const { lightDark } = useMantineColorScheme();
   const [problemTypes, setProblemTypes] = useState<ProblemTypeListModel>([]);
-  const [brandOptions, setBrandOptions] = useState<ComboboxData>([]);
   const [issues, setIssues] = useState([
     {
-      brand_id: "",
-      model_id: "",
-      company_name: "",
-      quantity: null,
-      phone: "null",
-      total: "",
+      brand_id: 0,
+      model: "",
+      name: "",
+      quantity: 0,
+      charges: 0,
+      total: 0,
     },
   ]);
 
@@ -45,26 +32,26 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
     setProblemTypes(result);
   };
 
-  const getBrandList = async () => {
-    const result = await getBrandListApi();
-    setBrandOptions(
-      result.map((item) => ({
-        label: item.name,
-        value: String(item.id),
-      }))
-    );
-  };
-
-  useEffect(() => {
-    if (job) {
-      console.log(job);
-    }
-  }, [job]);
-
   useEffect(() => {
     getProblemTypeList();
-    getBrandList();
   }, []);
+
+  useEffect(() => {
+    if (!!job?.issues?.length) {
+      setIssues([
+        ...job.issues.map(
+          ({ brand_id, model, name, quantity, charges, total }) => ({
+            brand_id,
+            model,
+            name,
+            quantity,
+            charges,
+            total,
+          })
+        ),
+      ]);
+    }
+  }, [job]);
 
   return (
     <Grid>
@@ -84,70 +71,13 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
           ))}
         </Group>
       </GridCol>
-      {issues.map((_, idx) => (
-        <GridCol key={idx} span={12}>
-          <Grid>
-            {idx !== 0 && (
-              <GridCol pt={30} pb={20}>
-                <Group
-                  justify="space-between"
-                  bg={lightDark(
-                    "var(--mantine-color-gray-2)",
-                    "var(--mantine-color-dark-7)"
-                  )}
-                  px={20}
-                  py={10}
-                  style={{ borderRadius: "0.5rem" }}
-                >
-                  <Title order={5}>Extra Job {idx}</Title>
-                  <CloseButton
-                    onClick={() =>
-                      setIssues(issues.filter((_, j) => j !== idx))
-                    }
-                  />
-                </Group>
-              </GridCol>
-            )}
-            <GridCol span={4}>
-              <IproSelect
-                size="md"
-                label="Brand Name"
-                name={`issues[${idx}][brand_id]`}
-                data={brandOptions}
-              />
-            </GridCol>
-            <GridCol span={4}>
-              <IproTextInput
-                name={`issues[${idx}][model]`}
-                label="Model Selection"
-              />
-            </GridCol>
-            <GridCol span={4}>
-              <IproTextInput name={`issues[${idx}][name]`} label="Issue" />
-            </GridCol>
-            <GridCol span={4}>
-              <IproTextInput
-                type="number"
-                name={`issues[${idx}][quantity]`}
-                label="Quantity"
-              />
-            </GridCol>
-            <GridCol span={4}>
-              <IproTextInput
-                type="number"
-                name={`issues[${idx}][charges]`}
-                label="Charges"
-              />
-            </GridCol>
-            <GridCol span={4}>
-              <IproTextInput
-                type="number"
-                name={`issues[${idx}][total]`}
-                label="Total"
-              />
-            </GridCol>
-          </Grid>
-        </GridCol>
+      {issues.map((issue, idx) => (
+        <IssueItem
+          key={idx}
+          issue={issue}
+          idx={idx}
+          removeIssue={() => setIssues(issues.filter((_, j) => j !== idx))}
+        />
       ))}
       <GridCol span={12}>
         <Group
@@ -165,12 +95,12 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
             setIssues([
               ...issues,
               {
-                brand_id: "",
-                model_id: "",
-                company_name: "",
-                quantity: null,
-                phone: "null",
-                total: "",
+                brand_id: 0,
+                model: "",
+                name: "",
+                quantity: 0,
+                charges: 0,
+                total: 0,
               },
             ])
           }
