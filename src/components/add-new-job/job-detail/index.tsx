@@ -20,7 +20,7 @@ import IproButton from "@/components/core/IproButton";
 import TechnicianSelect from "./TechnicianSelect";
 import { JobModel } from "@/lib/models/job.model";
 
-const JobDetailTab = ({ job }: { job: JobModel }) => {
+const JobDetailTab = ({ job }: { job?: JobModel }) => {
   const { formAction, getFieldErrorProps } = useFormAction(createJobAction, {});
 
   return (

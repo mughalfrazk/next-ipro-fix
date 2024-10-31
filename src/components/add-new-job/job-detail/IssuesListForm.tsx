@@ -11,7 +11,7 @@ import { JobModel } from "@/lib/models/job.model";
 import IssueItem from "./IssueItem";
 
 type IssuesListFormProps = {
-  job: JobModel;
+  job?: JobModel;
 } & FieldErrorPropsType;
 
 const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {

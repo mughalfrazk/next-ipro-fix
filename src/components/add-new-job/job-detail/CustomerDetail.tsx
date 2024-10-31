@@ -11,7 +11,7 @@ import { getCustomerListApi } from "@/lib/services/api/customer.service";
 import { FieldErrorPropsType } from "@/hooks/use-action-errors";
 
 type CustomerDetailProps = {
-  customer: CustomerModel
+  customer?: CustomerModel
 } & FieldErrorPropsType
 
 const CustomerDetail = ({ customer, getFieldErrorProps }: CustomerDetailProps) => {
