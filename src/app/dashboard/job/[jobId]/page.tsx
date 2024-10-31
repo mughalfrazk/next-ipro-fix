@@ -42,7 +42,7 @@ const AddNewJobPage = async ({ params }: { params: { jobId: string } }) => {
         <JobDetailTab job={result} />
       </TabsPanel>
       <TabsPanel value="purchases">
-        <JobPurchasesTab purchases={result.purchases} />
+        <JobPurchasesTab />
       </TabsPanel>
       <TabsPanel value="invoice">
         <InvoiceTab />
