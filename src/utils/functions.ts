@@ -27,7 +27,7 @@ export const getNestedInputValues = (formData: FormData) => {
 }
 
 export const showErrorNotification = (message: string = "Something went wrong, please try again.") => {
-  notifications.show({ message, color: 'red', classNames: classes, autoClose: false  })
+  notifications.show({ message, color: 'red', position: 'top-right', classNames: classes  })
 }
 
 export const colorForUserRole = (name: string) => {

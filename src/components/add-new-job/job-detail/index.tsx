@@ -18,17 +18,18 @@ import { createJobAction } from "@/lib/actions/job.action";
 import { useFormAction } from "@/hooks/use-form-action";
 import IproButton from "@/components/core/IproButton";
 import TechnicianSelect from "./TechnicianSelect";
+import { JobModel } from "@/lib/models/job.model";
 
-const JobDetailTab = () => {
+const JobDetailTab = ({ job }: { job?: JobModel }) => {
   const { formAction, getFieldErrorProps } = useFormAction(createJobAction, {});
 
   return (
     <form action={formAction}>
       <Stack gap={0}>
-        <CommentDrawer />
+        {!!job && <CommentDrawer />}
         <Grid>
           <GridCol span={8}>
-            <CustomerDetail getFieldErrorProps={getFieldErrorProps} />
+            <CustomerDetail customer={job?.customer} getFieldErrorProps={getFieldErrorProps} />
           </GridCol>
           <GridCol span={4}>
             <Card bg="var(--mantine-color-primary-6)">
@@ -39,7 +40,7 @@ const JobDetailTab = () => {
               />
               <Divider mt={10} mb={20} opacity={0} />
 
-              <TechnicianSelect getFieldErrorProps={getFieldErrorProps} />
+              <TechnicianSelect technician={job?.technician} getFieldErrorProps={getFieldErrorProps} />
             </Card>
           </GridCol>
           <GridCol span={12}>
@@ -55,7 +56,7 @@ const JobDetailTab = () => {
               </Group>
               <Divider mt={10} mb={20} />
 
-              <IssuesListForm getFieldErrorProps={getFieldErrorProps} />
+              <IssuesListForm job={job} getFieldErrorProps={getFieldErrorProps} />
 
               <Group justify="flex-end" mt={20}>
                 <IproButton variant="outline">Cancal</IproButton>
