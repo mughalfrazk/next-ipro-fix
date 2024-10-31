@@ -1,10 +1,7 @@
  "use client";
 import {
-    Avatar,
     Center,
     Button,
-    BackgroundImage,
-    Box,
     Card,
     Divider,
     Grid,
@@ -12,11 +9,6 @@ import {
     Group,
     Image,
     Stack,
-    Table,
-    Container,
-    TableData,
-    Text,
-    Title,
   } from "@mantine/core";
   import { IconRefresh } from "@tabler/icons-react";
   import IproSelect from "../core/IproSelect";
