@@ -27,7 +27,9 @@ const Login = () => {
           border: "1px solid var(--mantine-color-white)",
         }}
       >
-        <Image src={whiteLogo.src} w="auto" height={40} />
+        <Image src={whiteLogo.src} 
+        alt="" 
+        w="auto" height={40} />
         <Title ta="center" mt={20} c="var(--mantine-color-white)">
           Welcome to Iprofix 👋🏻
         </Title>

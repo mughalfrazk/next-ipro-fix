@@ -15,7 +15,6 @@ import {
 import { ProfileModel, UserModel } from "@/lib/models/user.model";
 import { redirect } from "next/navigation";
 import { colorForUserRole } from "@/utils/functions";
-import { title } from "process";
 export const createNewJobHandler = () => {
   redirect("/dashboard/user/add-new");
 };
