@@ -3,12 +3,9 @@ import { CustomerSchema } from "./customer.model";
 import { UserSchema } from "./user.model";
 import { JobStatusSchema } from "./job-status.model";
 import { IssueListSchema } from "./issue.model";
+import { PurchaseListSchema } from "./purchase.model";
+import { ProblemTypeSchema } from "./problem-type.model";
 
-// export const CreateJobFormSchema = z.object({
-//   customer_company_name: z.string(),
-//   customer_name: z.string(),
-//   customer_phone: z.string()
-// })
 export const CreateJobFormSchema = z.record(z.string(), z.string())
 
 const CustomerPayloadSchema = z.object({
@@ -52,7 +49,9 @@ export const JobSchema = z.object({
   customer: CustomerSchema,
   technician: UserSchema.nullish(),
   job_status: JobStatusSchema,
-  issues: IssueListSchema
+  issues: IssueListSchema,
+  purchases: PurchaseListSchema.nullish(),
+  problem_type: ProblemTypeSchema
 })
 
 

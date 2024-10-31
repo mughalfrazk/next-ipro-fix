@@ -6,6 +6,8 @@ import { createJobApi } from "../services/api/job.service";
 import { IssueModel } from "../models/issue.model";
 import { redirect } from "next/navigation";
 import { isRedirectError } from "next/dist/client/components/redirect";
+import { CreatePurchasesModel, CreatePurchasesSchema, PurchaseModel } from "../models/purchase.model";
+import { validatePayload } from "@/utils/validate-payload";
 
 const createJobAction = async (_: ActionResult, formData: FormData) => {
   const structuredInput = getNestedInputValues(formData)
@@ -30,13 +32,10 @@ const createJobAction = async (_: ActionResult, formData: FormData) => {
 
   const validatedPayload = await CreateJobPayloadSchema.safeParseAsync(payload)
   if (!validatedPayload.success) {
-    console.log(validatedPayload)
-    console.log("getFormattedError(validatedPayload?.error): ", getFormattedError(validatedPayload?.error))
     showErrorNotification("Validation errors")
     return getFormattedError(validatedPayload?.error)
   }
 
-  return {}
   try {
     await createJobApi(payload)
     redirect("/dashboard/job")
@@ -50,4 +49,32 @@ const createJobAction = async (_: ActionResult, formData: FormData) => {
 
 }
 
-export { createJobAction }
+const createJobPurchaseAction = async (_: ActionResult, formData: FormData) => {
+  const structuredInput = getNestedInputValues(formData)
+  console.log(structuredInput)
+  const payload: CreatePurchasesModel = {
+    job_id: formData.get("job_id") as string,
+    purchases: structuredInput.purchases.map((item: PurchaseModel) => ({ ...item }))
+  }
+
+  const validatedPayload = await CreatePurchasesSchema.safeParseAsync(payload)
+  if (!validatedPayload.success) {
+    showErrorNotification("Validation errors")
+
+    console.log(validatedPayload?.error)
+
+    return getFormattedError(validatedPayload?.error)
+  }
+
+  try {
+
+    return {}
+  } catch (error) {
+    // `redirectTo` won't work without this line
+    if (isRedirectError(error)) throw error
+    console.log(error)
+    return getFormattedError(error)
+  }
+}
+
+export { createJobAction, createJobPurchaseAction }

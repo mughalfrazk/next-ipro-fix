@@ -3,9 +3,9 @@
 import { Avatar, Badge, Group, Stack, Text, Title } from "@mantine/core";
 import { JobModel } from "@/lib/models/job.model";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 const colorForJobStatus = (name: string) => {
-  console.log(name)
   return name === "Device Received"
     ? "grape"
     : name === "Pending Work"
@@ -20,14 +20,18 @@ const colorForJobStatus = (name: string) => {
 };
 
 export const createNewJobHandler = () => {
-  redirect("/dashboard/job/add-new")
-}
+  redirect("/dashboard/job/add-new");
+};
 
 export const JobColumns = [
   {
-    accessor: "jobId",
-    render: () => {
-      return "Job no";
+    accessor: "Job ID",
+    render: (row: JobModel) => {
+      return (
+        <Link href={`/dashboard/job/${row.id}`}>
+          <Text fw={"bold"} c={'primary.6'}>{row.id.slice(-5)}</Text>
+        </Link>
+      );
     },
   },
   {
@@ -53,7 +57,12 @@ export const JobColumns = [
     accessor: "status",
     render: (row: JobModel) => {
       return (
-        <Badge variant="outline" color={colorForJobStatus(row.job_status.name)} radius="sm" p={12}>
+        <Badge
+          variant="outline"
+          color={colorForJobStatus(row.job_status.name)}
+          radius="sm"
+          p={12}
+        >
           {row.job_status.name}
         </Badge>
       );
@@ -88,7 +97,11 @@ export const JobColumns = [
             >{`${row.technician.first_name} ${row.technician.last_name}`}</Text>
           </Stack>
         </Group>
-      ) : <Text opacity={0.4}><i>No Staff Assigned</i></Text>;
+      ) : (
+        <Text opacity={0.4}>
+          <i>No Staff Assigned</i>
+        </Text>
+      );
     },
   },
   {

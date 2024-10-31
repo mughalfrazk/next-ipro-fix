@@ -19,8 +19,13 @@ import { ProblemTypeListModel } from "@/lib/models/problem-type.model";
 import { getProblemTypeListApi } from "@/lib/services/api/problem-type.service";
 import { getBrandListApi } from "@/lib/services/api/brand.service";
 import { FieldErrorPropsType } from "@/hooks/use-action-errors";
+import { JobModel } from "@/lib/models/job.model";
 
-const IssuesListForm = ({ getFieldErrorProps }: FieldErrorPropsType) => {
+type IssuesListFormProps = {
+  job: JobModel;
+} & FieldErrorPropsType;
+
+const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
   const { lightDark } = useMantineColorScheme();
   const [problemTypes, setProblemTypes] = useState<ProblemTypeListModel>([]);
   const [brandOptions, setBrandOptions] = useState<ComboboxData>([]);
@@ -51,6 +56,12 @@ const IssuesListForm = ({ getFieldErrorProps }: FieldErrorPropsType) => {
   };
 
   useEffect(() => {
+    if (job) {
+      console.log(job);
+    }
+  }, [job]);
+
+  useEffect(() => {
     getProblemTypeList();
     getBrandList();
   }, []);
@@ -67,6 +78,7 @@ const IssuesListForm = ({ getFieldErrorProps }: FieldErrorPropsType) => {
               color="var(--mantine-color-primary-6)"
               label={item.name}
               value={item.id}
+              defaultChecked={item.id === job?.problem_type?.id}
               {...getFieldErrorProps("problem_type_id")}
             />
           ))}
