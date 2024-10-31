@@ -12,8 +12,9 @@ import {
   Text,
   Title,
 } from "@mantine/core";
-import { ProfileModel, UserModel } from "@/lib/models/user.model";
 import { redirect } from "next/navigation";
+
+import { ProfileModel, UserModel } from "@/lib/models/user.model";
 import { colorForUserRole } from "@/utils/functions";
 
 export const createNewJobHandler = () => {
@@ -53,7 +54,14 @@ export const UserColumns = [
       );
     },
   },
+  {
+    accessor: "phone",
+  },
 
+  {
+    accessor: "jobs",
+    title: "No of jobs",
+  },
   {
     accessor: "target",
     render: (row: UserModel) => {

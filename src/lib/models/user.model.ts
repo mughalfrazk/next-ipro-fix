@@ -10,6 +10,7 @@ export const UserSchema = z.object({
   phone: z.string().nullish(),
   progress: z.number().nullish(),
   target: z.number().nullish(),
+  jobs: z.number().nullish(),
   is_active: z.boolean(),
   is_verified: z.boolean(),
   created_at: z.string(),
