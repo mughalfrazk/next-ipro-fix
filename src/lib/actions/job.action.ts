@@ -60,9 +60,6 @@ const createJobPurchaseAction = async (_: ActionResult, formData: FormData) => {
   const validatedPayload = await CreatePurchasesSchema.safeParseAsync(payload)
   if (!validatedPayload.success) {
     showErrorNotification("Validation errors")
-
-    console.log(validatedPayload?.error)
-
     return getFormattedError(validatedPayload?.error)
   }
 

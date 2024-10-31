@@ -13,16 +13,17 @@ import {
 import { IconSquareRoundedPlusFilled } from "@tabler/icons-react";
 
 import { useMantineColorScheme } from "@/hooks/use-mantine-color-scheme-wrapper";
-import IproTextInput from "../../core/IproTextInput";
-import IproSelect from "../../core/IproSelect";
-import Heading from "../../common/Heading";
-import { useFormAction } from "@/hooks/use-form-action";
 import { createJobPurchaseAction } from "@/lib/actions/job.action";
+import { useFormAction } from "@/hooks/use-form-action";
+import IproTextInput from "@/components/core/IproTextInput";
+import IproSelect from "@/components/core/IproSelect";
+import Heading from "@/components/common/Heading";
 import IproButton from "@/components/core/IproButton";
-import { PurchaseListModel } from "@/lib/models/purchase.model";
 
-const JobPurchasesTab = ({ purchases: purchasesData }: { purchases: PurchaseListModel | undefined | null }) => {
-  const { formAction, getFieldErrorProps } = useFormAction(createJobPurchaseAction, {});
+// { purchases: purchasesData }: { purchases: PurchaseListModel | undefined | null }
+
+const JobPurchasesTab = () => {
+  const { formAction } = useFormAction(createJobPurchaseAction, {});
   const { lightDark } = useMantineColorScheme();
   const [purchases, setPurchases] = useState([
     {
@@ -33,6 +34,7 @@ const JobPurchasesTab = ({ purchases: purchasesData }: { purchases: PurchaseList
       total: "",
     },
   ]);
+  
   return (
     <form action={formAction}>
       <Card pb={100}>
