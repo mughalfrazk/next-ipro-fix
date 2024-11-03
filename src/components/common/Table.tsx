@@ -1,9 +1,9 @@
-"use client";
+'use client'
 
-import { ReactNode } from "react";
-import { useDisclosure } from "@mantine/hooks";
-import { DataTable } from "mantine-datatable";
-import { IconFilter, IconSearch } from "@tabler/icons-react";
+import { ReactNode } from 'react'
+import { useDisclosure } from '@mantine/hooks'
+import { DataTable } from 'mantine-datatable'
+import { IconFilter, IconSearch } from '@tabler/icons-react'
 import {
   Avatar,
   Card,
@@ -13,39 +13,39 @@ import {
   Stack,
   Text,
   Title,
-} from "@mantine/core";
+} from '@mantine/core'
 
-import IproButton from "../core/IproButton";
-import IproTextInput from "../core/IproTextInput";
-import Heading from "./Heading";
+import IproButton from '../core/IproButton'
+import IproTextInput from '../core/IproTextInput'
+import Heading from './Heading'
 
 type RowType = {
-  id: string;
-  jobId: string;
+  id: string
+  jobId: string
   customer: {
-    name: string;
-    phone: string;
-  };
-  status: string;
-  qty: number;
-  company_name: string;
+    name: string
+    phone: string
+  }
+  status: string
+  qty: number
+  company_name: string
   technician: {
-    name: string;
-    phone: string;
-  };
-  total: string;
-};
+    name: string
+    phone: string
+  }
+  total: string
+}
 
 const dummy_columns = [
   {
-    accessor: "jobId",
+    accessor: 'jobId',
     render: (row: RowType) => {
-      return <IproButton variant="subtle">{row.jobId}</IproButton>;
+      return <IproButton variant="subtle">{row.jobId}</IproButton>
     },
   },
   {
-    accessor: "customer",
-    title: "Customer",
+    accessor: 'customer',
+    title: 'Customer',
     render: (row: RowType) => {
       return (
         <Group>
@@ -56,17 +56,17 @@ const dummy_columns = [
           />
           <Stack gap={2}>
             <Title order={6}>{row.customer.name}</Title>
-            <Text size={"0.7rem"}>{row.customer.phone}</Text>
+            <Text size={'0.7rem'}>{row.customer.phone}</Text>
           </Stack>
         </Group>
-      );
+      )
     },
   },
-  { accessor: "status" },
-  { accessor: "qty" },
-  { accessor: "company_name" },
+  { accessor: 'status' },
+  { accessor: 'qty' },
+  { accessor: 'company_name' },
   {
-    accessor: "technician",
+    accessor: 'technician',
     render: (row: RowType) => {
       return (
         <Group>
@@ -77,93 +77,93 @@ const dummy_columns = [
           />
           <Stack gap={2}>
             <Title order={6}>{row.technician.name}</Title>
-            <Text size={"0.7rem"}>{row.technician.phone}</Text>
+            <Text size={'0.7rem'}>{row.technician.phone}</Text>
           </Stack>
         </Group>
-      );
+      )
     },
   },
-  { accessor: "total" },
-];
+  { accessor: 'total' },
+]
 
 const dummy_rows = [
   {
-    id: "0",
-    jobId: "Job-123",
+    id: '0',
+    jobId: 'Job-123',
     customer: {
-      name: "John Doe",
-      phone: "XXX XX XXXX",
+      name: 'John Doe',
+      phone: 'XXX XX XXXX',
     },
-    status: "Pending Work",
+    status: 'Pending Work',
     qty: 20,
-    company_name: "Al humrah ltd",
+    company_name: 'Al humrah ltd',
     technician: {
-      name: "Albert Fiennes",
-      phone: "XXX XX XXXX",
+      name: 'Albert Fiennes',
+      phone: 'XXX XX XXXX',
     },
-    total: "AED 23000",
+    total: 'AED 23000',
   },
   {
-    id: "1",
-    jobId: "Job-123",
+    id: '1',
+    jobId: 'Job-123',
     customer: {
-      name: "John Doe",
-      phone: "XXX XX XXXX",
+      name: 'John Doe',
+      phone: 'XXX XX XXXX',
     },
-    status: "Pending Work",
+    status: 'Pending Work',
     qty: 20,
-    company_name: "Al humrah ltd",
+    company_name: 'Al humrah ltd',
     technician: {
-      name: "Albert Fiennes",
-      phone: "XXX XX XXXX",
+      name: 'Albert Fiennes',
+      phone: 'XXX XX XXXX',
     },
-    total: "AED 23000",
+    total: 'AED 23000',
   },
   {
-    id: "2",
-    jobId: "Job-123",
+    id: '2',
+    jobId: 'Job-123',
     customer: {
-      name: "John Doe",
-      phone: "XXX XX XXXX",
+      name: 'John Doe',
+      phone: 'XXX XX XXXX',
     },
-    status: "Pending Work",
+    status: 'Pending Work',
     qty: 20,
-    company_name: "Al humrah ltd",
+    company_name: 'Al humrah ltd',
     technician: {
-      name: "Albert Fiennes",
-      phone: "XXX XX XXXX",
+      name: 'Albert Fiennes',
+      phone: 'XXX XX XXXX',
     },
-    total: "AED 23000",
+    total: 'AED 23000',
   },
   {
-    id: "3",
-    jobId: "Job-123",
+    id: '3',
+    jobId: 'Job-123',
     customer: {
-      name: "John Doe",
-      phone: "XXX XX XXXX",
+      name: 'John Doe',
+      phone: 'XXX XX XXXX',
     },
-    status: "Pending Work",
+    status: 'Pending Work',
     qty: 20,
-    company_name: "Al humrah ltd",
+    company_name: 'Al humrah ltd',
     technician: {
-      name: "Albert Fiennes",
-      phone: "XXX XX XXXX",
+      name: 'Albert Fiennes',
+      phone: 'XXX XX XXXX',
     },
-    total: "AED 23000",
+    total: 'AED 23000',
   },
-];
+]
 
 type TableProps = {
-  title?: string;
-  data?: unknown[];
+  title?: string
+  data?: unknown[]
   /* eslint-disable @typescript-eslint/no-explicit-any */
-  columns?: any;
-  description?: string;
-  search?: boolean;
-  searchProperty?: string;
-  rightSection?: ReactNode;
-  filter?: ReactNode;
-};
+  columns?: any
+  description?: string
+  search?: boolean
+  searchProperty?: string
+  rightSection?: ReactNode
+  filter?: ReactNode
+}
 
 export const Table = ({
   columns = dummy_columns,
@@ -174,7 +174,7 @@ export const Table = ({
   rightSection,
   filter,
 }: TableProps) => {
-  const [opened, { open, close }] = useDisclosure();
+  const [opened, { open, close }] = useDisclosure()
 
   return (
     <>
@@ -202,7 +202,7 @@ export const Table = ({
             >
               <IproTextInput
                 placeholder="Search anything here"
-                width={"100%"}
+                width={'100%'}
                 leftSection={<IconSearch />}
                 rightSection={
                   <IproButton
@@ -225,12 +225,12 @@ export const Table = ({
           records={data}
           minHeight={100}
           classNames={{
-            root: "mantine-table-root",
+            root: 'mantine-table-root',
           }}
         />
       </Card>
     </>
-  );
-};
+  )
+}
 
-export default Table;
+export default Table

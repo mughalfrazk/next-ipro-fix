@@ -1,6 +1,6 @@
-"use client";
+'use client'
 
-import { useState } from "react";
+import { useState } from 'react'
 import {
   Card,
   CloseButton,
@@ -9,25 +9,25 @@ import {
   GridCol,
   Group,
   Title,
-} from "@mantine/core";
-import { IconSquareRoundedPlusFilled } from "@tabler/icons-react";
+} from '@mantine/core'
+import { IconSquareRoundedPlusFilled } from '@tabler/icons-react'
 
-import { useMantineColorScheme } from "@/hooks/use-mantine-color-scheme-wrapper";
-import IproTextInput from "../../core/IproTextInput";
-import IproSelect from "../../core/IproSelect";
-import Heading from "../../common/Heading";
+import { useMantineColorScheme } from '@/hooks/use-mantine-color-scheme-wrapper'
+import IproTextInput from '../../core/IproTextInput'
+import IproSelect from '../../core/IproSelect'
+import Heading from '../../common/Heading'
 
 const JobPurchasesTab = () => {
-  const { lightDark } = useMantineColorScheme();
+  const { lightDark } = useMantineColorScheme()
   const [purchases, setPurchases] = useState([
     {
-      brand_id: "",
-      model_id: "",
+      brand_id: '',
+      model_id: '',
       quantity: null,
-      parts: "null",
-      total: "",
+      parts: 'null',
+      total: '',
     },
-  ]);
+  ])
   return (
     <Card pb={100}>
       <Heading
@@ -44,12 +44,12 @@ const JobPurchasesTab = () => {
                   <Group
                     justify="space-between"
                     bg={lightDark(
-                      "var(--mantine-color-gray-2)",
-                      "var(--mantine-color-dark-7)"
+                      'var(--mantine-color-gray-2)',
+                      'var(--mantine-color-dark-7)',
                     )}
                     px={20}
                     py={10}
-                    style={{ borderRadius: "0.5rem" }}
+                    style={{ borderRadius: '0.5rem' }}
                   >
                     <Title order={5}>Purchase {idx}</Title>
                     <CloseButton
@@ -81,24 +81,24 @@ const JobPurchasesTab = () => {
         <GridCol span={12}>
           <Group
             justify="center"
-            w={"100%"}
+            w={'100%'}
             variant="subtle"
             py={14}
             opacity={0.3}
             style={{
-              border: "2px dashed var(--mantine-color-dark-1)",
-              borderRadius: "var(--mantine-radius-default)",
-              cursor: "pointer",
+              border: '2px dashed var(--mantine-color-dark-1)',
+              borderRadius: 'var(--mantine-radius-default)',
+              cursor: 'pointer',
             }}
             onClick={() =>
               setPurchases([
                 ...purchases,
                 {
-                  brand_id: "",
-                  model_id: "",
+                  brand_id: '',
+                  model_id: '',
                   quantity: null,
-                  parts: "null",
-                  total: "",
+                  parts: 'null',
+                  total: '',
                 },
               ])
             }
@@ -108,7 +108,7 @@ const JobPurchasesTab = () => {
         </GridCol>
       </Grid>
     </Card>
-  );
-};
+  )
+}
 
-export default JobPurchasesTab;
+export default JobPurchasesTab

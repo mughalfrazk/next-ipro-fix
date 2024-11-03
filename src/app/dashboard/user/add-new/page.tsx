@@ -1,10 +1,7 @@
-import AddNewUser from "@/components/create-new-user";
-
+import AddNewUser from '@/components/create-new-user'
 
 const AddNewUserPage = () => {
-  return(
-   <AddNewUser />
-  );
-};
+  return <AddNewUser />
+}
 
-export default AddNewUserPage;
+export default AddNewUserPage

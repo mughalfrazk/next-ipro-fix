@@ -1,12 +1,12 @@
-import AppShellLayout from "@/components/layouts/app-shell";
-import withAuth from "@/hoc/with-auth";
+import AppShellLayout from '@/components/layouts/app-shell'
+import withAuth from '@/hoc/with-auth'
 
 const RootLayout = ({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) => {
-  return <AppShellLayout>{children}</AppShellLayout>;
-};
+  return <AppShellLayout>{children}</AppShellLayout>
+}
 
-export default withAuth(RootLayout);
+export default withAuth(RootLayout)

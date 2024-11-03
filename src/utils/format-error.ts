@@ -1,11 +1,11 @@
-import { ZodError } from 'zod';
-import { ActionErrors, ActionResult, FieldErrors } from './action-results';
-import { AuthError } from 'next-auth';
-import { AxiosError } from 'axios';
+import { ZodError } from 'zod'
+import { ActionErrors, ActionResult, FieldErrors } from './action-results'
+import { AuthError } from 'next-auth'
+import { AxiosError } from 'axios'
 
 export type AxiosErrorBody = {
-  message: string;
-  error: string;
+  message: string
+  error: string
   statusCode: number
 }
 
@@ -13,15 +13,15 @@ export type AxiosErrorBody = {
 export function getErrorsForField(field: string, error: string): ActionErrors {
   return {
     fieldErrors: {
-      [field]: error
-    }
+      [field]: error,
+    },
   }
 }
 
 /// Create an ActionErrors object with a form error
 export function getErrorsForForm(error: string): ActionErrors {
   return {
-    formErrors: [error]
+    formErrors: [error],
   }
 }
 
@@ -38,38 +38,38 @@ export function getFormattedError(error: unknown): { errors: ActionErrors } {
   if (error instanceof ZodError) {
     // console.log('ZodError', error);
     return {
-      errors: formatZodError(error)
+      errors: formatZodError(error),
     }
   }
 
   if (error instanceof AxiosError) {
-    const e = error as AxiosError;
+    const e = error as AxiosError
     // console.log("AxiosErr: ", error.code)
-    if (error?.code === "ECONNREFUSED") {
+    if (error?.code === 'ECONNREFUSED') {
       return {
         errors: {
-          formErrors: ["Server connection error, please try again later."]
-        }
+          formErrors: ['Server connection error, please try again later.'],
+        },
       }
     }
     const errorBody = e?.response?.data as AxiosErrorBody
 
     return {
       errors: {
-        formErrors: [errorBody?.message ?? e.response?.statusText]
-      }
+        formErrors: [errorBody?.message ?? e.response?.statusText],
+      },
     }
   }
 
   if (error instanceof AuthError) {
-    const e = error as AuthError;
+    const e = error as AuthError
     if (e.cause?.err instanceof AxiosError) {
       const axiosError = e.cause?.err as AxiosError
-      if (axiosError?.code === "ECONNREFUSED") {
+      if (axiosError?.code === 'ECONNREFUSED') {
         return {
           errors: {
-            formErrors: ["Server connection error, please try again later."]
-          }
+            formErrors: ['Server connection error, please try again later.'],
+          },
         }
       }
 
@@ -77,25 +77,25 @@ export function getFormattedError(error: unknown): { errors: ActionErrors } {
 
       return {
         errors: {
-          formErrors: [errorBody?.message ?? axiosError.response?.statusText]
-        }
+          formErrors: [errorBody?.message ?? axiosError.response?.statusText],
+        },
       }
     }
 
     return {
       errors: {
-        formErrors: [e.cause?.err?.message || e.message]
-      }
+        formErrors: [e.cause?.err?.message || e.message],
+      },
     }
   }
 
   if (error instanceof Error) {
     // console.log('Error', error);
-    const e = error as Error;
+    const e = error as Error
     return {
       errors: {
-        formErrors: [e.message]
-      }
+        formErrors: [e.message],
+      },
     }
   }
 
@@ -103,34 +103,34 @@ export function getFormattedError(error: unknown): { errors: ActionErrors } {
     // console.log('Error message', error);
     return {
       errors: {
-        formErrors: [error]
-      }
+        formErrors: [error],
+      },
     }
   }
 
   // console.log('Unknown error', error);
   return {
     errors: {
-      formErrors: ['Something went wrong, please try again']
-    }
+      formErrors: ['Something went wrong, please try again'],
+    },
   }
 }
 
 /// Format a ZodError into an ActionErrors object
 function formatZodError(error: ZodError): ActionErrors {
-  const zodErrors = error.flatten();
+  const zodErrors = error.flatten()
   const errors: ActionErrors = {
-    formErrors: zodErrors?.formErrors
-  };
+    formErrors: zodErrors?.formErrors,
+  }
 
   // join errors in fieldErrors to a single string
   if (zodErrors?.fieldErrors) {
-    const fieldErrors: FieldErrors = {};
+    const fieldErrors: FieldErrors = {}
 
     for (const key in zodErrors.fieldErrors) {
-      fieldErrors[key] = zodErrors.fieldErrors[key]?.join(', ');
+      fieldErrors[key] = zodErrors.fieldErrors[key]?.join(', ')
     }
-    errors.fieldErrors = fieldErrors;
+    errors.fieldErrors = fieldErrors
   }
-  return errors;
+  return errors
 }

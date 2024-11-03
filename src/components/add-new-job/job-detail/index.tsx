@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import {
   Badge,
@@ -8,19 +8,19 @@ import {
   GridCol,
   Group,
   Stack,
-} from "@mantine/core";
+} from '@mantine/core'
 
-import Heading from "../../common/Heading";
-import CustomerDetail from "./CustomerDetail";
-import CommentDrawer from "./CommentDrawer";
-import IssuesListForm from "./IssuesListForm";
-import { createJobAction } from "@/lib/actions/job.action";
-import { useFormAction } from "@/hooks/use-form-action";
-import IproButton from "@/components/core/IproButton";
-import TechnicianSelect from "./TechnicianSelect";
-
+import Heading from '../../common/Heading'
+import CustomerDetail from './CustomerDetail'
+import CommentDrawer from './CommentDrawer'
+import IssuesListForm from './IssuesListForm'
+import { createJobAction } from '@/lib/actions/job.action'
+import { useFormAction } from '@/hooks/use-form-action'
+import IproButton from '@/components/core/IproButton'
+import TechnicianSelect from './TechnicianSelect'
+import InvoiveReceiptDrawer from './InvoiceReceiptDrawer'
 const JobDetailTab = () => {
-  const { formAction, getFieldErrorProps } = useFormAction(createJobAction, {});
+  const { formAction, getFieldErrorProps } = useFormAction(createJobAction, {})
 
   return (
     <form action={formAction}>
@@ -49,7 +49,7 @@ const JobDetailTab = () => {
                   title="Job Details"
                   description="Add multiple jobs by clicking the + icon at the end"
                 />
-                {getFieldErrorProps("issues").error && (
+                {getFieldErrorProps('issues').error && (
                   <Badge color="red">Please fill all the issues details</Badge>
                 )}
               </Group>
@@ -58,6 +58,9 @@ const JobDetailTab = () => {
               <IssuesListForm getFieldErrorProps={getFieldErrorProps} />
 
               <Group justify="flex-end" mt={20}>
+                <Group mr={130}>
+                  <InvoiveReceiptDrawer />
+                </Group>
                 <IproButton variant="outline">Cancal</IproButton>
                 <IproButton isSubmit={true}>Save Job</IproButton>
               </Group>
@@ -66,7 +69,7 @@ const JobDetailTab = () => {
         </Grid>
       </Stack>
     </form>
-  );
-};
+  )
+}
 
-export default JobDetailTab;
+export default JobDetailTab

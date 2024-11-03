@@ -1,35 +1,33 @@
-import { BackgroundImage, Box, Image, Text, Title, Stack } from "@mantine/core";
+import { BackgroundImage, Box, Image, Text, Title, Stack } from '@mantine/core'
 
-import LoginForm from "@/components/auth/LoginForm";
-import loginBg from "@/assets/login-bg.jpeg";
-import whiteLogo from "@/assets/white-logo.png";
+import LoginForm from '@/components/auth/LoginForm'
+import loginBg from '@/assets/login-bg.jpeg'
+import whiteLogo from '@/assets/white-logo.png'
 
 const Login = () => {
   return (
     <BackgroundImage
       src={loginBg.src}
-      h={"100vh"}
+      h={'100vh'}
       style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
       <Box
-        w={{ md: "50%", sm: "80%", base: "90%" }}
+        w={{ md: '50%', sm: '80%', base: '90%' }}
         px={30}
         py={40}
         mt={30}
         style={{
-          backdropFilter: "blur(30px)",
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
-          borderRadius: "2rem",
-          border: "1px solid var(--mantine-color-white)",
+          backdropFilter: 'blur(30px)',
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          borderRadius: '2rem',
+          border: '1px solid var(--mantine-color-white)',
         }}
       >
-        <Image src={whiteLogo.src} 
-        alt="" 
-        w="auto" height={40} />
+        <Image src={whiteLogo.src} alt="" w="auto" height={40} />
         <Title ta="center" mt={20} c="var(--mantine-color-white)">
           Welcome to Iprofix 👋🏻
         </Title>
@@ -41,7 +39,7 @@ const Login = () => {
         </Stack>
       </Box>
     </BackgroundImage>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

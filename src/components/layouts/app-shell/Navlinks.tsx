@@ -1,11 +1,11 @@
-"use client";
+'use client'
 
-import Link from "next/link";
-import { NavLink, Title } from "@mantine/core";
-import { useRouter, usePathname } from "next/navigation";
-import classes from "./Navlinks.module.css";
+import Link from 'next/link'
+import { NavLink, Title } from '@mantine/core'
+import { useRouter, usePathname } from 'next/navigation'
+import classes from './Navlinks.module.css'
 
-import routes, { NavLinkRoute } from "./routes";
+import routes, { NavLinkRoute } from './routes'
 
 const navlinkProps = (item: NavLinkRoute) => ({
   component: Link,
@@ -18,17 +18,17 @@ const navlinkProps = (item: NavLinkRoute) => ({
   px: 25,
   py: 12,
   leftSection: <item.icon />,
-});
+})
 
 const Navlinks = () => {
-  const router = useRouter();
-  const pathname = usePathname();
+  const router = useRouter()
+  const pathname = usePathname()
 
   const onParentNavlinkClick = (item: NavLinkRoute) => {
     if (!!item.children?.length && item.href) {
-      router.push(item.href);
+      router.push(item.href)
     }
-  };
+  }
 
   return routes.map((item, i) =>
     !!item.children?.length ? (
@@ -50,8 +50,8 @@ const Navlinks = () => {
       </NavLink>
     ) : (
       <NavLink key={i} classNames={classes} {...navlinkProps(item)} />
-    )
-  );
-};
+    ),
+  )
+}
 
-export default Navlinks;
+export default Navlinks

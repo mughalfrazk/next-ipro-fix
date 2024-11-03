@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod'
 
 export const BrandSchema = z.object({
   id: z.number(),
@@ -6,7 +6,7 @@ export const BrandSchema = z.object({
   description: z.string(),
   created_at: z.string(),
   updated_at: z.string(),
-  deleted_at: z.string().nullish()
+  deleted_at: z.string().nullish(),
 })
 
 export const BrandListSchema = z.array(BrandSchema)

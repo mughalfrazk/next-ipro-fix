@@ -1,20 +1,20 @@
-import { Badge, rem } from "@mantine/core";
-import { IconArrowNarrowUp } from "@tabler/icons-react";
-import { ReactNode } from "react";
+import { Badge, rem } from '@mantine/core'
+import { IconArrowNarrowUp } from '@tabler/icons-react'
+import { ReactNode } from 'react'
 
 type GrowthBadgeProps = {
-  children: ReactNode;
-  loss?: boolean;
-};
+  children: ReactNode
+  loss?: boolean
+}
 
 const GrowthBadge = ({ children, loss }: GrowthBadgeProps) => {
   return (
     <Badge
-      color={loss ? "orange.6" : "lime.6"}
+      color={loss ? 'orange.6' : 'lime.6'}
       variant="light"
       style={{
         border: `1px solid var(--mantine-color-${
-          loss ? "orange-6" : "lime-6"
+          loss ? 'orange-6' : 'lime-6'
         })`,
       }}
       leftSection={
@@ -23,10 +23,10 @@ const GrowthBadge = ({ children, loss }: GrowthBadgeProps) => {
     >
       {children}%
     </Badge>
-  );
-};
+  )
+}
 
-export default GrowthBadge;
+export default GrowthBadge
 
 {
   /* <Badge

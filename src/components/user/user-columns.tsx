@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import {
   Avatar,
@@ -11,20 +11,20 @@ import {
   Stack,
   Text,
   Title,
-} from "@mantine/core";
-import { ProfileModel, UserModel } from "@/lib/models/user.model";
-import { redirect } from "next/navigation";
-import { colorForUserRole } from "@/utils/functions";
+} from '@mantine/core'
+import { ProfileModel, UserModel } from '@/lib/models/user.model'
+import { redirect } from 'next/navigation'
+import { colorForUserRole } from '@/utils/functions'
 export const createNewJobHandler = () => {
-  redirect("/dashboard/user/add-new");
-};
+  redirect('/dashboard/user/add-new')
+}
 
 export const UserColumns = [
   {
-    accessor: "id",
+    accessor: 'id',
   },
   {
-    accessor: "user",
+    accessor: 'user',
     render: (row: UserModel) => {
       return (
         <Group>
@@ -34,11 +34,11 @@ export const UserColumns = [
             <Text size="sm">{`${row.email}`}</Text>
           </Stack>
         </Group>
-      );
+      )
     },
   },
   {
-    accessor: "role",
+    accessor: 'role',
     render: (row: ProfileModel) => {
       return (
         <Badge
@@ -49,45 +49,45 @@ export const UserColumns = [
         >
           {row.role.name}
         </Badge>
-      );
+      )
     },
   },
   {
-    accessor: "phone",
+    accessor: 'phone',
   },
-  
+
   {
-    accessor: "jobs",
-    title: "No of jobs"
+    accessor: 'jobs',
+    title: 'No of jobs',
   },
   {
-    accessor: "target",
+    accessor: 'target',
     render: (row: UserModel) => {
       const progressPercentage = (
         ((row.progress ?? 0) / (row.target ?? 1)) *
         100
-      ).toFixed(2);
+      ).toFixed(2)
       return (
         <ProgressRoot size="xl" w={150}>
           <ProgressSection value={+progressPercentage} color="primary.6">
             <ProgressLabel>{progressPercentage}%</ProgressLabel>
           </ProgressSection>
         </ProgressRoot>
-      );
+      )
     },
   },
 
   {
-    accessor: "progress",
-    title: "Earned Amount",
+    accessor: 'progress',
+    title: 'Earned Amount',
   },
 
   {
-    accessor: "phone",
+    accessor: 'phone',
   },
 
   {
-    accessor: "actions",
+    accessor: 'actions',
     render: () => {
       return (
         <Button
@@ -97,7 +97,7 @@ export const UserColumns = [
         >
           Open User
         </Button>
-      );
+      )
     },
   },
-];
+]

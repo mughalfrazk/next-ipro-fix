@@ -1,5 +1,5 @@
 .root {
-  &[data-variant="filled"] {
+  &[data-variant='filled'] {
     background-color: var(--mantine-color-primary-6);
 
     path {
@@ -30,11 +30,17 @@
     }
   }
 
-  &[data-variant="light"] {
-    background-color: light-dark(var(--mantine-color-primary-1), var(--mantine-color-primary-6));
+  &[data-variant='light'] {
+    background-color: light-dark(
+      var(--mantine-color-primary-1),
+      var(--mantine-color-primary-6)
+    );
 
     &:hover {
-      background-color: light-dark(var(--mantine-color-primary-2), var(--mantine-color-primary-7));
+      background-color: light-dark(
+        var(--mantine-color-primary-2),
+        var(--mantine-color-primary-7)
+      );
     }
 
     &:disabled {
@@ -53,7 +59,7 @@
     }
   }
 
-  &[data-variant="outline"] {
+  &[data-variant='outline'] {
     border-color: var(--mantine-color-primary-6);
     color: var(--mantine-color-primary-6);
 
@@ -85,7 +91,7 @@
     }
   }
 
-  &[data-variant="subtle"] {
+  &[data-variant='subtle'] {
     color: var(--mantine-color-primary-6);
     &:hover {
       /* background-color: light-dark(var(--mantine-color-primary-0), var(--mantine-white)); */
