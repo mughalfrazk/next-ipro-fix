@@ -117,6 +117,7 @@ const CommentDrawerBody = () => {
               <Avatar
                 src={'https://cdn-icons-png.flaticon.com/512/147/147131.png'}
                 size="md"
+                alt="user image"
               />
               <Stack gap={0}>
                 <Text size="sm" fw={500}>
