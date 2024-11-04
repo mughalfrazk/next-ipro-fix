@@ -1,8 +1,9 @@
-import { CreateJobPayloadModel, JobListSchema } from '@/lib/models/job.model'
-import { getAuthApiClient } from '@/utils/api-client'
-import { parseFactory } from '@/utils/parse-factory'
+import { CreateJobPayloadModel, JobListSchema, JobSchema } from "@/lib/models/job.model"
+import { getAuthApiClient } from "@/utils/api-client"
+import { parseFactory } from "@/utils/parse-factory"
 
-const JobListDataParser = parseFactory(JobListSchema, 'JobListDataParser')
+const JobListDataParser = parseFactory(JobListSchema, "JobListDataParser")
+const JobDataParser = parseFactory(JobSchema, "JobDataParser")
 
 const createJobApi = async (payload: CreateJobPayloadModel) => {
   const result = await getAuthApiClient().post('job', payload)
@@ -14,4 +15,9 @@ const getJobListApi = async () => {
   return JobListDataParser(result.data)
 }
 
-export { createJobApi, getJobListApi }
+const getJobDetailApi = async (job_id: string) => {
+  const result = await getAuthApiClient().get(`job/${job_id}`)
+  return JobDataParser(result.data)
+}
+
+export { createJobApi, getJobListApi, getJobDetailApi }

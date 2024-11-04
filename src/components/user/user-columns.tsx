@@ -11,10 +11,12 @@ import {
   Stack,
   Text,
   Title,
-} from '@mantine/core'
-import { ProfileModel, UserModel } from '@/lib/models/user.model'
-import { redirect } from 'next/navigation'
-import { colorForUserRole } from '@/utils/functions'
+} from "@mantine/core";
+import { redirect } from "next/navigation";
+
+import { ProfileModel, UserModel } from "@/lib/models/user.model";
+import { colorForUserRole } from "@/utils/functions";
+
 export const createNewJobHandler = () => {
   redirect('/dashboard/user/add-new')
 }
@@ -57,8 +59,8 @@ export const UserColumns = [
   },
 
   {
-    accessor: 'jobs',
-    title: 'No of jobs',
+    accessor: "jobs",
+    title: "No of jobs",
   },
   {
     accessor: 'target',

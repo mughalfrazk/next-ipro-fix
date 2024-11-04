@@ -1,16 +1,25 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { getTechniciansApi } from '@/lib/services/api/user.service'
-import { ComboboxData } from '@mantine/core'
+import { useEffect, useState } from "react";
+import { getTechniciansApi } from "@/lib/services/api/user.service";
+import { ComboboxData, ComboboxItem } from "@mantine/core";
 
-import { showErrorNotification } from '@/utils/functions'
-import { getFormattedError } from '@/utils/format-error'
-import IproSelect from '@/components/core/IproSelect'
-import { FieldErrorPropsType } from '@/hooks/use-action-errors'
+import IproSelect from "@/components/core/IproSelect";
+import { showErrorNotification } from "@/utils/functions";
+import { getFormattedError } from "@/utils/format-error";
+import { FieldErrorPropsType } from "@/hooks/use-action-errors";
+import { UserModel } from "@/lib/models/user.model";
 
-const TechnicianSelect = ({ getFieldErrorProps }: FieldErrorPropsType) => {
-  const [technicianOptions, setTechnicianOptions] = useState<ComboboxData>([])
+type TechnicianSelectProps = {
+  technician: UserModel | undefined | null;
+} & FieldErrorPropsType;
+
+const TechnicianSelect = ({
+  technician,
+  getFieldErrorProps,
+}: TechnicianSelectProps) => {
+  const [technicianItem, setTechnicianItem] = useState<ComboboxItem>();
+  const [technicianOptions, setTechnicianOptions] = useState<ComboboxData>([]);
 
   const getTechniciansList = async () => {
     try {
@@ -25,11 +34,22 @@ const TechnicianSelect = ({ getFieldErrorProps }: FieldErrorPropsType) => {
       const e = getFormattedError(error)
       showErrorNotification(e.errors?.formErrors?.[0])
     }
-  }
+  };
+
+  const onTechnicianChange = (value: string | null) => {
+    const [selectedTechnician] = technicianOptions.filter((item) => (item as unknown as ComboboxItem).value === value);
+    if (value) setTechnicianItem(selectedTechnician as ComboboxItem);
+  };
 
   useEffect(() => {
-    getTechniciansList()
-  }, [])
+    getTechniciansList();
+  }, []);
+
+  useEffect(() => {
+    if (technician && technicianOptions.length) {
+      onTechnicianChange(technician.id);
+    }
+  }, [technician, technicianOptions]);
 
   return (
     <IproSelect
@@ -37,6 +57,8 @@ const TechnicianSelect = ({ getFieldErrorProps }: FieldErrorPropsType) => {
       label="Staff Member"
       name="technician_id"
       data={technicianOptions}
+      value={technicianItem?.value as string & string[]}
+      onOptionSubmit={onTechnicianChange}
       styles={{
         label: {
           color: 'white',

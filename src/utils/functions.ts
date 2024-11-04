@@ -28,15 +28,8 @@ export const getNestedInputValues = (formData: FormData) => {
   return dataform_obj
 }
 
-export const showErrorNotification = (
-  message: string = 'Something went wrong, please try again.',
-) => {
-  notifications.show({
-    message,
-    color: 'red',
-    classNames: classes,
-    autoClose: false,
-  })
+export const showErrorNotification = (message: string = "Something went wrong, please try again.") => {
+  notifications.show({ message, color: 'red', position: 'top-right', classNames: classes  })
 }
 
 export const colorForUserRole = (name: string) => {

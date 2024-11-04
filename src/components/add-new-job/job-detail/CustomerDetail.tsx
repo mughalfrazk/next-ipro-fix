@@ -10,10 +10,14 @@ import { CustomerListModel, CustomerModel } from '@/lib/models/customer.model'
 import { getCustomerListApi } from '@/lib/services/api/customer.service'
 import { FieldErrorPropsType } from '@/hooks/use-action-errors'
 
-const CustomerDetail = ({ getFieldErrorProps }: FieldErrorPropsType) => {
-  const [customers, setCustomers] = useState<CustomerListModel>([])
-  const [nameOptionsList, setNameOptionsList] = useState<ComboboxData>([])
-  const [phoneOptionsList, setPhoneOptionsList] = useState<ComboboxData>([])
+type CustomerDetailProps = {
+  customer?: CustomerModel
+} & FieldErrorPropsType
+
+const CustomerDetail = ({ customer, getFieldErrorProps }: CustomerDetailProps) => {
+  const [customers, setCustomers] = useState<CustomerListModel>([]);
+  const [nameOptionsList, setNameOptionsList] = useState<ComboboxData>([]);
+  const [phoneOptionsList, setPhoneOptionsList] = useState<ComboboxData>([]);
 
   const [name, setName] = useState<string[]>([])
   const [phone, setPhone] = useState<string[]>([])
@@ -39,18 +43,16 @@ const CustomerDetail = ({ getFieldErrorProps }: FieldErrorPropsType) => {
   }
 
   const onNameChange = (value: string | null) => {
-    console.log('onChangeHandler: ', value)
-    const [selectedCustomer] = customers.filter((item) => item.id === value)
-    if (selectedCustomer) onChangeHandler(selectedCustomer)
-    else if (value) setName([value])
-  }
+    const [selectedCustomer] = customers.filter((item) => item.id === value);
+    if (selectedCustomer) onChangeHandler(selectedCustomer);
+    else if (value) setName([value]);
+  };
 
   const onPhoneChange = (value: string | null) => {
-    console.log('onChangeHandler: ', value)
-    const [selectedCustomer] = customers.filter((item) => item.id === value)
-    if (selectedCustomer) onChangeHandler(selectedCustomer)
-    else if (value) setPhone([value])
-  }
+    const [selectedCustomer] = customers.filter((item) => item.id === value);
+    if (selectedCustomer) onChangeHandler(selectedCustomer);
+    else if (value) setPhone([value]);
+  };
 
   const onChangeHandler = (value: CustomerModel) => {
     setName([value.name])
@@ -81,12 +83,17 @@ const CustomerDetail = ({ getFieldErrorProps }: FieldErrorPropsType) => {
     } else {
       setValue([])
     }
-    console.log('onTagRemoveHandler')
-  }
+  };
 
   useEffect(() => {
-    getCustomerList()
-  }, [])
+    getCustomerList();
+  }, []);
+
+  useEffect(() => {
+    if (customer) {
+      onChangeHandler(customer)
+    }
+  }, [customer])
 
   return (
     <Card>

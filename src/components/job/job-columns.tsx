@@ -1,33 +1,37 @@
 'use client'
 
-import { Avatar, Badge, Group, Stack, Text, Title } from '@mantine/core'
-import { JobModel } from '@/lib/models/job.model'
-import { redirect } from 'next/navigation'
+import { Avatar, Badge, Group, Stack, Text, Title } from "@mantine/core";
+import { JobModel } from "@/lib/models/job.model";
+import { redirect } from "next/navigation";
+import Link from "next/link";
 
 const colorForJobStatus = (name: string) => {
-  console.log(name)
-  return name === 'Device Received'
-    ? 'grape'
-    : name === 'Pending Work'
-      ? 'red'
-      : name === 'Pending Approval'
-        ? 'indigo'
-        : name === 'Job Done'
-          ? 'cyan'
-          : name === 'Delivered'
-            ? 'green'
-            : 'black'
-}
+  return name === "Device Received"
+    ? "grape"
+    : name === "Pending Work"
+    ? "red"
+    : name === "Pending Approval"
+    ? "indigo"
+    : name === "Job Done"
+    ? "cyan"
+    : name === "Delivered"
+    ? "green"
+    : "black";
+};
 
 export const createNewJobHandler = () => {
-  redirect('/dashboard/job/add-new')
-}
+  redirect("/dashboard/job/add-new");
+};
 
 export const JobColumns = [
   {
-    accessor: 'jobId',
-    render: () => {
-      return 'Job no'
+    accessor: "Job ID",
+    render: (row: JobModel) => {
+      return (
+        <Link href={`/dashboard/job/${row.id}`}>
+          <Text fw={"bold"} c={'primary.6'}>{row.id.slice(-5)}</Text>
+        </Link>
+      );
     },
   },
   {
@@ -97,7 +101,7 @@ export const JobColumns = [
         <Text opacity={0.4}>
           <i>No Staff Assigned</i>
         </Text>
-      )
+      );
     },
   },
   {

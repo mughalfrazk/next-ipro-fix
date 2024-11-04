@@ -1,4 +1,5 @@
-'use client'
+"use client";
+
 import {
   Center,
   Button,
@@ -9,12 +10,14 @@ import {
   Group,
   Image,
   Stack,
-} from '@mantine/core'
-import { IconRefresh } from '@tabler/icons-react'
-import IproSelect from '../core/IproSelect'
-import IproTextInput from '../core/IproTextInput'
-import IproButton from '../core/IproButton'
-import Heading from '../common/Heading'
+} from "@mantine/core";
+import { IconRefresh } from "@tabler/icons-react";
+
+import IproSelect from "../core/IproSelect";
+import IproTextInput from "../core/IproTextInput";
+import IproButton from "../core/IproButton";
+import Heading from "../common/Heading";
+
 const AddNewUser = () => {
   return (
     <Stack gap={0}>
@@ -83,7 +86,7 @@ const AddNewUser = () => {
         </Grid.Col>
       </Grid>
     </Stack>
-  )
-}
+  );
+};
 
-export default AddNewUser
+export default AddNewUser;

@@ -4,7 +4,7 @@ import JobList from '@/components/job/JobList'
 const JobsPage = async () => {
   const result = await getJobListApi()
 
-  return <JobList jobs={result} />
-}
+  return <JobList jobs={result.reverse()} />;
+};
 
 export default JobsPage
