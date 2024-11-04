@@ -21,12 +21,17 @@ export const RegisterFormSchema = z.object({
   last_name: z.string().min(1, "Last name is required"),
   email: z.string().min(1, "Email is required"),
   password: z.string().min(1, "Password is required"),
-  target: z.number().min(1, "Target is required"),
+  target: z.string().min(1, "Target is required"),
+  phone: z.string().min(1, "Phone is required"),
   address: z.string().min(1, "Address is required"),
-  role_id: z.string().min(1, "Technician is required"),
+  role_id: z.string().min(1, "Technician is required")
+})
+
+export const RegisterFormWithSpecialitySchema = RegisterFormSchema.extend({
   speciality_id: z.string().min(1, "Speciality is required")
 })
 
-export type LoginResponseModel = z.infer<typeof LoginResponseSchema>
 export type LoginFormModel = z.infer<typeof LoginFormSchema>
+export type LoginResponseModel = z.infer<typeof LoginResponseSchema>
 export type RegisterFormModel = z.infer<typeof RegisterFormSchema>
+export type RegisterFormWithSpecialityModel = z.infer<typeof RegisterFormWithSpecialitySchema>

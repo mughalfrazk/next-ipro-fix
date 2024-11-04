@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { ComboboxData, ComboboxItem } from "@mantine/core";
 
-import IproSelect from "@/components/core/IproSelect";
 import { getProblemTypeListApi } from "@/lib/services/api/problem-type.service";
+import { FieldErrorPropsType } from "@/hooks/use-action-errors";
 import { getFormattedError } from "@/utils/format-error";
 import { showErrorNotification } from "@/utils/functions";
+import IproSelect from "@/components/core/IproSelect";
 
-const SpecialitySelect = () => {
+const SpecialitySelect = ({ getFieldErrorProps }: FieldErrorPropsType) => {
   const [specialityOptions, setSpecialityOptions] = useState<ComboboxData>([]);
   const [specialityItem, setSpecialityItem] = useState<ComboboxItem>();
 
@@ -39,10 +40,11 @@ const SpecialitySelect = () => {
   return (
     <IproSelect
       name="speciality_id"
+      label="Speciality"
       data={specialityOptions}
       value={specialityItem?.value as string & string[]}
       onOptionSubmit={onSpecialityChange}
-      label="Speciality"
+      {...getFieldErrorProps("speciality_id")}
     />
   );
 };

@@ -22,7 +22,7 @@ import { useFormAction } from "@/hooks/use-form-action";
 import { createUserAction } from "@/lib/actions/user.action";
 
 const AddNewUser = () => {
-  const { formAction } = useFormAction(createUserAction, {});
+  const { formAction, getFieldErrorProps } = useFormAction(createUserAction, {});
 
   return (
     <form action={formAction}>
@@ -42,22 +42,60 @@ const AddNewUser = () => {
               <Divider mt={10} mb={20} />
               <Grid>
                 <GridCol span={4}>
-                  <IproTextInput name="name" label="User Name" />
+                  <IproTextInput
+                    name="first_name"
+                    label="First Name"
+                    {...getFieldErrorProps("first_name")}
+                  />
                 </GridCol>
                 <GridCol span={4}>
-                  <IproTextInput type="email" name="email" label="Email" />
+                  <IproTextInput
+                    name="last_name"
+                    label="Last Name"
+                    {...getFieldErrorProps("last_name")}
+                  />
                 </GridCol>
                 <GridCol span={4}>
-                  <IproTextInput name="phone" label="Phone" />
+                  <IproTextInput
+                    name="phone"
+                    label="Phone"
+                    {...getFieldErrorProps("phone")}
+                  />
                 </GridCol>
                 <GridCol span={8}>
-                  <RoleSelect />
+                  <RoleSelect getFieldErrorProps={getFieldErrorProps} />
                 </GridCol>
                 <GridCol span={4}>
-                  <IproTextInput type="number" name="target" label="Assign Target" />
+                  <IproTextInput
+                    type="number"
+                    name="target"
+                    label="Assign Target"
+                    {...getFieldErrorProps("target")}
+                  />
+                </GridCol>
+                <GridCol span={6}>
+                  <IproTextInput
+                    type="email"
+                    name="email"
+                    label="Email"
+                    {...getFieldErrorProps("email")}
+                  />
+                </GridCol>
+                <GridCol span={6}>
+                  <IproTextInput
+                    type="password"
+                    name="password"
+                    label="Password"
+                    {...getFieldErrorProps("password")}
+                  />
                 </GridCol>
                 <GridCol span={12}>
-                  <IproTextInput name="address" label="Address" />
+                  <IproTextInput
+                    type="text"
+                    name="address"
+                    label="Address"
+                    {...getFieldErrorProps("address")}
+                  />
                 </GridCol>
               </Grid>
               <Group justify="flex-end" mt={20}>

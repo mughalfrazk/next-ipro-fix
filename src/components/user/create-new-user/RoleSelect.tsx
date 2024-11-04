@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
 import { ComboboxData, ComboboxItem, Grid, GridCol } from "@mantine/core";
 
-import IproSelect from "@/components/core/IproSelect";
-import { getFormattedError } from "@/utils/format-error";
-import { capitalizeFirstLetter, showErrorNotification } from "@/utils/functions";
+import {
+  capitalizeFirstLetter,
+  showErrorNotification,
+} from "@/utils/functions";
+import { FieldErrorPropsType } from "@/hooks/use-action-errors";
 import { getRoleListApi } from "@/lib/services/api/role.service";
+import { getFormattedError } from "@/utils/format-error";
+import IproSelect from "@/components/core/IproSelect";
+import IproTextInput from "@/components/core/IproTextInput";
 import SpecialitySelect from "./SpecialitySelect";
 
-const RoleSelect = () => {
+const RoleSelect = ({ getFieldErrorProps }: FieldErrorPropsType) => {
   const [roleOptions, setRoleOptions] = useState<ComboboxData>([]);
   const [roleItem, setRoleItem] = useState<ComboboxItem>();
 
@@ -44,17 +49,23 @@ const RoleSelect = () => {
       <GridCol span={isTechnicianSelected() ? 6 : 12}>
         <IproSelect
           name="role_id"
-          data={roleOptions}
-          value={roleItem?.value as (string & string[])}
-          onOptionSubmit={onRoleChange}
           label="User Role"
+          data={roleOptions}
+          value={roleItem?.value as string & string[]}
+          onOptionSubmit={onRoleChange}
+          {...getFieldErrorProps("role_id")}
         />
       </GridCol>
       {isTechnicianSelected() && (
         <GridCol span={6}>
-          <SpecialitySelect />
+          <SpecialitySelect getFieldErrorProps={getFieldErrorProps} />
         </GridCol>
       )}
+      <IproTextInput
+        name="isTechnicianSelected"
+        defaultValue={isTechnicianSelected() ? 1 : 0}
+        style={{ display: "none" }}
+      />
     </Grid>
   );
 };
