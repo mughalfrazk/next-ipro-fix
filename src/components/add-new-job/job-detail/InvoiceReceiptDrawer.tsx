@@ -1,6 +1,6 @@
 "use client";
 
-import { Drawer, Image, Stack, Center, Box, Group, Text, Paper, Divider, Table } from "@mantine/core";
+import { Drawer, Image, Stack, Center, Group, Text, Paper, Divider, Table } from "@mantine/core";
 import Heading from "@/components/common/Heading";
 import IproButton from "@/components/core/IproButton";
 import { useDisclosure } from "@mantine/hooks";
