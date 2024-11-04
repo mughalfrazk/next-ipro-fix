@@ -24,3 +24,4 @@ const UserList = ({ users }: { users: UserListModel }) => {
 }
 
 export default UserList
+

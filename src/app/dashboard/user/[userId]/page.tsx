@@ -1,7 +1,7 @@
 import AddNewUser from "@/components/user/create-new-user";
 
-const AddNewUserPage = () => {
+const UserDetail = () => {
   return <AddNewUser />;
 };
 
-export default AddNewUserPage
+export default UserDetail;

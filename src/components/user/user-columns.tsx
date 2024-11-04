@@ -14,8 +14,9 @@ import {
 } from "@mantine/core"
 import { redirect } from "next/navigation"
 
-import { ProfileModel, UserModel } from "@/lib/models/user.model"
-import { colorForUserRole } from "@/utils/functions"
+import { ProfileModel, UserModel } from "@/lib/models/user.model";
+import { colorForUserRole } from "@/utils/functions";
+import Link from "next/link";
 
 export const createNewJobHandler = () => {
   redirect("/dashboard/user/add-new")
@@ -23,7 +24,16 @@ export const createNewJobHandler = () => {
 
 export const UserColumns = [
   {
-    accessor: "id",
+    accessor: "User ID",
+    render: (row: UserModel) => {
+      return (
+        <Link href={`/dashboard/user/${row.id}`}>
+          <Text fw={"bold"} c={"primary.6"}>
+            {row.id.slice(-5)}
+          </Text>
+        </Link>
+      );
+    },
   },
   {
     accessor: "user",
@@ -57,7 +67,6 @@ export const UserColumns = [
   {
     accessor: "phone",
   },
-
   {
     accessor: "jobs",
     title: "No of jobs",
@@ -78,16 +87,13 @@ export const UserColumns = [
       )
     },
   },
-
   {
     accessor: "progress",
     title: "Earned Amount",
+    render: (row: UserModel) => {
+      return `AED ${row.progress ?? 0}`
+    }
   },
-
-  {
-    accessor: "phone",
-  },
-
   {
     accessor: "actions",
     render: () => {

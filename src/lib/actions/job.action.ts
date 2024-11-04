@@ -57,7 +57,7 @@ const createJobAction = async (_: ActionResult, formData: FormData) => {
 
 const createJobPurchaseAction = async (_: ActionResult, formData: FormData) => {
   const structuredInput = getNestedInputValues(formData)
-  console.log(structuredInput)
+  
   const payload: CreatePurchasesModel = {
     job_id: formData.get("job_id") as string,
     purchases: structuredInput.purchases.map((item: PurchaseModel) => ({
