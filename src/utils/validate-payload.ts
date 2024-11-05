@@ -2,7 +2,7 @@ import { ZodTypeAny } from "zod";
 
 export const validatePayload = async (
   payload: FormData,
-  schema?: ZodTypeAny,
+  schema?: ZodTypeAny
 ) => {
   const data = Object.fromEntries(payload.entries());
   if (!schema) return { data };

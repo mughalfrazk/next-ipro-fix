@@ -9,7 +9,7 @@ import {
   CardProps,
   ThemeIcon,
   Text,
-  NumberFormatter,
+  NumberFormatter
 } from "@mantine/core";
 
 import GrowthBadge from "../common/GrowthBadge";

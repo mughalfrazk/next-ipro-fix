@@ -7,7 +7,7 @@ import { useActionErrors } from "./use-action-errors";
 
 export const useFormAction = (
   action: (a: ActionResult, b: FormData) => Promise<ActionResult>,
-  initialState: ActionResult,
+  initialState: ActionResult
 ) => {
   const [state, formAction] = useFormState(action, initialState);
   const actionErrors = useActionErrors(state);
@@ -18,7 +18,7 @@ export const useFormAction = (
       if (!!result?.errors?.formErrors?.length) {
         notifications.show({
           message: result?.errors?.formErrors[0],
-          color: "red",
+          color: "red"
         });
       }
     }

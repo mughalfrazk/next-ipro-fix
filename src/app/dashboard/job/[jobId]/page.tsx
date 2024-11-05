@@ -12,16 +12,16 @@ const AddNewJobPage = async ({ params }: { params: { jobId: string } }) => {
   const tabs = [
     {
       title: "Job Details",
-      value: "detail",
+      value: "detail"
     },
     {
       title: "Job Purchases",
-      value: "purchases",
+      value: "purchases"
     },
     {
       title: "Invoice",
-      value: "invoice",
-    },
+      value: "invoice"
+    }
   ];
 
   return (

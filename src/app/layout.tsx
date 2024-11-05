@@ -28,11 +28,11 @@ import { Notifications } from "@mantine/notifications";
 
 export const metadata = {
   title: "Ipro Fix",
-  description: "Ipro Fix Web Application",
+  description: "Ipro Fix Web Application"
 };
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {

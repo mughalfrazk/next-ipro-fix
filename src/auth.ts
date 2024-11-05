@@ -26,12 +26,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       // e.g. domain, username, password, 2FA token, etc.
       credentials: {
         email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" },
+        password: { label: "Password", type: "password" }
       },
       authorize: async (credentials) => {
         return loginUserApi(credentials as LoginFormModel);
-      },
-    }),
+      }
+    })
   ],
   callbacks: {
     async jwt({ user, token }) {
@@ -50,6 +50,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
 
       return session;
-    },
-  },
+    }
+  }
 });

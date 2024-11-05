@@ -11,7 +11,7 @@ import {
   Table,
   TableData,
   Text,
-  Title,
+  Title
 } from "@mantine/core";
 
 import Heading from "@/components/common/Heading";
@@ -20,7 +20,7 @@ import IproButton from "@/components/core/IproButton";
 const InvoiceTab = () => {
   const tableData: TableData = {
     head: ["Brand Name", "Model", "Problem Type", "Issue", "QTY", "Charges"],
-    body: [["Iphone", "14 pro max", "SW", "Issue details", "20", "AED 23000"]],
+    body: [["Iphone", "14 pro max", "SW", "Issue details", "20", "AED 23000"]]
   };
 
   const tableData02: TableData = {
@@ -29,8 +29,8 @@ const InvoiceTab = () => {
       ["Iphone", "14 pro max", "SW", "Issue details", "20", "AED 23000"],
       ["Iphone", "14 pro max", "SW", "Issue details", "20", "AED 23000"],
       ["Iphone", "14 pro max", "SW", "Issue details", "20", "AED 23000"],
-      ["Iphone", "14 pro max", "SW", "Issue details", "20", "AED 23000"],
-    ],
+      ["Iphone", "14 pro max", "SW", "Issue details", "20", "AED 23000"]
+    ]
   };
 
   return (

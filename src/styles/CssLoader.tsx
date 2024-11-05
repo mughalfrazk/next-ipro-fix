@@ -12,5 +12,5 @@ export const CssLoader: MantineLoaderComponent = forwardRef(
       {...others}
       ref={ref}
     />
-  ),
+  )
 );

@@ -4,7 +4,7 @@ import { parseFactory } from "@/utils/parse-factory";
 
 const CustomerListDataParser = parseFactory(
   CustomerListSchema,
-  "CustomerListDataParser",
+  "CustomerListDataParser"
 );
 
 const getCustomerListApi = async () => {

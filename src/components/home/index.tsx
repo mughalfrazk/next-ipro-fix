@@ -4,7 +4,7 @@ import { Flex, Grid, rem, Stack, Text, Title } from "@mantine/core";
 import IproButton from "../core/IproButton";
 import {
   IconCircleKeyFilled,
-  IconLayoutDashboardFilled,
+  IconLayoutDashboardFilled
 } from "@tabler/icons-react";
 import Link from "next/link";
 

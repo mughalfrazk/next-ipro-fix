@@ -4,7 +4,7 @@ import { parseFactory } from "@/utils/parse-factory";
 
 const ProblemTypeListDataParser = parseFactory(
   ProblemTypeListSchema,
-  "ProblemTypeListDataParser",
+  "ProblemTypeListDataParser"
 );
 
 const getProblemTypeListApi = async () => {

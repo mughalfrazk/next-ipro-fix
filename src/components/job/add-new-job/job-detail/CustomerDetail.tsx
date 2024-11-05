@@ -16,7 +16,7 @@ type CustomerDetailProps = {
 
 const CustomerDetail = ({
   customer,
-  getFieldErrorProps,
+  getFieldErrorProps
 }: CustomerDetailProps) => {
   const [customers, setCustomers] = useState<CustomerListModel>([]);
   const [nameOptionsList, setNameOptionsList] = useState<ComboboxData>([]);
@@ -35,10 +35,10 @@ const CustomerDetail = ({
       const result = await getCustomerListApi();
       setCustomers(result);
       setNameOptionsList(
-        result.map((item) => ({ label: item.name, value: item.id })),
+        result.map((item) => ({ label: item.name, value: item.id }))
       );
       setPhoneOptionsList(
-        result.map((item) => ({ label: item.phone, value: item.id })),
+        result.map((item) => ({ label: item.phone, value: item.id }))
       );
     } catch (error) {
       console.log(error);
@@ -75,7 +75,7 @@ const CustomerDetail = ({
 
   const onTagRemoveHandler = (
     value: string,
-    setValue: Dispatch<SetStateAction<string[]>>,
+    setValue: Dispatch<SetStateAction<string[]>>
   ) => {
     if (customerId) {
       setName([]);

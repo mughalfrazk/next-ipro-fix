@@ -6,7 +6,7 @@ import {
   ScrollArea,
   Stack,
   Text,
-  Textarea,
+  Textarea
 } from "@mantine/core";
 
 const CommentDrawerBody = () => {
@@ -14,91 +14,91 @@ const CommentDrawerBody = () => {
     {
       user: {
         name: "Dianne Russell",
-        status: "Technician",
+        status: "Technician"
       },
       date: "2020-06-11 10:56",
-      comment: "It will take 2-3 hours",
+      comment: "It will take 2-3 hours"
     },
     {
       user: {
         name: "Albert Flores",
-        status: "Staff",
+        status: "Staff"
       },
       date: "2020-05-01 06:05",
-      comment: "Need in one hour",
+      comment: "Need in one hour"
     },
     {
       user: {
         name: "Dianne Russell",
-        status: "Technician",
+        status: "Technician"
       },
       date: "2020-06-11 10:56",
-      comment: "It will take 2-3 hours",
+      comment: "It will take 2-3 hours"
     },
     {
       user: {
         name: "Albert Flores",
-        status: "Staff",
+        status: "Staff"
       },
       date: "2020-05-01 06:05",
-      comment: "Need in one hour",
+      comment: "Need in one hour"
     },
     {
       user: {
         name: "Dianne Russell",
-        status: "Technician",
+        status: "Technician"
       },
       date: "2020-06-11 10:56",
-      comment: "It will take 2-3 hours",
+      comment: "It will take 2-3 hours"
     },
     {
       user: {
         name: "Dianne Russell",
-        status: "Technician",
+        status: "Technician"
       },
       date: "2020-06-11 10:56",
-      comment: "It will take 2-3 hours",
+      comment: "It will take 2-3 hours"
     },
     {
       user: {
         name: "Albert Flores",
-        status: "Staff",
+        status: "Staff"
       },
       date: "2020-05-01 06:05",
-      comment: "Need in one hour",
+      comment: "Need in one hour"
     },
     {
       user: {
         name: "Dianne Russell",
-        status: "Technician",
+        status: "Technician"
       },
       date: "2020-06-11 10:56",
-      comment: "It will take 2-3 hours",
+      comment: "It will take 2-3 hours"
     },
     {
       user: {
         name: "Dianne Russell",
-        status: "Technician",
+        status: "Technician"
       },
       date: "2020-06-11 10:56",
-      comment: "It will take 2-3 hours",
+      comment: "It will take 2-3 hours"
     },
     {
       user: {
         name: "Albert Flores",
-        status: "Staff",
+        status: "Staff"
       },
       date: "2020-05-01 06:05",
-      comment: "Need in one hour",
+      comment: "Need in one hour"
     },
     {
       user: {
         name: "Dianne Russell",
-        status: "Technician",
+        status: "Technician"
       },
       date: "2020-06-11 10:56",
-      comment: "It will take 2-3 hours",
-    },
+      comment: "It will take 2-3 hours"
+    }
   ];
 
   return (
@@ -108,7 +108,7 @@ const CommentDrawerBody = () => {
           key={idx}
           className="borderedListItem"
           style={{
-            borderBottom: "1px solid var(--mantine-color-default-border)",
+            borderBottom: "1px solid var(--mantine-color-default-border)"
           }}
           py={10}
         >

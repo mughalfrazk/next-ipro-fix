@@ -9,7 +9,7 @@ import { auth, signOut } from "@/auth";
 import { redirect } from "next/navigation";
 
 const defaultOptions = {
-  baseURL: config.NEXT_PUBLIC_IPRO_FIX_BASE_URL,
+  baseURL: config.NEXT_PUBLIC_IPRO_FIX_BASE_URL
 };
 
 const getAuthApiClient = () => {
@@ -28,10 +28,10 @@ const getAuthApiClient = () => {
     },
     (error) => {
       console.error(
-        `Failed to send request [${error.message}]: ${error.config.url}`,
+        `Failed to send request [${error.message}]: ${error.config.url}`
       );
       return Promise.reject(error);
-    },
+    }
   );
 
   httpClient.interceptors.response.use(
@@ -49,7 +49,7 @@ const getAuthApiClient = () => {
         if (error.status === 403) {
           notifications.show({
             message: "Session is ended, please login again.",
-            color: "red",
+            color: "red"
           });
           logoutAction();
           return Promise.resolve();
@@ -59,10 +59,10 @@ const getAuthApiClient = () => {
 
       // const status = error.response?.status as number
       console.error(
-        `Failed to receive response [${error.message}]: ${error.config.url}`,
+        `Failed to receive response [${error.message}]: ${error.config.url}`
       );
       return Promise.reject(error);
-    },
+    }
   );
 
   return httpClient;

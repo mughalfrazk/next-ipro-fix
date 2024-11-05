@@ -13,9 +13,7 @@ const GrowthBadge = ({ children, loss }: GrowthBadgeProps) => {
       color={loss ? "orange.6" : "lime.6"}
       variant="light"
       style={{
-        border: `1px solid var(--mantine-color-${
-          loss ? "orange-6" : "lime-6"
-        })`,
+        border: `1px solid var(--mantine-color-${loss ? "orange-6" : "lime-6"})`
       }}
       leftSection={
         <IconArrowNarrowUp style={{ width: rem(15), height: rem(15) }} />

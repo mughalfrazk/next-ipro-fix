@@ -8,7 +8,7 @@ import {
   Grid,
   GridCol,
   Group,
-  Title,
+  Title
 } from "@mantine/core";
 import { IconSquareRoundedPlusFilled } from "@tabler/icons-react";
 
@@ -31,8 +31,8 @@ const JobPurchasesTab = () => {
       model_id: "",
       quantity: null,
       parts: "null",
-      total: "",
-    },
+      total: ""
+    }
   ]);
 
   return (
@@ -53,7 +53,7 @@ const JobPurchasesTab = () => {
                       justify="space-between"
                       bg={lightDark(
                         "var(--mantine-color-gray-2)",
-                        "var(--mantine-color-dark-7)",
+                        "var(--mantine-color-dark-7)"
                       )}
                       px={20}
                       py={10}
@@ -96,7 +96,7 @@ const JobPurchasesTab = () => {
               style={{
                 border: "2px dashed var(--mantine-color-dark-1)",
                 borderRadius: "var(--mantine-radius-default)",
-                cursor: "pointer",
+                cursor: "pointer"
               }}
               onClick={() =>
                 setPurchases([
@@ -106,8 +106,8 @@ const JobPurchasesTab = () => {
                     model_id: "",
                     quantity: null,
                     parts: "null",
-                    total: "",
-                  },
+                    total: ""
+                  }
                 ])
               }
             >

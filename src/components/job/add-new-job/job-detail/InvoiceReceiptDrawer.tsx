@@ -9,7 +9,7 @@ import {
   Text,
   Paper,
   Divider,
-  Table,
+  Table
 } from "@mantine/core";
 import Heading from "@/components/common/Heading";
 import IproButton from "@/components/core/IproButton";

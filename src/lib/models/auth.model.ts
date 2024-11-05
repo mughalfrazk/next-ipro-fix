@@ -7,13 +7,13 @@ export const LoginFormSchema = z.object({
     .email("Invalid email"),
   password: z
     .string({ required_error: "Password is required" })
-    .min(1, "Password is required"),
+    .min(1, "Password is required")
 });
 
 export const LoginResponseSchema = z.object({
   id: z.string(),
   email: z.string(),
-  access_token: z.string(),
+  access_token: z.string()
 });
 
 export const RegisterFormSchema = z.object({
@@ -24,11 +24,11 @@ export const RegisterFormSchema = z.object({
   target: z.string().min(1, "Target is required"),
   phone: z.string().min(1, "Phone is required"),
   address: z.string().min(1, "Address is required"),
-  role_id: z.string().min(1, "Technician is required"),
+  role_id: z.string().min(1, "Technician is required")
 });
 
 export const RegisterFormWithSpecialitySchema = RegisterFormSchema.extend({
-  speciality_id: z.string().min(1, "Speciality is required"),
+  speciality_id: z.string().min(1, "Speciality is required")
 });
 
 export type LoginFormModel = z.infer<typeof LoginFormSchema>;

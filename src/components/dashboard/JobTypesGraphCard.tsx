@@ -7,7 +7,7 @@ import {
   NumberFormatter,
   Stack,
   Title,
-  rem,
+  rem
 } from "@mantine/core";
 import Heading from "../common/Heading";
 import { IconCircleFilled, IconDotsVertical } from "@tabler/icons-react";
@@ -21,15 +21,15 @@ const JobTypesGraphCard = ({ ...props }: CardProps) => {
     {
       name: "SW-Software",
       value: 54071,
-      color: "var(--mantine-color-orange-6)",
+      color: "var(--mantine-color-orange-6)"
     },
     {
       name: "HW-Hardware",
       value: 32210,
-      color: "var(--mantine-color-violet-6)",
+      color: "var(--mantine-color-violet-6)"
     },
     { name: "GW-Android", value: 24410, color: "var(--mantine-color-blue-5)" },
-    { name: "GW-Apple", value: 5034, color: "var(--mantine-color-green-4)" },
+    { name: "GW-Apple", value: 5034, color: "var(--mantine-color-green-4)" }
   ];
 
   return (

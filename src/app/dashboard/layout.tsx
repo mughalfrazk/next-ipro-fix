@@ -2,7 +2,7 @@ import AppShellLayout from "@/components/layouts/app-shell";
 import withAuth from "@/hoc/with-auth";
 
 const RootLayout = ({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) => {

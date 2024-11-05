@@ -13,15 +13,15 @@ export type AxiosErrorBody = {
 export function getErrorsForField(field: string, error: string): ActionErrors {
   return {
     fieldErrors: {
-      [field]: error,
-    },
+      [field]: error
+    }
   };
 }
 
 /// Create an ActionErrors object with a form error
 export function getErrorsForForm(error: string): ActionErrors {
   return {
-    formErrors: [error],
+    formErrors: [error]
   };
 }
 
@@ -38,7 +38,7 @@ export function getFormattedError(error: unknown): { errors: ActionErrors } {
   if (error instanceof ZodError) {
     // console.log('ZodError', error);
     return {
-      errors: formatZodError(error),
+      errors: formatZodError(error)
     };
   }
 
@@ -48,16 +48,16 @@ export function getFormattedError(error: unknown): { errors: ActionErrors } {
     if (error?.code === "ECONNREFUSED") {
       return {
         errors: {
-          formErrors: ["Server connection error, please try again later."],
-        },
+          formErrors: ["Server connection error, please try again later."]
+        }
       };
     }
     const errorBody = e?.response?.data as AxiosErrorBody;
 
     return {
       errors: {
-        formErrors: [errorBody?.message ?? e.response?.statusText],
-      },
+        formErrors: [errorBody?.message ?? e.response?.statusText]
+      }
     };
   }
 
@@ -68,8 +68,8 @@ export function getFormattedError(error: unknown): { errors: ActionErrors } {
       if (axiosError?.code === "ECONNREFUSED") {
         return {
           errors: {
-            formErrors: ["Server connection error, please try again later."],
-          },
+            formErrors: ["Server connection error, please try again later."]
+          }
         };
       }
 
@@ -77,15 +77,15 @@ export function getFormattedError(error: unknown): { errors: ActionErrors } {
 
       return {
         errors: {
-          formErrors: [errorBody?.message ?? axiosError.response?.statusText],
-        },
+          formErrors: [errorBody?.message ?? axiosError.response?.statusText]
+        }
       };
     }
 
     return {
       errors: {
-        formErrors: [e.cause?.err?.message || e.message],
-      },
+        formErrors: [e.cause?.err?.message || e.message]
+      }
     };
   }
 
@@ -94,8 +94,8 @@ export function getFormattedError(error: unknown): { errors: ActionErrors } {
     const e = error as Error;
     return {
       errors: {
-        formErrors: [e.message],
-      },
+        formErrors: [e.message]
+      }
     };
   }
 
@@ -103,16 +103,16 @@ export function getFormattedError(error: unknown): { errors: ActionErrors } {
     // console.log('Error message', error);
     return {
       errors: {
-        formErrors: [error],
-      },
+        formErrors: [error]
+      }
     };
   }
 
   // console.log('Unknown error', error);
   return {
     errors: {
-      formErrors: ["Something went wrong, please try again"],
-    },
+      formErrors: ["Something went wrong, please try again"]
+    }
   };
 }
 
@@ -120,7 +120,7 @@ export function getFormattedError(error: unknown): { errors: ActionErrors } {
 function formatZodError(error: ZodError): ActionErrors {
   const zodErrors = error.flatten();
   const errors: ActionErrors = {
-    formErrors: zodErrors?.formErrors,
+    formErrors: zodErrors?.formErrors
   };
 
   // join errors in fieldErrors to a single string

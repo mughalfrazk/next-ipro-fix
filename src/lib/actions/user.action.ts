@@ -8,7 +8,7 @@ import { createUserApi } from "@/lib/services/api/user.service";
 import { showErrorNotification } from "@/utils/functions";
 import {
   RegisterFormSchema,
-  RegisterFormWithSpecialitySchema,
+  RegisterFormWithSpecialitySchema
 } from "@/lib/models/auth.model";
 
 const createUserAction = async (_: ActionResult, formData: FormData) => {

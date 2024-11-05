@@ -12,7 +12,7 @@ const Login = () => {
       style={{
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
+        alignItems: "center"
       }}
     >
       <Box
@@ -24,7 +24,7 @@ const Login = () => {
           backdropFilter: "blur(30px)",
           backgroundColor: "rgba(0, 0, 0, 0.5)",
           borderRadius: "2rem",
-          border: "1px solid var(--mantine-color-white)",
+          border: "1px solid var(--mantine-color-white)"
         }}
       >
         <Image src={whiteLogo.src} alt="White Logo" w="auto" height={40} />

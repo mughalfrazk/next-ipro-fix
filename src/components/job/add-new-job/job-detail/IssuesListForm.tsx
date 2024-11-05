@@ -23,8 +23,8 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
       name: "",
       quantity: 0,
       charges: 0,
-      total: 0,
-    },
+      total: 0
+    }
   ]);
 
   const getProblemTypeList = async () => {
@@ -46,9 +46,9 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
             name,
             quantity,
             charges,
-            total,
-          }),
-        ),
+            total
+          })
+        )
       ]);
     }
   }, [job]);
@@ -89,7 +89,7 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
           style={{
             border: "2px dashed var(--mantine-color-dark-1)",
             borderRadius: "var(--mantine-radius-default)",
-            cursor: "pointer",
+            cursor: "pointer"
           }}
           onClick={() =>
             setIssues([
@@ -100,8 +100,8 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
                 name: "",
                 quantity: 0,
                 charges: 0,
-                total: 0,
-              },
+                total: 0
+              }
             ])
           }
         >

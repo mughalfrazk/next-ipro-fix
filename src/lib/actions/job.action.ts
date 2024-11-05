@@ -4,11 +4,11 @@ import { redirect } from "next/navigation";
 import {
   CreatePurchasesModel,
   CreatePurchasesSchema,
-  PurchaseModel,
+  PurchaseModel
 } from "@/lib/models/purchase.model";
 import {
   CreateJobPayloadModel,
-  CreateJobPayloadSchema,
+  CreateJobPayloadSchema
 } from "@/lib/models/job.model";
 import { getNestedInputValues, showErrorNotification } from "@/utils/functions";
 import { getFormattedError } from "@/utils/format-error";
@@ -26,15 +26,15 @@ const createJobAction = async (_: ActionResult, formData: FormData) => {
     customer: {
       name: formData.get("customer_name") as string,
       phone: formData.get("customer_phone") as string,
-      company_name: formData.get("customer_company_name") as string,
+      company_name: formData.get("customer_company_name") as string
     },
     issues: structuredInput.issues.map((item: IssueModel) => ({
       ...item,
       quantity: +item.quantity,
       charges: +item.charges,
       total: +item.total,
-      brand_id: +item.brand_id,
-    })),
+      brand_id: +item.brand_id
+    }))
   };
 
   const validatedPayload = await CreateJobPayloadSchema.safeParseAsync(payload);
@@ -61,8 +61,8 @@ const createJobPurchaseAction = async (_: ActionResult, formData: FormData) => {
   const payload: CreatePurchasesModel = {
     job_id: formData.get("job_id") as string,
     purchases: structuredInput.purchases.map((item: PurchaseModel) => ({
-      ...item,
-    })),
+      ...item
+    }))
   };
 
   const validatedPayload = await CreatePurchasesSchema.safeParseAsync(payload);
