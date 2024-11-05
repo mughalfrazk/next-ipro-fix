@@ -35,7 +35,7 @@ const logoutAction = async () => {
   } catch (error) {
     // `redirectTo` won't work without this line
     if (isRedirectError(error)) throw error
-    return getFormattedError(error)
+    // return getFormattedError(error)
   }
 }
 
