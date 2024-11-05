@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { Avatar, Badge, Group, Stack, Text, Title } from "@mantine/core";
 import { JobModel } from "@/lib/models/job.model";
@@ -9,14 +9,14 @@ const colorForJobStatus = (name: string) => {
   return name === "Device Received"
     ? "grape"
     : name === "Pending Work"
-    ? "red"
-    : name === "Pending Approval"
-    ? "indigo"
-    : name === "Job Done"
-    ? "cyan"
-    : name === "Delivered"
-    ? "green"
-    : "black";
+      ? "red"
+      : name === "Pending Approval"
+        ? "indigo"
+        : name === "Job Done"
+          ? "cyan"
+          : name === "Delivered"
+            ? "green"
+            : "black";
 };
 
 export const createNewJobHandler = () => {
@@ -29,14 +29,16 @@ export const JobColumns = [
     render: (row: JobModel) => {
       return (
         <Link href={`/dashboard/job/${row.id}`}>
-          <Text fw={"bold"} c={'primary.6'}>{row.id.slice(-5)}</Text>
+          <Text fw={"bold"} c={"primary.6"}>
+            {row.id.slice(-5)}
+          </Text>
         </Link>
       );
-    },
+    }
   },
   {
-    accessor: 'customer',
-    title: 'Customer',
+    accessor: "customer",
+    title: "Customer",
     render: (row: JobModel) => {
       return (
         <Group>
@@ -47,14 +49,14 @@ export const JobColumns = [
           />
           <Stack gap={2}>
             <Title order={6}>{row.customer.name}</Title>
-            <Text size={'0.7rem'}>{row.customer.phone}</Text>
+            <Text size={"0.7rem"}>{row.customer.phone}</Text>
           </Stack>
         </Group>
-      )
-    },
+      );
+    }
   },
   {
-    accessor: 'status',
+    accessor: "status",
     render: (row: JobModel) => {
       return (
         <Badge
@@ -65,21 +67,21 @@ export const JobColumns = [
         >
           {row.job_status.name}
         </Badge>
-      )
-    },
+      );
+    }
   },
   {
-    accessor: 'quantity',
+    accessor: "quantity",
     render: (row: JobModel) => {
-      return row.issues.reduce((prev, curr) => prev + curr.quantity, 0)
-    },
+      return row.issues.reduce((prev, curr) => prev + curr.quantity, 0);
+    }
   },
   {
-    title: 'Company Name',
-    accessor: 'customer.company_name',
+    title: "Company Name",
+    accessor: "customer.company_name"
   },
   {
-    accessor: 'technician',
+    accessor: "technician",
     render: (row: JobModel) => {
       return !!row?.technician ? (
         <Group>
@@ -93,7 +95,7 @@ export const JobColumns = [
               order={6}
             >{`${row.technician.first_name} ${row.technician.last_name}`}</Title>
             <Text
-              size={'0.7rem'}
+              size={"0.7rem"}
             >{`${row.technician.first_name} ${row.technician.last_name}`}</Text>
           </Stack>
         </Group>
@@ -102,12 +104,12 @@ export const JobColumns = [
           <i>No Staff Assigned</i>
         </Text>
       );
-    },
+    }
   },
   {
-    accessor: 'total',
+    accessor: "total",
     render: (row: JobModel) => {
-      return row.issues.reduce((prev, curr) => prev + curr.total, 0)
-    },
-  },
-]
+      return row.issues.reduce((prev, curr) => prev + curr.total, 0);
+    }
+  }
+];

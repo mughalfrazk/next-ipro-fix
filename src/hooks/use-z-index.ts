@@ -1,8 +1,8 @@
-import { useMantineTheme } from '@mantine/core'
+import { useMantineTheme } from "@mantine/core";
 
 /// Reference src/styles/iproTheme.ts for clarity on where these values originate
 export const useZIndex = () => {
-  const iproTheme = useMantineTheme()
+  const iproTheme = useMantineTheme();
   return {
     hide: iproTheme.other.zIndices.hide,
     auto: iproTheme.other.zIndices.auto,
@@ -19,6 +19,6 @@ export const useZIndex = () => {
     toast: iproTheme.other.zIndices.toast,
     tooltip: iproTheme.other.zIndices.tooltip,
     navOverlay: iproTheme.other.zIndices.navOverlay,
-    nav: iproTheme.other.zIndices.nav,
-  }
-}
+    nav: iproTheme.other.zIndices.nav
+  };
+};

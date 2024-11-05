@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
+import { useState } from "react";
 import {
   Card,
   CloseButton,
@@ -8,9 +8,9 @@ import {
   Grid,
   GridCol,
   Group,
-  Title,
-} from '@mantine/core'
-import { IconSquareRoundedPlusFilled } from '@tabler/icons-react'
+  Title
+} from "@mantine/core";
+import { IconSquareRoundedPlusFilled } from "@tabler/icons-react";
 
 import { useMantineColorScheme } from "@/hooks/use-mantine-color-scheme-wrapper";
 import { createJobPurchaseAction } from "@/lib/actions/job.action";
@@ -27,14 +27,14 @@ const JobPurchasesTab = () => {
   const { lightDark } = useMantineColorScheme();
   const [purchases, setPurchases] = useState([
     {
-      brand_id: '',
-      model_id: '',
+      brand_id: "",
+      model_id: "",
       quantity: null,
-      parts: 'null',
-      total: '',
-    },
+      parts: "null",
+      total: ""
+    }
   ]);
-  
+
   return (
     <form action={formAction}>
       <Card pb={100}>
@@ -96,7 +96,7 @@ const JobPurchasesTab = () => {
               style={{
                 border: "2px dashed var(--mantine-color-dark-1)",
                 borderRadius: "var(--mantine-radius-default)",
-                cursor: "pointer",
+                cursor: "pointer"
               }}
               onClick={() =>
                 setPurchases([
@@ -106,8 +106,8 @@ const JobPurchasesTab = () => {
                     model_id: "",
                     quantity: null,
                     parts: "null",
-                    total: "",
-                  },
+                    total: ""
+                  }
                 ])
               }
             >
@@ -124,4 +124,4 @@ const JobPurchasesTab = () => {
   );
 };
 
-export default JobPurchasesTab
+export default JobPurchasesTab;

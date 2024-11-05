@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useEffect, useState } from "react";
 import { Grid, GridCol, Group, Radio, Title } from "@mantine/core";
@@ -23,9 +23,9 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
       name: "",
       quantity: 0,
       charges: 0,
-      total: 0,
-    },
-  ])
+      total: 0
+    }
+  ]);
 
   const getProblemTypeList = async () => {
     const result = await getProblemTypeListApi();
@@ -46,9 +46,9 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
             name,
             quantity,
             charges,
-            total,
+            total
           })
-        ),
+        )
       ]);
     }
   }, [job]);
@@ -82,14 +82,14 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
       <GridCol span={12}>
         <Group
           justify="center"
-          w={'100%'}
+          w={"100%"}
           variant="subtle"
           py={14}
           opacity={0.3}
           style={{
-            border: '2px dashed var(--mantine-color-dark-1)',
-            borderRadius: 'var(--mantine-radius-default)',
-            cursor: 'pointer',
+            border: "2px dashed var(--mantine-color-dark-1)",
+            borderRadius: "var(--mantine-radius-default)",
+            cursor: "pointer"
           }}
           onClick={() =>
             setIssues([
@@ -100,8 +100,8 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
                 name: "",
                 quantity: 0,
                 charges: 0,
-                total: 0,
-              },
+                total: 0
+              }
             ])
           }
         >
@@ -109,7 +109,7 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
         </Group>
       </GridCol>
     </Grid>
-  )
-}
+  );
+};
 
-export default IssuesListForm
+export default IssuesListForm;

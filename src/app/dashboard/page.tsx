@@ -11,102 +11,102 @@ import {
   ScrollArea,
   Stack,
   Text,
-  Title,
-} from '@mantine/core'
-import { IconCash, IconMoneybag } from '@tabler/icons-react'
+  Title
+} from "@mantine/core";
+import { IconCash, IconMoneybag } from "@tabler/icons-react";
 
-import Heading from '@/components/common/Heading'
-import RevenueCard from '@/components/dashboard/RevenueCard'
-import TotalJobsCard from '@/components/dashboard/TotalJobsCard'
-import IncomeExpenseCard from '@/components/dashboard/IncomeExpenseCard'
-import JobTypesGraphCard from '@/components/dashboard/JobTypesGraphCard'
+import Heading from "@/components/common/Heading";
+import RevenueCard from "@/components/dashboard/RevenueCard";
+import TotalJobsCard from "@/components/dashboard/TotalJobsCard";
+import IncomeExpenseCard from "@/components/dashboard/IncomeExpenseCard";
+import JobTypesGraphCard from "@/components/dashboard/JobTypesGraphCard";
 
 const Page = async () => {
   const staff = [
     {
-      name: 'Eleanor Pena',
+      name: "Eleanor Pena",
       noOfJobs: 230,
       amount: 6325,
-      progress: 75,
+      progress: 75
     },
     {
-      name: 'Brooklyn Simmons',
+      name: "Brooklyn Simmons",
       noOfJobs: 150,
       amount: 7630,
-      progress: 55,
+      progress: 55
     },
     {
-      name: 'Kathryn Murphy',
+      name: "Kathryn Murphy",
       noOfJobs: 230,
       amount: 6325,
-      progress: 75,
+      progress: 75
     },
     {
-      name: 'Guy Hawkins',
+      name: "Guy Hawkins",
       noOfJobs: 230,
       amount: 6325,
-      progress: 75,
+      progress: 75
     },
     {
-      name: 'Darlene Robertson',
+      name: "Darlene Robertson",
       noOfJobs: 230,
       amount: 6325,
-      progress: 75,
+      progress: 75
     },
     {
-      name: 'Eleanor Pena',
+      name: "Eleanor Pena",
       noOfJobs: 230,
       amount: 6325,
-      progress: 75,
+      progress: 75
     },
     {
-      name: 'Brooklyn Simmons',
+      name: "Brooklyn Simmons",
       noOfJobs: 150,
       amount: 7630,
-      progress: 55,
+      progress: 55
     },
     {
-      name: 'Kathryn Murphy',
+      name: "Kathryn Murphy",
       noOfJobs: 230,
       amount: 6325,
-      progress: 75,
+      progress: 75
     },
     {
-      name: 'Guy Hawkins',
+      name: "Guy Hawkins",
       noOfJobs: 230,
       amount: 6325,
-      progress: 75,
+      progress: 75
     },
     {
-      name: 'Darlene Robertson',
+      name: "Darlene Robertson",
       noOfJobs: 230,
       amount: 6325,
-      progress: 75,
-    },
-  ]
+      progress: 75
+    }
+  ];
 
   const jobStatuses = [
     {
-      name: 'Device Received',
-      noOfJobs: 120,
+      name: "Device Received",
+      noOfJobs: 120
     },
     {
-      name: 'Pending Work',
-      noOfJobs: 303,
+      name: "Pending Work",
+      noOfJobs: 303
     },
     {
-      name: 'Pending Approval',
-      noOfJobs: 123,
+      name: "Pending Approval",
+      noOfJobs: 123
     },
     {
-      name: 'Job Done',
-      noOfJobs: 433,
+      name: "Job Done",
+      noOfJobs: 433
     },
     {
-      name: 'Delivered',
-      noOfJobs: 766,
-    },
-  ]
+      name: "Delivered",
+      noOfJobs: 766
+    }
+  ];
 
   return (
     <Stack>
@@ -116,7 +116,7 @@ const Page = async () => {
         </GridCol>
         <GridCol span={{ sm: 4, lg: 2, base: 12 }}>
           <IncomeExpenseCard
-            icon={<IconCash style={{ width: '70%', height: '70%' }} />}
+            icon={<IconCash style={{ width: "70%", height: "70%" }} />}
             iconColor="grape"
             amount={10245}
             percentage={12}
@@ -130,7 +130,7 @@ const Page = async () => {
         </GridCol>
         <GridCol span={{ sm: 4, lg: 2, base: 12 }}>
           <IncomeExpenseCard
-            icon={<IconMoneybag style={{ width: '70%', height: '70%' }} />}
+            icon={<IconMoneybag style={{ width: "70%", height: "70%" }} />}
             iconColor="orange.6"
             amount={2024}
             percentage={15}
@@ -159,10 +159,10 @@ const Page = async () => {
                   justify="space-between"
                   align="center"
                   py={12}
-                  classNames={{ root: 'borderedListItem' }}
+                  classNames={{ root: "borderedListItem" }}
                   style={{
                     borderBottom:
-                      '1px solid var(--mantine-color-default-border)',
+                      "1px solid var(--mantine-color-default-border)"
                   }}
                 >
                   <Group>
@@ -195,7 +195,7 @@ const Page = async () => {
         </GridCol>
         <GridCol
           span={{ lg: 5, base: 7 }}
-          display={{ lg: 'block', base: 'none' }}
+          display={{ lg: "block", base: "none" }}
         >
           <JobTypesGraphCard p={20} h={500} />
         </GridCol>
@@ -212,10 +212,10 @@ const Page = async () => {
                   justify="space-between"
                   align="center"
                   py={17}
-                  classNames={{ root: 'borderedListItem' }}
+                  classNames={{ root: "borderedListItem" }}
                   style={{
                     borderBottom:
-                      '1px solid var(--mantine-color-default-border)',
+                      "1px solid var(--mantine-color-default-border)"
                   }}
                 >
                   <Group>
@@ -228,12 +228,12 @@ const Page = async () => {
             </ScrollArea>
           </Card>
         </GridCol>
-        <GridCol span={12} display={{ lg: 'none', base: 'block' }}>
+        <GridCol span={12} display={{ lg: "none", base: "block" }}>
           <JobTypesGraphCard p={20} h={{ lg: 500 }} />
         </GridCol>
       </Grid>
     </Stack>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;

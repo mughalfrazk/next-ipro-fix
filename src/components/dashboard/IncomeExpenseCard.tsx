@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import { ReactNode } from 'react'
+import { ReactNode } from "react";
 import {
   Card,
   Group,
@@ -9,19 +9,19 @@ import {
   CardProps,
   ThemeIcon,
   Text,
-  NumberFormatter,
-} from '@mantine/core'
+  NumberFormatter
+} from "@mantine/core";
 
-import GrowthBadge from '../common/GrowthBadge'
+import GrowthBadge from "../common/GrowthBadge";
 
 type IncomeExpenseCardProps = {
-  children: ReactNode
-  icon: ReactNode
-  iconColor: string
-  amount: number
-  percentage: number
-  loss?: boolean
-} & CardProps
+  children: ReactNode;
+  icon: ReactNode;
+  iconColor: string;
+  amount: number;
+  percentage: number;
+  loss?: boolean;
+} & CardProps;
 
 const IncomeExpenseCard = ({
   children,
@@ -52,7 +52,7 @@ const IncomeExpenseCard = ({
         </Stack>
       </Stack>
     </Card>
-  )
-}
+  );
+};
 
-export default IncomeExpenseCard
+export default IncomeExpenseCard;

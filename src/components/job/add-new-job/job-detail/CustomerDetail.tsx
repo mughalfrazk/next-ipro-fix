@@ -1,46 +1,49 @@
-'use client'
+"use client";
 
-import { Dispatch, SetStateAction, useEffect, useState } from 'react'
-import { Card, ComboboxData, Divider, Grid, GridCol } from '@mantine/core'
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Card, ComboboxData, Divider, Grid, GridCol } from "@mantine/core";
 
-import Heading from '@/components/common/Heading'
-import IproSelect from '@/components/core/IproSelect'
-import IproTextInput from '@/components/core/IproTextInput'
-import { CustomerListModel, CustomerModel } from '@/lib/models/customer.model'
-import { getCustomerListApi } from '@/lib/services/api/customer.service'
-import { FieldErrorPropsType } from '@/hooks/use-action-errors'
+import Heading from "@/components/common/Heading";
+import IproSelect from "@/components/core/IproSelect";
+import IproTextInput from "@/components/core/IproTextInput";
+import { CustomerListModel, CustomerModel } from "@/lib/models/customer.model";
+import { getCustomerListApi } from "@/lib/services/api/customer.service";
+import { FieldErrorPropsType } from "@/hooks/use-action-errors";
 
 type CustomerDetailProps = {
-  customer?: CustomerModel
-} & FieldErrorPropsType
+  customer?: CustomerModel;
+} & FieldErrorPropsType;
 
-const CustomerDetail = ({ customer, getFieldErrorProps }: CustomerDetailProps) => {
+const CustomerDetail = ({
+  customer,
+  getFieldErrorProps
+}: CustomerDetailProps) => {
   const [customers, setCustomers] = useState<CustomerListModel>([]);
   const [nameOptionsList, setNameOptionsList] = useState<ComboboxData>([]);
   const [phoneOptionsList, setPhoneOptionsList] = useState<ComboboxData>([]);
 
-  const [name, setName] = useState<string[]>([])
-  const [phone, setPhone] = useState<string[]>([])
-  const [company, setCompany] = useState<string>('')
-  const [nameSearch, setNameSearch] = useState<string>('')
-  const [phoneSearch, setPhoneSearch] = useState<string>('')
+  const [name, setName] = useState<string[]>([]);
+  const [phone, setPhone] = useState<string[]>([]);
+  const [company, setCompany] = useState<string>("");
+  const [nameSearch, setNameSearch] = useState<string>("");
+  const [phoneSearch, setPhoneSearch] = useState<string>("");
 
-  const [customerId, setCustomerId] = useState<string>('')
+  const [customerId, setCustomerId] = useState<string>("");
 
   const getCustomerList = async () => {
     try {
-      const result = await getCustomerListApi()
-      setCustomers(result)
+      const result = await getCustomerListApi();
+      setCustomers(result);
       setNameOptionsList(
-        result.map((item) => ({ label: item.name, value: item.id })),
-      )
+        result.map((item) => ({ label: item.name, value: item.id }))
+      );
       setPhoneOptionsList(
-        result.map((item) => ({ label: item.phone, value: item.id })),
-      )
+        result.map((item) => ({ label: item.phone, value: item.id }))
+      );
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   const onNameChange = (value: string | null) => {
     const [selectedCustomer] = customers.filter((item) => item.id === value);
@@ -55,33 +58,33 @@ const CustomerDetail = ({ customer, getFieldErrorProps }: CustomerDetailProps) =
   };
 
   const onChangeHandler = (value: CustomerModel) => {
-    setName([value.name])
-    setPhone([value.phone])
-    setCompany(value.company_name ?? '')
+    setName([value.name]);
+    setPhone([value.phone]);
+    setCompany(value.company_name ?? "");
 
-    setCustomerId(value.id)
-  }
+    setCustomerId(value.id);
+  };
 
   const onNameSearchHandler = (value: string) => {
-    setNameSearch(value)
-  }
+    setNameSearch(value);
+  };
 
   const onPhoneSearchHandler = (value: string) => {
-    setPhoneSearch(value)
-  }
+    setPhoneSearch(value);
+  };
 
   const onTagRemoveHandler = (
     value: string,
-    setValue: Dispatch<SetStateAction<string[]>>,
+    setValue: Dispatch<SetStateAction<string[]>>
   ) => {
     if (customerId) {
-      setName([])
-      setPhone([])
-      setCompany('')
+      setName([]);
+      setPhone([]);
+      setCompany("");
 
-      setCustomerId('')
+      setCustomerId("");
     } else {
-      setValue([])
+      setValue([]);
     }
   };
 
@@ -91,9 +94,9 @@ const CustomerDetail = ({ customer, getFieldErrorProps }: CustomerDetailProps) =
 
   useEffect(() => {
     if (customer) {
-      onChangeHandler(customer)
+      onChangeHandler(customer);
     }
-  }, [customer])
+  }, [customer]);
 
   return (
     <Card>
@@ -117,7 +120,7 @@ const CustomerDetail = ({ customer, getFieldErrorProps }: CustomerDetailProps) =
             onSearchChange={onNameSearchHandler}
             onRemove={(value: string) => onTagRemoveHandler(value, setName)}
             maxDropdownHeight={200}
-            {...getFieldErrorProps('customer_id')}
+            {...getFieldErrorProps("customer_id")}
           />
         </GridCol>
         <GridCol span={4}>
@@ -133,7 +136,7 @@ const CustomerDetail = ({ customer, getFieldErrorProps }: CustomerDetailProps) =
             onSearchChange={onPhoneSearchHandler}
             onRemove={(value: string) => onTagRemoveHandler(value, setPhone)}
             maxDropdownHeight={200}
-            {...getFieldErrorProps('customer_id')}
+            {...getFieldErrorProps("customer_id")}
           />
         </GridCol>
         <GridCol span={4}>
@@ -150,11 +153,11 @@ const CustomerDetail = ({ customer, getFieldErrorProps }: CustomerDetailProps) =
           label="Company Name"
           value={customerId}
           onChange={(e) => setCustomerId(e.currentTarget.value)}
-          style={{ display: 'none' }}
+          style={{ display: "none" }}
         />
       </Grid>
     </Card>
-  )
-}
+  );
+};
 
-export default CustomerDetail
+export default CustomerDetail;

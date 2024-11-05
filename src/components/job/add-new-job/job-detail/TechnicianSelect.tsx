@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useEffect, useState } from "react";
 import { getTechniciansApi } from "@/lib/services/api/user.service";
@@ -16,28 +16,30 @@ type TechnicianSelectProps = {
 
 const TechnicianSelect = ({
   technician,
-  getFieldErrorProps,
+  getFieldErrorProps
 }: TechnicianSelectProps) => {
   const [technicianItem, setTechnicianItem] = useState<ComboboxItem>();
   const [technicianOptions, setTechnicianOptions] = useState<ComboboxData>([]);
 
   const getTechniciansList = async () => {
     try {
-      const result = await getTechniciansApi()
+      const result = await getTechniciansApi();
       setTechnicianOptions(
         result.map((item) => ({
           label: `${item.first_name} ${item.last_name}`,
-          value: item.id,
-        })),
-      )
+          value: item.id
+        }))
+      );
     } catch (error) {
-      const e = getFormattedError(error)
-      showErrorNotification(e.errors?.formErrors?.[0])
+      const e = getFormattedError(error);
+      showErrorNotification(e.errors?.formErrors?.[0]);
     }
   };
 
   const onTechnicianChange = (value: string | null) => {
-    const [selectedTechnician] = technicianOptions.filter((item) => (item as unknown as ComboboxItem).value === value);
+    const [selectedTechnician] = technicianOptions.filter(
+      (item) => (item as unknown as ComboboxItem).value === value
+    );
     if (value) setTechnicianItem(selectedTechnician as ComboboxItem);
   };
 
@@ -61,17 +63,17 @@ const TechnicianSelect = ({
       onOptionSubmit={onTechnicianChange}
       styles={{
         label: {
-          color: 'white',
+          color: "white"
         },
         input: {
-          backgroundColor: 'transparent',
-          borderColor: 'white',
-          color: 'white',
-        },
+          backgroundColor: "transparent",
+          borderColor: "white",
+          color: "white"
+        }
       }}
-      {...getFieldErrorProps('technician_id')}
+      {...getFieldErrorProps("technician_id")}
     />
-  )
-}
+  );
+};
 
-export default TechnicianSelect
+export default TechnicianSelect;

@@ -1,7 +1,7 @@
-import { forwardRef } from 'react'
-import cx from 'clsx'
-import { Box, MantineLoaderComponent } from '@mantine/core'
-import classes from './CssLoader.module.css'
+import { forwardRef } from "react";
+import cx from "clsx";
+import { Box, MantineLoaderComponent } from "@mantine/core";
+import classes from "./CssLoader.module.css";
 
 /* eslint-disable react/display-name */
 export const CssLoader: MantineLoaderComponent = forwardRef(
@@ -12,5 +12,5 @@ export const CssLoader: MantineLoaderComponent = forwardRef(
       {...others}
       ref={ref}
     />
-  ),
-)
+  )
+);

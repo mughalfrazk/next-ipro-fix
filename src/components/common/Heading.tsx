@@ -1,10 +1,10 @@
-import { Stack, Title, Text, StackProps } from '@mantine/core'
+import { Stack, Title, Text, StackProps } from "@mantine/core";
 
 type HeadingProps = {
-  title: string
-  description?: string
-  color?: string
-} & StackProps
+  title: string;
+  description?: string;
+  color?: string;
+} & StackProps;
 
 const Heading = ({
   title,
@@ -23,7 +23,7 @@ const Heading = ({
         </Text>
       )}
     </Stack>
-  )
-}
+  );
+};
 
-export default Heading
+export default Heading;

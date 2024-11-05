@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import {
   Card,
@@ -7,30 +7,30 @@ import {
   NumberFormatter,
   Stack,
   Title,
-  rem,
-} from '@mantine/core'
-import Heading from '../common/Heading'
-import { IconCircleFilled, IconDotsVertical } from '@tabler/icons-react'
-import { DonutChart } from '@mantine/charts'
-import { useScreenSize } from '@/hooks/use.screen-size'
+  rem
+} from "@mantine/core";
+import Heading from "../common/Heading";
+import { IconCircleFilled, IconDotsVertical } from "@tabler/icons-react";
+import { DonutChart } from "@mantine/charts";
+import { useScreenSize } from "@/hooks/use.screen-size";
 
 const JobTypesGraphCard = ({ ...props }: CardProps) => {
-  const { isMobile, isLargeDesktop, isMidLargeDesktop } = useScreenSize()
+  const { isMobile, isLargeDesktop, isMidLargeDesktop } = useScreenSize();
 
   const jobTypes = [
     {
-      name: 'SW-Software',
+      name: "SW-Software",
       value: 54071,
-      color: 'var(--mantine-color-orange-6)',
+      color: "var(--mantine-color-orange-6)"
     },
     {
-      name: 'HW-Hardware',
+      name: "HW-Hardware",
       value: 32210,
-      color: 'var(--mantine-color-violet-6)',
+      color: "var(--mantine-color-violet-6)"
     },
-    { name: 'GW-Android', value: 24410, color: 'var(--mantine-color-blue-5)' },
-    { name: 'GW-Apple', value: 5034, color: 'var(--mantine-color-green-4)' },
-  ]
+    { name: "GW-Android", value: 24410, color: "var(--mantine-color-blue-5)" },
+    { name: "GW-Apple", value: 5034, color: "var(--mantine-color-green-4)" }
+  ];
 
   return (
     <Card {...props}>
@@ -73,7 +73,7 @@ const JobTypesGraphCard = ({ ...props }: CardProps) => {
         </Group>
       </Stack>
     </Card>
-  )
-}
+  );
+};
 
-export default JobTypesGraphCard
+export default JobTypesGraphCard;
