@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import { Group, Anchor } from "@mantine/core"
+import { Group, Anchor } from "@mantine/core";
 
-import { useFormAction } from "@/hooks/use-form-action"
-import { loginAction } from "@/lib/actions/auth.action"
-import IproTextInput from "../core/IproTextInput"
-import IproButton from "../core/IproButton"
-import classes from "./LoginForm.module.css"
+import { useFormAction } from "@/hooks/use-form-action";
+import { loginAction } from "@/lib/actions/auth.action";
+import IproTextInput from "../core/IproTextInput";
+import IproButton from "../core/IproButton";
+import classes from "./LoginForm.module.css";
 
 const LoginForm = () => {
-  const { formAction, getFieldErrorProps } = useFormAction(loginAction, {})
+  const { formAction, getFieldErrorProps } = useFormAction(loginAction, {});
 
   return (
     <form action={formAction}>
@@ -41,7 +41,7 @@ const LoginForm = () => {
         Login
       </IproButton>
     </form>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default LoginForm;

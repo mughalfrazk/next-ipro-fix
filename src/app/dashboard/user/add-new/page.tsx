@@ -4,4 +4,4 @@ const AddNewUserPage = () => {
   return <AddNewUser />;
 };
 
-export default AddNewUserPage
+export default AddNewUserPage;

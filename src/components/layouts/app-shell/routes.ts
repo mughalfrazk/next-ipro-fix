@@ -1,4 +1,4 @@
-import { ForwardRefExoticComponent, ReactNode, RefAttributes } from "react"
+import { ForwardRefExoticComponent, ReactNode, RefAttributes } from "react";
 import {
   IconHome,
   IconTool,
@@ -8,14 +8,14 @@ import {
   IconBuildingWarehouse,
   IconProps,
   Icon,
-} from "@tabler/icons-react"
+} from "@tabler/icons-react";
 
 export type NavLinkRoute = {
-  href: string
-  label: ReactNode
-  icon: ForwardRefExoticComponent<IconProps & RefAttributes<Icon>>
-  children?: NavLinkRoute[]
-}
+  href: string;
+  label: ReactNode;
+  icon: ForwardRefExoticComponent<IconProps & RefAttributes<Icon>>;
+  children?: NavLinkRoute[];
+};
 
 const routes: NavLinkRoute[] = [
   {
@@ -62,6 +62,6 @@ const routes: NavLinkRoute[] = [
     label: "Accounting",
     icon: IconCalculator,
   },
-]
+];
 
-export default routes
+export default routes;

@@ -1,21 +1,21 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { Grid, GridCol, Group, Radio, Title } from "@mantine/core"
-import { IconSquareRoundedPlusFilled } from "@tabler/icons-react"
+import { useEffect, useState } from "react";
+import { Grid, GridCol, Group, Radio, Title } from "@mantine/core";
+import { IconSquareRoundedPlusFilled } from "@tabler/icons-react";
 
-import { ProblemTypeListModel } from "@/lib/models/problem-type.model"
-import { getProblemTypeListApi } from "@/lib/services/api/problem-type.service"
-import { FieldErrorPropsType } from "@/hooks/use-action-errors"
-import { JobModel } from "@/lib/models/job.model"
-import IssueItem from "./IssueItem"
+import { ProblemTypeListModel } from "@/lib/models/problem-type.model";
+import { getProblemTypeListApi } from "@/lib/services/api/problem-type.service";
+import { FieldErrorPropsType } from "@/hooks/use-action-errors";
+import { JobModel } from "@/lib/models/job.model";
+import IssueItem from "./IssueItem";
 
 type IssuesListFormProps = {
-  job?: JobModel
-} & FieldErrorPropsType
+  job?: JobModel;
+} & FieldErrorPropsType;
 
 const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
-  const [problemTypes, setProblemTypes] = useState<ProblemTypeListModel>([])
+  const [problemTypes, setProblemTypes] = useState<ProblemTypeListModel>([]);
   const [issues, setIssues] = useState([
     {
       brand_id: 0,
@@ -25,16 +25,16 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
       charges: 0,
       total: 0,
     },
-  ])
+  ]);
 
   const getProblemTypeList = async () => {
-    const result = await getProblemTypeListApi()
-    setProblemTypes(result)
-  }
+    const result = await getProblemTypeListApi();
+    setProblemTypes(result);
+  };
 
   useEffect(() => {
-    getProblemTypeList()
-  }, [])
+    getProblemTypeList();
+  }, []);
 
   useEffect(() => {
     if (!!job?.issues?.length) {
@@ -49,9 +49,9 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
             total,
           }),
         ),
-      ])
+      ]);
     }
-  }, [job])
+  }, [job]);
 
   return (
     <Grid>
@@ -109,7 +109,7 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
         </Group>
       </GridCol>
     </Grid>
-  )
-}
+  );
+};
 
-export default IssuesListForm
+export default IssuesListForm;

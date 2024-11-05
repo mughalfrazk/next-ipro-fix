@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   Avatar,
@@ -11,16 +11,16 @@ import {
   Stack,
   Text,
   Title,
-} from "@mantine/core"
-import { redirect } from "next/navigation"
+} from "@mantine/core";
+import { redirect } from "next/navigation";
 
 import { ProfileModel, UserModel } from "@/lib/models/user.model";
 import { colorForUserRole } from "@/utils/functions";
 import Link from "next/link";
 
 export const createNewJobHandler = () => {
-  redirect("/dashboard/user/add-new")
-}
+  redirect("/dashboard/user/add-new");
+};
 
 export const UserColumns = [
   {
@@ -46,7 +46,7 @@ export const UserColumns = [
             <Text size="sm">{`${row.email}`}</Text>
           </Stack>
         </Group>
-      )
+      );
     },
   },
   {
@@ -61,7 +61,7 @@ export const UserColumns = [
         >
           {row.role.name}
         </Badge>
-      )
+      );
     },
   },
   {
@@ -77,22 +77,22 @@ export const UserColumns = [
       const progressPercentage = (
         ((row.progress ?? 0) / (row.target ?? 1)) *
         100
-      ).toFixed(2)
+      ).toFixed(2);
       return (
         <ProgressRoot size="xl" w={150}>
           <ProgressSection value={+progressPercentage} color="primary.6">
             <ProgressLabel>{progressPercentage}%</ProgressLabel>
           </ProgressSection>
         </ProgressRoot>
-      )
+      );
     },
   },
   {
     accessor: "progress",
     title: "Earned Amount",
     render: (row: UserModel) => {
-      return `AED ${row.progress ?? 0}`
-    }
+      return `AED ${row.progress ?? 0}`;
+    },
   },
   {
     accessor: "actions",
@@ -105,7 +105,7 @@ export const UserColumns = [
         >
           Open User
         </Button>
-      )
+      );
     },
   },
-]
+];

@@ -12,14 +12,14 @@ import {
   Stack,
   Text,
   Title,
-} from "@mantine/core"
-import { IconCash, IconMoneybag } from "@tabler/icons-react"
+} from "@mantine/core";
+import { IconCash, IconMoneybag } from "@tabler/icons-react";
 
-import Heading from "@/components/common/Heading"
-import RevenueCard from "@/components/dashboard/RevenueCard"
-import TotalJobsCard from "@/components/dashboard/TotalJobsCard"
-import IncomeExpenseCard from "@/components/dashboard/IncomeExpenseCard"
-import JobTypesGraphCard from "@/components/dashboard/JobTypesGraphCard"
+import Heading from "@/components/common/Heading";
+import RevenueCard from "@/components/dashboard/RevenueCard";
+import TotalJobsCard from "@/components/dashboard/TotalJobsCard";
+import IncomeExpenseCard from "@/components/dashboard/IncomeExpenseCard";
+import JobTypesGraphCard from "@/components/dashboard/JobTypesGraphCard";
 
 const Page = async () => {
   const staff = [
@@ -83,7 +83,7 @@ const Page = async () => {
       amount: 6325,
       progress: 75,
     },
-  ]
+  ];
 
   const jobStatuses = [
     {
@@ -106,7 +106,7 @@ const Page = async () => {
       name: "Delivered",
       noOfJobs: 766,
     },
-  ]
+  ];
 
   return (
     <Stack>
@@ -233,7 +233,7 @@ const Page = async () => {
         </GridCol>
       </Grid>
     </Stack>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;

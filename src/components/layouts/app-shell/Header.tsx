@@ -1,19 +1,19 @@
-"use client"
+"use client";
 
-import { IconMoon, IconSun } from "@tabler/icons-react"
-import { Burger, Group } from "@mantine/core"
+import { IconMoon, IconSun } from "@tabler/icons-react";
+import { Burger, Group } from "@mantine/core";
 
-import { useMantineColorScheme } from "@/hooks/use-mantine-color-scheme-wrapper"
-import IproButton from "@/components/core/IproButton"
-import AvatarMenu from "./AvatarMenu"
+import { useMantineColorScheme } from "@/hooks/use-mantine-color-scheme-wrapper";
+import IproButton from "@/components/core/IproButton";
+import AvatarMenu from "./AvatarMenu";
 
 type HeaderProps = {
-  opened: boolean
-  toggle: () => void
-}
+  opened: boolean;
+  toggle: () => void;
+};
 
 const Header = ({ opened, toggle: AppshellToggle }: HeaderProps) => {
-  const { colorScheme, toggleColorScheme } = useMantineColorScheme()
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
   return (
     <Group h="100%" justify="space-between" px="md">
@@ -40,7 +40,7 @@ const Header = ({ opened, toggle: AppshellToggle }: HeaderProps) => {
         <AvatarMenu />
       </Group>
     </Group>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

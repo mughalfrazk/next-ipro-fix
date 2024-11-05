@@ -18,7 +18,7 @@ const SpecialitySelect = ({ getFieldErrorProps }: FieldErrorPropsType) => {
         result.map((item) => ({
           label: item.name,
           value: item.id,
-        }))
+        })),
       );
     } catch (error) {
       const e = getFormattedError(error);
@@ -28,7 +28,7 @@ const SpecialitySelect = ({ getFieldErrorProps }: FieldErrorPropsType) => {
 
   const onSpecialityChange = (value: string | null) => {
     const [selectedSpeciality] = specialityOptions.filter(
-      (item) => (item as unknown as ComboboxItem).value === value
+      (item) => (item as unknown as ComboboxItem).value === value,
     );
     if (value) setSpecialityItem(selectedSpeciality as ComboboxItem);
   };

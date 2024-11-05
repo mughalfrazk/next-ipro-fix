@@ -22,7 +22,10 @@ import { useFormAction } from "@/hooks/use-form-action";
 import { createUserAction } from "@/lib/actions/user.action";
 
 const AddNewUser = () => {
-  const { formAction, getFieldErrorProps } = useFormAction(createUserAction, {});
+  const { formAction, getFieldErrorProps } = useFormAction(
+    createUserAction,
+    {},
+  );
 
   return (
     <form action={formAction}>

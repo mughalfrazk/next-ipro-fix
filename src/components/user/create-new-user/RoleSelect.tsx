@@ -23,7 +23,7 @@ const RoleSelect = ({ getFieldErrorProps }: FieldErrorPropsType) => {
         result.map((item) => ({
           label: capitalizeFirstLetter(item.name),
           value: item.id,
-        }))
+        })),
       );
     } catch (error) {
       const e = getFormattedError(error);
@@ -33,7 +33,7 @@ const RoleSelect = ({ getFieldErrorProps }: FieldErrorPropsType) => {
 
   const onRoleChange = (value: string | null) => {
     const [selectedRole] = roleOptions.filter(
-      (item) => (item as unknown as ComboboxItem).value === value
+      (item) => (item as unknown as ComboboxItem).value === value,
     );
     if (value) setRoleItem(selectedRole as ComboboxItem);
   };
