@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { CompanySchema } from "./company.model";
 import { RoleSchema } from "./role.model";
+import { ProblemTypeSchema } from "./problem-type.model";
 
 export const UserSchema = z.object({
   id: z.string(),
@@ -22,6 +23,7 @@ export const UserListSchema = z.array(UserSchema);
 
 export const ProfileSchema = UserSchema.extend({
   role: RoleSchema,
+  speciality: ProblemTypeSchema.nullish(),
   company: CompanySchema,
 });
 

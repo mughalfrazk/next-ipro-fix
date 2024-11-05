@@ -59,7 +59,9 @@ export const UserColumns = [
           radius="sm"
           p={12}
         >
-          {row.role.name}
+          {row.role.name === "technician" && row?.speciality
+            ? `${row.role.name}-${row?.speciality.name.split("-")[0]}`
+            : row.role.name}
         </Badge>
       );
     },

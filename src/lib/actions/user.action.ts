@@ -1,4 +1,5 @@
 import { isRedirectError } from "next/dist/client/components/redirect";
+import { redirect } from "next/navigation";
 
 import { ActionResult } from "@/utils/action-results";
 import { validatePayload } from "@/utils/validate-payload";
@@ -25,6 +26,7 @@ const createUserAction = async (_: ActionResult, formData: FormData) => {
 
   try {
     await createUserApi(data);
+    redirect("/dashboard/user");
     return {};
   } catch (error) {
     // `redirectTo` won't work without this line
