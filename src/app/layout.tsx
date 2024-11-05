@@ -8,6 +8,7 @@ import "@/styles/datatable.css";
 
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { SessionProvider } from "next-auth/react";
+import NextTopLoader from "nextjs-toploader";
 
 // import localFont from "next/font/local";
 import "../styles/globals.css";
@@ -41,6 +42,7 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <body>
+        <NextTopLoader />
         <SessionProvider>
           <MantineProvider
             defaultColorScheme="auto"
