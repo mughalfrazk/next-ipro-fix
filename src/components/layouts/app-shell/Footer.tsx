@@ -1,13 +1,13 @@
-"use client";
+"use client"
 
-import { useProfileContext } from "@/context/profile.context";
-import { Avatar, Group, LoadingOverlay, Stack, Text } from "@mantine/core";
+import { useProfileContext } from "@/context/profile.context"
+import { Avatar, Group, LoadingOverlay, Stack, Text } from "@mantine/core"
 
 const Footer = () => {
   const {
     loading,
     data: { email, first_name, last_name },
-  } = useProfileContext();
+  } = useProfileContext()
 
   return (
     <Group p={20} pos={"relative"}>
@@ -20,7 +20,7 @@ const Footer = () => {
         </Text>
       </Stack>
     </Group>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

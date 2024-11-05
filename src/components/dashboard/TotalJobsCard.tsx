@@ -1,9 +1,9 @@
-"use client";
+"use client"
 
-import { Card, Group, Stack, Title, CardProps } from "@mantine/core";
-import { AreaChart } from "@mantine/charts";
+import { Card, Group, Stack, Title, CardProps } from "@mantine/core"
+import { AreaChart } from "@mantine/charts"
 
-import GrowthBadge from "../common/GrowthBadge";
+import GrowthBadge from "../common/GrowthBadge"
 
 const TotalJobsCard = ({ ...props }: CardProps) => {
   const chart01 = [
@@ -27,7 +27,7 @@ const TotalJobsCard = ({ ...props }: CardProps) => {
       date: "Mar 26",
       Apples: 3129,
     },
-  ];
+  ]
 
   return (
     <Card {...props}>
@@ -55,7 +55,7 @@ const TotalJobsCard = ({ ...props }: CardProps) => {
         </Group>
       </Stack>
     </Card>
-  );
-};
+  )
+}
 
-export default TotalJobsCard;
+export default TotalJobsCard

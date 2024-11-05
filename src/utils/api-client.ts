@@ -1,21 +1,21 @@
-import axios from "axios";
-import { getSession } from "next-auth/react";
+import axios from "axios"
+import { getSession } from "next-auth/react"
 
-import config from "./ipro-fix-config";
-import { getFormattedError } from "./format-error";
-import { logoutAction } from "@/lib/actions/auth.action";
-import { notifications } from "@mantine/notifications";
-import { auth, signOut } from "@/auth";
-import { redirect } from "next/navigation";
+import config from "./ipro-fix-config"
+import { getFormattedError } from "./format-error"
+import { logoutAction } from "@/lib/actions/auth.action"
+import { notifications } from "@mantine/notifications"
+import { auth, signOut } from "@/auth"
+import { redirect } from "next/navigation"
 
 const defaultOptions = {
-  baseURL: config.NEXT_PUBLIC_IPRO_FIX_BASE_URL
+  baseURL: config.NEXT_PUBLIC_IPRO_FIX_BASE_URL,
 }
 
 const getAuthApiClient = () => {
   const httpClient = axios.create(defaultOptions)
   httpClient.interceptors.request.use(
-    async request => {
+    async (request) => {
       if (typeof window === "undefined") {
         const session = await auth()
         request.headers.Authorization = `Bearer ${session?.user.access_token ?? ""}`
@@ -26,15 +26,17 @@ const getAuthApiClient = () => {
 
       return request
     },
-    error => {
-      console.error(`Failed to send request [${error.message}]: ${error.config.url}`)
+    (error) => {
+      console.error(
+        `Failed to send request [${error.message}]: ${error.config.url}`,
+      )
       return Promise.reject(error)
-    }
+    },
   )
 
   httpClient.interceptors.response.use(
-    response => response,
-    error => {
+    (response) => response,
+    (error) => {
       if (typeof window === "undefined") {
         console.log("intercepted on server: ", getFormattedError(error))
         if (error.status === 403) {
@@ -47,7 +49,7 @@ const getAuthApiClient = () => {
         if (error.status === 403) {
           notifications.show({
             message: "Session is ended, please login again.",
-            color: "red"
+            color: "red",
           })
           logoutAction()
           return Promise.resolve()
@@ -56,12 +58,14 @@ const getAuthApiClient = () => {
       }
 
       // const status = error.response?.status as number
-      console.error(`Failed to receive response [${error.message}]: ${error.config.url}`)
+      console.error(
+        `Failed to receive response [${error.message}]: ${error.config.url}`,
+      )
       return Promise.reject(error)
-    }
+    },
   )
 
-  return httpClient;
+  return httpClient
 }
 
 export { getAuthApiClient }

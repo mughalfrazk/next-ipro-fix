@@ -1,12 +1,12 @@
-"use client";
+"use client"
 
-import { Flex, Grid, rem, Stack, Text, Title } from "@mantine/core";
-import IproButton from "../core/IproButton";
+import { Flex, Grid, rem, Stack, Text, Title } from "@mantine/core"
+import IproButton from "../core/IproButton"
 import {
   IconCircleKeyFilled,
   IconLayoutDashboardFilled,
-} from "@tabler/icons-react";
-import Link from "next/link";
+} from "@tabler/icons-react"
+import Link from "next/link"
 
 const Home = () => {
   return (
@@ -46,7 +46,7 @@ const Home = () => {
         </Grid>
       </Stack>
     </Flex>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

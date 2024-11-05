@@ -1,4 +1,4 @@
-import { useMantineTheme } from '@mantine/core'
+import { useMantineTheme } from "@mantine/core"
 
 /// Reference src/styles/iproTheme.ts for clarity on where these values originate
 export const useZIndex = () => {

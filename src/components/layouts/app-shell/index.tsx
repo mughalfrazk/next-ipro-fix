@@ -1,18 +1,18 @@
-"use client";
+"use client"
 
-import { ReactNode } from "react";
-import { AppShell, ScrollArea, useMantineTheme } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
+import { ReactNode } from "react"
+import { AppShell, ScrollArea, useMantineTheme } from "@mantine/core"
+import { useDisclosure } from "@mantine/hooks"
 
-import Header from "./Header";
-import Navlinks from "./Navlinks";
-import Footer from "./Footer";
-import { useMantineColorScheme } from "@/hooks/use-mantine-color-scheme-wrapper";
+import Header from "./Header"
+import Navlinks from "./Navlinks"
+import Footer from "./Footer"
+import { useMantineColorScheme } from "@/hooks/use-mantine-color-scheme-wrapper"
 
 const AppShellLayout = ({ children }: { children: ReactNode }) => {
-  const theme = useMantineTheme();
-  const { lightDark } = useMantineColorScheme();
-  const [opened, { toggle }] = useDisclosure();
+  const theme = useMantineTheme()
+  const { lightDark } = useMantineColorScheme()
+  const [opened, { toggle }] = useDisclosure()
 
   return (
     <AppShell
@@ -35,7 +35,7 @@ const AppShellLayout = ({ children }: { children: ReactNode }) => {
         {children}
       </AppShell.Main>
     </AppShell>
-  );
-};
+  )
+}
 
-export default AppShellLayout;
+export default AppShellLayout

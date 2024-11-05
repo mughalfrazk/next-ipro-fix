@@ -1,13 +1,20 @@
-import { isRedirectError } from "next/dist/client/components/redirect";
-import { redirect } from "next/navigation";
+import { isRedirectError } from "next/dist/client/components/redirect"
+import { redirect } from "next/navigation"
 
-import { CreatePurchasesModel, CreatePurchasesSchema, PurchaseModel } from "@/lib/models/purchase.model";
-import { CreateJobPayloadModel, CreateJobPayloadSchema } from "@/lib/models/job.model";
-import { getNestedInputValues, showErrorNotification } from "@/utils/functions";
-import { getFormattedError } from "@/utils/format-error";
-import { createJobApi } from "@/lib/services/api/job.service";
-import { ActionResult } from "@/utils/action-results";
-import { IssueModel } from "@/lib/models/issue.model";
+import {
+  CreatePurchasesModel,
+  CreatePurchasesSchema,
+  PurchaseModel,
+} from "@/lib/models/purchase.model"
+import {
+  CreateJobPayloadModel,
+  CreateJobPayloadSchema,
+} from "@/lib/models/job.model"
+import { getNestedInputValues, showErrorNotification } from "@/utils/functions"
+import { getFormattedError } from "@/utils/format-error"
+import { createJobApi } from "@/lib/services/api/job.service"
+import { ActionResult } from "@/utils/action-results"
+import { IssueModel } from "@/lib/models/issue.model"
 
 const createJobAction = async (_: ActionResult, formData: FormData) => {
   const structuredInput = getNestedInputValues(formData)
@@ -19,15 +26,15 @@ const createJobAction = async (_: ActionResult, formData: FormData) => {
     customer: {
       name: formData.get("customer_name") as string,
       phone: formData.get("customer_phone") as string,
-      company_name: formData.get("customer_company_name") as string
+      company_name: formData.get("customer_company_name") as string,
     },
     issues: structuredInput.issues.map((item: IssueModel) => ({
       ...item,
       quantity: +item.quantity,
       charges: +item.charges,
       total: +item.total,
-      brand_id: +item.brand_id
-    }))
+      brand_id: +item.brand_id,
+    })),
   }
 
   const validatedPayload = await CreateJobPayloadSchema.safeParseAsync(payload)
@@ -46,7 +53,6 @@ const createJobAction = async (_: ActionResult, formData: FormData) => {
     console.log(error)
     return getFormattedError(error)
   }
-
 }
 
 const createJobPurchaseAction = async (_: ActionResult, formData: FormData) => {
@@ -54,7 +60,9 @@ const createJobPurchaseAction = async (_: ActionResult, formData: FormData) => {
   console.log(structuredInput)
   const payload: CreatePurchasesModel = {
     job_id: formData.get("job_id") as string,
-    purchases: structuredInput.purchases.map((item: PurchaseModel) => ({ ...item }))
+    purchases: structuredInput.purchases.map((item: PurchaseModel) => ({
+      ...item,
+    })),
   }
 
   const validatedPayload = await CreatePurchasesSchema.safeParseAsync(payload)
@@ -64,7 +72,6 @@ const createJobPurchaseAction = async (_: ActionResult, formData: FormData) => {
   }
 
   try {
-
     return {}
   } catch (error) {
     // `redirectTo` won't work without this line

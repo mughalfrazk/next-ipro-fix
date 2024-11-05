@@ -1,27 +1,27 @@
-"use client";
+"use client"
 
-import { Avatar, Badge, Group, Stack, Text, Title } from "@mantine/core";
-import { JobModel } from "@/lib/models/job.model";
-import { redirect } from "next/navigation";
-import Link from "next/link";
+import { Avatar, Badge, Group, Stack, Text, Title } from "@mantine/core"
+import { JobModel } from "@/lib/models/job.model"
+import { redirect } from "next/navigation"
+import Link from "next/link"
 
 const colorForJobStatus = (name: string) => {
   return name === "Device Received"
     ? "grape"
     : name === "Pending Work"
-    ? "red"
-    : name === "Pending Approval"
-    ? "indigo"
-    : name === "Job Done"
-    ? "cyan"
-    : name === "Delivered"
-    ? "green"
-    : "black";
-};
+      ? "red"
+      : name === "Pending Approval"
+        ? "indigo"
+        : name === "Job Done"
+          ? "cyan"
+          : name === "Delivered"
+            ? "green"
+            : "black"
+}
 
 export const createNewJobHandler = () => {
-  redirect("/dashboard/job/add-new");
-};
+  redirect("/dashboard/job/add-new")
+}
 
 export const JobColumns = [
   {
@@ -29,9 +29,11 @@ export const JobColumns = [
     render: (row: JobModel) => {
       return (
         <Link href={`/dashboard/job/${row.id}`}>
-          <Text fw={"bold"} c={'primary.6'}>{row.id.slice(-5)}</Text>
+          <Text fw={"bold"} c={"primary.6"}>
+            {row.id.slice(-5)}
+          </Text>
         </Link>
-      );
+      )
     },
   },
   {
@@ -50,7 +52,7 @@ export const JobColumns = [
             <Text size={"0.7rem"}>{row.customer.phone}</Text>
           </Stack>
         </Group>
-      );
+      )
     },
   },
   {
@@ -65,13 +67,13 @@ export const JobColumns = [
         >
           {row.job_status.name}
         </Badge>
-      );
+      )
     },
   },
   {
     accessor: "quantity",
     render: (row: JobModel) => {
-      return row.issues.reduce((prev, curr) => prev + curr.quantity, 0);
+      return row.issues.reduce((prev, curr) => prev + curr.quantity, 0)
     },
   },
   {
@@ -101,13 +103,13 @@ export const JobColumns = [
         <Text opacity={0.4}>
           <i>No Staff Assigned</i>
         </Text>
-      );
+      )
     },
   },
   {
     accessor: "total",
     render: (row: JobModel) => {
-      return row.issues.reduce((prev, curr) => prev + curr.total, 0);
+      return row.issues.reduce((prev, curr) => prev + curr.total, 0)
     },
   },
-];
+]

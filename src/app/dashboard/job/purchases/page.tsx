@@ -1,4 +1,4 @@
-import Table from "@/components/common/Table";
+import Table from "@/components/common/Table"
 
 const PurchasesPage = () => {
   return (
@@ -7,7 +7,7 @@ const PurchasesPage = () => {
       description="All Purchases details"
       search={true}
     />
-  );
-};
+  )
+}
 
-export default PurchasesPage;
+export default PurchasesPage

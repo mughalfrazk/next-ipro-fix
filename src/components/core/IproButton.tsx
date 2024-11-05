@@ -1,36 +1,36 @@
 "use client"
 
-import { MouseEventHandler, ReactNode } from "react";
-import { Button, ButtonProps } from "@mantine/core";
+import { MouseEventHandler, ReactNode } from "react"
+import { Button, ButtonProps } from "@mantine/core"
 
-import IproSubmitButton, { SubmitButtonProps } from "./IproSubmitButton";
-import classes from "./IproButton.module.css";
+import IproSubmitButton, { SubmitButtonProps } from "./IproSubmitButton"
+import classes from "./IproButton.module.css"
 
 const getHeight = (size: string) => {
   switch (size) {
     case "xs":
-      return 26;
+      return 26
     case "sm":
-      return 30;
+      return 30
     case "md":
-      return 34;
+      return 34
     case "lg":
-      return 38;
+      return 38
     case "xl":
-      return 42;
+      return 42
   }
-};
+}
 
 export interface IproButtonProps extends ButtonProps {
-  type?: "submit" | "reset" | "button";
-  children: ReactNode;
-  ariaLabel?: string;
-  variant?: "filled" | "light" | "outline" | "subtle";
-  size?: "xs" | "sm" | "md" | "lg" | "xl";
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-  isIconOnly?: boolean;
-  isCompact?: boolean;
-  isSubmit?: boolean;
+  type?: "submit" | "reset" | "button"
+  children: ReactNode
+  ariaLabel?: string
+  variant?: "filled" | "light" | "outline" | "subtle"
+  size?: "xs" | "sm" | "md" | "lg" | "xl"
+  onClick?: MouseEventHandler<HTMLButtonElement>
+  isIconOnly?: boolean
+  isCompact?: boolean
+  isSubmit?: boolean
 }
 
 const IproButton = ({
@@ -58,13 +58,13 @@ const IproButton = ({
     >
       {children}
     </Button>
-  );
+  )
 
   if (isSubmit) {
-    return <IproSubmitButton btn={ButtonComponent} />;
+    return <IproSubmitButton btn={ButtonComponent} />
   }
 
-  return <ButtonComponent />;
-};
+  return <ButtonComponent />
+}
 
-export default IproButton;
+export default IproButton

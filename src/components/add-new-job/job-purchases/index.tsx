@@ -1,6 +1,6 @@
-"use client";
+"use client"
 
-import { useState } from "react";
+import { useState } from "react"
 import {
   Card,
   CloseButton,
@@ -9,22 +9,22 @@ import {
   GridCol,
   Group,
   Title,
-} from "@mantine/core";
-import { IconSquareRoundedPlusFilled } from "@tabler/icons-react";
+} from "@mantine/core"
+import { IconSquareRoundedPlusFilled } from "@tabler/icons-react"
 
-import { useMantineColorScheme } from "@/hooks/use-mantine-color-scheme-wrapper";
-import { createJobPurchaseAction } from "@/lib/actions/job.action";
-import { useFormAction } from "@/hooks/use-form-action";
-import IproTextInput from "@/components/core/IproTextInput";
-import IproSelect from "@/components/core/IproSelect";
-import Heading from "@/components/common/Heading";
-import IproButton from "@/components/core/IproButton";
+import { useMantineColorScheme } from "@/hooks/use-mantine-color-scheme-wrapper"
+import { createJobPurchaseAction } from "@/lib/actions/job.action"
+import { useFormAction } from "@/hooks/use-form-action"
+import IproTextInput from "@/components/core/IproTextInput"
+import IproSelect from "@/components/core/IproSelect"
+import Heading from "@/components/common/Heading"
+import IproButton from "@/components/core/IproButton"
 
 // { purchases: purchasesData }: { purchases: PurchaseListModel | undefined | null }
 
 const JobPurchasesTab = () => {
-  const { formAction } = useFormAction(createJobPurchaseAction, {});
-  const { lightDark } = useMantineColorScheme();
+  const { formAction } = useFormAction(createJobPurchaseAction, {})
+  const { lightDark } = useMantineColorScheme()
   const [purchases, setPurchases] = useState([
     {
       brand_id: "",
@@ -33,8 +33,8 @@ const JobPurchasesTab = () => {
       parts: "null",
       total: "",
     },
-  ]);
-  
+  ])
+
   return (
     <form action={formAction}>
       <Card pb={100}>
@@ -53,7 +53,7 @@ const JobPurchasesTab = () => {
                       justify="space-between"
                       bg={lightDark(
                         "var(--mantine-color-gray-2)",
-                        "var(--mantine-color-dark-7)"
+                        "var(--mantine-color-dark-7)",
                       )}
                       px={20}
                       py={10}
@@ -121,7 +121,7 @@ const JobPurchasesTab = () => {
         </Group>
       </Card>
     </form>
-  );
-};
+  )
+}
 
-export default JobPurchasesTab;
+export default JobPurchasesTab

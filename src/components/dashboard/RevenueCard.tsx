@@ -1,15 +1,15 @@
-"use client";
+"use client"
 
-import { Card, Group, Stack, Title, Text, CardProps } from "@mantine/core";
-import { BarChart } from "@mantine/charts";
+import { Card, Group, Stack, Title, Text, CardProps } from "@mantine/core"
+import { BarChart } from "@mantine/charts"
 
-import GrowthBadge from "../common/GrowthBadge";
-import { useMantineColorScheme } from "@/hooks/use-mantine-color-scheme-wrapper";
-import { useScreenSize } from "@/hooks/use.screen-size";
+import GrowthBadge from "../common/GrowthBadge"
+import { useMantineColorScheme } from "@/hooks/use-mantine-color-scheme-wrapper"
+import { useScreenSize } from "@/hooks/use.screen-size"
 
 const RevenueCard = ({ ...props }: CardProps) => {
-  const { isLargeDesktop, isDesktop } = useScreenSize();
-  const { lightDark } = useMantineColorScheme();
+  const { isLargeDesktop, isDesktop } = useScreenSize()
+  const { lightDark } = useMantineColorScheme()
 
   const chart02 = [
     { week: "Mon", Smartphones: 750 },
@@ -19,7 +19,7 @@ const RevenueCard = ({ ...props }: CardProps) => {
     { week: "Fri", Smartphones: 320 },
     { week: "Sat", Smartphones: 350 },
     { week: "Sun", Smartphones: 500 },
-  ];
+  ]
 
   return (
     <Card {...props}>
@@ -63,7 +63,7 @@ const RevenueCard = ({ ...props }: CardProps) => {
         />
       </Group>
     </Card>
-  );
-};
+  )
+}
 
-export default RevenueCard;
+export default RevenueCard

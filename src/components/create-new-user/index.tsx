@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import {
   Center,
@@ -10,13 +10,13 @@ import {
   Group,
   Image,
   Stack,
-} from "@mantine/core";
-import { IconRefresh } from "@tabler/icons-react";
+} from "@mantine/core"
+import { IconRefresh } from "@tabler/icons-react"
 
-import IproSelect from "../core/IproSelect";
-import IproTextInput from "../core/IproTextInput";
-import IproButton from "../core/IproButton";
-import Heading from "../common/Heading";
+import IproSelect from "../core/IproSelect"
+import IproTextInput from "../core/IproTextInput"
+import IproButton from "../core/IproButton"
+import Heading from "../common/Heading"
 
 const AddNewUser = () => {
   return (
@@ -75,6 +75,7 @@ const AddNewUser = () => {
                   radius={400}
                   w={200}
                   h={200}
+                  alt="usr image"
                   src="https://img.freepik.com/free-photo/smiling-young-man-with-crossed-arms-outdoors_1140-255.jpg?t=st=1730317491~exp=1730321091~hmac=746e33b631e0260e55f509d7000a63a365bb62c36824057115c99266383490f4&w=740"
                 />
                 <Button mb={10} variant="outline" color="white">
@@ -86,7 +87,7 @@ const AddNewUser = () => {
         </Grid.Col>
       </Grid>
     </Stack>
-  );
-};
+  )
+}
 
-export default AddNewUser;
+export default AddNewUser

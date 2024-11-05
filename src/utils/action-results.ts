@@ -4,12 +4,12 @@ export type ActionResult = {
 }
 
 export type ActionErrors = {
-  fieldErrors?: FieldErrors;
+  fieldErrors?: FieldErrors
   formErrors?: string[]
 }
 
 export type FieldErrors = {
-  [x: number]: string | undefined;
-  [x: string]: string | undefined;
-  [x: symbol]: string | undefined;
+  [x: number]: string | undefined
+  [x: string]: string | undefined
+  [x: symbol]: string | undefined
 }

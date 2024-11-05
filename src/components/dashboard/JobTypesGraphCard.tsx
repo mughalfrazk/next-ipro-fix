@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import {
   Card,
@@ -8,14 +8,14 @@ import {
   Stack,
   Title,
   rem,
-} from "@mantine/core";
-import Heading from "../common/Heading";
-import { IconCircleFilled, IconDotsVertical } from "@tabler/icons-react";
-import { DonutChart } from "@mantine/charts";
-import { useScreenSize } from "@/hooks/use.screen-size";
+} from "@mantine/core"
+import Heading from "../common/Heading"
+import { IconCircleFilled, IconDotsVertical } from "@tabler/icons-react"
+import { DonutChart } from "@mantine/charts"
+import { useScreenSize } from "@/hooks/use.screen-size"
 
 const JobTypesGraphCard = ({ ...props }: CardProps) => {
-  const { isMobile, isLargeDesktop, isMidLargeDesktop } = useScreenSize();
+  const { isMobile, isLargeDesktop, isMidLargeDesktop } = useScreenSize()
 
   const jobTypes = [
     {
@@ -30,7 +30,7 @@ const JobTypesGraphCard = ({ ...props }: CardProps) => {
     },
     { name: "GW-Android", value: 24410, color: "var(--mantine-color-blue-5)" },
     { name: "GW-Apple", value: 5034, color: "var(--mantine-color-green-4)" },
-  ];
+  ]
 
   return (
     <Card {...props}>
@@ -61,10 +61,10 @@ const JobTypesGraphCard = ({ ...props }: CardProps) => {
               isMobile
                 ? 250
                 : isMidLargeDesktop
-                ? 300
-                : isLargeDesktop
-                ? 250
-                : 350
+                  ? 300
+                  : isLargeDesktop
+                    ? 250
+                    : 350
             }
             thickness={30}
             paddingAngle={3}
@@ -73,7 +73,7 @@ const JobTypesGraphCard = ({ ...props }: CardProps) => {
         </Group>
       </Stack>
     </Card>
-  );
-};
+  )
+}
 
-export default JobTypesGraphCard;
+export default JobTypesGraphCard

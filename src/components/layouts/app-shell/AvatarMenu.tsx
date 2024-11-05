@@ -1,6 +1,6 @@
-import { logoutAction } from "@/lib/actions/auth.action";
-import { Avatar, Menu, rem } from "@mantine/core";
-import { IconLogout2, IconUserCircle } from "@tabler/icons-react";
+import { logoutAction } from "@/lib/actions/auth.action"
+import { Avatar, Menu, rem } from "@mantine/core"
+import { IconLogout2, IconUserCircle } from "@tabler/icons-react"
 
 const AvatarMenu = () => {
   return (
@@ -30,7 +30,7 @@ const AvatarMenu = () => {
         </form>
       </Menu.Dropdown>
     </Menu>
-  );
-};
+  )
+}
 
-export default AvatarMenu;
+export default AvatarMenu
