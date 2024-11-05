@@ -1,6 +1,6 @@
 const initEnv = {
   NEXT_PUBLIC_IPRO_FIX_BASE_URL: "",
-  AUTH_SECRET: "",
+  AUTH_SECRET: ""
 };
 
 const production: typeof initEnv = { ...initEnv };

@@ -7,7 +7,7 @@ import {
   IconUserCircle,
   IconBuildingWarehouse,
   IconProps,
-  Icon,
+  Icon
 } from "@tabler/icons-react";
 
 export type NavLinkRoute = {
@@ -21,7 +21,7 @@ const routes: NavLinkRoute[] = [
   {
     href: "/dashboard",
     label: "Dashboard",
-    icon: IconHome,
+    icon: IconHome
   },
   {
     href: "/dashboard/user",
@@ -31,9 +31,9 @@ const routes: NavLinkRoute[] = [
       {
         href: "/dashboard/user/add-new",
         label: "Add New User",
-        icon: IconFocus,
-      },
-    ],
+        icon: IconFocus
+      }
+    ]
   },
   {
     href: "/dashboard/job",
@@ -43,25 +43,25 @@ const routes: NavLinkRoute[] = [
       {
         href: "/dashboard/job/add-new",
         label: "Add New Job",
-        icon: IconFocus,
+        icon: IconFocus
       },
       {
         href: "/dashboard/job/purchases",
         label: "Purchases",
-        icon: IconFocus,
-      },
-    ],
+        icon: IconFocus
+      }
+    ]
   },
   {
     href: "/dashboard",
     label: "Inventory",
-    icon: IconBuildingWarehouse,
+    icon: IconBuildingWarehouse
   },
   {
     href: "/dashboard",
     label: "Accounting",
-    icon: IconCalculator,
-  },
+    icon: IconCalculator
+  }
 ];
 
 export default routes;

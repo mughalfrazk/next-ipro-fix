@@ -34,7 +34,7 @@ export const JobColumns = [
           </Text>
         </Link>
       );
-    },
+    }
   },
   {
     accessor: "customer",
@@ -53,7 +53,7 @@ export const JobColumns = [
           </Stack>
         </Group>
       );
-    },
+    }
   },
   {
     accessor: "status",
@@ -68,17 +68,17 @@ export const JobColumns = [
           {row.job_status.name}
         </Badge>
       );
-    },
+    }
   },
   {
     accessor: "quantity",
     render: (row: JobModel) => {
       return row.issues.reduce((prev, curr) => prev + curr.quantity, 0);
-    },
+    }
   },
   {
     title: "Company Name",
-    accessor: "customer.company_name",
+    accessor: "customer.company_name"
   },
   {
     accessor: "technician",
@@ -104,12 +104,12 @@ export const JobColumns = [
           <i>No Staff Assigned</i>
         </Text>
       );
-    },
+    }
   },
   {
     accessor: "total",
     render: (row: JobModel) => {
       return row.issues.reduce((prev, curr) => prev + curr.total, 0);
-    },
-  },
+    }
+  }
 ];

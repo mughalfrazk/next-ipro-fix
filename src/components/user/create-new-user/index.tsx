@@ -1,5 +1,6 @@
 "use client";
 
+import { Fragment, useEffect, useState } from "react";
 import {
   Button,
   Card,
@@ -11,6 +12,11 @@ import {
   Stack,
   Flex,
   Box,
+  ProgressRoot,
+  ProgressSection,
+  ProgressLabel,
+  Title,
+  Paper
 } from "@mantine/core";
 import { IconRefresh } from "@tabler/icons-react";
 
@@ -20,12 +26,24 @@ import Heading from "../../common/Heading";
 import RoleSelect from "./RoleSelect";
 import { useFormAction } from "@/hooks/use-form-action";
 import { createUserAction } from "@/lib/actions/user.action";
+import { ProfileModel } from "@/lib/models/user.model";
 
-const AddNewUser = () => {
+const AddNewUser = ({ user }: { user?: ProfileModel }) => {
   const { formAction, getFieldErrorProps } = useFormAction(
     createUserAction,
-    {},
+    {}
   );
+  const [progressPercentage, setProgressPercentage] = useState<string>("");
+
+  useEffect(() => {
+    if (user?.progress && user.target) {
+      const perc = (((user.progress ?? 0) / (user.target ?? 0)) * 100).toFixed(
+        2
+      );
+      setProgressPercentage(perc);
+    }
+    setProgressPercentage;
+  }, [progressPercentage, user]);
 
   return (
     <form action={formAction}>
@@ -48,6 +66,7 @@ const AddNewUser = () => {
                   <IproTextInput
                     name="first_name"
                     label="First Name"
+                    defaultValue={user?.first_name}
                     {...getFieldErrorProps("first_name")}
                   />
                 </GridCol>
@@ -55,6 +74,7 @@ const AddNewUser = () => {
                   <IproTextInput
                     name="last_name"
                     label="Last Name"
+                    defaultValue={user?.last_name}
                     {...getFieldErrorProps("last_name")}
                   />
                 </GridCol>
@@ -62,49 +82,74 @@ const AddNewUser = () => {
                   <IproTextInput
                     name="phone"
                     label="Phone"
+                    defaultValue={user?.phone ?? ""}
                     {...getFieldErrorProps("phone")}
                   />
                 </GridCol>
                 <GridCol span={8}>
-                  <RoleSelect getFieldErrorProps={getFieldErrorProps} />
+                  <RoleSelect
+                    user={user}
+                    getFieldErrorProps={getFieldErrorProps}
+                  />
                 </GridCol>
                 <GridCol span={4}>
                   <IproTextInput
                     type="number"
                     name="target"
                     label="Assign Target"
+                    defaultValue={user?.target ?? ""}
                     {...getFieldErrorProps("target")}
                   />
                 </GridCol>
-                <GridCol span={6}>
-                  <IproTextInput
-                    type="email"
-                    name="email"
-                    label="Email"
-                    {...getFieldErrorProps("email")}
-                  />
-                </GridCol>
-                <GridCol span={6}>
-                  <IproTextInput
-                    type="password"
-                    name="password"
-                    label="Password"
-                    {...getFieldErrorProps("password")}
-                  />
-                </GridCol>
+                {!user && (
+                  <Fragment>
+                    <GridCol span={6}>
+                      <IproTextInput
+                        type="email"
+                        name="email"
+                        label="Email"
+                        {...getFieldErrorProps("email")}
+                      />
+                    </GridCol>
+                    <GridCol span={6}>
+                      <IproTextInput
+                        type="password"
+                        name="password"
+                        label="Password"
+                        {...getFieldErrorProps("password")}
+                      />
+                    </GridCol>
+                  </Fragment>
+                )}
                 <GridCol span={12}>
                   <IproTextInput
                     type="text"
                     name="address"
                     label="Address"
+                    defaultValue={user?.address ?? ""}
                     {...getFieldErrorProps("address")}
                   />
                 </GridCol>
+                {user && (
+                  <GridCol span={12} mt={10}>
+                    <Paper p={18} withBorder style={{ backgroundColor: "transparent" }}>
+                      <Title order={5} mb={10}>Progress</Title>
+                      <ProgressRoot size="xl">
+                        <ProgressSection
+                          value={+progressPercentage}
+                          color="primary.6"
+                        >
+                          <ProgressLabel>{progressPercentage}%</ProgressLabel>
+                        </ProgressSection>
+                      </ProgressRoot>
+                    </Paper>
+                  </GridCol>
+                )}
               </Grid>
-              <Group justify="flex-end" mt={20}>
+              {!user && <Group justify="flex-end" mt={20}>
                 <IproButton variant="outline">Cancal</IproButton>
                 <IproButton isSubmit={true}>Save User</IproButton>
-              </Group>
+              </Group>}
             </Card>
           </Grid.Col>
           <Grid.Col span={3}>

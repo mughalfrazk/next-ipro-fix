@@ -10,7 +10,7 @@ import {
   Group,
   Stack,
   Text,
-  Title,
+  Title
 } from "@mantine/core";
 import { redirect } from "next/navigation";
 
@@ -33,7 +33,7 @@ export const UserColumns = [
           </Text>
         </Link>
       );
-    },
+    }
   },
   {
     accessor: "user",
@@ -47,7 +47,7 @@ export const UserColumns = [
           </Stack>
         </Group>
       );
-    },
+    }
   },
   {
     accessor: "role",
@@ -64,14 +64,14 @@ export const UserColumns = [
             : row.role.name}
         </Badge>
       );
-    },
+    }
   },
   {
-    accessor: "phone",
+    accessor: "phone"
   },
   {
     accessor: "jobs",
-    title: "No of jobs",
+    title: "No of jobs"
   },
   {
     accessor: "target",
@@ -87,14 +87,14 @@ export const UserColumns = [
           </ProgressSection>
         </ProgressRoot>
       );
-    },
+    }
   },
   {
     accessor: "progress",
     title: "Earned Amount",
     render: (row: UserModel) => {
       return `AED ${row.progress ?? 0}`;
-    },
+    }
   },
   {
     accessor: "actions",
@@ -108,6 +108,6 @@ export const UserColumns = [
           Open User
         </Button>
       );
-    },
-  },
+    }
+  }
 ];

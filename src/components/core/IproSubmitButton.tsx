@@ -8,7 +8,7 @@ export type SubmitButtonProps = {
 };
 
 const IproSubmitButton = ({
-  btn,
+  btn
 }: {
   btn: (submitProps: SubmitButtonProps) => ReactNode;
 }) => {

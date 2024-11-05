@@ -6,7 +6,7 @@ import {
   Loader,
   MantineThemeOverride,
   createTheme,
-  mergeMantineTheme,
+  mergeMantineTheme
 } from "@mantine/core";
 import { CssLoader } from "./CssLoader";
 import { generateColors } from "@mantine/colors-generator";
@@ -21,7 +21,7 @@ export const iproTheme: MantineThemeOverride = createTheme({
     primary: generateColors("#238be6"),
     // main 1
     secondary: ["", "#f8f9fa", "", "", "", "", "", "", "", ""],
-    red: generateColors("#e03131"),
+    red: generateColors("#e03131")
   },
   primaryShade: 3,
   primaryColor: "primary",
@@ -34,7 +34,7 @@ export const iproTheme: MantineThemeOverride = createTheme({
     lg: "90em",
     xl: "118rem",
     xxl: "148rem",
-    xxxl: "164rem",
+    xxxl: "164rem"
   },
   other: {
     zIndices: {
@@ -53,32 +53,32 @@ export const iproTheme: MantineThemeOverride = createTheme({
       toast: 1700,
       tooltip: 1800,
       navOverlay: 1900,
-      nav: 2000,
-    },
+      nav: 2000
+    }
   },
   components: {
     Loader: Loader.extend({
       defaultProps: {
         loaders: { ...Loader.defaultLoaders, custom: CssLoader },
-        type: "custom",
-      },
-    }),
-  },
+        type: "custom"
+      }
+    })
+  }
 });
 
 export const resolver: CSSVariablesResolver = (theme) => ({
   variables: {},
   dark: {
     "--mantine-color-error": theme.colors.red[2],
-    "--mantine-color-red-filled": theme.colors.red[4],
+    "--mantine-color-red-filled": theme.colors.red[4]
   },
   light: {
-    "--mantine-color-red-filled": theme.colors.red[4],
-  },
+    "--mantine-color-red-filled": theme.colors.red[4]
+  }
 });
 
 /// For use of theme outside of a component
 export const themeOutSideComponents = mergeMantineTheme(
   DEFAULT_THEME,
-  iproTheme,
+  iproTheme
 );

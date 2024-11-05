@@ -6,5 +6,5 @@ export const CompanySchema = z.object({
   logo: z.string().nullish(),
   created_at: z.string(),
   updated_at: z.string(),
-  deleted_at: z.string().nullish(),
+  deleted_at: z.string().nullish()
 });

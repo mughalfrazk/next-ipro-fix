@@ -11,7 +11,7 @@ export const IssueSchema = z.object({
   total: z.number(),
   created_at: z.string(),
   updated_at: z.string(),
-  deleted_at: z.string().nullish(),
+  deleted_at: z.string().nullish()
 });
 
 export const IssueListSchema = z.array(IssueSchema);

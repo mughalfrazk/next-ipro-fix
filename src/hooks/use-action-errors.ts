@@ -47,13 +47,13 @@ export function useActionErrors(state: ActionResult = {}) {
     const fieldErrors = errors?.fieldErrors || {};
     return {
       error: fieldErrors[value],
-      onChange: () => setFieldError(value),
+      onChange: () => setFieldError(value)
     };
   };
 
   return {
     errors,
     setFieldError,
-    getFieldErrorProps,
+    getFieldErrorProps
   };
 }

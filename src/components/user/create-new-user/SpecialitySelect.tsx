@@ -6,8 +6,16 @@ import { FieldErrorPropsType } from "@/hooks/use-action-errors";
 import { getFormattedError } from "@/utils/format-error";
 import { showErrorNotification } from "@/utils/functions";
 import IproSelect from "@/components/core/IproSelect";
+import { ProfileModel } from "@/lib/models/user.model";
 
-const SpecialitySelect = ({ getFieldErrorProps }: FieldErrorPropsType) => {
+type SpecialitySelectProps = {
+  user?: ProfileModel;
+} & FieldErrorPropsType;
+
+const SpecialitySelect = ({
+  user,
+  getFieldErrorProps
+}: SpecialitySelectProps) => {
   const [specialityOptions, setSpecialityOptions] = useState<ComboboxData>([]);
   const [specialityItem, setSpecialityItem] = useState<ComboboxItem>();
 
@@ -17,8 +25,8 @@ const SpecialitySelect = ({ getFieldErrorProps }: FieldErrorPropsType) => {
       setSpecialityOptions(
         result.map((item) => ({
           label: item.name,
-          value: item.id,
-        })),
+          value: item.id
+        }))
       );
     } catch (error) {
       const e = getFormattedError(error);
@@ -28,7 +36,7 @@ const SpecialitySelect = ({ getFieldErrorProps }: FieldErrorPropsType) => {
 
   const onSpecialityChange = (value: string | null) => {
     const [selectedSpeciality] = specialityOptions.filter(
-      (item) => (item as unknown as ComboboxItem).value === value,
+      (item) => (item as unknown as ComboboxItem).value === value
     );
     if (value) setSpecialityItem(selectedSpeciality as ComboboxItem);
   };
@@ -36,6 +44,12 @@ const SpecialitySelect = ({ getFieldErrorProps }: FieldErrorPropsType) => {
   useEffect(() => {
     getSpecialityList();
   }, []);
+
+  useEffect(() => {
+    if (user && specialityOptions.length && user?.speciality) {
+      onSpecialityChange(user.speciality.id);
+    }
+  }, [user, specialityOptions]);
 
   return (
     <IproSelect

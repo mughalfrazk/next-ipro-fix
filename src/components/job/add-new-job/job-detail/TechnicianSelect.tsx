@@ -16,7 +16,7 @@ type TechnicianSelectProps = {
 
 const TechnicianSelect = ({
   technician,
-  getFieldErrorProps,
+  getFieldErrorProps
 }: TechnicianSelectProps) => {
   const [technicianItem, setTechnicianItem] = useState<ComboboxItem>();
   const [technicianOptions, setTechnicianOptions] = useState<ComboboxData>([]);
@@ -27,8 +27,8 @@ const TechnicianSelect = ({
       setTechnicianOptions(
         result.map((item) => ({
           label: `${item.first_name} ${item.last_name}`,
-          value: item.id,
-        })),
+          value: item.id
+        }))
       );
     } catch (error) {
       const e = getFormattedError(error);
@@ -38,7 +38,7 @@ const TechnicianSelect = ({
 
   const onTechnicianChange = (value: string | null) => {
     const [selectedTechnician] = technicianOptions.filter(
-      (item) => (item as unknown as ComboboxItem).value === value,
+      (item) => (item as unknown as ComboboxItem).value === value
     );
     if (value) setTechnicianItem(selectedTechnician as ComboboxItem);
   };
@@ -63,13 +63,13 @@ const TechnicianSelect = ({
       onOptionSubmit={onTechnicianChange}
       styles={{
         label: {
-          color: "white",
+          color: "white"
         },
         input: {
           backgroundColor: "transparent",
           borderColor: "white",
-          color: "white",
-        },
+          color: "white"
+        }
       }}
       {...getFieldErrorProps("technician_id")}
     />

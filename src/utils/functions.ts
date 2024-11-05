@@ -6,7 +6,7 @@ export const getNestedInputValues = (formData: FormData) => {
   /* eslint-disable @typescript-eslint/no-explicit-any */
   const dataform_obj: any = {};
   for (const [key, value] of Object.entries(
-    Object.fromEntries(formData.entries()),
+    Object.fromEntries(formData.entries())
   )) {
     /* eslint-disable @typescript-eslint/no-explicit-any */
     const match: any = key.match(nestedListRegex);
@@ -29,13 +29,13 @@ export const getNestedInputValues = (formData: FormData) => {
 };
 
 export const showErrorNotification = (
-  message: string = "Something went wrong, please try again.",
+  message: string = "Something went wrong, please try again."
 ) => {
   notifications.show({
     message,
     color: "red",
     position: "top-right",
-    classNames: classes,
+    classNames: classes
   });
 };
 

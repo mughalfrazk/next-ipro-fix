@@ -6,7 +6,7 @@ import {
   Grid,
   GridCol,
   Group,
-  Title,
+  Title
 } from "@mantine/core";
 
 import IproSelect from "@/components/core/IproSelect";
@@ -18,7 +18,7 @@ import { getBrandListApi } from "@/lib/services/api/brand.service";
 const IssueItem = ({
   issue,
   idx,
-  removeIssue,
+  removeIssue
 }: {
   issue: Partial<IssueModel>;
   idx: number;
@@ -33,14 +33,14 @@ const IssueItem = ({
     setBrandOptions(
       result.map((item) => ({
         label: item.name,
-        value: String(item.id),
-      })),
+        value: String(item.id)
+      }))
     );
   };
 
   const onBrandChange = (value: string | null) => {
     const [selectedBrand] = brandOptions.filter(
-      (item) => (item as unknown as ComboboxItem).value === value,
+      (item) => (item as unknown as ComboboxItem).value === value
     );
     if (value) setBrandItem(selectedBrand as ComboboxItem);
   };
@@ -62,7 +62,7 @@ const IssueItem = ({
               justify="space-between"
               bg={lightDark(
                 "var(--mantine-color-gray-2)",
-                "var(--mantine-color-dark-7)",
+                "var(--mantine-color-dark-7)"
               )}
               px={20}
               py={10}

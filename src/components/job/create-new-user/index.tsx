@@ -9,7 +9,7 @@ import {
   GridCol,
   Group,
   Image,
-  Stack,
+  Stack
 } from "@mantine/core";
 import { IconRefresh } from "@tabler/icons-react";
 

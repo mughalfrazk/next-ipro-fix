@@ -12,7 +12,7 @@ import {
   Group,
   Stack,
   Text,
-  Title,
+  Title
 } from "@mantine/core";
 
 import IproButton from "../core/IproButton";
@@ -41,7 +41,7 @@ const dummy_columns = [
     accessor: "jobId",
     render: (row: RowType) => {
       return <IproButton variant="subtle">{row.jobId}</IproButton>;
-    },
+    }
   },
   {
     accessor: "customer",
@@ -60,7 +60,7 @@ const dummy_columns = [
           </Stack>
         </Group>
       );
-    },
+    }
   },
   { accessor: "status" },
   { accessor: "qty" },
@@ -81,9 +81,9 @@ const dummy_columns = [
           </Stack>
         </Group>
       );
-    },
+    }
   },
-  { accessor: "total" },
+  { accessor: "total" }
 ];
 
 const dummy_rows = [
@@ -92,65 +92,65 @@ const dummy_rows = [
     jobId: "Job-123",
     customer: {
       name: "John Doe",
-      phone: "XXX XX XXXX",
+      phone: "XXX XX XXXX"
     },
     status: "Pending Work",
     qty: 20,
     company_name: "Al humrah ltd",
     technician: {
       name: "Albert Fiennes",
-      phone: "XXX XX XXXX",
+      phone: "XXX XX XXXX"
     },
-    total: "AED 23000",
+    total: "AED 23000"
   },
   {
     id: "1",
     jobId: "Job-123",
     customer: {
       name: "John Doe",
-      phone: "XXX XX XXXX",
+      phone: "XXX XX XXXX"
     },
     status: "Pending Work",
     qty: 20,
     company_name: "Al humrah ltd",
     technician: {
       name: "Albert Fiennes",
-      phone: "XXX XX XXXX",
+      phone: "XXX XX XXXX"
     },
-    total: "AED 23000",
+    total: "AED 23000"
   },
   {
     id: "2",
     jobId: "Job-123",
     customer: {
       name: "John Doe",
-      phone: "XXX XX XXXX",
+      phone: "XXX XX XXXX"
     },
     status: "Pending Work",
     qty: 20,
     company_name: "Al humrah ltd",
     technician: {
       name: "Albert Fiennes",
-      phone: "XXX XX XXXX",
+      phone: "XXX XX XXXX"
     },
-    total: "AED 23000",
+    total: "AED 23000"
   },
   {
     id: "3",
     jobId: "Job-123",
     customer: {
       name: "John Doe",
-      phone: "XXX XX XXXX",
+      phone: "XXX XX XXXX"
     },
     status: "Pending Work",
     qty: 20,
     company_name: "Al humrah ltd",
     technician: {
       name: "Albert Fiennes",
-      phone: "XXX XX XXXX",
+      phone: "XXX XX XXXX"
     },
-    total: "AED 23000",
-  },
+    total: "AED 23000"
+  }
 ];
 
 type TableProps = {
@@ -172,7 +172,7 @@ export const Table = ({
   description,
   search,
   rightSection,
-  filter,
+  filter
 }: TableProps) => {
   const [opened, { open, close }] = useDisclosure();
 
@@ -225,7 +225,7 @@ export const Table = ({
           records={data}
           minHeight={100}
           classNames={{
-            root: "mantine-table-root",
+            root: "mantine-table-root"
           }}
         />
       </Card>

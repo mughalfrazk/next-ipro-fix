@@ -7,7 +7,7 @@ import {
   Grid,
   GridCol,
   Group,
-  Stack,
+  Stack
 } from "@mantine/core";
 
 import Heading from "@/components/common/Heading";
@@ -29,7 +29,10 @@ const JobDetailTab = ({ job }: { job?: JobModel }) => {
         {!!job && <CommentDrawer />}
         <Grid>
           <GridCol span={8}>
-            <CustomerDetail customer={job?.customer} getFieldErrorProps={getFieldErrorProps} />
+            <CustomerDetail
+              customer={job?.customer}
+              getFieldErrorProps={getFieldErrorProps}
+            />
           </GridCol>
           <GridCol span={4}>
             <Card bg="var(--mantine-color-primary-6)">
@@ -40,7 +43,10 @@ const JobDetailTab = ({ job }: { job?: JobModel }) => {
               />
               <Divider mt={10} mb={20} opacity={0} />
 
-              <TechnicianSelect technician={job?.technician} getFieldErrorProps={getFieldErrorProps} />
+              <TechnicianSelect
+                technician={job?.technician}
+                getFieldErrorProps={getFieldErrorProps}
+              />
             </Card>
           </GridCol>
           <GridCol span={12}>
@@ -56,12 +62,15 @@ const JobDetailTab = ({ job }: { job?: JobModel }) => {
               </Group>
               <Divider mt={10} mb={20} />
 
-              <IssuesListForm job={job} getFieldErrorProps={getFieldErrorProps} />
+              <IssuesListForm
+                job={job}
+                getFieldErrorProps={getFieldErrorProps}
+              />
 
-              <Group justify="flex-end" mt={20}>
+              {!job && <Group justify="flex-end" mt={20}>
                 <IproButton variant="outline">Cancal</IproButton>
                 <IproButton isSubmit={true}>Save Job</IproButton>
-              </Group>
+              </Group>}
             </Card>
           </GridCol>
         </Grid>

@@ -5,7 +5,7 @@ import {
   ReactNode,
   useContext,
   useEffect,
-  useState,
+  useState
 } from "react";
 
 import { ProfileModel } from "@/lib/models/user.model";
@@ -26,7 +26,7 @@ const defaultProfileValues = {
     name: "",
     created_at: "",
     updated_at: "",
-    deleted_at: null,
+    deleted_at: null
   },
   company: {
     id: "",
@@ -34,8 +34,8 @@ const defaultProfileValues = {
     logo: null,
     created_at: "",
     updated_at: "",
-    deleted_at: null,
-  },
+    deleted_at: null
+  }
 };
 
 type ProfileContextType = {
@@ -45,7 +45,7 @@ type ProfileContextType = {
 
 const ProfileContext = createContext<ProfileContextType>({
   loading: false,
-  data: defaultProfileValues,
+  data: defaultProfileValues
 });
 
 const ProfileProvider = ({ children }: { children: ReactNode }) => {

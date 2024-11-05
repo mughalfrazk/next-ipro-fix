@@ -17,6 +17,6 @@ export const useScreenSize = () => {
     isMidLargeDesktop,
     isXLDesktop,
     isXXLDesktop,
-    isXXXLDesktop,
+    isXXXLDesktop
   };
 };

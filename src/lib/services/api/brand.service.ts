@@ -4,7 +4,7 @@ import { parseFactory } from "@/utils/parse-factory";
 
 const BrandListDataParser = parseFactory(
   BrandListSchema,
-  "BrandListDataParser",
+  "BrandListDataParser"
 );
 
 const getBrandListApi = async () => {

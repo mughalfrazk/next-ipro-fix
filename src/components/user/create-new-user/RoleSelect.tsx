@@ -3,7 +3,7 @@ import { ComboboxData, ComboboxItem, Grid, GridCol } from "@mantine/core";
 
 import {
   capitalizeFirstLetter,
-  showErrorNotification,
+  showErrorNotification
 } from "@/utils/functions";
 import { FieldErrorPropsType } from "@/hooks/use-action-errors";
 import { getRoleListApi } from "@/lib/services/api/role.service";
@@ -11,8 +11,13 @@ import { getFormattedError } from "@/utils/format-error";
 import IproSelect from "@/components/core/IproSelect";
 import IproTextInput from "@/components/core/IproTextInput";
 import SpecialitySelect from "./SpecialitySelect";
+import { ProfileModel } from "@/lib/models/user.model";
 
-const RoleSelect = ({ getFieldErrorProps }: FieldErrorPropsType) => {
+type RoleSelectProps = {
+  user?: ProfileModel
+} & FieldErrorPropsType
+
+const RoleSelect = ({ user, getFieldErrorProps }: RoleSelectProps) => {
   const [roleOptions, setRoleOptions] = useState<ComboboxData>([]);
   const [roleItem, setRoleItem] = useState<ComboboxItem>();
 
@@ -22,8 +27,8 @@ const RoleSelect = ({ getFieldErrorProps }: FieldErrorPropsType) => {
       setRoleOptions(
         result.map((item) => ({
           label: capitalizeFirstLetter(item.name),
-          value: item.id,
-        })),
+          value: item.id
+        }))
       );
     } catch (error) {
       const e = getFormattedError(error);
@@ -32,9 +37,7 @@ const RoleSelect = ({ getFieldErrorProps }: FieldErrorPropsType) => {
   };
 
   const onRoleChange = (value: string | null) => {
-    const [selectedRole] = roleOptions.filter(
-      (item) => (item as unknown as ComboboxItem).value === value,
-    );
+    const [selectedRole] = roleOptions.filter((item) => (item as unknown as ComboboxItem).value === value);
     if (value) setRoleItem(selectedRole as ComboboxItem);
   };
 
@@ -43,6 +46,12 @@ const RoleSelect = ({ getFieldErrorProps }: FieldErrorPropsType) => {
   useEffect(() => {
     getRoleList();
   }, []);
+
+  useEffect(() => {
+    if (user && roleOptions.length) {
+      onRoleChange(user.role.id);
+    }
+  }, [user, roleOptions]);
 
   return (
     <Grid>
@@ -58,7 +67,7 @@ const RoleSelect = ({ getFieldErrorProps }: FieldErrorPropsType) => {
       </GridCol>
       {isTechnicianSelected() && (
         <GridCol span={6}>
-          <SpecialitySelect getFieldErrorProps={getFieldErrorProps} />
+          <SpecialitySelect user={user} getFieldErrorProps={getFieldErrorProps} />
         </GridCol>
       )}
       <IproTextInput

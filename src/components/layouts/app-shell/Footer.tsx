@@ -6,7 +6,7 @@ import { Avatar, Group, LoadingOverlay, Stack, Text } from "@mantine/core";
 const Footer = () => {
   const {
     loading,
-    data: { email, first_name, last_name },
+    data: { email, first_name, last_name }
   } = useProfileContext();
 
   return (

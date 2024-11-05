@@ -11,12 +11,13 @@ export const UserSchema = z.object({
   phone: z.string().nullish(),
   progress: z.number().nullish(),
   target: z.number().nullish(),
+  address: z.string().nullish(),
   jobs: z.number().nullish(),
   is_active: z.boolean(),
   is_verified: z.boolean(),
   created_at: z.string(),
   updated_at: z.string(),
-  deleted_at: z.string().nullish(),
+  deleted_at: z.string().nullish()
 });
 
 export const UserListSchema = z.array(UserSchema);
@@ -24,7 +25,7 @@ export const UserListSchema = z.array(UserSchema);
 export const ProfileSchema = UserSchema.extend({
   role: RoleSchema,
   speciality: ProblemTypeSchema.nullish(),
-  company: CompanySchema,
+  company: CompanySchema
 });
 
 export const ProfileListSchema = z.array(ProfileSchema);

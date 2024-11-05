@@ -11,7 +11,7 @@ export const PurchaseSchema = z.object({
   parts: z.string().min(1, "Parts is required"),
   created_at: z.string(),
   updated_at: z.string(),
-  deleted_at: z.string().nullish(),
+  deleted_at: z.string().nullish()
 });
 
 export const PurchaseListSchema = z.array(PurchaseSchema);
@@ -25,9 +25,9 @@ export const CreatePurchasesSchema = z.object({
       charges: z.number().min(1, "Charges is required"),
       model: z.string().min(1, "Model is required"),
       total: z.number().min(1, "Total is required"),
-      parts: z.string().min(1, "Parts is required"),
+      parts: z.string().min(1, "Parts is required")
     })
-    .array(),
+    .array()
 });
 
 export type CreatePurchasesModel = z.infer<typeof CreatePurchasesSchema>;

@@ -9,24 +9,24 @@ const TotalJobsCard = ({ ...props }: CardProps) => {
   const chart01 = [
     {
       date: "Mar 22",
-      Apples: 2890,
+      Apples: 2890
     },
     {
       date: "Mar 23",
-      Apples: 2756,
+      Apples: 2756
     },
     {
       date: "Mar 24",
-      Apples: 3322,
+      Apples: 3322
     },
     {
       date: "Mar 25",
-      Apples: 2508,
+      Apples: 2508
     },
     {
       date: "Mar 26",
-      Apples: 3129,
-    },
+      Apples: 3129
+    }
   ];
 
   return (

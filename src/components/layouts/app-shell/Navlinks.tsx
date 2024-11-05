@@ -17,7 +17,7 @@ const navlinkProps = (item: NavLinkRoute) => ({
   ),
   px: 25,
   py: 12,
-  leftSection: <item.icon />,
+  leftSection: <item.icon />
 });
 
 const Navlinks = () => {
@@ -50,7 +50,7 @@ const Navlinks = () => {
       </NavLink>
     ) : (
       <NavLink key={i} classNames={classes} {...navlinkProps(item)} />
-    ),
+    )
   );
 };
 

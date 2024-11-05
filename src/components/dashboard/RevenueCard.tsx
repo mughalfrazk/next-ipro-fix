@@ -18,7 +18,7 @@ const RevenueCard = ({ ...props }: CardProps) => {
     { week: "Thu", Smartphones: 300 },
     { week: "Fri", Smartphones: 320 },
     { week: "Sat", Smartphones: 350 },
-    { week: "Sun", Smartphones: 500 },
+    { week: "Sun", Smartphones: 500 }
   ];
 
   return (
@@ -53,8 +53,8 @@ const RevenueCard = ({ ...props }: CardProps) => {
             radius: 5,
             background: {
               fill: lightDark("#eeeeee9e", "#eeeeee1e"),
-              radius: 5,
-            },
+              radius: 5
+            }
           }}
           tickLine="none"
           gridAxis="none"

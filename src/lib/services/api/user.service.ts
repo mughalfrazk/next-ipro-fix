@@ -2,7 +2,7 @@ import { RegisterFormWithSpecialityModel } from "@/lib/models/auth.model";
 import {
   ProfileListSchema,
   ProfileSchema,
-  UserListSchema,
+  UserListSchema
 } from "@/lib/models/user.model";
 import { getAuthApiClient } from "@/utils/api-client";
 import { parseFactory } from "@/utils/parse-factory";
@@ -10,7 +10,7 @@ import { parseFactory } from "@/utils/parse-factory";
 const ProfileDataParser = parseFactory(ProfileSchema, "ProfileDataParser");
 const ProfileListDataParser = parseFactory(
   ProfileListSchema,
-  "ProfileListDataParser",
+  "ProfileListDataParser"
 );
 const UserListDataParser = parseFactory(UserListSchema, "UserListDataParser");
 
@@ -29,11 +29,22 @@ const getUserListApi = async () => {
   return ProfileListDataParser(result.data);
 };
 
+const getUserDetailApi = async (id: string) => {
+  const result = await getAuthApiClient().get(`user/${id}`);
+  return ProfileDataParser(result.data);
+};
+
 const createUserApi = async (
-  payload: Partial<RegisterFormWithSpecialityModel>,
+  payload: Partial<RegisterFormWithSpecialityModel>
 ) => {
   const result = await getAuthApiClient().post("auth/create-user", payload);
   return result;
 };
 
-export { getProfileApi, getTechniciansApi, getUserListApi, createUserApi };
+export {
+  getProfileApi,
+  getTechniciansApi,
+  getUserListApi,
+  getUserDetailApi,
+  createUserApi
+};

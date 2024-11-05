@@ -19,6 +19,6 @@ export const useZIndex = () => {
     toast: iproTheme.other.zIndices.toast,
     tooltip: iproTheme.other.zIndices.tooltip,
     navOverlay: iproTheme.other.zIndices.navOverlay,
-    nav: iproTheme.other.zIndices.nav,
+    nav: iproTheme.other.zIndices.nav
   };
 };
