@@ -58,17 +58,17 @@ const routes: NavLinkRoute[] = [
     icon: IconBuildingWarehouse
   },
   {
-    href: '/dashboard',
-    label: 'Accounting',
+    href: "/dashboard",
+    label: "Accounting",
     icon: IconCalculator,
     children: [
       {
-        href: '/dashboard/accounting/profit-loss',
-        label: 'Profit Loss',
-        icon: IconFocus,
-      },
-    ],
-  },
-]
+        href: "/dashboard/accounting/profit-loss",
+        label: "Profit Loss",
+        icon: IconFocus
+      }
+    ]
+  }
+];
 
 export default routes;

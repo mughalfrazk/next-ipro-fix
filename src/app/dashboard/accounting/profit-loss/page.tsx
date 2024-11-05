@@ -1,11 +1,6 @@
-
 import ProfitLossBody from "@/components/accounting";
 
-const ProfitLossPage = async() => {
-    return(
-        <ProfitLossBody/>
-    );
-        
-    
+const ProfitLossPage = async () => {
+  return <ProfitLossBody />;
 };
-export default ProfitLossPage
+export default ProfitLossPage;

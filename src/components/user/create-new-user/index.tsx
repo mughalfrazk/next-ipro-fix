@@ -132,8 +132,14 @@ const AddNewUser = ({ user }: { user?: ProfileModel }) => {
                 </GridCol>
                 {user && (
                   <GridCol span={12} mt={10}>
-                    <Paper p={18} withBorder style={{ backgroundColor: "transparent" }}>
-                      <Title order={5} mb={10}>Progress</Title>
+                    <Paper
+                      p={18}
+                      withBorder
+                      style={{ backgroundColor: "transparent" }}
+                    >
+                      <Title order={5} mb={10}>
+                        Progress
+                      </Title>
                       <ProgressRoot size="xl">
                         <ProgressSection
                           value={+progressPercentage}
@@ -146,10 +152,12 @@ const AddNewUser = ({ user }: { user?: ProfileModel }) => {
                   </GridCol>
                 )}
               </Grid>
-              {!user && <Group justify="flex-end" mt={20}>
-                <IproButton variant="outline">Cancal</IproButton>
-                <IproButton isSubmit={true}>Save User</IproButton>
-              </Group>}
+              {!user && (
+                <Group justify="flex-end" mt={20}>
+                  <IproButton variant="outline">Cancal</IproButton>
+                  <IproButton isSubmit={true}>Save User</IproButton>
+                </Group>
+              )}
             </Card>
           </Grid.Col>
           <Grid.Col span={3}>
