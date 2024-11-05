@@ -1,9 +1,11 @@
+import { isRedirectError } from "next/dist/client/components/redirect";
+
 import { ActionResult } from "@/utils/action-results";
 import { validatePayload } from "@/utils/validate-payload";
-import { RegisterFormSchema, RegisterFormWithSpecialityModel, RegisterFormWithSpecialitySchema } from "../models/auth.model";
 import { getFormattedError } from "@/utils/format-error";
 import { createUserApi } from "@/lib/services/api/user.service";
-import { isRedirectError } from "next/dist/client/components/redirect";
+import { showErrorNotification } from "@/utils/functions";
+import { RegisterFormSchema, RegisterFormWithSpecialitySchema } from "@/lib/models/auth.model";
 
 const createUserAction = async (_: ActionResult, formData: FormData) => {
   const isTechnicianSelected = !!Number(formData.get("isTechnicianSelected"))
@@ -12,6 +14,7 @@ const createUserAction = async (_: ActionResult, formData: FormData) => {
   const { parsed, data } = await validatePayload(formData, validationSchema)
 
   if (!parsed?.success) {
+    showErrorNotification("Validation errors")
     return getFormattedError(parsed?.error)
   }
 
