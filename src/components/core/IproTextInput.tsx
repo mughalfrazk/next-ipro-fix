@@ -1,9 +1,9 @@
-'use client'
+"use client"
 
-import { Box, TextInput, TextInputProps } from '@mantine/core'
+import { Box, TextInput, TextInputProps } from "@mantine/core"
 
 interface IproTextInputProps
-  extends Omit<TextInputProps, 'variant' | 'aria-label' | 'w' | 'width'> {
+  extends Omit<TextInputProps, "variant" | "aria-label" | "w" | "width"> {
   variant?: string
   ariaLabel?: string
   width?: number | string

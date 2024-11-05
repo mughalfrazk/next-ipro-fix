@@ -1,7 +1,7 @@
-import { ZodError } from 'zod'
-import { ActionErrors, ActionResult, FieldErrors } from './action-results'
-import { AuthError } from 'next-auth'
-import { AxiosError } from 'axios'
+import { ZodError } from "zod"
+import { ActionErrors, ActionResult, FieldErrors } from "./action-results"
+import { AuthError } from "next-auth"
+import { AxiosError } from "axios"
 
 export type AxiosErrorBody = {
   message: string
@@ -45,10 +45,10 @@ export function getFormattedError(error: unknown): { errors: ActionErrors } {
   if (error instanceof AxiosError) {
     const e = error as AxiosError
     // console.log("AxiosErr: ", error.code)
-    if (error?.code === 'ECONNREFUSED') {
+    if (error?.code === "ECONNREFUSED") {
       return {
         errors: {
-          formErrors: ['Server connection error, please try again later.'],
+          formErrors: ["Server connection error, please try again later."],
         },
       }
     }
@@ -65,10 +65,10 @@ export function getFormattedError(error: unknown): { errors: ActionErrors } {
     const e = error as AuthError
     if (e.cause?.err instanceof AxiosError) {
       const axiosError = e.cause?.err as AxiosError
-      if (axiosError?.code === 'ECONNREFUSED') {
+      if (axiosError?.code === "ECONNREFUSED") {
         return {
           errors: {
-            formErrors: ['Server connection error, please try again later.'],
+            formErrors: ["Server connection error, please try again later."],
           },
         }
       }
@@ -99,7 +99,7 @@ export function getFormattedError(error: unknown): { errors: ActionErrors } {
     }
   }
 
-  if (typeof error === 'string') {
+  if (typeof error === "string") {
     // console.log('Error message', error);
     return {
       errors: {
@@ -111,7 +111,7 @@ export function getFormattedError(error: unknown): { errors: ActionErrors } {
   // console.log('Unknown error', error);
   return {
     errors: {
-      formErrors: ['Something went wrong, please try again'],
+      formErrors: ["Something went wrong, please try again"],
     },
   }
 }
@@ -128,7 +128,7 @@ function formatZodError(error: ZodError): ActionErrors {
     const fieldErrors: FieldErrors = {}
 
     for (const key in zodErrors.fieldErrors) {
-      fieldErrors[key] = zodErrors.fieldErrors[key]?.join(', ')
+      fieldErrors[key] = zodErrors.fieldErrors[key]?.join(", ")
     }
     errors.fieldErrors = fieldErrors
   }

@@ -1,5 +1,5 @@
-import AppShellLayout from '@/components/layouts/app-shell'
-import withAuth from '@/hoc/with-auth'
+import AppShellLayout from "@/components/layouts/app-shell"
+import withAuth from "@/hoc/with-auth"
 
 const RootLayout = ({
   children,

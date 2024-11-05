@@ -1,4 +1,4 @@
-import { Stack, Title, Text, StackProps } from '@mantine/core'
+import { Stack, Title, Text, StackProps } from "@mantine/core"
 
 type HeadingProps = {
   title: string

@@ -1,6 +1,6 @@
-'use client'
+"use client"
 
-import { ReactNode } from 'react'
+import { ReactNode } from "react"
 import {
   Card,
   Group,
@@ -10,9 +10,9 @@ import {
   ThemeIcon,
   Text,
   NumberFormatter,
-} from '@mantine/core'
+} from "@mantine/core"
 
-import GrowthBadge from '../common/GrowthBadge'
+import GrowthBadge from "../common/GrowthBadge"
 
 type IncomeExpenseCardProps = {
   children: ReactNode

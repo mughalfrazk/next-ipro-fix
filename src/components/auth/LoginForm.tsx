@@ -1,12 +1,12 @@
-'use client'
+"use client"
 
-import { Group, Anchor } from '@mantine/core'
+import { Group, Anchor } from "@mantine/core"
 
-import { useFormAction } from '@/hooks/use-form-action'
-import { loginAction } from '@/lib/actions/auth.action'
-import IproTextInput from '../core/IproTextInput'
-import IproButton from '../core/IproButton'
-import classes from './LoginForm.module.css'
+import { useFormAction } from "@/hooks/use-form-action"
+import { loginAction } from "@/lib/actions/auth.action"
+import IproTextInput from "../core/IproTextInput"
+import IproButton from "../core/IproButton"
+import classes from "./LoginForm.module.css"
 
 const LoginForm = () => {
   const { formAction, getFieldErrorProps } = useFormAction(loginAction, {})
@@ -18,9 +18,9 @@ const LoginForm = () => {
         name="email"
         size="md"
         placeholder="Email"
-        {...getFieldErrorProps('email')}
+        {...getFieldErrorProps("email")}
         classNames={classes}
-        styles={{ input: { backgroundColor: 'transparent', color: 'white' } }}
+        styles={{ input: { backgroundColor: "transparent", color: "white" } }}
       />
       <IproTextInput
         type="password"
@@ -28,9 +28,9 @@ const LoginForm = () => {
         placeholder="Password"
         size="md"
         mt="md"
-        {...getFieldErrorProps('password')}
+        {...getFieldErrorProps("password")}
         classNames={classes}
-        styles={{ input: { backgroundColor: 'transparent', color: 'white' } }}
+        styles={{ input: { backgroundColor: "transparent", color: "white" } }}
       />
       <Group justify="flex-end" mt="lg">
         <Anchor component="button" size="sm" c="white">

@@ -1,9 +1,9 @@
-import Link from 'next/link'
+import Link from "next/link"
 
-import Table from '../common/Table'
-import IproButton from '../core/IproButton'
-import { UserListModel } from '@/lib/models/user.model'
-import { UserColumns } from './user-columns'
+import Table from "../common/Table"
+import IproButton from "../core/IproButton"
+import { UserListModel } from "@/lib/models/user.model"
+import { UserColumns } from "./user-columns"
 
 const UserList = ({ users }: { users: UserListModel }) => {
   return (

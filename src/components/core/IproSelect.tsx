@@ -1,16 +1,16 @@
-import { Select, SelectProps, TagsInput, TagsInputProps } from '@mantine/core'
+import { Select, SelectProps, TagsInput, TagsInputProps } from "@mantine/core"
 
 type IproSelectProps = {
-  componentType?: 'tags'
+  componentType?: "tags"
 } & SelectProps &
   TagsInputProps
 
 const IproSelect = ({
   componentType,
-  size = 'md',
+  size = "md",
   ...otherProps
 }: IproSelectProps) => {
-  if (componentType === 'tags') return <TagsInput size={size} {...otherProps} />
+  if (componentType === "tags") return <TagsInput size={size} {...otherProps} />
 
   return <Select size={size} {...otherProps} />
 }

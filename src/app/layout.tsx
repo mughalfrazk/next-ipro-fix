@@ -1,18 +1,18 @@
 // Import styles of packages that you've installed.
 // All packages except `@mantine/hooks` require styles imports
-import '@mantine/core/styles.css'
-import '@mantine/notifications/styles.css'
-import 'mantine-datatable/styles.layer.css'
-import '@mantine/charts/styles.css'
-import '@/styles/datatable.css'
+import "@mantine/core/styles.css"
+import "@mantine/notifications/styles.css"
+import "mantine-datatable/styles.layer.css"
+import "@mantine/charts/styles.css"
+import "@/styles/datatable.css"
 
-import { ColorSchemeScript, MantineProvider } from '@mantine/core'
-import { SessionProvider } from 'next-auth/react'
+import { ColorSchemeScript, MantineProvider } from "@mantine/core"
+import { SessionProvider } from "next-auth/react"
 
 // import localFont from "next/font/local";
-import '../styles/globals.css'
-import { iproTheme, resolver } from '@/styles/ipro-theme'
-import { Notifications } from '@mantine/notifications'
+import "../styles/globals.css"
+import { iproTheme, resolver } from "@/styles/ipro-theme"
+import { Notifications } from "@mantine/notifications"
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -26,8 +26,8 @@ import { Notifications } from '@mantine/notifications'
 // });
 
 export const metadata = {
-  title: 'Ipro Fix',
-  description: 'Ipro Fix Web Application',
+  title: "Ipro Fix",
+  description: "Ipro Fix Web Application",
 }
 
 export default function RootLayout({

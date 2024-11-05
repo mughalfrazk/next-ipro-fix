@@ -1,14 +1,14 @@
-import { ProblemTypeListSchema } from '@/lib/models/problem-type.model'
-import { getAuthApiClient } from '@/utils/api-client'
-import { parseFactory } from '@/utils/parse-factory'
+import { ProblemTypeListSchema } from "@/lib/models/problem-type.model"
+import { getAuthApiClient } from "@/utils/api-client"
+import { parseFactory } from "@/utils/parse-factory"
 
 const ProblemTypeListDataParser = parseFactory(
   ProblemTypeListSchema,
-  'ProblemTypeListDataParser',
+  "ProblemTypeListDataParser",
 )
 
 const getProblemTypeListApi = async () => {
-  const result = await getAuthApiClient().get('problem-type')
+  const result = await getAuthApiClient().get("problem-type")
   return ProblemTypeListDataParser(result.data)
 }
 

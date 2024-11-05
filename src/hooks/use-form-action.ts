@@ -1,9 +1,9 @@
-import { useEffect } from 'react'
-import { useFormState } from 'react-dom'
-import { notifications } from '@mantine/notifications'
+import { useEffect } from "react"
+import { useFormState } from "react-dom"
+import { notifications } from "@mantine/notifications"
 
-import { ActionResult } from '@/utils/action-results'
-import { useActionErrors } from './use-action-errors'
+import { ActionResult } from "@/utils/action-results"
+import { useActionErrors } from "./use-action-errors"
 
 export const useFormAction = (
   action: (a: ActionResult, b: FormData) => Promise<ActionResult>,
@@ -18,7 +18,7 @@ export const useFormAction = (
       if (!!result?.errors?.formErrors?.length) {
         notifications.show({
           message: result?.errors?.formErrors[0],
-          color: 'red',
+          color: "red",
         })
       }
     }

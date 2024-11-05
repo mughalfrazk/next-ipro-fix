@@ -1,25 +1,25 @@
-'use client'
+"use client"
 
-import { useEffect, useState } from "react";
-import { getTechniciansApi } from "@/lib/services/api/user.service";
-import { ComboboxData, ComboboxItem } from "@mantine/core";
+import { useEffect, useState } from "react"
+import { getTechniciansApi } from "@/lib/services/api/user.service"
+import { ComboboxData, ComboboxItem } from "@mantine/core"
 
-import IproSelect from "@/components/core/IproSelect";
-import { showErrorNotification } from "@/utils/functions";
-import { getFormattedError } from "@/utils/format-error";
-import { FieldErrorPropsType } from "@/hooks/use-action-errors";
-import { UserModel } from "@/lib/models/user.model";
+import IproSelect from "@/components/core/IproSelect"
+import { showErrorNotification } from "@/utils/functions"
+import { getFormattedError } from "@/utils/format-error"
+import { FieldErrorPropsType } from "@/hooks/use-action-errors"
+import { UserModel } from "@/lib/models/user.model"
 
 type TechnicianSelectProps = {
-  technician: UserModel | undefined | null;
-} & FieldErrorPropsType;
+  technician: UserModel | undefined | null
+} & FieldErrorPropsType
 
 const TechnicianSelect = ({
   technician,
   getFieldErrorProps,
 }: TechnicianSelectProps) => {
-  const [technicianItem, setTechnicianItem] = useState<ComboboxItem>();
-  const [technicianOptions, setTechnicianOptions] = useState<ComboboxData>([]);
+  const [technicianItem, setTechnicianItem] = useState<ComboboxItem>()
+  const [technicianOptions, setTechnicianOptions] = useState<ComboboxData>([])
 
   const getTechniciansList = async () => {
     try {
@@ -34,22 +34,24 @@ const TechnicianSelect = ({
       const e = getFormattedError(error)
       showErrorNotification(e.errors?.formErrors?.[0])
     }
-  };
+  }
 
   const onTechnicianChange = (value: string | null) => {
-    const [selectedTechnician] = technicianOptions.filter((item) => (item as unknown as ComboboxItem).value === value);
-    if (value) setTechnicianItem(selectedTechnician as ComboboxItem);
-  };
+    const [selectedTechnician] = technicianOptions.filter(
+      (item) => (item as unknown as ComboboxItem).value === value,
+    )
+    if (value) setTechnicianItem(selectedTechnician as ComboboxItem)
+  }
 
   useEffect(() => {
-    getTechniciansList();
-  }, []);
+    getTechniciansList()
+  }, [])
 
   useEffect(() => {
     if (technician && technicianOptions.length) {
-      onTechnicianChange(technician.id);
+      onTechnicianChange(technician.id)
     }
-  }, [technician, technicianOptions]);
+  }, [technician, technicianOptions])
 
   return (
     <IproSelect
@@ -61,15 +63,15 @@ const TechnicianSelect = ({
       onOptionSubmit={onTechnicianChange}
       styles={{
         label: {
-          color: 'white',
+          color: "white",
         },
         input: {
-          backgroundColor: 'transparent',
-          borderColor: 'white',
-          color: 'white',
+          backgroundColor: "transparent",
+          borderColor: "white",
+          color: "white",
         },
       }}
-      {...getFieldErrorProps('technician_id')}
+      {...getFieldErrorProps("technician_id")}
     />
   )
 }

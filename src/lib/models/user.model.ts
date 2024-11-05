@@ -1,6 +1,6 @@
-import { z } from 'zod'
-import { CompanySchema } from './company.model'
-import { RoleSchema } from './role.model'
+import { z } from "zod"
+import { CompanySchema } from "./company.model"
+import { RoleSchema } from "./role.model"
 
 export const UserSchema = z.object({
   id: z.string(),

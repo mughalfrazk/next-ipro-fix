@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import {
   createContext,
@@ -6,34 +6,34 @@ import {
   useContext,
   useEffect,
   useState,
-} from 'react'
+} from "react"
 
-import { ProfileModel } from '@/lib/models/user.model'
-import { getProfileApi } from '@/lib/services/api/user.service'
+import { ProfileModel } from "@/lib/models/user.model"
+import { getProfileApi } from "@/lib/services/api/user.service"
 
 const defaultProfileValues = {
-  id: '',
-  first_name: '',
-  last_name: '',
-  email: '',
+  id: "",
+  first_name: "",
+  last_name: "",
+  email: "",
   is_active: false,
   is_verified: false,
-  created_at: '',
-  updated_at: '',
+  created_at: "",
+  updated_at: "",
   deleted_at: null,
   role: {
-    id: '',
-    name: '',
-    created_at: '',
-    updated_at: '',
+    id: "",
+    name: "",
+    created_at: "",
+    updated_at: "",
     deleted_at: null,
   },
   company: {
-    id: '',
-    name: '',
+    id: "",
+    name: "",
     logo: null,
-    created_at: '',
-    updated_at: '',
+    created_at: "",
+    updated_at: "",
     deleted_at: null,
   },
 }

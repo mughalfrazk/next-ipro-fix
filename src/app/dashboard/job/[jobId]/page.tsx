@@ -1,10 +1,10 @@
-import { Box, Tabs, TabsList, TabsPanel, TabsTab, Title } from "@mantine/core";
+import { Box, Tabs, TabsList, TabsPanel, TabsTab, Title } from "@mantine/core"
 
-import JobDetailTab from "@/components/add-new-job/job-detail";
-import JobPurchasesTab from "@/components/add-new-job/job-purchases";
-import InvoiceTab from "@/components/add-new-job/invoice";
-import classes from "./add-new.module.css";
-import { getJobDetailApi } from "@/lib/services/api/job.service";
+import JobDetailTab from "@/components/add-new-job/job-detail"
+import JobPurchasesTab from "@/components/add-new-job/job-purchases"
+import InvoiceTab from "@/components/add-new-job/invoice"
+import classes from "./add-new.module.css"
+import { getJobDetailApi } from "@/lib/services/api/job.service"
 
 const AddNewJobPage = async ({ params }: { params: { jobId: string } }) => {
   const result = await getJobDetailApi(params.jobId)
@@ -22,7 +22,7 @@ const AddNewJobPage = async ({ params }: { params: { jobId: string } }) => {
       title: "Invoice",
       value: "invoice",
     },
-  ];
+  ]
 
   return (
     <Tabs variant="unstyled" defaultValue="detail" classNames={classes}>
@@ -48,7 +48,7 @@ const AddNewJobPage = async ({ params }: { params: { jobId: string } }) => {
         <InvoiceTab />
       </TabsPanel>
     </Tabs>
-  );
-};
+  )
+}
 
-export default AddNewJobPage;
+export default AddNewJobPage

@@ -1,11 +1,11 @@
-'use client'
+"use client"
 
-import { IconMoon, IconSun } from '@tabler/icons-react'
-import { Burger, Group } from '@mantine/core'
+import { IconMoon, IconSun } from "@tabler/icons-react"
+import { Burger, Group } from "@mantine/core"
 
-import { useMantineColorScheme } from '@/hooks/use-mantine-color-scheme-wrapper'
-import IproButton from '@/components/core/IproButton'
-import AvatarMenu from './AvatarMenu'
+import { useMantineColorScheme } from "@/hooks/use-mantine-color-scheme-wrapper"
+import IproButton from "@/components/core/IproButton"
+import AvatarMenu from "./AvatarMenu"
 
 type HeaderProps = {
   opened: boolean
@@ -31,7 +31,7 @@ const Header = ({ opened, toggle: AppshellToggle }: HeaderProps) => {
           isIconOnly
           onClick={toggleColorScheme}
         >
-          {colorScheme === 'dark' ? (
+          {colorScheme === "dark" ? (
             <IconSun color="var(--mantine-color-primary-0)" />
           ) : (
             <IconMoon color="var(--mantine-color-primary-6)" />

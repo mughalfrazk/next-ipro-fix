@@ -1,30 +1,30 @@
-'use client'
+"use client"
 
-import { Card, Group, Stack, Title, CardProps } from '@mantine/core'
-import { AreaChart } from '@mantine/charts'
+import { Card, Group, Stack, Title, CardProps } from "@mantine/core"
+import { AreaChart } from "@mantine/charts"
 
-import GrowthBadge from '../common/GrowthBadge'
+import GrowthBadge from "../common/GrowthBadge"
 
 const TotalJobsCard = ({ ...props }: CardProps) => {
   const chart01 = [
     {
-      date: 'Mar 22',
+      date: "Mar 22",
       Apples: 2890,
     },
     {
-      date: 'Mar 23',
+      date: "Mar 23",
       Apples: 2756,
     },
     {
-      date: 'Mar 24',
+      date: "Mar 24",
       Apples: 3322,
     },
     {
-      date: 'Mar 25',
+      date: "Mar 25",
       Apples: 2508,
     },
     {
-      date: 'Mar 26',
+      date: "Mar 26",
       Apples: 3129,
     },
   ]
@@ -40,7 +40,7 @@ const TotalJobsCard = ({ ...props }: CardProps) => {
             h={90}
             data={chart01}
             dataKey="date"
-            series={[{ name: 'Apples', color: 'indigo.6' }]}
+            series={[{ name: "Apples", color: "indigo.6" }]}
             curveType="linear"
             tickLine="none"
             gridAxis="none"

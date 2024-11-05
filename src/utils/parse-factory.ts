@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import { z } from "zod"
 
 /**
  * Common zod parser for capturing and logging parse errors

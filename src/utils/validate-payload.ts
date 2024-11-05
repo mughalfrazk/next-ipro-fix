@@ -1,4 +1,4 @@
-import { ZodTypeAny } from 'zod'
+import { ZodTypeAny } from "zod"
 
 export const validatePayload = async (
   payload: FormData,

@@ -1,7 +1,7 @@
-'use client'
+"use client"
 
-import { useState, useEffect } from 'react'
-import { ActionErrors, ActionResult } from '@/utils/action-results'
+import { useState, useEffect } from "react"
+import { ActionErrors, ActionResult } from "@/utils/action-results"
 
 export type FieldErrorPropsType = {
   getFieldErrorProps: (value: string) => {
@@ -20,7 +20,7 @@ export function useActionErrors(state: ActionResult = {}) {
   const setFieldError = (fields: string | string[], value?: string) => {
     if (!fields) return
 
-    if (typeof fields === 'string') {
+    if (typeof fields === "string") {
       fields = [fields]
     }
 
@@ -32,8 +32,8 @@ export function useActionErrors(state: ActionResult = {}) {
       if (value === null || value === undefined) {
         delete fieldErrors[field]
       } else if (Array.isArray(value)) {
-        fieldErrors[field] = value.join(', ')
-      } else if (typeof value === 'string') {
+        fieldErrors[field] = value.join(", ")
+      } else if (typeof value === "string") {
         fieldErrors[field] = value
       } else {
         fieldErrors[field] = value as string

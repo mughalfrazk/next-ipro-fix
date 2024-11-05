@@ -1,8 +1,8 @@
-import { ReactNode } from 'react'
-import { useFormStatus } from 'react-dom'
+import { ReactNode } from "react"
+import { useFormStatus } from "react-dom"
 
 export type SubmitButtonProps = {
-  type?: 'submit' | 'reset' | 'button' | undefined
+  type?: "submit" | "reset" | "button" | undefined
   loading?: boolean
   disabled?: boolean
 }

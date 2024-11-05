@@ -1,21 +1,21 @@
-'use client'
+"use client"
 
-import { useEffect, useState } from "react";
-import { Grid, GridCol, Group, Radio, Title } from "@mantine/core";
-import { IconSquareRoundedPlusFilled } from "@tabler/icons-react";
+import { useEffect, useState } from "react"
+import { Grid, GridCol, Group, Radio, Title } from "@mantine/core"
+import { IconSquareRoundedPlusFilled } from "@tabler/icons-react"
 
-import { ProblemTypeListModel } from "@/lib/models/problem-type.model";
-import { getProblemTypeListApi } from "@/lib/services/api/problem-type.service";
-import { FieldErrorPropsType } from "@/hooks/use-action-errors";
-import { JobModel } from "@/lib/models/job.model";
-import IssueItem from "./IssueItem";
+import { ProblemTypeListModel } from "@/lib/models/problem-type.model"
+import { getProblemTypeListApi } from "@/lib/services/api/problem-type.service"
+import { FieldErrorPropsType } from "@/hooks/use-action-errors"
+import { JobModel } from "@/lib/models/job.model"
+import IssueItem from "./IssueItem"
 
 type IssuesListFormProps = {
-  job?: JobModel;
-} & FieldErrorPropsType;
+  job?: JobModel
+} & FieldErrorPropsType
 
 const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
-  const [problemTypes, setProblemTypes] = useState<ProblemTypeListModel>([]);
+  const [problemTypes, setProblemTypes] = useState<ProblemTypeListModel>([])
   const [issues, setIssues] = useState([
     {
       brand_id: 0,
@@ -28,13 +28,13 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
   ])
 
   const getProblemTypeList = async () => {
-    const result = await getProblemTypeListApi();
-    setProblemTypes(result);
-  };
+    const result = await getProblemTypeListApi()
+    setProblemTypes(result)
+  }
 
   useEffect(() => {
-    getProblemTypeList();
-  }, []);
+    getProblemTypeList()
+  }, [])
 
   useEffect(() => {
     if (!!job?.issues?.length) {
@@ -47,11 +47,11 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
             quantity,
             charges,
             total,
-          })
+          }),
         ),
-      ]);
+      ])
     }
-  }, [job]);
+  }, [job])
 
   return (
     <Grid>
@@ -82,14 +82,14 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
       <GridCol span={12}>
         <Group
           justify="center"
-          w={'100%'}
+          w={"100%"}
           variant="subtle"
           py={14}
           opacity={0.3}
           style={{
-            border: '2px dashed var(--mantine-color-dark-1)',
-            borderRadius: 'var(--mantine-radius-default)',
-            cursor: 'pointer',
+            border: "2px dashed var(--mantine-color-dark-1)",
+            borderRadius: "var(--mantine-radius-default)",
+            cursor: "pointer",
           }}
           onClick={() =>
             setIssues([

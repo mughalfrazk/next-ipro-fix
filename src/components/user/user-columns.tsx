@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import {
   Avatar,
@@ -11,22 +11,22 @@ import {
   Stack,
   Text,
   Title,
-} from "@mantine/core";
-import { redirect } from "next/navigation";
+} from "@mantine/core"
+import { redirect } from "next/navigation"
 
-import { ProfileModel, UserModel } from "@/lib/models/user.model";
-import { colorForUserRole } from "@/utils/functions";
+import { ProfileModel, UserModel } from "@/lib/models/user.model"
+import { colorForUserRole } from "@/utils/functions"
 
 export const createNewJobHandler = () => {
-  redirect('/dashboard/user/add-new')
+  redirect("/dashboard/user/add-new")
 }
 
 export const UserColumns = [
   {
-    accessor: 'id',
+    accessor: "id",
   },
   {
-    accessor: 'user',
+    accessor: "user",
     render: (row: UserModel) => {
       return (
         <Group>
@@ -40,7 +40,7 @@ export const UserColumns = [
     },
   },
   {
-    accessor: 'role',
+    accessor: "role",
     render: (row: ProfileModel) => {
       return (
         <Badge
@@ -55,7 +55,7 @@ export const UserColumns = [
     },
   },
   {
-    accessor: 'phone',
+    accessor: "phone",
   },
 
   {
@@ -63,7 +63,7 @@ export const UserColumns = [
     title: "No of jobs",
   },
   {
-    accessor: 'target',
+    accessor: "target",
     render: (row: UserModel) => {
       const progressPercentage = (
         ((row.progress ?? 0) / (row.target ?? 1)) *
@@ -80,16 +80,16 @@ export const UserColumns = [
   },
 
   {
-    accessor: 'progress',
-    title: 'Earned Amount',
+    accessor: "progress",
+    title: "Earned Amount",
   },
 
   {
-    accessor: 'phone',
+    accessor: "phone",
   },
 
   {
-    accessor: 'actions',
+    accessor: "actions",
     render: () => {
       return (
         <Button
