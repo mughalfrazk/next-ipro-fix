@@ -1,21 +1,21 @@
-import { ReactNode } from "react"
-import { useFormStatus } from "react-dom"
+import { ReactNode } from "react";
+import { useFormStatus } from "react-dom";
 
 export type SubmitButtonProps = {
-  type?: "submit" | "reset" | "button" | undefined
-  loading?: boolean
-  disabled?: boolean
-}
+  type?: "submit" | "reset" | "button" | undefined;
+  loading?: boolean;
+  disabled?: boolean;
+};
 
 const IproSubmitButton = ({
   btn,
 }: {
-  btn: (submitProps: SubmitButtonProps) => ReactNode
+  btn: (submitProps: SubmitButtonProps) => ReactNode;
 }) => {
-  const { pending } = useFormStatus()
-  const ButtonComponent = btn
+  const { pending } = useFormStatus();
+  const ButtonComponent = btn;
 
-  return <ButtonComponent type="submit" loading={pending} disabled={pending} />
-}
+  return <ButtonComponent type="submit" loading={pending} disabled={pending} />;
+};
 
-export default IproSubmitButton
+export default IproSubmitButton;

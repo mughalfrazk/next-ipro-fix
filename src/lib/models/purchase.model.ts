@@ -1,4 +1,4 @@
-import { z } from "zod"
+import { z } from "zod";
 
 export const PurchaseSchema = z.object({
   id: z.string(),
@@ -12,9 +12,9 @@ export const PurchaseSchema = z.object({
   created_at: z.string(),
   updated_at: z.string(),
   deleted_at: z.string().nullish(),
-})
+});
 
-export const PurchaseListSchema = z.array(PurchaseSchema)
+export const PurchaseListSchema = z.array(PurchaseSchema);
 
 export const CreatePurchasesSchema = z.object({
   job_id: z.string({ message: "Job is required" }).min(1, "Job is required"),
@@ -28,8 +28,8 @@ export const CreatePurchasesSchema = z.object({
       parts: z.string().min(1, "Parts is required"),
     })
     .array(),
-})
+});
 
-export type CreatePurchasesModel = z.infer<typeof CreatePurchasesSchema>
-export type PurchaseModel = z.infer<typeof PurchaseSchema>
-export type PurchaseListModel = z.infer<typeof PurchaseListSchema>
+export type CreatePurchasesModel = z.infer<typeof CreatePurchasesSchema>;
+export type PurchaseModel = z.infer<typeof PurchaseSchema>;
+export type PurchaseListModel = z.infer<typeof PurchaseListSchema>;

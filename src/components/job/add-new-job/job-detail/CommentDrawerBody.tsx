@@ -1,4 +1,4 @@
-import IproButton from "@/components/core/IproButton"
+import IproButton from "@/components/core/IproButton";
 import {
   Avatar,
   Badge,
@@ -7,7 +7,7 @@ import {
   Stack,
   Text,
   Textarea,
-} from "@mantine/core"
+} from "@mantine/core";
 
 const CommentDrawerBody = () => {
   const comments = [
@@ -99,7 +99,7 @@ const CommentDrawerBody = () => {
       date: "2020-06-11 10:56",
       comment: "It will take 2-3 hours",
     },
-  ]
+  ];
 
   return (
     <ScrollArea p={10} pos="relative">
@@ -140,7 +140,7 @@ const CommentDrawerBody = () => {
         <IproButton>Add Comment</IproButton>
       </Stack>
     </ScrollArea>
-  )
-}
+  );
+};
 
-export default CommentDrawerBody
+export default CommentDrawerBody;

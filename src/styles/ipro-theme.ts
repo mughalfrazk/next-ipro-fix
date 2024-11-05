@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   CSSVariablesResolver,
@@ -7,9 +7,9 @@ import {
   MantineThemeOverride,
   createTheme,
   mergeMantineTheme,
-} from "@mantine/core"
-import { CssLoader } from "./CssLoader"
-import { generateColors } from "@mantine/colors-generator"
+} from "@mantine/core";
+import { CssLoader } from "./CssLoader";
+import { generateColors } from "@mantine/colors-generator";
 
 export const iproTheme: MantineThemeOverride = createTheme({
   white: "#FFFFFF",
@@ -64,7 +64,7 @@ export const iproTheme: MantineThemeOverride = createTheme({
       },
     }),
   },
-})
+});
 
 export const resolver: CSSVariablesResolver = (theme) => ({
   variables: {},
@@ -75,10 +75,10 @@ export const resolver: CSSVariablesResolver = (theme) => ({
   light: {
     "--mantine-color-red-filled": theme.colors.red[4],
   },
-})
+});
 
 /// For use of theme outside of a component
 export const themeOutSideComponents = mergeMantineTheme(
   DEFAULT_THEME,
   iproTheme,
-)
+);

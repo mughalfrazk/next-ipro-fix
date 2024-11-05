@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { ReactNode } from "react"
-import { useDisclosure } from "@mantine/hooks"
-import { DataTable } from "mantine-datatable"
-import { IconFilter, IconSearch } from "@tabler/icons-react"
+import { ReactNode } from "react";
+import { useDisclosure } from "@mantine/hooks";
+import { DataTable } from "mantine-datatable";
+import { IconFilter, IconSearch } from "@tabler/icons-react";
 import {
   Avatar,
   Card,
@@ -13,34 +13,34 @@ import {
   Stack,
   Text,
   Title,
-} from "@mantine/core"
+} from "@mantine/core";
 
-import IproButton from "../core/IproButton"
-import IproTextInput from "../core/IproTextInput"
-import Heading from "./Heading"
+import IproButton from "../core/IproButton";
+import IproTextInput from "../core/IproTextInput";
+import Heading from "./Heading";
 
 type RowType = {
-  id: string
-  jobId: string
+  id: string;
+  jobId: string;
   customer: {
-    name: string
-    phone: string
-  }
-  status: string
-  qty: number
-  company_name: string
+    name: string;
+    phone: string;
+  };
+  status: string;
+  qty: number;
+  company_name: string;
   technician: {
-    name: string
-    phone: string
-  }
-  total: string
-}
+    name: string;
+    phone: string;
+  };
+  total: string;
+};
 
 const dummy_columns = [
   {
     accessor: "jobId",
     render: (row: RowType) => {
-      return <IproButton variant="subtle">{row.jobId}</IproButton>
+      return <IproButton variant="subtle">{row.jobId}</IproButton>;
     },
   },
   {
@@ -59,7 +59,7 @@ const dummy_columns = [
             <Text size={"0.7rem"}>{row.customer.phone}</Text>
           </Stack>
         </Group>
-      )
+      );
     },
   },
   { accessor: "status" },
@@ -80,11 +80,11 @@ const dummy_columns = [
             <Text size={"0.7rem"}>{row.technician.phone}</Text>
           </Stack>
         </Group>
-      )
+      );
     },
   },
   { accessor: "total" },
-]
+];
 
 const dummy_rows = [
   {
@@ -151,19 +151,19 @@ const dummy_rows = [
     },
     total: "AED 23000",
   },
-]
+];
 
 type TableProps = {
-  title?: string
-  data?: unknown[]
+  title?: string;
+  data?: unknown[];
   /* eslint-disable @typescript-eslint/no-explicit-any */
-  columns?: any
-  description?: string
-  search?: boolean
-  searchProperty?: string
-  rightSection?: ReactNode
-  filter?: ReactNode
-}
+  columns?: any;
+  description?: string;
+  search?: boolean;
+  searchProperty?: string;
+  rightSection?: ReactNode;
+  filter?: ReactNode;
+};
 
 export const Table = ({
   columns = dummy_columns,
@@ -174,7 +174,7 @@ export const Table = ({
   rightSection,
   filter,
 }: TableProps) => {
-  const [opened, { open, close }] = useDisclosure()
+  const [opened, { open, close }] = useDisclosure();
 
   return (
     <>
@@ -230,7 +230,7 @@ export const Table = ({
         />
       </Card>
     </>
-  )
-}
+  );
+};
 
-export default Table
+export default Table;

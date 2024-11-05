@@ -1,4 +1,4 @@
-import { z } from "zod"
+import { z } from "zod";
 
 export const CustomerSchema = z.object({
   id: z.string(),
@@ -8,9 +8,9 @@ export const CustomerSchema = z.object({
   created_at: z.string(),
   updated_at: z.string(),
   deleted_at: z.string().nullish(),
-})
+});
 
-export const CustomerListSchema = z.array(CustomerSchema)
+export const CustomerListSchema = z.array(CustomerSchema);
 
-export type CustomerModel = z.infer<typeof CustomerSchema>
-export type CustomerListModel = z.infer<typeof CustomerListSchema>
+export type CustomerModel = z.infer<typeof CustomerSchema>;
+export type CustomerListModel = z.infer<typeof CustomerListSchema>;

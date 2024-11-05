@@ -1,23 +1,23 @@
-import { isRedirectError } from "next/dist/client/components/redirect"
-import { redirect } from "next/navigation"
+import { isRedirectError } from "next/dist/client/components/redirect";
+import { redirect } from "next/navigation";
 
 import {
   CreatePurchasesModel,
   CreatePurchasesSchema,
   PurchaseModel,
-} from "@/lib/models/purchase.model"
+} from "@/lib/models/purchase.model";
 import {
   CreateJobPayloadModel,
   CreateJobPayloadSchema,
-} from "@/lib/models/job.model"
-import { getNestedInputValues, showErrorNotification } from "@/utils/functions"
-import { getFormattedError } from "@/utils/format-error"
-import { createJobApi } from "@/lib/services/api/job.service"
-import { ActionResult } from "@/utils/action-results"
-import { IssueModel } from "@/lib/models/issue.model"
+} from "@/lib/models/job.model";
+import { getNestedInputValues, showErrorNotification } from "@/utils/functions";
+import { getFormattedError } from "@/utils/format-error";
+import { createJobApi } from "@/lib/services/api/job.service";
+import { ActionResult } from "@/utils/action-results";
+import { IssueModel } from "@/lib/models/issue.model";
 
 const createJobAction = async (_: ActionResult, formData: FormData) => {
-  const structuredInput = getNestedInputValues(formData)
+  const structuredInput = getNestedInputValues(formData);
 
   const payload: CreateJobPayloadModel = {
     technician_id: formData.get("technician_id") as string,
@@ -35,50 +35,50 @@ const createJobAction = async (_: ActionResult, formData: FormData) => {
       total: +item.total,
       brand_id: +item.brand_id,
     })),
-  }
+  };
 
-  const validatedPayload = await CreateJobPayloadSchema.safeParseAsync(payload)
+  const validatedPayload = await CreateJobPayloadSchema.safeParseAsync(payload);
   if (!validatedPayload.success) {
-    showErrorNotification("Validation errors")
-    return getFormattedError(validatedPayload?.error)
+    showErrorNotification("Validation errors");
+    return getFormattedError(validatedPayload?.error);
   }
 
   try {
-    await createJobApi(payload)
-    redirect("/dashboard/job")
-    return {}
+    await createJobApi(payload);
+    redirect("/dashboard/job");
+    return {};
   } catch (error) {
     // `redirectTo` won't work without this line
-    if (isRedirectError(error)) throw error
-    console.log(error)
-    return getFormattedError(error)
+    if (isRedirectError(error)) throw error;
+    console.log(error);
+    return getFormattedError(error);
   }
-}
+};
 
 const createJobPurchaseAction = async (_: ActionResult, formData: FormData) => {
-  const structuredInput = getNestedInputValues(formData)
-  console.log(structuredInput)
+  const structuredInput = getNestedInputValues(formData);
+
   const payload: CreatePurchasesModel = {
     job_id: formData.get("job_id") as string,
     purchases: structuredInput.purchases.map((item: PurchaseModel) => ({
       ...item,
     })),
-  }
+  };
 
-  const validatedPayload = await CreatePurchasesSchema.safeParseAsync(payload)
+  const validatedPayload = await CreatePurchasesSchema.safeParseAsync(payload);
   if (!validatedPayload.success) {
-    showErrorNotification("Validation errors")
-    return getFormattedError(validatedPayload?.error)
+    showErrorNotification("Validation errors");
+    return getFormattedError(validatedPayload?.error);
   }
 
   try {
-    return {}
+    return {};
   } catch (error) {
     // `redirectTo` won't work without this line
-    if (isRedirectError(error)) throw error
-    console.log(error)
-    return getFormattedError(error)
+    if (isRedirectError(error)) throw error;
+    console.log(error);
+    return getFormattedError(error);
   }
-}
+};
 
-export { createJobAction, createJobPurchaseAction }
+export { createJobAction, createJobPurchaseAction };

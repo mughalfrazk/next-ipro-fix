@@ -12,15 +12,16 @@ import {
   TableData,
   Text,
   Title,
-} from "@mantine/core"
-import Heading from "../../common/Heading"
-import IproButton from "../../core/IproButton"
+} from "@mantine/core";
+
+import Heading from "@/components/common/Heading";
+import IproButton from "@/components/core/IproButton";
 
 const InvoiceTab = () => {
   const tableData: TableData = {
     head: ["Brand Name", "Model", "Problem Type", "Issue", "QTY", "Charges"],
     body: [["Iphone", "14 pro max", "SW", "Issue details", "20", "AED 23000"]],
-  }
+  };
 
   const tableData02: TableData = {
     head: ["Brand Name", "Model", "Problem Type", "Issue", "QTY", "Charges"],
@@ -30,7 +31,7 @@ const InvoiceTab = () => {
       ["Iphone", "14 pro max", "SW", "Issue details", "20", "AED 23000"],
       ["Iphone", "14 pro max", "SW", "Issue details", "20", "AED 23000"],
     ],
-  }
+  };
 
   return (
     <Grid>
@@ -41,7 +42,6 @@ const InvoiceTab = () => {
             px={30}
             py={20}
             radius="lg"
-            aria-label=" image decription"
           >
             <Group justify="space-between">
               <Stack gap={0}>
@@ -155,7 +155,7 @@ const InvoiceTab = () => {
         </Card>
       </GridCol>
     </Grid>
-  )
-}
+  );
+};
 
-export default InvoiceTab
+export default InvoiceTab;

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   Drawer,
@@ -10,13 +10,13 @@ import {
   Paper,
   Divider,
   Table,
-} from "@mantine/core"
-import Heading from "@/components/common/Heading"
-import IproButton from "@/components/core/IproButton"
-import { useDisclosure } from "@mantine/hooks"
+} from "@mantine/core";
+import Heading from "@/components/common/Heading";
+import IproButton from "@/components/core/IproButton";
+import { useDisclosure } from "@mantine/hooks";
 
 const InvoiveReceiptDrawer = () => {
-  const [opened, { open, close }] = useDisclosure()
+  const [opened, { open, close }] = useDisclosure();
 
   return (
     <>
@@ -99,7 +99,7 @@ const InvoiveReceiptDrawer = () => {
         Open Drawer
       </IproButton>
     </>
-  )
-}
+  );
+};
 
-export default InvoiveReceiptDrawer
+export default InvoiveReceiptDrawer;

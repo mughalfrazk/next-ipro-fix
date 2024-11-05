@@ -1,4 +1,4 @@
-import { z } from "zod"
+import { z } from "zod";
 
 export const CompanySchema = z.object({
   id: z.string(),
@@ -7,4 +7,4 @@ export const CompanySchema = z.object({
   created_at: z.string(),
   updated_at: z.string(),
   deleted_at: z.string().nullish(),
-})
+});

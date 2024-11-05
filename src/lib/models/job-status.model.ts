@@ -1,4 +1,4 @@
-import { z } from "zod"
+import { z } from "zod";
 
 export const JobStatusSchema = z.object({
   id: z.number(),
@@ -6,6 +6,6 @@ export const JobStatusSchema = z.object({
   created_at: z.string(),
   updated_at: z.string(),
   deleted_at: z.string().nullish(),
-})
+});
 
-export type JobStatusModel = z.infer<typeof JobStatusSchema>
+export type JobStatusModel = z.infer<typeof JobStatusSchema>;

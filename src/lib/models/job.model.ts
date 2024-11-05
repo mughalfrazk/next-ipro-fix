@@ -1,12 +1,12 @@
-import { z } from "zod"
-import { CustomerSchema } from "./customer.model"
-import { UserSchema } from "./user.model"
-import { JobStatusSchema } from "./job-status.model"
-import { IssueListSchema } from "./issue.model"
-import { PurchaseListSchema } from "./purchase.model"
-import { ProblemTypeSchema } from "./problem-type.model"
+import { z } from "zod";
+import { CustomerSchema } from "./customer.model";
+import { UserSchema } from "./user.model";
+import { JobStatusSchema } from "./job-status.model";
+import { IssueListSchema } from "./issue.model";
+import { PurchaseListSchema } from "./purchase.model";
+import { ProblemTypeSchema } from "./problem-type.model";
 
-export const CreateJobFormSchema = z.record(z.string(), z.string())
+export const CreateJobFormSchema = z.record(z.string(), z.string());
 
 const CustomerPayloadSchema = z.object({
   customer: z.object(
@@ -21,13 +21,13 @@ const CustomerPayloadSchema = z.object({
     },
     { message: "Customer info is required" },
   ),
-})
+});
 
 const CustomerIDSchema = z.object({
   customer_id: z
     .string({ message: "Customer info is required" })
     .min(1, "Customer info is required"),
-})
+});
 
 export const CreateJobPayloadSchema = z
   .object({
@@ -68,9 +68,9 @@ export const CreateJobPayloadSchema = z
         code: "custom",
         path: ["customer"],
         message: "Customer is required",
-      })
+      });
     }
-  })
+  });
 
 export const JobSchema = z.object({
   id: z.string(),
@@ -80,10 +80,10 @@ export const JobSchema = z.object({
   issues: IssueListSchema,
   purchases: PurchaseListSchema.nullish(),
   problem_type: ProblemTypeSchema,
-})
+});
 
-export const JobListSchema = z.array(JobSchema)
+export const JobListSchema = z.array(JobSchema);
 
-export type CreateJobPayloadModel = z.infer<typeof CreateJobPayloadSchema>
-export type JobModel = z.infer<typeof JobSchema>
-export type JobListModel = z.infer<typeof JobListSchema>
+export type CreateJobPayloadModel = z.infer<typeof CreateJobPayloadSchema>;
+export type JobModel = z.infer<typeof JobSchema>;
+export type JobListModel = z.infer<typeof JobListSchema>;

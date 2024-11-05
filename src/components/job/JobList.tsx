@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import Link from "next/link"
+import Link from "next/link";
 
-import { JobListModel } from "@/lib/models/job.model"
-import IproButton from "@/components/core/IproButton"
-import Table from "@/components/common/Table"
-import { JobColumns } from "./job-columns"
+import { JobListModel } from "@/lib/models/job.model";
+import IproButton from "@/components/core/IproButton";
+import Table from "@/components/common/Table";
+import { JobColumns } from "./job-columns";
 
 const JobList = ({ jobs }: { jobs: JobListModel }) => {
   return (
@@ -22,7 +22,7 @@ const JobList = ({ jobs }: { jobs: JobListModel }) => {
       data={jobs}
       filter={<>Hello World</>}
     />
-  )
-}
+  );
+};
 
-export default JobList
+export default JobList;

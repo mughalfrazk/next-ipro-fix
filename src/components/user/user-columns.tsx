@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   Avatar,
@@ -11,19 +11,29 @@ import {
   Stack,
   Text,
   Title,
-} from "@mantine/core"
-import { redirect } from "next/navigation"
+} from "@mantine/core";
+import { redirect } from "next/navigation";
 
-import { ProfileModel, UserModel } from "@/lib/models/user.model"
-import { colorForUserRole } from "@/utils/functions"
+import { ProfileModel, UserModel } from "@/lib/models/user.model";
+import { colorForUserRole } from "@/utils/functions";
+import Link from "next/link";
 
 export const createNewJobHandler = () => {
-  redirect("/dashboard/user/add-new")
-}
+  redirect("/dashboard/user/add-new");
+};
 
 export const UserColumns = [
   {
-    accessor: "id",
+    accessor: "User ID",
+    render: (row: UserModel) => {
+      return (
+        <Link href={`/dashboard/user/${row.id}`}>
+          <Text fw={"bold"} c={"primary.6"}>
+            {row.id.slice(-5)}
+          </Text>
+        </Link>
+      );
+    },
   },
   {
     accessor: "user",
@@ -36,7 +46,7 @@ export const UserColumns = [
             <Text size="sm">{`${row.email}`}</Text>
           </Stack>
         </Group>
-      )
+      );
     },
   },
   {
@@ -49,15 +59,16 @@ export const UserColumns = [
           radius="sm"
           p={12}
         >
-          {row.role.name}
+          {row.role.name === "technician" && row?.speciality
+            ? `${row.role.name}-${row?.speciality.name.split("-")[0]}`
+            : row.role.name}
         </Badge>
-      )
+      );
     },
   },
   {
     accessor: "phone",
   },
-
   {
     accessor: "jobs",
     title: "No of jobs",
@@ -68,26 +79,23 @@ export const UserColumns = [
       const progressPercentage = (
         ((row.progress ?? 0) / (row.target ?? 1)) *
         100
-      ).toFixed(2)
+      ).toFixed(2);
       return (
         <ProgressRoot size="xl" w={150}>
           <ProgressSection value={+progressPercentage} color="primary.6">
             <ProgressLabel>{progressPercentage}%</ProgressLabel>
           </ProgressSection>
         </ProgressRoot>
-      )
+      );
     },
   },
-
   {
     accessor: "progress",
     title: "Earned Amount",
+    render: (row: UserModel) => {
+      return `AED ${row.progress ?? 0}`;
+    },
   },
-
-  {
-    accessor: "phone",
-  },
-
   {
     accessor: "actions",
     render: () => {
@@ -99,7 +107,7 @@ export const UserColumns = [
         >
           Open User
         </Button>
-      )
+      );
     },
   },
-]
+];

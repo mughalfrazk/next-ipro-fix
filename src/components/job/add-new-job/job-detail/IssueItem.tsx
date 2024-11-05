@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import {
   CloseButton,
   ComboboxData,
@@ -7,51 +7,51 @@ import {
   GridCol,
   Group,
   Title,
-} from "@mantine/core"
+} from "@mantine/core";
 
-import IproSelect from "@/components/core/IproSelect"
-import IproTextInput from "@/components/core/IproTextInput"
-import { useMantineColorScheme } from "@/hooks/use-mantine-color-scheme-wrapper"
-import { IssueModel } from "@/lib/models/issue.model"
-import { getBrandListApi } from "@/lib/services/api/brand.service"
+import IproSelect from "@/components/core/IproSelect";
+import IproTextInput from "@/components/core/IproTextInput";
+import { useMantineColorScheme } from "@/hooks/use-mantine-color-scheme-wrapper";
+import { IssueModel } from "@/lib/models/issue.model";
+import { getBrandListApi } from "@/lib/services/api/brand.service";
 
 const IssueItem = ({
   issue,
   idx,
   removeIssue,
 }: {
-  issue: Partial<IssueModel>
-  idx: number
-  removeIssue: () => void
+  issue: Partial<IssueModel>;
+  idx: number;
+  removeIssue: () => void;
 }) => {
-  const { lightDark } = useMantineColorScheme()
-  const [brandOptions, setBrandOptions] = useState<ComboboxData>([])
-  const [brandItem, setBrandItem] = useState<ComboboxItem>()
+  const { lightDark } = useMantineColorScheme();
+  const [brandOptions, setBrandOptions] = useState<ComboboxData>([]);
+  const [brandItem, setBrandItem] = useState<ComboboxItem>();
 
   const getBrandList = async () => {
-    const result = await getBrandListApi()
+    const result = await getBrandListApi();
     setBrandOptions(
       result.map((item) => ({
         label: item.name,
         value: String(item.id),
       })),
-    )
-  }
+    );
+  };
 
   const onBrandChange = (value: string | null) => {
     const [selectedBrand] = brandOptions.filter(
       (item) => (item as unknown as ComboboxItem).value === value,
-    )
-    if (value) setBrandItem(selectedBrand as ComboboxItem)
-  }
+    );
+    if (value) setBrandItem(selectedBrand as ComboboxItem);
+  };
 
   useEffect(() => {
-    if (issue && brandOptions.length) onBrandChange(String(issue.brand_id))
-  }, [issue, brandOptions])
+    if (issue && brandOptions.length) onBrandChange(String(issue.brand_id));
+  }, [issue, brandOptions]);
 
   useEffect(() => {
-    getBrandList()
-  }, [])
+    getBrandList();
+  }, []);
 
   return (
     <GridCol key={idx} span={12}>
@@ -123,7 +123,7 @@ const IssueItem = ({
         </GridCol>
       </Grid>
     </GridCol>
-  )
-}
+  );
+};
 
-export default IssueItem
+export default IssueItem;

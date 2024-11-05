@@ -1,6 +1,7 @@
-import { z } from "zod"
-import { CompanySchema } from "./company.model"
-import { RoleSchema } from "./role.model"
+import { z } from "zod";
+import { CompanySchema } from "./company.model";
+import { RoleSchema } from "./role.model";
+import { ProblemTypeSchema } from "./problem-type.model";
 
 export const UserSchema = z.object({
   id: z.string(),
@@ -16,18 +17,19 @@ export const UserSchema = z.object({
   created_at: z.string(),
   updated_at: z.string(),
   deleted_at: z.string().nullish(),
-})
+});
 
-export const UserListSchema = z.array(UserSchema)
+export const UserListSchema = z.array(UserSchema);
 
 export const ProfileSchema = UserSchema.extend({
   role: RoleSchema,
+  speciality: ProblemTypeSchema.nullish(),
   company: CompanySchema,
-})
+});
 
-export const ProfileListSchema = z.array(ProfileSchema)
+export const ProfileListSchema = z.array(ProfileSchema);
 
-export type ProfileModel = z.infer<typeof ProfileSchema>
-export type UserModel = z.infer<typeof UserSchema>
-export type ProfileListModel = z.infer<typeof ProfileListSchema>
-export type UserListModel = z.infer<typeof UserListSchema>
+export type ProfileModel = z.infer<typeof ProfileSchema>;
+export type UserModel = z.infer<typeof UserSchema>;
+export type ProfileListModel = z.infer<typeof ProfileListSchema>;
+export type UserListModel = z.infer<typeof UserListSchema>;

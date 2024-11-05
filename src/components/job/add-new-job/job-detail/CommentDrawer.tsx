@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import { Box, Drawer, rem } from "@mantine/core"
-import { useDisclosure } from "@mantine/hooks"
-import { IconMessageDots } from "@tabler/icons-react"
+import { Box, Drawer, rem } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+import { IconMessageDots } from "@tabler/icons-react";
 
-import { useZIndex } from "@/hooks/use-z-index"
-import IproButton from "@/components/core/IproButton"
-import CommentDrawerBody from "./CommentDrawerBody"
+import { useZIndex } from "@/hooks/use-z-index";
+import IproButton from "@/components/core/IproButton";
+import CommentDrawerBody from "./CommentDrawerBody";
 
 const CommentDrawer = () => {
-  const z = useZIndex()
-  const [opened, { open, close }] = useDisclosure()
+  const z = useZIndex();
+  const [opened, { open, close }] = useDisclosure();
 
   return (
     <Box pos="relative">
@@ -38,7 +38,7 @@ const CommentDrawer = () => {
         <CommentDrawerBody />
       </Drawer>
     </Box>
-  )
-}
+  );
+};
 
-export default CommentDrawer
+export default CommentDrawer;

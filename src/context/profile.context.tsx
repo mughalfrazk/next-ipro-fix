@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   createContext,
@@ -6,10 +6,10 @@ import {
   useContext,
   useEffect,
   useState,
-} from "react"
+} from "react";
 
-import { ProfileModel } from "@/lib/models/user.model"
-import { getProfileApi } from "@/lib/services/api/user.service"
+import { ProfileModel } from "@/lib/models/user.model";
+import { getProfileApi } from "@/lib/services/api/user.service";
 
 const defaultProfileValues = {
   id: "",
@@ -36,43 +36,43 @@ const defaultProfileValues = {
     updated_at: "",
     deleted_at: null,
   },
-}
+};
 
 type ProfileContextType = {
-  loading: boolean
-  data: ProfileModel
-}
+  loading: boolean;
+  data: ProfileModel;
+};
 
 const ProfileContext = createContext<ProfileContextType>({
   loading: false,
   data: defaultProfileValues,
-})
+});
 
 const ProfileProvider = ({ children }: { children: ReactNode }) => {
-  const [profile, setProfile] = useState<ProfileModel>(defaultProfileValues)
-  const [loading, setLoading] = useState<boolean>(false)
+  const [profile, setProfile] = useState<ProfileModel>(defaultProfileValues);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const getUserProfile = async () => {
     try {
-      setLoading(true)
-      const profile = await getProfileApi()
-      setProfile(profile)
+      setLoading(true);
+      const profile = await getProfileApi();
+      setProfile(profile);
     } catch (error) {
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
-    getUserProfile()
-  }, [])
+    getUserProfile();
+  }, []);
 
   return (
     <ProfileContext.Provider value={{ loading, data: profile }}>
       {children}
     </ProfileContext.Provider>
-  )
-}
+  );
+};
 
-export default ProfileProvider
-export const useProfileContext = () => useContext(ProfileContext)
+export default ProfileProvider;
+export const useProfileContext = () => useContext(ProfileContext);

@@ -1,11 +1,11 @@
-import { Badge, rem } from "@mantine/core"
-import { IconArrowNarrowUp } from "@tabler/icons-react"
-import { ReactNode } from "react"
+import { Badge, rem } from "@mantine/core";
+import { IconArrowNarrowUp } from "@tabler/icons-react";
+import { ReactNode } from "react";
 
 type GrowthBadgeProps = {
-  children: ReactNode
-  loss?: boolean
-}
+  children: ReactNode;
+  loss?: boolean;
+};
 
 const GrowthBadge = ({ children, loss }: GrowthBadgeProps) => {
   return (
@@ -23,10 +23,10 @@ const GrowthBadge = ({ children, loss }: GrowthBadgeProps) => {
     >
       {children}%
     </Badge>
-  )
-}
+  );
+};
 
-export default GrowthBadge
+export default GrowthBadge;
 
 {
   /* <Badge

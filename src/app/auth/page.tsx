@@ -1,8 +1,8 @@
-import { BackgroundImage, Box, Image, Text, Title, Stack } from "@mantine/core"
+import { BackgroundImage, Box, Image, Text, Title, Stack } from "@mantine/core";
 
-import LoginForm from "@/components/auth/LoginForm"
-import loginBg from "@/assets/login-bg.jpeg"
-import whiteLogo from "@/assets/white-logo.png"
+import LoginForm from "@/components/auth/LoginForm";
+import loginBg from "@/assets/login-bg.jpeg";
+import whiteLogo from "@/assets/white-logo.png";
 
 const Login = () => {
   return (
@@ -39,7 +39,7 @@ const Login = () => {
         </Stack>
       </Box>
     </BackgroundImage>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
