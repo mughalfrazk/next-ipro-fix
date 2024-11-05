@@ -10,17 +10,18 @@ import {
   Stack,
 } from "@mantine/core"
 
-import Heading from "../../common/Heading"
-import CustomerDetail from "./CustomerDetail"
-import CommentDrawer from "./CommentDrawer"
-import IssuesListForm from "./IssuesListForm"
 import { createJobAction } from "@/lib/actions/job.action"
 import { useFormAction } from "@/hooks/use-form-action"
+import { JobModel } from "@/lib/models/job.model"
 import IproButton from "@/components/core/IproButton"
-import TechnicianSelect from "./TechnicianSelect"
+import Heading from "@/components/common/Heading"
 import InvoiveReceiptDrawer from "./InvoiceReceiptDrawer"
+import TechnicianSelect from "./TechnicianSelect"
+import IssuesListForm from "./IssuesListForm"
+import CustomerDetail from "./CustomerDetail"
+import CommentDrawer from "./CommentDrawer"
 
-const JobDetailTab = () => {
+const JobDetailTab = ({ job }: { job?: JobModel }) => {
   const { formAction, getFieldErrorProps } = useFormAction(createJobAction, {})
 
   return (
