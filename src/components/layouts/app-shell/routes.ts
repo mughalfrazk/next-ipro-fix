@@ -60,7 +60,14 @@ const routes: NavLinkRoute[] = [
   {
     href: "/dashboard",
     label: "Accounting",
-    icon: IconCalculator
+    icon: IconCalculator,
+    children: [
+      {
+        href: "/dashboard/accounting/profit-loss",
+        label: "Profit Loss",
+        icon: IconFocus
+      }
+    ]
   }
 ];
 

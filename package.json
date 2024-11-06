@@ -13,6 +13,7 @@
     "@mantine/charts": "^7.13.2",
     "@mantine/colors-generator": "^7.13.0",
     "@mantine/core": "^7.12.2",
+    "@mantine/dates": "^7.13.4",
     "@mantine/form": "^7.12.2",
     "@mantine/hooks": "^7.12.2",
     "@mantine/notifications": "^7.12.2",
@@ -20,6 +21,7 @@
     "axios": "^1.7.7",
     "chroma-js": "^3.1.1",
     "clsx": "^2.1.1",
+    "dayjs": "^1.11.13",
     "mantine-datatable": "7.11.3",
     "next": "14.2.9",
     "next-auth": "^5.0.0-beta.20",
@@ -41,5 +43,28 @@
     "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",
     "typescript": "^5"
-  }
+  },
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "jsx": "preserve",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

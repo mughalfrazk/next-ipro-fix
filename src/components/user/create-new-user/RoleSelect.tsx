@@ -14,8 +14,8 @@ import SpecialitySelect from "./SpecialitySelect";
 import { ProfileModel } from "@/lib/models/user.model";
 
 type RoleSelectProps = {
-  user?: ProfileModel
-} & FieldErrorPropsType
+  user?: ProfileModel;
+} & FieldErrorPropsType;
 
 const RoleSelect = ({ user, getFieldErrorProps }: RoleSelectProps) => {
   const [roleOptions, setRoleOptions] = useState<ComboboxData>([]);
@@ -37,7 +37,9 @@ const RoleSelect = ({ user, getFieldErrorProps }: RoleSelectProps) => {
   };
 
   const onRoleChange = (value: string | null) => {
-    const [selectedRole] = roleOptions.filter((item) => (item as unknown as ComboboxItem).value === value);
+    const [selectedRole] = roleOptions.filter(
+      (item) => (item as unknown as ComboboxItem).value === value
+    );
     if (value) setRoleItem(selectedRole as ComboboxItem);
   };
 
@@ -67,7 +69,10 @@ const RoleSelect = ({ user, getFieldErrorProps }: RoleSelectProps) => {
       </GridCol>
       {isTechnicianSelected() && (
         <GridCol span={6}>
-          <SpecialitySelect user={user} getFieldErrorProps={getFieldErrorProps} />
+          <SpecialitySelect
+            user={user}
+            getFieldErrorProps={getFieldErrorProps}
+          />
         </GridCol>
       )}
       <IproTextInput

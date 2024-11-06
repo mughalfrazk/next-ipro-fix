@@ -67,10 +67,12 @@ const JobDetailTab = ({ job }: { job?: JobModel }) => {
                 getFieldErrorProps={getFieldErrorProps}
               />
 
-              {!job && <Group justify="flex-end" mt={20}>
-                <IproButton variant="outline">Cancal</IproButton>
-                <IproButton isSubmit={true}>Save Job</IproButton>
-              </Group>}
+              {!job && (
+                <Group justify="flex-end" mt={20}>
+                  <IproButton variant="outline">Cancal</IproButton>
+                  <IproButton isSubmit={true}>Save Job</IproButton>
+                </Group>
+              )}
             </Card>
           </GridCol>
         </Grid>
