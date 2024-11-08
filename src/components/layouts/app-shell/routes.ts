@@ -5,7 +5,6 @@ import {
   IconFocus,
   IconCalculator,
   IconUserCircle,
-  IconBuildingWarehouse,
   IconProps,
   Icon
 } from "@tabler/icons-react";
