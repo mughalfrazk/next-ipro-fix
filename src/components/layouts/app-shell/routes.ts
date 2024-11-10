@@ -10,7 +10,7 @@ import {
 } from "@tabler/icons-react";
 
 export type NavLinkRoute = {
-  href: string;
+  href?: string;
   label: ReactNode;
   icon: ForwardRefExoticComponent<IconProps & RefAttributes<Icon>>;
   children?: NavLinkRoute[];
@@ -63,7 +63,7 @@ const routes: NavLinkRoute[] = [
   },
 
   {
-    href: "/dashboard",
+    href: "",
     label: "Accounting",
     icon: IconCalculator,
     children: [
