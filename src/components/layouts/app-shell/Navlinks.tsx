@@ -1,15 +1,20 @@
 "use client";
 
-import Link from "next/link";
-import { NavLink, Title } from "@mantine/core";
+import Link, { LinkProps } from "next/link";
 import { useRouter, usePathname } from "next/navigation";
+import { NavLink, Title } from "@mantine/core";
 import classes from "./Navlinks.module.css";
 
 import routes, { NavLinkRoute } from "./routes";
+import { ButtonHTMLAttributes } from "react";
 
 const navlinkProps = (item: NavLinkRoute) => ({
-  component: Link,
-  href: item.href,
+  renderRoot: (props: LinkProps) =>
+    item.href ? (
+      <Link {...(props as LinkProps)} href={item.href ?? "#"} />
+    ) : (
+      <button {...(props as ButtonHTMLAttributes<HTMLButtonElement>)} />
+    ),
   label: (
     <Title order={5} fw={500} ms={6} opacity={0.8}>
       {item.label}
@@ -25,7 +30,7 @@ const Navlinks = () => {
   const pathname = usePathname();
 
   const onParentNavlinkClick = (item: NavLinkRoute) => {
-    if (!!item.children?.length && item.href) {
+    if (!!item.children?.length && item?.href) {
       router.push(item.href);
     }
   };
@@ -36,7 +41,7 @@ const Navlinks = () => {
         key={i}
         classNames={classes}
         {...navlinkProps(item)}
-        active={pathname === item.href}
+        active={pathname === item?.href}
         onClick={() => onParentNavlinkClick(item)}
       >
         {item.children.map((subItem, j) => (
@@ -44,7 +49,7 @@ const Navlinks = () => {
             key={j}
             classNames={classes}
             {...navlinkProps(subItem)}
-            active={pathname === subItem.href}
+            active={pathname === subItem?.href}
           />
         ))}
       </NavLink>

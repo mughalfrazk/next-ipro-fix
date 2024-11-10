@@ -1,4 +1,4 @@
-import ProfitLossBody from "@/components/accounting";
+import ProfitLossBody from "@/components/accounting/profit-loss-body";
 
 const ProfitLossPage = async () => {
   return <ProfitLossBody />;
