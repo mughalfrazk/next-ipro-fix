@@ -1,5 +1,5 @@
-import ExpensesBody from "@/components/accounting/expenses";
+import ExpensesList from "@/components/accounting/expenses/expensesList";
 const ExpensesPage = async () => {
-  return <ExpensesBody />;
+  return <ExpensesList />;
 };
 export default ExpensesPage;

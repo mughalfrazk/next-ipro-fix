@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  Avatar,
-  Grid,
-  Group,
-  Stack,
-  Text,
-  Card } from "@mantine/core";
+import { Avatar, Grid, Group, Stack, Text, Card } from "@mantine/core";
 import {
   IconWallet,
   IconCircleMinus,
