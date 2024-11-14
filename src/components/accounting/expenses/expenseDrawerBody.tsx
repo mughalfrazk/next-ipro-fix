@@ -1,4 +1,10 @@
-import { Stack, Title, Textarea, Group, Modal } from "@mantine/core";
+import {
+  Stack,
+  Title,
+  Textarea,
+  Group,
+  Modal
+} from "@mantine/core";
 import IproButton from "@/components/core/IproButton";
 import { useDisclosure } from "@mantine/hooks";
 import IproTextInput from "@/components/core/IproTextInput";
