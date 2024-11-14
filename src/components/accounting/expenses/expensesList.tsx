@@ -10,8 +10,11 @@ import {
   Stack,
   Drawer,
   Title,
-  Text
+  Text,
+  Grid,
+  MultiSelect
 } from "@mantine/core";
+import { DateInput } from "@mantine/dates";
 import IproButton from "@/components/core/IproButton";
 import { useDisclosure } from "@mantine/hooks";
 import ExpenseDrawerBody from "./expenseDrawerBody";
@@ -221,7 +224,42 @@ const ExpensesList = () => {
         search={true}
         data={invoice_data}
         columns={columns}
-        filter={<>Hello World</>}
+        drawerTitle={"Expense Filter"}
+        filter={
+          <Stack>
+            <Text size="sm">
+              You can filter expenses with date range and user
+            </Text>
+            <Grid grow>
+              <Grid.Col span={6}>
+                <DateInput
+                  label="Start Date"
+                  placeholder="Enter Start Date"
+                  valueFormat="YYYY MMM DD"
+                  size="sm"
+                />
+              </Grid.Col>
+              <Grid.Col span={6}>
+                <DateInput
+                  label="End Date"
+                  placeholder="Enter End Date"
+                  valueFormat="YYYY MMM DD"
+                  size="sm"
+                />
+              </Grid.Col>
+            </Grid>
+            <MultiSelect
+              label="User"
+              placeholder="Select User Roles to Filter"
+              data={["User 1", "User 2", "User 3"]}
+              defaultValue={["All"]}
+              clearable
+            />
+            <Stack align="start">
+              <IproButton>Apply Filter</IproButton>
+            </Stack>
+          </Stack>
+        }
         rightSection={
           <IproButton variant="outline" fullWidth onClick={open}>
             Create New Expense

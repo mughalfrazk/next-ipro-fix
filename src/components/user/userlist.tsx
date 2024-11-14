@@ -4,6 +4,7 @@ import Table from "../common/Table";
 import IproButton from "../core/IproButton";
 import { UserListModel } from "@/lib/models/user.model";
 import { UserColumns } from "./user-columns";
+import { Stack, Title } from "@mantine/core";
 
 const UserList = ({ users }: { users: UserListModel }) => {
   return (
@@ -18,7 +19,6 @@ const UserList = ({ users }: { users: UserListModel }) => {
       }
       columns={UserColumns}
       data={users}
-      filter={<>Hello World</>}
     />
   );
 };
