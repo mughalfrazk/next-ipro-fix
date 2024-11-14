@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Stack, Text, MultiSelect, Title } from "@mantine/core";
+import { Stack, Text, MultiSelect } from "@mantine/core";
 import Table from "../common/Table";
 import IproButton from "../core/IproButton";
 import { UserListModel } from "@/lib/models/user.model";
