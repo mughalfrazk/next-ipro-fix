@@ -30,17 +30,19 @@ const createJobAction = async (_: ActionResult, formData: FormData) => {
     }))
   };
 
+  if (payload.customer?.name && payload.customer?.phone && !payload.customer_id) {
+    payload.customer_id = "new"
+  }
+
   const validatedPayload = await CreateJobPayloadSchema.safeParseAsync(payload);
   if (!validatedPayload.success) {
     showErrorNotification("Validation errors");
-    console.log(payload);
-    console.log(getFormattedError(validatedPayload?.error));
     return getFormattedError(validatedPayload?.error);
   }
 
   try {
     await createJobApi(payload);
-    redirect("/dashboard/job");
+    // redirect("/dashboard/job");
     return {};
   } catch (error) {
     // `redirectTo` won't work without this line

@@ -26,29 +26,36 @@ const CustomerIDSchema = z.object({
 export const CreateJobPayloadSchema = z
   .object({
     problem_type_id: z.string({ message: "Problem Type is required" }).min(1, "Problem Type is required"),
-    technician_id: z.string({ message: "Problem Type is required" }).min(1, "Technician is required"),
+    technician_id: z.string({ message: "Problem Type is required" }),
     issues: z
       .object({
-        name: z.string({ message: "Issue name is required" }).min(1, "Issue name is required"),
-        model: z.string({ message: "Issue model is required" }).min(1, "Issue model is required"),
+        problem_id: z.string({ message: "Issue name is required" }).min(1, "Issue name is required"),
+        model_id: z.string({ message: "Issue model is required" }).min(1, "Issue model is required"),
         quantity: z.number({ message: "Issue quantity is required" }).min(1, "Issue quantity is required"),
         charges: z.number({ message: "Issue charges is required" }).min(1, "Issue charges is required"),
         total: z.number({ message: "Issue total is required" }).min(1, "Issue total is required"),
         brand_id: z.number({ message: "Issue brand is required" }).min(1, "Issue brand is required")
       })
-      .array()
+      .array(),
+    customer_id: z.string({ message: "Customer info is required" }).min(1, "Customer info is required"),
+    customer: z.object(
+      {
+        name: z.string({ message: "Customer name is required" }).min(1, "Customer name is required"),
+        phone: z.string({ message: "Customer phone is required" }).min(1, "Customer phone is required"),
+        company_name: z.string()
+      })
+
   })
-  .merge(CustomerPayloadSchema.partial())
-  .merge(CustomerIDSchema.partial())
-  .superRefine((data, ctx) => {
-    if ((!data.customer?.name && !data.customer?.name) || !data.customer_id) {
-      ctx.addIssue({
-        code: "custom",
-        path: ["customer"],
-        message: "Customer is required"
-      });
-    }
-  });
+// .merge(CustomerPayloadSchema.partial())
+// .merge(CustomerIDSchema.partial())
+// .superRefine((data, ctx) => {
+//   if ((!data.customer?.name && !data.customer?.phone) || !data.customer_id) {
+//     ctx.addIssue({
+//       code: "custom",
+//       path: ["customer"],
+//       message: "Customer is required"
+//     });
+//   }
 
 export const JobSchema = z.object({
   id: z.string(),

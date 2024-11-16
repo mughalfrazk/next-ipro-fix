@@ -59,19 +59,9 @@ const IssueItem = ({ issue, idx, removeIssue }: { issue: Partial<IssueModel>; id
         </GridCol>
         <GridCol span={4}>
           <ModelSelect index={idx} issue={issue} />
-          {/* <IproTextInput
-            name={`issues[${idx}][model]`}
-            defaultValue={issue.model}
-            label="Model Selection"
-          /> */}
         </GridCol>
         <GridCol span={4}>
           <ProblemSelect index={idx} issue={issue} />
-          {/* <IproTextInput
-            name={`issues[${idx}][name]`}
-            defaultValue={issue.name}
-            label="Issue"
-          /> */}
         </GridCol>
         <GridCol span={4}>
           <IproTextInput type="number" name={`issues[${idx}][quantity]`} defaultValue={issue.quantity} label="Quantity" />

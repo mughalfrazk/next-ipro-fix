@@ -19,8 +19,8 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
   const [issues, setIssues] = useState([
     {
       brand_id: 0,
-      model: "",
-      name: "",
+      model_id: "",
+      problem_id: "",
       quantity: 0,
       charges: 0,
       total: 0
@@ -39,10 +39,10 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
   useEffect(() => {
     if (!!job?.issues?.length) {
       setIssues([
-        ...job.issues.map(({ brand_id, model, name, quantity, charges, total }) => ({
+        ...job.issues.map(({ brand_id, model_id, problem_id, quantity, charges, total }) => ({
           brand_id,
-          model,
-          name,
+          model_id,
+          problem_id,
           quantity,
           charges,
           total
@@ -89,8 +89,8 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
               ...issues,
               {
                 brand_id: 0,
-                model: "",
-                name: "",
+                model_id: "",
+                problem_id: "",
                 quantity: 0,
                 charges: 0,
                 total: 0

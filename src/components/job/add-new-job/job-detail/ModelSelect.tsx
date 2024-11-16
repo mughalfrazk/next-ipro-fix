@@ -41,8 +41,8 @@ const ModelSelect = ({ index, issue }: ModelSelectProps) => {
   }, []);
 
   useEffect(() => {
-    if (issue && modelOptions.length && issue?.brand_id) {
-      onModelChange(String(issue.brand_id));
+    if (issue && modelOptions.length && issue?.model_id) {
+      onModelChange(String(issue.model_id));
     }
   }, [issue, modelOptions]);
 

@@ -46,6 +46,10 @@ const ProblemSelect = ({ index, issue }: ProblemSelectProps) => {
     }
   }, [issue, problemOptions]);
 
+  useEffect(() => {
+    console.log(problemItem)
+  }, [problemItem])
+
   return (
     <IproSelect
       size="md"
