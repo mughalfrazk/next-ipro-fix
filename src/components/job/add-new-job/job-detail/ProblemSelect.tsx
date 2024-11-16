@@ -41,14 +41,10 @@ const ProblemSelect = ({ index, issue }: ProblemSelectProps) => {
   }, []);
 
   useEffect(() => {
-    if (issue && problemOptions.length && issue?.brand_id) {
+    if (issue && problemOptions.length && issue?.problem_id) {
       onProblemChange(String(issue.brand_id));
     }
   }, [issue, problemOptions]);
-
-  useEffect(() => {
-    console.log(problemItem)
-  }, [problemItem])
 
   return (
     <IproSelect

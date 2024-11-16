@@ -29,8 +29,8 @@ export const CreateJobPayloadSchema = z
     technician_id: z.string({ message: "Problem Type is required" }),
     issues: z
       .object({
-        problem_id: z.string({ message: "Issue name is required" }).min(1, "Issue name is required"),
-        model_id: z.string({ message: "Issue model is required" }).min(1, "Issue model is required"),
+        problem_id: z.number({ message: "Issue name is required" }).min(1, "Issue name is required"),
+        model_id: z.number({ message: "Issue model is required" }).min(1, "Issue model is required"),
         quantity: z.number({ message: "Issue quantity is required" }).min(1, "Issue quantity is required"),
         charges: z.number({ message: "Issue charges is required" }).min(1, "Issue charges is required"),
         total: z.number({ message: "Issue total is required" }).min(1, "Issue total is required"),
@@ -46,16 +46,6 @@ export const CreateJobPayloadSchema = z
       })
 
   })
-// .merge(CustomerPayloadSchema.partial())
-// .merge(CustomerIDSchema.partial())
-// .superRefine((data, ctx) => {
-//   if ((!data.customer?.name && !data.customer?.phone) || !data.customer_id) {
-//     ctx.addIssue({
-//       code: "custom",
-//       path: ["customer"],
-//       message: "Customer is required"
-//     });
-//   }
 
 export const JobSchema = z.object({
   id: z.string(),

@@ -49,7 +49,6 @@ const BrandSelect = ({ index, issue }: BrandSelectProps) => {
   return (
     <IproSelect
       size="md"
-      searchable
       label="Brand Name"
       name={`issues[${index}][brand_id]`}
       data={brandOptions}

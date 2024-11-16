@@ -1,41 +1,39 @@
-import { useEffect, useState } from "react";
-import { CloseButton, ComboboxData, ComboboxItem, Grid, GridCol, Group, Title } from "@mantine/core";
+import { CloseButton, Grid, GridCol, Group, Title } from "@mantine/core";
 
+import CreateUpdateSelectInput from "@/components/common/CreateUpdateSelectInput";
 import { useMantineColorScheme } from "@/hooks/use-mantine-color-scheme-wrapper";
+import { getProblemListApi } from "@/lib/services/api/problem.service";
 import { getBrandListApi } from "@/lib/services/api/brand.service";
+import { getModelListApi } from "@/lib/services/api/model.service";
 import { IssueModel } from "@/lib/models/issue.model";
 import IproTextInput from "@/components/core/IproTextInput";
-import BrandSelect from "./BrandSelect";
-import ModelSelect from "./ModelSelect";
-import ProblemSelect from "./ProblemSelect";
 
 const IssueItem = ({ issue, idx, removeIssue }: { issue: Partial<IssueModel>; idx: number; removeIssue: () => void }) => {
   const { lightDark } = useMantineColorScheme();
-  const [brandOptions, setBrandOptions] = useState<ComboboxData>([]);
-  const [brandItem, setBrandItem] = useState<ComboboxItem>();
 
   const getBrandList = async () => {
     const result = await getBrandListApi();
-    setBrandOptions(
-      result.map((item) => ({
-        label: item.name,
-        value: String(item.id)
-      }))
-    );
+    return result.map((item) => ({
+      label: item.name,
+      value: String(item.id)
+    }));
   };
 
-  const onBrandChange = (value: string | null) => {
-    const [selectedBrand] = brandOptions.filter((item) => (item as unknown as ComboboxItem).value === value);
-    if (value) setBrandItem(selectedBrand as ComboboxItem);
+  const getModelList = async () => {
+    const result = await getModelListApi();
+    return result.map((item) => ({
+      label: item.name,
+      value: String(item.id)
+    }));
   };
 
-  useEffect(() => {
-    if (issue && brandOptions.length) onBrandChange(String(issue.brand_id));
-  }, [issue, brandOptions]);
-
-  useEffect(() => {
-    getBrandList();
-  }, []);
+  const getProblemList = async () => {
+    const result = await getProblemListApi();
+    return result.map((item) => ({
+      label: item.name,
+      value: String(item.id)
+    }));
+  };
 
   return (
     <GridCol key={idx} span={12}>
@@ -55,13 +53,29 @@ const IssueItem = ({ issue, idx, removeIssue }: { issue: Partial<IssueModel>; id
           </GridCol>
         )}
         <GridCol span={4}>
-          <BrandSelect index={idx} issue={issue} />
+          <CreateUpdateSelectInput
+            label="Brand Name"
+            name={`issues[${idx}][brand_id]`}
+            inputDefaultValue={issue.brand_id}
+            getDataFromApiAndSetOption={getBrandList}
+          />
         </GridCol>
         <GridCol span={4}>
-          <ModelSelect index={idx} issue={issue} />
+          <CreateUpdateSelectInput
+            searchable
+            label="Model Selection"
+            name={`issues[${idx}][model_id]`}
+            inputDefaultValue={issue.model_id}
+            getDataFromApiAndSetOption={getModelList}
+          />
         </GridCol>
         <GridCol span={4}>
-          <ProblemSelect index={idx} issue={issue} />
+          <CreateUpdateSelectInput
+            label="Issue Name"
+            name={`issues[${idx}][problem_id]`}
+            inputDefaultValue={issue.problem_id}
+            getDataFromApiAndSetOption={getProblemList}
+          />
         </GridCol>
         <GridCol span={4}>
           <IproTextInput type="number" name={`issues[${idx}][quantity]`} defaultValue={issue.quantity} label="Quantity" />

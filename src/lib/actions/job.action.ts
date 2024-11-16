@@ -23,10 +23,12 @@ const createJobAction = async (_: ActionResult, formData: FormData) => {
     },
     issues: structuredInput.issues.map((item: IssueModel) => ({
       ...item,
+      problem_id: +item.problem_id,
+      brand_id: +item.brand_id,
+      model_id: +item.model_id,
       quantity: +item.quantity,
       charges: +item.charges,
       total: +item.total,
-      brand_id: +item.brand_id
     }))
   };
 
