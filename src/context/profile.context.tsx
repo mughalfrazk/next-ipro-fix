@@ -10,6 +10,8 @@ const defaultProfileValues = {
   first_name: "",
   last_name: "",
   email: "",
+  target: null,
+  progress: null,
   is_active: false,
   is_verified: false,
   created_at: "",

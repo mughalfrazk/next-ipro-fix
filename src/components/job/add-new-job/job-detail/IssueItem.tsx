@@ -1,3 +1,4 @@
+import { useInputState } from "@mantine/hooks";
 import { CloseButton, Grid, GridCol, Group, Title } from "@mantine/core";
 
 import CreateUpdateSelectInput from "@/components/common/CreateUpdateSelectInput";
@@ -7,9 +8,13 @@ import { getBrandListApi } from "@/lib/services/api/brand.service";
 import { getModelListApi } from "@/lib/services/api/model.service";
 import { IssueModel } from "@/lib/models/issue.model";
 import IproTextInput from "@/components/core/IproTextInput";
+import { useEffect } from "react";
 
 const IssueItem = ({ issue, idx, removeIssue }: { issue: Partial<IssueModel>; idx: number; removeIssue: () => void }) => {
   const { lightDark } = useMantineColorScheme();
+  const [quantity, setQuantity] = useInputState<number>(0);
+  const [charges, setCharges] = useInputState<number>(0);
+  const [total, setTotal] = useInputState<number>(0);
 
   const getBrandList = async () => {
     const result = await getBrandListApi();
@@ -34,6 +39,16 @@ const IssueItem = ({ issue, idx, removeIssue }: { issue: Partial<IssueModel>; id
       value: String(item.id)
     }));
   };
+
+  useEffect(() => setTotal(charges * quantity), [charges, quantity]);
+
+  useEffect(() => {
+    if (!!issue) {
+      setQuantity(issue.quantity);
+      setCharges(issue.charges);
+      setTotal(issue.total);
+    }
+  }, [issue]);
 
   return (
     <GridCol key={idx} span={12}>
@@ -78,13 +93,13 @@ const IssueItem = ({ issue, idx, removeIssue }: { issue: Partial<IssueModel>; id
           />
         </GridCol>
         <GridCol span={4}>
-          <IproTextInput type="number" name={`issues[${idx}][quantity]`} defaultValue={issue.quantity} label="Quantity" />
+          <IproTextInput type="number" label="Quantity" name={`issues[${idx}][quantity]`} value={quantity} onChange={setQuantity} />
         </GridCol>
         <GridCol span={4}>
-          <IproTextInput type="number" name={`issues[${idx}][charges]`} defaultValue={issue.charges} label="Charges" />
+          <IproTextInput type="number" label="Charges" name={`issues[${idx}][charges]`} value={charges} onChange={setCharges} />
         </GridCol>
         <GridCol span={4}>
-          <IproTextInput type="number" name={`issues[${idx}][total]`} defaultValue={issue.total} label="Total" />
+          <IproTextInput type="number" label="Total" name={`issues[${idx}][total]`} value={total} onChange={setTotal} readOnly />
         </GridCol>
       </Grid>
     </GridCol>
