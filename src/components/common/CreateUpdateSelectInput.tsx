@@ -33,13 +33,13 @@ const CreateUpdateSelectInput = ({ label, name, inputDefaultValue, getDataFromAp
 
   useEffect(() => {
     getDataFromApi();
-  }, []);
+  }, [getDataFromApi]);
 
   useEffect(() => {
     if (inputDefaultValue && optionList.length && inputDefaultValue) {
       onOptionChange(String(inputDefaultValue));
     }
-  }, [inputDefaultValue, optionList]);
+  }, [inputDefaultValue, optionList, onOptionChange]);
 
   return (
     <IproSelect

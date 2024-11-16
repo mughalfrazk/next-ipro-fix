@@ -8,21 +8,6 @@ import { ProblemTypeSchema } from "./problem-type.model";
 
 export const CreateJobFormSchema = z.record(z.string(), z.string());
 
-const CustomerPayloadSchema = z.object({
-  customer: z.object(
-    {
-      name: z.string({ message: "Customer name is required" }).min(1, "Customer name is required"),
-      phone: z.string({ message: "Customer phone is required" }).min(1, "Customer phone is required"),
-      company_name: z.string()
-    },
-    { message: "Customer info is required" }
-  )
-});
-
-const CustomerIDSchema = z.object({
-  customer_id: z.string({ message: "Customer info is required" }).min(1, "Customer info is required")
-});
-
 export const CreateJobPayloadSchema = z
   .object({
     problem_type_id: z.string({ message: "Problem Type is required" }).min(1, "Problem Type is required"),
