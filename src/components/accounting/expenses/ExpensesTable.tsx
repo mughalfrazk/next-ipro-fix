@@ -8,16 +8,16 @@ import {
   Group,
   Button,
   Stack,
-  Drawer,
   Title,
   Text,
   Grid,
   MultiSelect
 } from "@mantine/core";
 import { DateInput } from "@mantine/dates";
-import IproButton from "@/components/core/IproButton";
 import { useDisclosure } from "@mantine/hooks";
-import ExpenseDrawerBody from "./expenseDrawerBody";
+
+import ExpenseDrawerBody from "./AddExpenseDrawer";
+import IproButton from "@/components/core/IproButton";
 
 type RowType = {
   id: string;
@@ -211,13 +211,12 @@ const columns = [
   }
 ];
 
-const ExpensesList = () => {
+const ExpensesTable = () => {
   const [opened, { open, close }] = useDisclosure(false);
+  
   return (
     <>
-      <Drawer opened={opened} position="right" onClose={close} size="29%">
-        <ExpenseDrawerBody />
-      </Drawer>
+      <ExpenseDrawerBody openedDrawer={opened} closeDrawer={close}/>
       <Table
         title="Total Expenses"
         description="All Expenses details"
@@ -270,4 +269,4 @@ const ExpensesList = () => {
   );
 };
 
-export default ExpensesList;
+export default ExpensesTable;
