@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { ActionErrors, ActionResult } from "@/utils/action-results";
 
 export type FieldErrorPropsType = {
-  getFieldErrorProps: (value: string) => {
+  getFieldErrorProps: (value: string | string[]) => {
     error: string | undefined;
     onChange: () => void;
   };
@@ -43,10 +43,23 @@ export function useActionErrors(state: ActionResult = {}) {
     setErrors({ ...errors, fieldErrors });
   };
 
-  const getFieldErrorProps = (value: string) => {
+  const getFieldErrorProps = (value: string | string[]) => {
     const fieldErrors = errors?.fieldErrors || {};
+
+    let error;
+    if (typeof value === "string") error = fieldErrors[value];
+    else {
+      for (let i = 0; i < value.length; i++) {
+        const element = value[i];
+        if (!!fieldErrors[element]) {
+          error = fieldErrors[element];
+          break;
+        }
+      }
+    }
+
     return {
-      error: fieldErrors[value],
+      error,
       onChange: () => setFieldError(value)
     };
   };

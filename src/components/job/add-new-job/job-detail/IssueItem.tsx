@@ -1,29 +1,15 @@
 import { useEffect, useState } from "react";
-import {
-  CloseButton,
-  ComboboxData,
-  ComboboxItem,
-  Grid,
-  GridCol,
-  Group,
-  Title
-} from "@mantine/core";
+import { CloseButton, ComboboxData, ComboboxItem, Grid, GridCol, Group, Title } from "@mantine/core";
 
-import IproSelect from "@/components/core/IproSelect";
-import IproTextInput from "@/components/core/IproTextInput";
 import { useMantineColorScheme } from "@/hooks/use-mantine-color-scheme-wrapper";
-import { IssueModel } from "@/lib/models/issue.model";
 import { getBrandListApi } from "@/lib/services/api/brand.service";
+import { IssueModel } from "@/lib/models/issue.model";
+import IproTextInput from "@/components/core/IproTextInput";
+import BrandSelect from "./BrandSelect";
+import ModelSelect from "./ModelSelect";
+import ProblemSelect from "./ProblemSelect";
 
-const IssueItem = ({
-  issue,
-  idx,
-  removeIssue
-}: {
-  issue: Partial<IssueModel>;
-  idx: number;
-  removeIssue: () => void;
-}) => {
+const IssueItem = ({ issue, idx, removeIssue }: { issue: Partial<IssueModel>; idx: number; removeIssue: () => void }) => {
   const { lightDark } = useMantineColorScheme();
   const [brandOptions, setBrandOptions] = useState<ComboboxData>([]);
   const [brandItem, setBrandItem] = useState<ComboboxItem>();
@@ -39,9 +25,7 @@ const IssueItem = ({
   };
 
   const onBrandChange = (value: string | null) => {
-    const [selectedBrand] = brandOptions.filter(
-      (item) => (item as unknown as ComboboxItem).value === value
-    );
+    const [selectedBrand] = brandOptions.filter((item) => (item as unknown as ComboboxItem).value === value);
     if (value) setBrandItem(selectedBrand as ComboboxItem);
   };
 
@@ -60,10 +44,7 @@ const IssueItem = ({
           <GridCol pt={30} pb={20}>
             <Group
               justify="space-between"
-              bg={lightDark(
-                "var(--mantine-color-gray-2)",
-                "var(--mantine-color-dark-7)"
-              )}
+              bg={lightDark("var(--mantine-color-gray-2)", "var(--mantine-color-dark-7)")}
               px={20}
               py={10}
               style={{ borderRadius: "0.5rem" }}
@@ -74,52 +55,32 @@ const IssueItem = ({
           </GridCol>
         )}
         <GridCol span={4}>
-          <IproSelect
-            size="md"
-            label="Brand Name"
-            name={`issues[${idx}][brand_id]`}
-            data={brandOptions}
-            value={brandItem?.value as string & string[]}
-            onOptionSubmit={onBrandChange}
-          />
+          <BrandSelect index={idx} issue={issue} />
         </GridCol>
         <GridCol span={4}>
-          <IproTextInput
+          <ModelSelect index={idx} issue={issue} />
+          {/* <IproTextInput
             name={`issues[${idx}][model]`}
             defaultValue={issue.model}
             label="Model Selection"
-          />
+          /> */}
         </GridCol>
         <GridCol span={4}>
-          <IproTextInput
+          <ProblemSelect index={idx} issue={issue} />
+          {/* <IproTextInput
             name={`issues[${idx}][name]`}
             defaultValue={issue.name}
             label="Issue"
-          />
+          /> */}
         </GridCol>
         <GridCol span={4}>
-          <IproTextInput
-            type="number"
-            name={`issues[${idx}][quantity]`}
-            defaultValue={issue.quantity}
-            label="Quantity"
-          />
+          <IproTextInput type="number" name={`issues[${idx}][quantity]`} defaultValue={issue.quantity} label="Quantity" />
         </GridCol>
         <GridCol span={4}>
-          <IproTextInput
-            type="number"
-            name={`issues[${idx}][charges]`}
-            defaultValue={issue.charges}
-            label="Charges"
-          />
+          <IproTextInput type="number" name={`issues[${idx}][charges]`} defaultValue={issue.charges} label="Charges" />
         </GridCol>
         <GridCol span={4}>
-          <IproTextInput
-            type="number"
-            name={`issues[${idx}][total]`}
-            defaultValue={issue.total}
-            label="Total"
-          />
+          <IproTextInput type="number" name={`issues[${idx}][total]`} defaultValue={issue.total} label="Total" />
         </GridCol>
       </Grid>
     </GridCol>

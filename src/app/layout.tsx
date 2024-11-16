@@ -45,11 +45,7 @@ export default function RootLayout({
       <body>
         <NextTopLoader />
         <SessionProvider>
-          <MantineProvider
-            defaultColorScheme="auto"
-            theme={iproTheme}
-            cssVariablesResolver={resolver}
-          >
+          <MantineProvider defaultColorScheme="auto" theme={iproTheme} cssVariablesResolver={resolver}>
             <Notifications />
             {children}
           </MantineProvider>

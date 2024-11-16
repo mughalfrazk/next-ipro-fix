@@ -2,10 +2,7 @@
 
 import { Flex, Grid, rem, Stack, Text, Title } from "@mantine/core";
 import IproButton from "../core/IproButton";
-import {
-  IconCircleKeyFilled,
-  IconLayoutDashboardFilled
-} from "@tabler/icons-react";
+import { IconCircleKeyFilled, IconLayoutDashboardFilled } from "@tabler/icons-react";
 import Link from "next/link";
 
 const Home = () => {
@@ -19,9 +16,7 @@ const Home = () => {
             <Link href={"/auth"}>
               <IproButton fullWidth h={rem(100)}>
                 <Stack gap={6} align="center">
-                  <IconCircleKeyFilled
-                    style={{ width: rem(35), height: rem(35) }}
-                  />
+                  <IconCircleKeyFilled style={{ width: rem(35), height: rem(35) }} />
                   <Text tt={"uppercase"} size="sm" lts={1}>
                     Login
                   </Text>
@@ -33,9 +28,7 @@ const Home = () => {
             <Link href={"/dashboard"}>
               <IproButton fullWidth h={rem(100)}>
                 <Stack gap={6} align="center">
-                  <IconLayoutDashboardFilled
-                    style={{ width: rem(35), height: rem(35) }}
-                  />
+                  <IconLayoutDashboardFilled style={{ width: rem(35), height: rem(35) }} />
                   <Text tt={"uppercase"} size="sm" lts={1}>
                     Dashboard
                   </Text>

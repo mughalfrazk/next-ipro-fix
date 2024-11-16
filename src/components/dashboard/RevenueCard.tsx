@@ -44,9 +44,7 @@ const RevenueCard = ({ ...props }: CardProps) => {
           w={isLargeDesktop ? 340 : isDesktop ? 460 : 250}
           data={chart02}
           dataKey="week"
-          valueFormatter={(value) =>
-            new Intl.NumberFormat("en-US").format(value)
-          }
+          valueFormatter={(value) => new Intl.NumberFormat("en-US").format(value)}
           series={[{ name: "Smartphones", color: "primary.6" }]}
           xAxisProps={{ fontWeight: "bold", tickMargin: 0 }}
           barProps={{

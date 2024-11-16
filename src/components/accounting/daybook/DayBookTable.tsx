@@ -1,27 +1,13 @@
 "use client";
 
 import Table from "@/components/common/Table";
-import {
-  Avatar,
-  Badge,
-  Group,
-  Stack,
-  Button,
-  Title,
-  Text
-} from "@mantine/core";
+import { Avatar, Badge, Group, Stack, Button, Title, Text } from "@mantine/core";
 
 const colorForCashStatus = (name: string) => {
   return name === "Cash-Out" ? "red" : name === "Cash-In" ? "green" : "black";
 };
 const colorForAmountType = (name: string) => {
-  return name === "PURCHSE"
-    ? "red"
-    : name === "EXPENSE"
-      ? "grape"
-      : name === "JOB"
-        ? "green"
-        : "black";
+  return name === "PURCHSE" ? "red" : name === "EXPENSE" ? "grape" : name === "JOB" ? "green" : "black";
 };
 
 type RowType = {
@@ -236,10 +222,7 @@ const columns = [
     render: (row: RowType) => {
       return (
         <Group>
-          <Avatar
-            src="../../../assets/Avatar_man.png"
-            alt="avatar place holder"
-          />
+          <Avatar src="../../../assets/Avatar_man.png" alt="avatar place holder" />
           <Stack gap={2}>
             <Title order={6}>{row.customer.first_name}</Title>
             <Text c="dimmed">{row.customer.id}</Text>
@@ -253,12 +236,7 @@ const columns = [
     accessor: "cash_type",
     render: (row: RowType) => {
       return (
-        <Badge
-          variant="outline"
-          color={colorForCashStatus(row.cash_type.in)}
-          radius="sm"
-          p={12}
-        >
+        <Badge variant="outline" color={colorForCashStatus(row.cash_type.in)} radius="sm" p={12}>
           {row.cash_type.in}
         </Badge>
       );
@@ -281,11 +259,7 @@ const columns = [
     accessor: "actions",
     render: () => {
       return (
-        <Button
-          variant="transparent"
-          size="compact-sm"
-          color="var(--mantine-color-primary-6)"
-        >
+        <Button variant="transparent" size="compact-sm" color="var(--mantine-color-primary-6)">
           Open Amount
         </Button>
       );

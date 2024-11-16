@@ -15,13 +15,7 @@ import {
 import { DateInput } from "@mantine/dates";
 import IproButton from "@/components/core/IproButton";
 const colorForInvoiceStatus = (name: string) => {
-  return name === "Half Paid"
-    ? "red"
-    : name === "Unpaid"
-      ? "indigo"
-      : name === "Paid"
-        ? "green"
-        : "black";
+  return name === "Half Paid" ? "red" : name === "Unpaid" ? "indigo" : name === "Paid" ? "green" : "black";
 };
 
 type RowType = {
@@ -160,11 +154,7 @@ const columns = [
     render: (row: RowType) => {
       return (
         <Group>
-          <Avatar
-            key={row.customer.first_name}
-            name={row.customer.first_name}
-            color="initials"
-          />
+          <Avatar key={row.customer.first_name} name={row.customer.first_name} color="initials" />
           <Stack gap={2}>
             <Title order={6}>{row.customer.first_name}</Title>
           </Stack>
@@ -179,12 +169,7 @@ const columns = [
     accessor: "status",
     render: (row: RowType) => {
       return (
-        <Badge
-          variant="outline"
-          color={colorForInvoiceStatus(row.status.paid)}
-          radius="sm"
-          p={12}
-        >
+        <Badge variant="outline" color={colorForInvoiceStatus(row.status.paid)} radius="sm" p={12}>
           {row.status.paid}
         </Badge>
       );
@@ -200,11 +185,7 @@ const columns = [
     accessor: "actions",
     render: () => {
       return (
-        <Button
-          variant="transparent"
-          size="compact-sm"
-          color="var(--mantine-color-primary-6)"
-        >
+        <Button variant="transparent" size="compact-sm" color="var(--mantine-color-primary-6)">
           Open Invoice
         </Button>
       );

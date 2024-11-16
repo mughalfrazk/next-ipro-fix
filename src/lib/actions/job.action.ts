@@ -1,15 +1,8 @@
 import { isRedirectError } from "next/dist/client/components/redirect";
 import { redirect } from "next/navigation";
 
-import {
-  CreatePurchasesModel,
-  CreatePurchasesSchema,
-  PurchaseModel
-} from "@/lib/models/purchase.model";
-import {
-  CreateJobPayloadModel,
-  CreateJobPayloadSchema
-} from "@/lib/models/job.model";
+import { CreatePurchasesModel, CreatePurchasesSchema, PurchaseModel } from "@/lib/models/purchase.model";
+import { CreateJobPayloadModel, CreateJobPayloadSchema } from "@/lib/models/job.model";
 import { getNestedInputValues, showErrorNotification } from "@/utils/functions";
 import { getFormattedError } from "@/utils/format-error";
 import { createJobApi } from "@/lib/services/api/job.service";
@@ -40,6 +33,8 @@ const createJobAction = async (_: ActionResult, formData: FormData) => {
   const validatedPayload = await CreateJobPayloadSchema.safeParseAsync(payload);
   if (!validatedPayload.success) {
     showErrorNotification("Validation errors");
+    console.log(payload);
+    console.log(getFormattedError(validatedPayload?.error));
     return getFormattedError(validatedPayload?.error);
   }
 

@@ -1,14 +1,6 @@
 "use client";
 
-import {
-  Badge,
-  Card,
-  Divider,
-  Grid,
-  GridCol,
-  Group,
-  Stack
-} from "@mantine/core";
+import { Badge, Card, Divider, Grid, GridCol, Group, Stack } from "@mantine/core";
 
 import Heading from "@/components/common/Heading";
 import CustomerDetail from "./CustomerDetail";
@@ -29,43 +21,25 @@ const JobDetailTab = ({ job }: { job?: JobModel }) => {
         {!!job && <CommentDrawer />}
         <Grid>
           <GridCol span={8}>
-            <CustomerDetail
-              customer={job?.customer}
-              getFieldErrorProps={getFieldErrorProps}
-            />
+            <CustomerDetail customer={job?.customer} getFieldErrorProps={getFieldErrorProps} />
           </GridCol>
           <GridCol span={4}>
             <Card bg="var(--mantine-color-primary-6)">
-              <Heading
-                title="Assign Job"
-                description="Assign job to a staff member"
-                color="white"
-              />
+              <Heading title="Assign Job" description="Assign job to a staff member" color="white" />
               <Divider mt={10} mb={20} opacity={0} />
 
-              <TechnicianSelect
-                technician={job?.technician}
-                getFieldErrorProps={getFieldErrorProps}
-              />
+              <TechnicianSelect technician={job?.technician} getFieldErrorProps={getFieldErrorProps} />
             </Card>
           </GridCol>
           <GridCol span={12}>
             <Card pb={100}>
               <Group justify="space-between">
-                <Heading
-                  title="Job Details"
-                  description="Add multiple jobs by clicking the + icon at the end"
-                />
-                {getFieldErrorProps("issues").error && (
-                  <Badge color="red">Please fill all the issues details</Badge>
-                )}
+                <Heading title="Job Details" description="Add multiple jobs by clicking the + icon at the end" />
+                {getFieldErrorProps("issues").error && <Badge color="red">Please fill all the issues details</Badge>}
               </Group>
               <Divider mt={10} mb={20} />
 
-              <IssuesListForm
-                job={job}
-                getFieldErrorProps={getFieldErrorProps}
-              />
+              <IssuesListForm job={job} getFieldErrorProps={getFieldErrorProps} />
 
               {!job && (
                 <Group justify="flex-end" mt={20}>

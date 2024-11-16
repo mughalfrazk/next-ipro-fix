@@ -1,13 +1,5 @@
 import { ForwardRefExoticComponent, ReactNode, RefAttributes } from "react";
-import {
-  IconHome,
-  IconTool,
-  IconFocus,
-  IconCalculator,
-  IconUserCircle,
-  IconProps,
-  Icon
-} from "@tabler/icons-react";
+import { IconHome, IconTool, IconFocus, IconCalculator, IconUserCircle, IconProps, Icon } from "@tabler/icons-react";
 
 export type NavLinkRoute = {
   href?: string;

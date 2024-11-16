@@ -1,18 +1,4 @@
-import {
-  Avatar,
-  BackgroundImage,
-  Card,
-  Divider,
-  Grid,
-  GridCol,
-  Group,
-  Image,
-  Stack,
-  Table,
-  TableData,
-  Text,
-  Title
-} from "@mantine/core";
+import { Avatar, BackgroundImage, Card, Divider, Grid, GridCol, Group, Image, Stack, Table, TableData, Text, Title } from "@mantine/core";
 
 import Heading from "@/components/common/Heading";
 import IproButton from "@/components/core/IproButton";
@@ -146,11 +132,7 @@ const InvoiceTab = () => {
         </Card>
         <Card mt={15}>
           <Heading title="Job Barcode" mb={20} />
-          <Image
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT__zUYSKisjapIoQLxoKwojgUSoZsRDSODAQ&s"
-            height={30}
-            mb={20}
-          />
+          <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT__zUYSKisjapIoQLxoKwojgUSoZsRDSODAQ&s" height={30} mb={20} />
           <IproButton>Print Barcode</IproButton>
         </Card>
       </GridCol>

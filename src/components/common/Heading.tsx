@@ -6,12 +6,7 @@ type HeadingProps = {
   color?: string;
 } & StackProps;
 
-const Heading = ({
-  title,
-  description,
-  color,
-  ...otherProps
-}: HeadingProps) => {
+const Heading = ({ title, description, color, ...otherProps }: HeadingProps) => {
   return (
     <Stack gap={0} {...otherProps}>
       <Title order={4} c={color}>

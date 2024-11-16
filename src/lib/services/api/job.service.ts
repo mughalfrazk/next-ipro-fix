@@ -1,8 +1,4 @@
-import {
-  CreateJobPayloadModel,
-  JobListSchema,
-  JobSchema
-} from "@/lib/models/job.model";
+import { CreateJobPayloadModel, JobListSchema, JobSchema } from "@/lib/models/job.model";
 import { getAuthApiClient } from "@/utils/api-client";
 import { parseFactory } from "@/utils/parse-factory";
 

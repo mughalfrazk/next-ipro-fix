@@ -1,17 +1,6 @@
 "use client";
 
-import {
-  Avatar,
-  ProgressLabel,
-  ProgressRoot,
-  ProgressSection,
-  Badge,
-  Button,
-  Group,
-  Stack,
-  Text,
-  Title
-} from "@mantine/core";
+import { Avatar, ProgressLabel, ProgressRoot, ProgressSection, Badge, Button, Group, Stack, Text, Title } from "@mantine/core";
 import { redirect } from "next/navigation";
 
 import { ProfileModel, UserModel } from "@/lib/models/user.model";
@@ -53,15 +42,8 @@ export const UserColumns = [
     accessor: "role",
     render: (row: ProfileModel) => {
       return (
-        <Badge
-          variant="outline"
-          color={colorForUserRole(row.role.name)}
-          radius="sm"
-          p={12}
-        >
-          {row.role.name === "technician" && row?.speciality
-            ? `${row.role.name}-${row?.speciality.name.split("-")[0]}`
-            : row.role.name}
+        <Badge variant="outline" color={colorForUserRole(row.role.name)} radius="sm" p={12}>
+          {row.role.name === "technician" && row?.speciality ? `${row.role.name}-${row?.speciality.name.split("-")[0]}` : row.role.name}
         </Badge>
       );
     }
@@ -102,11 +84,7 @@ export const UserColumns = [
     accessor: "actions",
     render: () => {
       return (
-        <Button
-          variant="transparent"
-          size="compact-sm"
-          color="var(--mantine-color-primary-6)"
-        >
+        <Button variant="transparent" size="compact-sm" color="var(--mantine-color-primary-6)">
           Open User
         </Button>
       );

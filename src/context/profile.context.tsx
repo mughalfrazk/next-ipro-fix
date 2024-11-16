@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState
-} from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
 import { ProfileModel } from "@/lib/models/user.model";
 import { getProfileApi } from "@/lib/services/api/user.service";
@@ -67,11 +61,7 @@ const ProfileProvider = ({ children }: { children: ReactNode }) => {
     getUserProfile();
   }, []);
 
-  return (
-    <ProfileContext.Provider value={{ loading, data: profile }}>
-      {children}
-    </ProfileContext.Provider>
-  );
+  return <ProfileContext.Provider value={{ loading, data: profile }}>{children}</ProfileContext.Provider>;
 };
 
 export default ProfileProvider;

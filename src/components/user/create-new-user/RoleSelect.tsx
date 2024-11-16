@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import { ComboboxData, ComboboxItem, Grid, GridCol } from "@mantine/core";
 
-import {
-  capitalizeFirstLetter,
-  showErrorNotification
-} from "@/utils/functions";
+import { capitalizeFirstLetter, showErrorNotification } from "@/utils/functions";
 import { FieldErrorPropsType } from "@/hooks/use-action-errors";
 import { getRoleListApi } from "@/lib/services/api/role.service";
 import { getFormattedError } from "@/utils/format-error";
@@ -37,9 +34,7 @@ const RoleSelect = ({ user, getFieldErrorProps }: RoleSelectProps) => {
   };
 
   const onRoleChange = (value: string | null) => {
-    const [selectedRole] = roleOptions.filter(
-      (item) => (item as unknown as ComboboxItem).value === value
-    );
+    const [selectedRole] = roleOptions.filter((item) => (item as unknown as ComboboxItem).value === value);
     if (value) setRoleItem(selectedRole as ComboboxItem);
   };
 
@@ -69,17 +64,10 @@ const RoleSelect = ({ user, getFieldErrorProps }: RoleSelectProps) => {
       </GridCol>
       {isTechnicianSelected() && (
         <GridCol span={6}>
-          <SpecialitySelect
-            user={user}
-            getFieldErrorProps={getFieldErrorProps}
-          />
+          <SpecialitySelect user={user} getFieldErrorProps={getFieldErrorProps} />
         </GridCol>
       )}
-      <IproTextInput
-        name="isTechnicianSelected"
-        defaultValue={isTechnicianSelected() ? 1 : 0}
-        style={{ display: "none" }}
-      />
+      <IproTextInput name="isTechnicianSelected" defaultValue={isTechnicianSelected() ? 1 : 0} style={{ display: "none" }} />
     </Grid>
   );
 };

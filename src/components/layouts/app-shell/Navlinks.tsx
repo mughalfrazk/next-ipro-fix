@@ -10,11 +10,7 @@ import { ButtonHTMLAttributes } from "react";
 
 const navlinkProps = (item: NavLinkRoute) => ({
   renderRoot: (props: LinkProps) =>
-    item.href ? (
-      <Link {...(props as LinkProps)} href={item.href ?? "#"} />
-    ) : (
-      <button {...(props as ButtonHTMLAttributes<HTMLButtonElement>)} />
-    ),
+    item.href ? <Link {...(props as LinkProps)} href={item.href ?? "#"} /> : <button {...(props as ButtonHTMLAttributes<HTMLButtonElement>)} />,
   label: (
     <Title order={5} fw={500} ms={6} opacity={0.8}>
       {item.label}
@@ -37,20 +33,9 @@ const Navlinks = () => {
 
   return routes.map((item, i) =>
     !!item.children?.length ? (
-      <NavLink
-        key={i}
-        classNames={classes}
-        {...navlinkProps(item)}
-        active={pathname === item?.href}
-        onClick={() => onParentNavlinkClick(item)}
-      >
+      <NavLink key={i} classNames={classes} {...navlinkProps(item)} active={pathname === item?.href} onClick={() => onParentNavlinkClick(item)}>
         {item.children.map((subItem, j) => (
-          <NavLink
-            key={j}
-            classNames={classes}
-            {...navlinkProps(subItem)}
-            active={pathname === subItem?.href}
-          />
+          <NavLink key={j} classNames={classes} {...navlinkProps(subItem)} active={pathname === subItem?.href} />
         ))}
       </NavLink>
     ) : (

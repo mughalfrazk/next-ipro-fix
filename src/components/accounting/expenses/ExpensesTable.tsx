@@ -41,8 +41,7 @@ const invoice_data = [
     },
     date: "25-10-2024",
     amount: 500,
-    comment:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+    comment: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
   },
   {
     id: "invoice_id",
@@ -53,8 +52,7 @@ const invoice_data = [
     },
     date: "25-10-2024",
     amount: 500,
-    comment:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+    comment: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
   },
   {
     id: "invoice_id",
@@ -65,8 +63,7 @@ const invoice_data = [
     },
     date: "25-10-2024",
     amount: 500,
-    comment:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+    comment: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
   },
   {
     id: "invoice_id",
@@ -77,8 +74,7 @@ const invoice_data = [
     },
     date: "25-10-2024",
     amount: 500,
-    comment:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+    comment: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
   },
   {
     id: "invoice_id",
@@ -89,8 +85,7 @@ const invoice_data = [
     },
     date: "25-10-2024",
     amount: 500,
-    comment:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+    comment: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
   },
   {
     id: "invoice_id",
@@ -101,8 +96,7 @@ const invoice_data = [
     },
     date: "25-10-2024",
     amount: 500,
-    comment:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+    comment: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
   },
   {
     id: "invoice_id",
@@ -113,8 +107,7 @@ const invoice_data = [
     },
     date: "25-10-2024",
     amount: 500,
-    comment:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+    comment: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
   },
   {
     id: "invoice_id",
@@ -125,8 +118,7 @@ const invoice_data = [
     },
     date: "25-10-2024",
     amount: 500,
-    comment:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+    comment: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
   },
   {
     id: "invoice_id",
@@ -137,8 +129,7 @@ const invoice_data = [
     },
     date: "25-10-2024",
     amount: 500,
-    comment:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+    comment: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
   },
   {
     id: "invoice_id",
@@ -149,8 +140,7 @@ const invoice_data = [
     },
     date: "25-10-2024",
     amount: 500,
-    comment:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+    comment: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
   }
 ];
 
@@ -185,10 +175,8 @@ const columns = [
         <Tooltip label={row.comment}>
           <Box w={300}>
             <Text truncate="end">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde
-              provident eos fugiat id necessitatibus magni ducimus molestias.
-              Placeat, consequatur. Quisquam, quae magnam perspiciatis excepturi
-              iste sint itaque sunt laborum. Nihil?
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde provident eos fugiat id necessitatibus magni ducimus molestias. Placeat,
+              consequatur. Quisquam, quae magnam perspiciatis excepturi iste sint itaque sunt laborum. Nihil?
             </Text>
           </Box>
         </Tooltip>
@@ -199,11 +187,7 @@ const columns = [
     accessor: "actions",
     render: () => {
       return (
-        <Button
-          variant="transparent"
-          size="compact-sm"
-          color="var(--mantine-color-primary-6)"
-        >
+        <Button variant="transparent" size="compact-sm" color="var(--mantine-color-primary-6)">
           Open Invoice
         </Button>
       );

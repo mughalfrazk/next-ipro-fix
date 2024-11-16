@@ -148,10 +148,7 @@ const Page = async () => {
         </GridCol>
         <GridCol span={{ sm: 8, lg: 4, base: 12 }}>
           <Card p={20} h={500}>
-            <Heading
-              title="Staff Working Progress"
-              description="Jobs done, earned income and target"
-            />
+            <Heading title="Staff Working Progress" description="Jobs done, earned income and target" />
             <ScrollArea mt={10}>
               {staff.map((item, idx) => (
                 <Group
@@ -161,8 +158,7 @@ const Page = async () => {
                   py={12}
                   classNames={{ root: "borderedListItem" }}
                   style={{
-                    borderBottom:
-                      "1px solid var(--mantine-color-default-border)"
+                    borderBottom: "1px solid var(--mantine-color-default-border)"
                   }}
                 >
                   <Group>
@@ -176,11 +172,7 @@ const Page = async () => {
                   </Group>
                   <Stack gap={0} ta="right">
                     <Text fw="bold" c="primary.6" size="sm">
-                      <NumberFormatter
-                        prefix="AED "
-                        value={item.amount}
-                        thousandSeparator
-                      />
+                      <NumberFormatter prefix="AED " value={item.amount} thousandSeparator />
                     </Text>
                     <ProgressRoot size="xl" w={150} radius="sm">
                       <ProgressSection value={item.progress} color="primary.6">
@@ -193,18 +185,12 @@ const Page = async () => {
             </ScrollArea>
           </Card>
         </GridCol>
-        <GridCol
-          span={{ lg: 5, base: 7 }}
-          display={{ lg: "block", base: "none" }}
-        >
+        <GridCol span={{ lg: 5, base: 7 }} display={{ lg: "block", base: "none" }}>
           <JobTypesGraphCard p={20} h={500} />
         </GridCol>
         <GridCol span={{ sm: 4, lg: 3, base: 12 }}>
           <Card p={20} h={500}>
-            <Heading
-              title="Job Reports"
-              description="Number of job status wise"
-            />
+            <Heading title="Job Reports" description="Number of job status wise" />
             <ScrollArea mt={10}>
               {jobStatuses.map((item, idx) => (
                 <Group
@@ -214,8 +200,7 @@ const Page = async () => {
                   py={17}
                   classNames={{ root: "borderedListItem" }}
                   style={{
-                    borderBottom:
-                      "1px solid var(--mantine-color-default-border)"
+                    borderBottom: "1px solid var(--mantine-color-default-border)"
                   }}
                 >
                   <Group>

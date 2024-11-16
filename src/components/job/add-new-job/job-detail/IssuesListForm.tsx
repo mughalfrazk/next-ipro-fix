@@ -39,16 +39,14 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
   useEffect(() => {
     if (!!job?.issues?.length) {
       setIssues([
-        ...job.issues.map(
-          ({ brand_id, model, name, quantity, charges, total }) => ({
-            brand_id,
-            model,
-            name,
-            quantity,
-            charges,
-            total
-          })
-        )
+        ...job.issues.map(({ brand_id, model, name, quantity, charges, total }) => ({
+          brand_id,
+          model,
+          name,
+          quantity,
+          charges,
+          total
+        }))
       ]);
     }
   }, [job]);
@@ -72,12 +70,7 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
         </Group>
       </GridCol>
       {issues.map((issue, idx) => (
-        <IssueItem
-          key={idx}
-          issue={issue}
-          idx={idx}
-          removeIssue={() => setIssues(issues.filter((_, j) => j !== idx))}
-        />
+        <IssueItem key={idx} issue={issue} idx={idx} removeIssue={() => setIssues(issues.filter((_, j) => j !== idx))} />
       ))}
       <GridCol span={12}>
         <Group

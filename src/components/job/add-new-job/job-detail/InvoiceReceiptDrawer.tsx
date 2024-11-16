@@ -1,16 +1,6 @@
 "use client";
 
-import {
-  Drawer,
-  Image,
-  Stack,
-  Center,
-  Group,
-  Text,
-  Paper,
-  Divider,
-  Table
-} from "@mantine/core";
+import { Drawer, Image, Stack, Center, Group, Text, Paper, Divider, Table } from "@mantine/core";
 import Heading from "@/components/common/Heading";
 import IproButton from "@/components/core/IproButton";
 import { useDisclosure } from "@mantine/hooks";
@@ -67,23 +57,18 @@ const InvoiveReceiptDrawer = () => {
               </Group>
               <Divider color="black" size="sm" my="sm" variant="dashed" />
               <Text ta="center" size="sm">
-                Policy: This is the footer Message you can type your message
-                here
+                Policy: This is the footer Message you can type your message here
               </Text>
               <Divider color="black" size="sm" my="sm" variant="dashed" />
               <Center>
-                <Image
-                  w={200}
-                  src="	https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT__zUYSKisjapIoQLxoKwojgUSoZsRDSODAQ&s"
-                />
+                <Image w={200} src="	https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT__zUYSKisjapIoQLxoKwojgUSoZsRDSODAQ&s" />
               </Center>
               <Stack justify="space-between" px={25} pt={20}>
                 <Text ta="center" size="sm">
                   Ph: 971 5224958
                 </Text>
                 <Text ta="center" size="sm">
-                  43, 57b Street, Umm Suqeim 1, Umm Suqeim, Dubai, United Arab
-                  Emirates
+                  43, 57b Street, Umm Suqeim 1, Umm Suqeim, Dubai, United Arab Emirates
                 </Text>
               </Stack>
             </Paper>

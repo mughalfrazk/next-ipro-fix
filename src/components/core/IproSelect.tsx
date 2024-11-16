@@ -5,13 +5,8 @@ type IproSelectProps = {
 } & SelectProps &
   TagsInputProps;
 
-const IproSelect = ({
-  componentType,
-  size = "md",
-  ...otherProps
-}: IproSelectProps) => {
-  if (componentType === "tags")
-    return <TagsInput size={size} {...otherProps} />;
+const IproSelect = ({ componentType, size = "md", ...otherProps }: IproSelectProps) => {
+  if (componentType === "tags") return <TagsInput size={size} {...otherProps} />;
 
   return <Select size={size} {...otherProps} />;
 };
