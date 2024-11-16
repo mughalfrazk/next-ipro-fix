@@ -42,7 +42,7 @@ const createJobAction = async (_: ActionResult, formData: FormData) => {
 
   try {
     await createJobApi(payload);
-    // redirect("/dashboard/job");
+    redirect("/dashboard/job");
     return {};
   } catch (error) {
     // `redirectTo` won't work without this line
