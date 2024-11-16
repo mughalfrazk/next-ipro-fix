@@ -19,8 +19,8 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
   const [issues, setIssues] = useState([
     {
       brand_id: 0,
-      model_id: "",
-      problem_id: "",
+      model_id: 0,
+      problem_id: 0,
       quantity: 0,
       charges: 0,
       total: 0
@@ -89,8 +89,8 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
               ...issues,
               {
                 brand_id: 0,
-                model_id: "",
-                problem_id: "",
+                model_id: 0,
+                problem_id: 0,
                 quantity: 0,
                 charges: 0,
                 total: 0

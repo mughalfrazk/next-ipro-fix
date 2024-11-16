@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ComboboxData, ComboboxItem } from "@mantine/core";
 
 import IproSelect, { IproSelectProps } from "@/components/core/IproSelect";
@@ -16,7 +16,7 @@ const CreateUpdateSelectInput = ({ label, name, inputDefaultValue, getDataFromAp
   const [optionList, setOptionList] = useState<ComboboxData>([]);
   const [optionItem, setOptionItem] = useState<ComboboxItem>();
 
-  const getDataFromApi = async () => {
+  const getDataFromApi = useCallback(async () => {
     try {
       const result = await getDataFromApiAndSetOption();
       setOptionList(result);
@@ -24,12 +24,15 @@ const CreateUpdateSelectInput = ({ label, name, inputDefaultValue, getDataFromAp
       const e = getFormattedError(error);
       showErrorNotification(e.errors?.formErrors?.[0]);
     }
-  };
+  }, []);
 
-  const onOptionChange = (value: string | null) => {
-    const [selectedItem] = optionList.filter((item) => (item as unknown as ComboboxItem).value === value);
-    if (value) setOptionItem(selectedItem as ComboboxItem);
-  };
+  const onOptionChange = useCallback(
+    (value: string | null) => {
+      const [selectedItem] = optionList.filter((item) => (item as unknown as ComboboxItem).value === value);
+      if (value) setOptionItem(selectedItem as ComboboxItem);
+    },
+    [optionList]
+  );
 
   useEffect(() => {
     getDataFromApi();
