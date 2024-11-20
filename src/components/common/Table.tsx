@@ -163,6 +163,7 @@ type TableProps = {
   searchProperty?: string;
   rightSection?: ReactNode;
   filter?: ReactNode;
+  drawerTitle?: string;
 };
 
 export const Table = ({
@@ -172,7 +173,8 @@ export const Table = ({
   description,
   search,
   rightSection,
-  filter
+  filter,
+  drawerTitle
 }: TableProps) => {
   const [opened, { open, close }] = useDisclosure();
 
@@ -182,9 +184,9 @@ export const Table = ({
         <Drawer
           opened={opened}
           onClose={close}
-          title="Filters"
+          title={drawerTitle}
           position="top"
-          size="30%"
+          size="320px"
         >
           {filter}
         </Drawer>
