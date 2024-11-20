@@ -17,7 +17,7 @@ import {
 import { DateInput } from "@mantine/dates";
 import IproButton from "@/components/core/IproButton";
 import { useDisclosure } from "@mantine/hooks";
-import ExpenseDrawerBody from "./expenseDrawerBody";
+import ExpenseDrawerBody from "./ExpenseDrawerBody";
 
 type RowType = {
   id: string;
