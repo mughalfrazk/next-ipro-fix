@@ -1,4 +1,4 @@
-import ExpensesList from "@/components/accounting/expenses/ExpensesList";
+import ExpensesList from "@/components/accounting/expenses/ExpensesTable";
 const ExpensesPage = async () => {
   return <ExpensesList />;
 };
