@@ -28,12 +28,12 @@ const createJobAction = async (_: ActionResult, formData: FormData) => {
       model_id: +item.model_id,
       quantity: +item.quantity,
       charges: +item.charges,
-      total: +item.total,
+      total: +item.total
     }))
   };
 
   if (payload.customer?.name && payload.customer?.phone && !payload.customer_id) {
-    payload.customer_id = "new"
+    payload.customer_id = "new";
   }
 
   const validatedPayload = await CreateJobPayloadSchema.safeParseAsync(payload);

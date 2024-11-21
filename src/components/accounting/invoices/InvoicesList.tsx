@@ -1,17 +1,7 @@
 "use client";
 
 import Table from "@/components/common/Table";
-import {
-  Avatar,
-  Badge,
-  Group,
-  Stack,
-  Button,
-  Title,
-  Text,
-  Grid,
-  MultiSelect
-} from "@mantine/core";
+import { Avatar, Badge, Group, Stack, Button, Title, Text, Grid, MultiSelect } from "@mantine/core";
 import { DateInput } from "@mantine/dates";
 import IproButton from "@/components/core/IproButton";
 const colorForInvoiceStatus = (name: string) => {
@@ -204,25 +194,13 @@ const InvoicesList = () => {
       columns={columns}
       filter={
         <Stack>
-          <Text size="sm">
-            You can filter invoices by dates, customer and status wise
-          </Text>
+          <Text size="sm">You can filter invoices by dates, customer and status wise</Text>
           <Grid grow>
             <Grid.Col span={6}>
-              <DateInput
-                label="Start Date"
-                placeholder="Enter Start Date"
-                valueFormat="YYYY MMM DD"
-                size="sm"
-              />
+              <DateInput label="Start Date" placeholder="Enter Start Date" valueFormat="YYYY MMM DD" size="sm" />
             </Grid.Col>
             <Grid.Col span={6}>
-              <DateInput
-                label="End Date"
-                placeholder="Enter End Date"
-                valueFormat="YYYY MMM DD"
-                size="sm"
-              />
+              <DateInput label="End Date" placeholder="Enter End Date" valueFormat="YYYY MMM DD" size="sm" />
             </Grid.Col>
             <Grid.Col span={6}>
               <MultiSelect

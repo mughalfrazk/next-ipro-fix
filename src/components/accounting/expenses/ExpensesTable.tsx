@@ -1,18 +1,7 @@
 "use client";
 
 import Table from "@/components/common/Table";
-import {
-  Tooltip,
-  Avatar,
-  Box,
-  Group,
-  Button,
-  Stack,
-  Title,
-  Text,
-  Grid,
-  MultiSelect
-} from "@mantine/core";
+import { Tooltip, Avatar, Box, Group, Button, Stack, Title, Text, Grid, MultiSelect } from "@mantine/core";
 import { DateInput } from "@mantine/dates";
 import { useDisclosure } from "@mantine/hooks";
 
@@ -197,10 +186,10 @@ const columns = [
 
 const ExpensesTable = () => {
   const [opened, { open, close }] = useDisclosure(false);
-  
+
   return (
     <>
-      <ExpenseDrawerBody openedDrawer={opened} closeDrawer={close}/>
+      <ExpenseDrawerBody openedDrawer={opened} closeDrawer={close} />
       <Table
         title="Total Expenses"
         description="All Expenses details"
@@ -210,25 +199,13 @@ const ExpensesTable = () => {
         drawerTitle={"Expense Filter"}
         filter={
           <Stack>
-            <Text size="sm">
-              You can filter expenses with date range and user
-            </Text>
+            <Text size="sm">You can filter expenses with date range and user</Text>
             <Grid grow>
               <Grid.Col span={6}>
-                <DateInput
-                  label="Start Date"
-                  placeholder="Enter Start Date"
-                  valueFormat="YYYY MMM DD"
-                  size="sm"
-                />
+                <DateInput label="Start Date" placeholder="Enter Start Date" valueFormat="YYYY MMM DD" size="sm" />
               </Grid.Col>
               <Grid.Col span={6}>
-                <DateInput
-                  label="End Date"
-                  placeholder="Enter End Date"
-                  valueFormat="YYYY MMM DD"
-                  size="sm"
-                />
+                <DateInput label="End Date" placeholder="Enter End Date" valueFormat="YYYY MMM DD" size="sm" />
               </Grid.Col>
             </Grid>
             <MultiSelect

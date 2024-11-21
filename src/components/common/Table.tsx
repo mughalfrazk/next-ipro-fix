@@ -149,28 +149,13 @@ type TableProps = {
   drawerTitle?: string;
 };
 
-export const Table = ({
-  columns = dummy_columns,
-  data = dummy_rows,
-  title,
-  description,
-  search,
-  rightSection,
-  filter,
-  drawerTitle
-}: TableProps) => {
+export const Table = ({ columns = dummy_columns, data = dummy_rows, title, description, search, rightSection, filter, drawerTitle }: TableProps) => {
   const [opened, { open, close }] = useDisclosure();
 
   return (
     <>
       {!!filter && (
-        <Drawer
-          opened={opened}
-          onClose={close}
-          title={drawerTitle}
-          position="top"
-          size="320px"
-        >
+        <Drawer opened={opened} onClose={close} title={drawerTitle} position="top" size="320px">
           {filter}
         </Drawer>
       )}

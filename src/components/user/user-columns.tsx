@@ -58,12 +58,9 @@ export const UserColumns = [
   {
     accessor: "target",
     render: (row: UserModel) => {
-      let progressPercentage = (
-        ((row.progress ?? 0) / (row.target ?? 1)) *
-        100
-      ).toFixed(2);
+      let progressPercentage = (((row.progress ?? 0) / (row.target ?? 1)) * 100).toFixed(2);
 
-      progressPercentage = String(isNaN(+progressPercentage) ? 0 : progressPercentage)  
+      progressPercentage = String(isNaN(+progressPercentage) ? 0 : progressPercentage);
       return (
         <ProgressRoot size="xl" w={150}>
           <ProgressSection value={+progressPercentage} color="primary.6">

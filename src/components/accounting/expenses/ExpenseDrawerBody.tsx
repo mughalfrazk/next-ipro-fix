@@ -52,4 +52,3 @@ const ExpenseDrawerBody = () => {
   );
 };
 export default ExpenseDrawerBody;
-
