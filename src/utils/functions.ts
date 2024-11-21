@@ -5,9 +5,7 @@ export const getNestedInputValues = (formData: FormData) => {
   const nestedListRegex = /^([^\[]+)(\[\d+\])(\[[^\]]+\])$/;
   /* eslint-disable @typescript-eslint/no-explicit-any */
   const dataform_obj: any = {};
-  for (const [key, value] of Object.entries(
-    Object.fromEntries(formData.entries())
-  )) {
+  for (const [key, value] of Object.entries(Object.fromEntries(formData.entries()))) {
     /* eslint-disable @typescript-eslint/no-explicit-any */
     const match: any = key.match(nestedListRegex);
 
@@ -28,9 +26,7 @@ export const getNestedInputValues = (formData: FormData) => {
   return dataform_obj;
 };
 
-export const showErrorNotification = (
-  message: string = "Something went wrong, please try again."
-) => {
+export const showErrorNotification = (message: string = "Something went wrong, please try again.") => {
   notifications.show({
     message,
     color: "red",

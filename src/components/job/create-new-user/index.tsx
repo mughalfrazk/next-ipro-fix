@@ -1,16 +1,6 @@
 "use client";
 
-import {
-  Center,
-  Button,
-  Card,
-  Divider,
-  Grid,
-  GridCol,
-  Group,
-  Image,
-  Stack
-} from "@mantine/core";
+import { Center, Button, Card, Divider, Grid, GridCol, Group, Image, Stack } from "@mantine/core";
 import { IconRefresh } from "@tabler/icons-react";
 
 import IproSelect from "@/components/core/IproSelect";
@@ -26,10 +16,7 @@ const AddNewUser = () => {
           <Card>
             <Group justify="space-between">
               <Stack>
-                <Heading
-                  title="New User Details"
-                  description="Add new User by filling out the form"
-                ></Heading>
+                <Heading title="New User Details" description="Add new User by filling out the form"></Heading>
               </Stack>
               <IproButton variant="outline">Remove User</IproButton>
             </Group>
@@ -64,11 +51,7 @@ const AddNewUser = () => {
           <Card bg="var(--mantine-color-primary-6)">
             <Center>
               <Stack h={360} justify="space-between">
-                <Button
-                  color="white"
-                  leftSection={<IconRefresh size={20} />}
-                  variant="transparent"
-                >
+                <Button color="white" leftSection={<IconRefresh size={20} />} variant="transparent">
                   Reset Image
                 </Button>
                 <Image

@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  CSSVariablesResolver,
-  DEFAULT_THEME,
-  Loader,
-  MantineThemeOverride,
-  createTheme,
-  mergeMantineTheme
-} from "@mantine/core";
+import { CSSVariablesResolver, DEFAULT_THEME, Loader, MantineThemeOverride, createTheme, mergeMantineTheme } from "@mantine/core";
 import { CssLoader } from "./CssLoader";
 import { generateColors } from "@mantine/colors-generator";
 
@@ -78,7 +71,4 @@ export const resolver: CSSVariablesResolver = (theme) => ({
 });
 
 /// For use of theme outside of a component
-export const themeOutSideComponents = mergeMantineTheme(
-  DEFAULT_THEME,
-  iproTheme
-);
+export const themeOutSideComponents = mergeMantineTheme(DEFAULT_THEME, iproTheme);

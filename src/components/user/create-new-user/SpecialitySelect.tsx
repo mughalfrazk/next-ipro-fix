@@ -12,10 +12,7 @@ type SpecialitySelectProps = {
   user?: ProfileModel;
 } & FieldErrorPropsType;
 
-const SpecialitySelect = ({
-  user,
-  getFieldErrorProps
-}: SpecialitySelectProps) => {
+const SpecialitySelect = ({ user, getFieldErrorProps }: SpecialitySelectProps) => {
   const [specialityOptions, setSpecialityOptions] = useState<ComboboxData>([]);
   const [specialityItem, setSpecialityItem] = useState<ComboboxItem>();
 
@@ -35,9 +32,7 @@ const SpecialitySelect = ({
   };
 
   const onSpecialityChange = (value: string | null) => {
-    const [selectedSpeciality] = specialityOptions.filter(
-      (item) => (item as unknown as ComboboxItem).value === value
-    );
+    const [selectedSpeciality] = specialityOptions.filter((item) => (item as unknown as ComboboxItem).value === value);
     if (value) setSpecialityItem(selectedSpeciality as ComboboxItem);
   };
 

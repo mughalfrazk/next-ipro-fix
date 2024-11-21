@@ -27,9 +27,7 @@ const getAuthApiClient = () => {
       return request;
     },
     (error) => {
-      console.error(
-        `Failed to send request [${error.message}]: ${error.config.url}`
-      );
+      console.error(`Failed to send request [${error.message}]: ${error.config.url}`);
       return Promise.reject(error);
     }
   );
@@ -58,9 +56,7 @@ const getAuthApiClient = () => {
       }
 
       // const status = error.response?.status as number
-      console.error(
-        `Failed to receive response [${error.message}]: ${error.config.url}`
-      );
+      console.error(`Failed to receive response [${error.message}]: ${error.config.url}`);
       return Promise.reject(error);
     }
   );

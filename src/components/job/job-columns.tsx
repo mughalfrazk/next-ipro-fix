@@ -42,11 +42,7 @@ export const JobColumns = [
     render: (row: JobModel) => {
       return (
         <Group>
-          <Avatar
-            key={row.customer.name}
-            name={row.customer.name}
-            color="initials"
-          />
+          <Avatar key={row.customer.name} name={row.customer.name} color="initials" />
           <Stack gap={2}>
             <Title order={6}>{row.customer.name}</Title>
             <Text size={"0.7rem"}>{row.customer.phone}</Text>
@@ -59,12 +55,7 @@ export const JobColumns = [
     accessor: "status",
     render: (row: JobModel) => {
       return (
-        <Badge
-          variant="outline"
-          color={colorForJobStatus(row.job_status.name)}
-          radius="sm"
-          p={12}
-        >
+        <Badge variant="outline" color={colorForJobStatus(row.job_status.name)} radius="sm" p={12}>
           {row.job_status.name}
         </Badge>
       );
@@ -85,18 +76,10 @@ export const JobColumns = [
     render: (row: JobModel) => {
       return !!row?.technician ? (
         <Group>
-          <Avatar
-            key={row.technician.id}
-            name={`${row.technician.first_name} ${row.technician.last_name}`}
-            color="initials"
-          />
+          <Avatar key={row.technician.id} name={`${row.technician.first_name} ${row.technician.last_name}`} color="initials" />
           <Stack gap={2}>
-            <Title
-              order={6}
-            >{`${row.technician.first_name} ${row.technician.last_name}`}</Title>
-            <Text
-              size={"0.7rem"}
-            >{`${row.technician.first_name} ${row.technician.last_name}`}</Text>
+            <Title order={6}>{`${row.technician.first_name} ${row.technician.last_name}`}</Title>
+            <Text size={"0.7rem"}>{`${row.technician.first_name} ${row.technician.last_name}`}</Text>
           </Stack>
         </Group>
       ) : (

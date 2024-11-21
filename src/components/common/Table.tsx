@@ -4,16 +4,7 @@ import { ReactNode } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { DataTable } from "mantine-datatable";
 import { IconFilter, IconSearch } from "@tabler/icons-react";
-import {
-  Avatar,
-  Card,
-  Drawer,
-  Grid,
-  Group,
-  Stack,
-  Text,
-  Title
-} from "@mantine/core";
+import { Avatar, Card, Drawer, Grid, Group, Stack, Text, Title } from "@mantine/core";
 
 import IproButton from "../core/IproButton";
 import IproTextInput from "../core/IproTextInput";
@@ -49,11 +40,7 @@ const dummy_columns = [
     render: (row: RowType) => {
       return (
         <Group>
-          <Avatar
-            key={row.customer.name}
-            name={row.customer.name}
-            color="initials"
-          />
+          <Avatar key={row.customer.name} name={row.customer.name} color="initials" />
           <Stack gap={2}>
             <Title order={6}>{row.customer.name}</Title>
             <Text size={"0.7rem"}>{row.customer.phone}</Text>
@@ -70,11 +57,7 @@ const dummy_columns = [
     render: (row: RowType) => {
       return (
         <Group>
-          <Avatar
-            key={row.technician.name}
-            name={row.technician.name}
-            color="initials"
-          />
+          <Avatar key={row.technician.name} name={row.technician.name} color="initials" />
           <Stack gap={2}>
             <Title order={6}>{row.technician.name}</Title>
             <Text size={"0.7rem"}>{row.technician.phone}</Text>
@@ -166,28 +149,13 @@ type TableProps = {
   drawerTitle?: string;
 };
 
-export const Table = ({
-  columns = dummy_columns,
-  data = dummy_rows,
-  title,
-  description,
-  search,
-  rightSection,
-  filter,
-  drawerTitle
-}: TableProps) => {
+export const Table = ({ columns = dummy_columns, data = dummy_rows, title, description, search, rightSection, filter, drawerTitle }: TableProps) => {
   const [opened, { open, close }] = useDisclosure();
 
   return (
     <>
       {!!filter && (
-        <Drawer
-          opened={opened}
-          onClose={close}
-          title={drawerTitle}
-          position="top"
-          size="320px"
-        >
+        <Drawer opened={opened} onClose={close} title={drawerTitle} position="top" size="320px">
           {filter}
         </Drawer>
       )}
@@ -199,21 +167,13 @@ export const Table = ({
             </Grid.Col>
           )}
           {search && (
-            <Grid.Col
-              span={!title && !rightSection ? 12 : rightSection ? 8 : 10}
-            >
+            <Grid.Col span={!title && !rightSection ? 12 : rightSection ? 8 : 10}>
               <IproTextInput
                 placeholder="Search anything here"
                 width={"100%"}
                 leftSection={<IconSearch />}
                 rightSection={
-                  <IproButton
-                    size="md"
-                    px={4}
-                    radius="sm"
-                    isIconOnly
-                    onClick={open}
-                  >
+                  <IproButton size="md" px={4} radius="sm" isIconOnly onClick={open}>
                     <IconFilter />
                   </IproButton>
                 }

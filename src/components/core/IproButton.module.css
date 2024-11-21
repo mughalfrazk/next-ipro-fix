@@ -31,16 +31,10 @@
   }
 
   &[data-variant="light"] {
-    background-color: light-dark(
-      var(--mantine-color-primary-1),
-      var(--mantine-color-primary-6)
-    );
+    background-color: light-dark(var(--mantine-color-primary-1), var(--mantine-color-primary-6));
 
     &:hover {
-      background-color: light-dark(
-        var(--mantine-color-primary-2),
-        var(--mantine-color-primary-7)
-      );
+      background-color: light-dark(var(--mantine-color-primary-2), var(--mantine-color-primary-7));
     }
 
     &:disabled {

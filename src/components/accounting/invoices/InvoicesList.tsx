@@ -1,27 +1,11 @@
 "use client";
 
 import Table from "@/components/common/Table";
-import {
-  Avatar,
-  Badge,
-  Group,
-  Stack,
-  Button,
-  Title,
-  Text,
-  Grid,
-  MultiSelect
-} from "@mantine/core";
+import { Avatar, Badge, Group, Stack, Button, Title, Text, Grid, MultiSelect } from "@mantine/core";
 import { DateInput } from "@mantine/dates";
 import IproButton from "@/components/core/IproButton";
 const colorForInvoiceStatus = (name: string) => {
-  return name === "Half Paid"
-    ? "red"
-    : name === "Unpaid"
-      ? "indigo"
-      : name === "Paid"
-        ? "green"
-        : "black";
+  return name === "Half Paid" ? "red" : name === "Unpaid" ? "indigo" : name === "Paid" ? "green" : "black";
 };
 
 type RowType = {
@@ -160,11 +144,7 @@ const columns = [
     render: (row: RowType) => {
       return (
         <Group>
-          <Avatar
-            key={row.customer.first_name}
-            name={row.customer.first_name}
-            color="initials"
-          />
+          <Avatar key={row.customer.first_name} name={row.customer.first_name} color="initials" />
           <Stack gap={2}>
             <Title order={6}>{row.customer.first_name}</Title>
           </Stack>
@@ -179,12 +159,7 @@ const columns = [
     accessor: "status",
     render: (row: RowType) => {
       return (
-        <Badge
-          variant="outline"
-          color={colorForInvoiceStatus(row.status.paid)}
-          radius="sm"
-          p={12}
-        >
+        <Badge variant="outline" color={colorForInvoiceStatus(row.status.paid)} radius="sm" p={12}>
           {row.status.paid}
         </Badge>
       );
@@ -200,11 +175,7 @@ const columns = [
     accessor: "actions",
     render: () => {
       return (
-        <Button
-          variant="transparent"
-          size="compact-sm"
-          color="var(--mantine-color-primary-6)"
-        >
+        <Button variant="transparent" size="compact-sm" color="var(--mantine-color-primary-6)">
           Open Invoice
         </Button>
       );
@@ -223,25 +194,13 @@ const InvoicesList = () => {
       columns={columns}
       filter={
         <Stack>
-          <Text size="sm">
-            You can filter invoices by dates, customer and status wise
-          </Text>
+          <Text size="sm">You can filter invoices by dates, customer and status wise</Text>
           <Grid grow>
             <Grid.Col span={6}>
-              <DateInput
-                label="Start Date"
-                placeholder="Enter Start Date"
-                valueFormat="YYYY MMM DD"
-                size="sm"
-              />
+              <DateInput label="Start Date" placeholder="Enter Start Date" valueFormat="YYYY MMM DD" size="sm" />
             </Grid.Col>
             <Grid.Col span={6}>
-              <DateInput
-                label="End Date"
-                placeholder="Enter End Date"
-                valueFormat="YYYY MMM DD"
-                size="sm"
-              />
+              <DateInput label="End Date" placeholder="Enter End Date" valueFormat="YYYY MMM DD" size="sm" />
             </Grid.Col>
             <Grid.Col span={6}>
               <MultiSelect

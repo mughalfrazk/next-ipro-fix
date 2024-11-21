@@ -1,15 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import {
-  Card,
-  CloseButton,
-  Divider,
-  Grid,
-  GridCol,
-  Group,
-  Title
-} from "@mantine/core";
+import { Card, CloseButton, Divider, Grid, GridCol, Group, Title } from "@mantine/core";
 import { IconSquareRoundedPlusFilled } from "@tabler/icons-react";
 
 import { useMantineColorScheme } from "@/hooks/use-mantine-color-scheme-wrapper";
@@ -38,10 +30,7 @@ const JobPurchasesTab = () => {
   return (
     <form action={formAction}>
       <Card pb={100}>
-        <Heading
-          title="Job Purchase Details"
-          description="Add new Purchase for this job by clicking + icon"
-        />
+        <Heading title="Job Purchase Details" description="Add new Purchase for this job by clicking + icon" />
         <Divider mt={10} mb={20} />
         <Grid>
           {purchases.map((_, idx) => (
@@ -51,20 +40,13 @@ const JobPurchasesTab = () => {
                   <GridCol pt={30} pb={20}>
                     <Group
                       justify="space-between"
-                      bg={lightDark(
-                        "var(--mantine-color-gray-2)",
-                        "var(--mantine-color-dark-7)"
-                      )}
+                      bg={lightDark("var(--mantine-color-gray-2)", "var(--mantine-color-dark-7)")}
                       px={20}
                       py={10}
                       style={{ borderRadius: "0.5rem" }}
                     >
                       <Title order={5}>Purchase {idx}</Title>
-                      <CloseButton
-                        onClick={() =>
-                          setPurchases(purchases.filter((_, j) => j !== idx))
-                        }
-                      />
+                      <CloseButton onClick={() => setPurchases(purchases.filter((_, j) => j !== idx))} />
                     </Group>
                   </GridCol>
                 )}

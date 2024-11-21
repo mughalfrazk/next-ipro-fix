@@ -1,7 +1,7 @@
 "use client";
 
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { Card, ComboboxData, Divider, Grid, GridCol } from "@mantine/core";
+import { Badge, Card, ComboboxData, Divider, Grid, GridCol, Group } from "@mantine/core";
 
 import Heading from "@/components/common/Heading";
 import IproSelect from "@/components/core/IproSelect";
@@ -14,10 +14,7 @@ type CustomerDetailProps = {
   customer?: CustomerModel;
 } & FieldErrorPropsType;
 
-const CustomerDetail = ({
-  customer,
-  getFieldErrorProps
-}: CustomerDetailProps) => {
+const CustomerDetail = ({ customer, getFieldErrorProps }: CustomerDetailProps) => {
   const [customers, setCustomers] = useState<CustomerListModel>([]);
   const [nameOptionsList, setNameOptionsList] = useState<ComboboxData>([]);
   const [phoneOptionsList, setPhoneOptionsList] = useState<ComboboxData>([]);
@@ -34,12 +31,8 @@ const CustomerDetail = ({
     try {
       const result = await getCustomerListApi();
       setCustomers(result);
-      setNameOptionsList(
-        result.map((item) => ({ label: item.name, value: item.id }))
-      );
-      setPhoneOptionsList(
-        result.map((item) => ({ label: item.phone, value: item.id }))
-      );
+      setNameOptionsList(result.map((item) => ({ label: item.name, value: item.id })));
+      setPhoneOptionsList(result.map((item) => ({ label: item.phone, value: item.id })));
     } catch (error) {
       console.log(error);
     }
@@ -73,10 +66,7 @@ const CustomerDetail = ({
     setPhoneSearch(value);
   };
 
-  const onTagRemoveHandler = (
-    value: string,
-    setValue: Dispatch<SetStateAction<string[]>>
-  ) => {
+  const onTagRemoveHandler = (value: string, setValue: Dispatch<SetStateAction<string[]>>) => {
     if (customerId) {
       setName([]);
       setPhone([]);
@@ -100,10 +90,10 @@ const CustomerDetail = ({
 
   return (
     <Card>
-      <Heading
-        title="Customer Details"
-        description="Fill out the customer details to create a new Job"
-      />
+      <Group justify="space-between">
+        <Heading title="Customer Details" description="Fill out the customer details to create a new Job" />
+        {getFieldErrorProps(["customer", "customer_id"]).error && <Badge color="red">Please fill all the customers details</Badge>}
+      </Group>
       <Divider mt={10} mb={20} />
 
       <Grid>
@@ -120,7 +110,6 @@ const CustomerDetail = ({
             onSearchChange={onNameSearchHandler}
             onRemove={(value: string) => onTagRemoveHandler(value, setName)}
             maxDropdownHeight={200}
-            {...getFieldErrorProps("customer_id")}
           />
         </GridCol>
         <GridCol span={4}>
@@ -136,7 +125,6 @@ const CustomerDetail = ({
             onSearchChange={onPhoneSearchHandler}
             onRemove={(value: string) => onTagRemoveHandler(value, setPhone)}
             maxDropdownHeight={200}
-            {...getFieldErrorProps("customer_id")}
           />
         </GridCol>
         <GridCol span={4}>

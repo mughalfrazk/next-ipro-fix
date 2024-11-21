@@ -14,27 +14,10 @@ const CommentDrawer = () => {
 
   return (
     <Box pos="relative">
-      <IproButton
-        pos="absolute"
-        onClick={open}
-        style={{ zIndex: z.docked }}
-        top={-75}
-        right={0}
-        isIconOnly
-        radius="xl"
-        size="xl"
-        h={60}
-        w={60}
-      >
+      <IproButton pos="absolute" onClick={open} style={{ zIndex: z.docked }} top={-75} right={0} isIconOnly radius="xl" size="xl" h={60} w={60}>
         <IconMessageDots style={{ width: rem(40), height: rem(40) }} />
       </IproButton>
-      <Drawer
-        position="right"
-        opened={opened}
-        onClose={close}
-        title="Job Comments"
-        pos="relative"
-      >
+      <Drawer position="right" opened={opened} onClose={close} title="Job Comments" pos="relative">
         <CommentDrawerBody />
       </Drawer>
     </Box>

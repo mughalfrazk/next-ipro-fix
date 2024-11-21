@@ -14,10 +14,7 @@ type TechnicianSelectProps = {
   technician: UserModel | undefined | null;
 } & FieldErrorPropsType;
 
-const TechnicianSelect = ({
-  technician,
-  getFieldErrorProps
-}: TechnicianSelectProps) => {
+const TechnicianSelect = ({ technician, getFieldErrorProps }: TechnicianSelectProps) => {
   const [technicianItem, setTechnicianItem] = useState<ComboboxItem>();
   const [technicianOptions, setTechnicianOptions] = useState<ComboboxData>([]);
 
@@ -37,9 +34,7 @@ const TechnicianSelect = ({
   };
 
   const onTechnicianChange = (value: string | null) => {
-    const [selectedTechnician] = technicianOptions.filter(
-      (item) => (item as unknown as ComboboxItem).value === value
-    );
+    const [selectedTechnician] = technicianOptions.filter((item) => (item as unknown as ComboboxItem).value === value);
     if (value) setTechnicianItem(selectedTechnician as ComboboxItem);
   };
 

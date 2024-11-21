@@ -15,11 +15,7 @@ const AppShellLayout = ({ children }: { children: ReactNode }) => {
   const [opened, { toggle }] = useDisclosure();
 
   return (
-    <AppShell
-      header={{ height: 60 }}
-      navbar={{ width: 300, breakpoint: "sm", collapsed: { mobile: !opened } }}
-      padding="md"
-    >
+    <AppShell header={{ height: 60 }} navbar={{ width: 300, breakpoint: "sm", collapsed: { mobile: !opened } }} padding="md">
       <AppShell.Header withBorder={false}>
         <Header opened={opened} toggle={toggle} />
       </AppShell.Header>
@@ -31,9 +27,7 @@ const AppShellLayout = ({ children }: { children: ReactNode }) => {
           <Footer />
         </AppShell.Section>
       </AppShell.Navbar>
-      <AppShell.Main bg={lightDark(theme.colors.gray[0], theme.black)}>
-        {children}
-      </AppShell.Main>
+      <AppShell.Main bg={lightDark(theme.colors.gray[0], theme.black)}>{children}</AppShell.Main>
     </AppShell>
   );
 };

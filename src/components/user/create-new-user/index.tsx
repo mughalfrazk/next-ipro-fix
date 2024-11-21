@@ -29,17 +29,12 @@ import { createUserAction } from "@/lib/actions/user.action";
 import { ProfileModel } from "@/lib/models/user.model";
 
 const AddNewUser = ({ user }: { user?: ProfileModel }) => {
-  const { formAction, getFieldErrorProps } = useFormAction(
-    createUserAction,
-    {}
-  );
+  const { formAction, getFieldErrorProps } = useFormAction(createUserAction, {});
   const [progressPercentage, setProgressPercentage] = useState<string>("");
 
   useEffect(() => {
     if (user?.progress && user.target) {
-      const perc = (((user.progress ?? 0) / (user.target ?? 0)) * 100).toFixed(
-        2
-      );
+      const perc = (((user.progress ?? 0) / (user.target ?? 0)) * 100).toFixed(2);
       setProgressPercentage(perc);
     }
     setProgressPercentage;
@@ -53,44 +48,23 @@ const AddNewUser = ({ user }: { user?: ProfileModel }) => {
             <Card pb={100}>
               <Group justify="space-between">
                 <Stack>
-                  <Heading
-                    title="New User Details"
-                    description="Add new User by filling out the form"
-                  ></Heading>
+                  <Heading title="New User Details" description="Add new User by filling out the form"></Heading>
                 </Stack>
                 <IproButton variant="outline">Remove User</IproButton>
               </Group>
               <Divider mt={10} mb={20} />
               <Grid>
                 <GridCol span={4}>
-                  <IproTextInput
-                    name="first_name"
-                    label="First Name"
-                    defaultValue={user?.first_name}
-                    {...getFieldErrorProps("first_name")}
-                  />
+                  <IproTextInput name="first_name" label="First Name" defaultValue={user?.first_name} {...getFieldErrorProps("first_name")} />
                 </GridCol>
                 <GridCol span={4}>
-                  <IproTextInput
-                    name="last_name"
-                    label="Last Name"
-                    defaultValue={user?.last_name}
-                    {...getFieldErrorProps("last_name")}
-                  />
+                  <IproTextInput name="last_name" label="Last Name" defaultValue={user?.last_name} {...getFieldErrorProps("last_name")} />
                 </GridCol>
                 <GridCol span={4}>
-                  <IproTextInput
-                    name="phone"
-                    label="Phone"
-                    defaultValue={user?.phone ?? ""}
-                    {...getFieldErrorProps("phone")}
-                  />
+                  <IproTextInput name="phone" label="Phone" defaultValue={user?.phone ?? ""} {...getFieldErrorProps("phone")} />
                 </GridCol>
                 <GridCol span={8}>
-                  <RoleSelect
-                    user={user}
-                    getFieldErrorProps={getFieldErrorProps}
-                  />
+                  <RoleSelect user={user} getFieldErrorProps={getFieldErrorProps} />
                 </GridCol>
                 <GridCol span={4}>
                   <IproTextInput
@@ -104,47 +78,24 @@ const AddNewUser = ({ user }: { user?: ProfileModel }) => {
                 {!user && (
                   <Fragment>
                     <GridCol span={6}>
-                      <IproTextInput
-                        type="email"
-                        name="email"
-                        label="Email"
-                        {...getFieldErrorProps("email")}
-                      />
+                      <IproTextInput type="email" name="email" label="Email" {...getFieldErrorProps("email")} />
                     </GridCol>
                     <GridCol span={6}>
-                      <IproTextInput
-                        type="password"
-                        name="password"
-                        label="Password"
-                        {...getFieldErrorProps("password")}
-                      />
+                      <IproTextInput type="password" name="password" label="Password" {...getFieldErrorProps("password")} />
                     </GridCol>
                   </Fragment>
                 )}
                 <GridCol span={12}>
-                  <IproTextInput
-                    type="text"
-                    name="address"
-                    label="Address"
-                    defaultValue={user?.address ?? ""}
-                    {...getFieldErrorProps("address")}
-                  />
+                  <IproTextInput type="text" name="address" label="Address" defaultValue={user?.address ?? ""} {...getFieldErrorProps("address")} />
                 </GridCol>
                 {user && (
                   <GridCol span={12} mt={10}>
-                    <Paper
-                      p={18}
-                      withBorder
-                      style={{ backgroundColor: "transparent" }}
-                    >
+                    <Paper p={18} withBorder style={{ backgroundColor: "transparent" }}>
                       <Title order={5} mb={10}>
                         Progress
                       </Title>
                       <ProgressRoot size="xl">
-                        <ProgressSection
-                          value={+progressPercentage}
-                          color="primary.6"
-                        >
+                        <ProgressSection value={+progressPercentage} color="primary.6">
                           <ProgressLabel>{progressPercentage}%</ProgressLabel>
                         </ProgressSection>
                       </ProgressRoot>
@@ -164,11 +115,7 @@ const AddNewUser = ({ user }: { user?: ProfileModel }) => {
             <Card h={"100%"} bg="var(--mantine-color-primary-6)">
               <Flex justify="center" align="center" h="100%">
                 <Stack justify="center">
-                  <Button
-                    color="white"
-                    leftSection={<IconRefresh size={20} />}
-                    variant="transparent"
-                  >
+                  <Button color="white" leftSection={<IconRefresh size={20} />} variant="transparent">
                     Reset Image
                   </Button>
                   <Box py="lg">

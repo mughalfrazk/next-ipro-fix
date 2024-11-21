@@ -1,13 +1,5 @@
 import IproButton from "@/components/core/IproButton";
-import {
-  Avatar,
-  Badge,
-  Group,
-  ScrollArea,
-  Stack,
-  Text,
-  Textarea
-} from "@mantine/core";
+import { Avatar, Badge, Group, ScrollArea, Stack, Text, Textarea } from "@mantine/core";
 
 const CommentDrawerBody = () => {
   const comments = [
@@ -114,11 +106,7 @@ const CommentDrawerBody = () => {
         >
           <Group justify="space-between">
             <Group>
-              <Avatar
-                src={"https://cdn-icons-png.flaticon.com/512/147/147131.png"}
-                size="md"
-                alt="user image"
-              />
+              <Avatar src={"https://cdn-icons-png.flaticon.com/512/147/147131.png"} size="md" alt="user image" />
               <Stack gap={0}>
                 <Text size="sm" fw={500}>
                   {item.user.name}

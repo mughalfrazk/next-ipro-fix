@@ -1,22 +1,7 @@
 "use client";
 
-import {
-  ScrollArea,
-  Title,
-  Text,
-  Avatar,
-  Grid,
-  Group,
-  Card,
-  Stack,
-  Box
-} from "@mantine/core";
-import {
-  IconChartSankey,
-  IconChartHistogram,
-  IconRosetteDiscount,
-  IconCircleFilled
-} from "@tabler/icons-react";
+import { ScrollArea, Title, Text, Avatar, Grid, Group, Card, Stack, Box } from "@mantine/core";
+import { IconChartSankey, IconChartHistogram, IconRosetteDiscount, IconCircleFilled } from "@tabler/icons-react";
 import { DateInput } from "@mantine/dates";
 
 import Heading from "@/components/common/Heading";
@@ -29,20 +14,10 @@ const ProfitLossBody = () => {
         <Card>
           <Grid justify="flex-end">
             <Grid.Col span={5}>
-              <DateInput
-                label="Start Date"
-                placeholder="Enter Start Date"
-                valueFormat="YYYY MMM DD"
-                size="md"
-              />
+              <DateInput label="Start Date" placeholder="Enter Start Date" valueFormat="YYYY MMM DD" size="md" />
             </Grid.Col>
             <Grid.Col span={5}>
-              <DateInput
-                label="End Date"
-                placeholder="Enter End Date"
-                valueFormat="YYYY MMM DD"
-                size="md"
-              />
+              <DateInput label="End Date" placeholder="Enter End Date" valueFormat="YYYY MMM DD" size="md" />
             </Grid.Col>
             <Grid.Col span={2}>
               <Stack justify="flex-end" h="100%" pb={3}>
@@ -109,13 +84,7 @@ const ProfitLossBody = () => {
             <Heading title="Profit Total & Margin" opacity={0.8} />
             <Group>
               <Group w="45%">
-                <Avatar
-                  style={{ border: "2px solid var(--mantine-color-cyan-5)" }}
-                  color="cyan.5"
-                  bg="cyan.0"
-                  size="4rem"
-                  radius="xl"
-                >
+                <Avatar style={{ border: "2px solid var(--mantine-color-cyan-5)" }} color="cyan.5" bg="cyan.0" size="4rem" radius="xl">
                   <IconChartHistogram size="1.7rem" />
                 </Avatar>
                 <Stack gap={0}>
@@ -128,13 +97,7 @@ const ProfitLossBody = () => {
                 </Stack>
               </Group>
               <Group w="45%">
-                <Avatar
-                  style={{ border: "2px solid var(--mantine-color-blue-5)" }}
-                  color="blue.5"
-                  bg="blue.0"
-                  size="4rem"
-                  radius="xl"
-                >
+                <Avatar style={{ border: "2px solid var(--mantine-color-blue-5)" }} color="blue.5" bg="blue.0" size="4rem" radius="xl">
                   <IconRosetteDiscount size="1.8rem" />
                 </Avatar>
                 <Stack gap={0}>
@@ -157,10 +120,7 @@ const ProfitLossBody = () => {
             <Group justify="space-between">
               <Stack gap={3} align="center">
                 <Group justify="center" gap={8}>
-                  <IconCircleFilled
-                    size="1rem"
-                    color="var(--mantine-color-red-6)"
-                  />
+                  <IconCircleFilled size="1rem" color="var(--mantine-color-red-6)" />
                   <Text mt={3} size="md" c="gray.6">
                     SW-Software
                   </Text>
@@ -171,10 +131,7 @@ const ProfitLossBody = () => {
               </Stack>
               <Stack gap={3} align="center">
                 <Group justify="center" gap={8}>
-                  <IconCircleFilled
-                    size="1rem"
-                    color="var(--mantine-color-violet-6)"
-                  />
+                  <IconCircleFilled size="1rem" color="var(--mantine-color-violet-6)" />
                   <Text mt={3} size="md" c="gray.6">
                     HW-Hardware
                   </Text>
@@ -185,10 +142,7 @@ const ProfitLossBody = () => {
               </Stack>
               <Stack gap={3} align="center">
                 <Group justify="center" gap={8}>
-                  <IconCircleFilled
-                    size="1rem"
-                    color="var(--mantine-color-blue-6)"
-                  />
+                  <IconCircleFilled size="1rem" color="var(--mantine-color-blue-6)" />
                   <Text mt={3} size="md" c="gray.6">
                     GW-Android
                   </Text>
@@ -199,10 +153,7 @@ const ProfitLossBody = () => {
               </Stack>
               <Stack gap={3} align="center">
                 <Group justify="center" gap={8}>
-                  <IconCircleFilled
-                    size="1rem"
-                    color="var(--mantine-color-green-6)"
-                  />
+                  <IconCircleFilled size="1rem" color="var(--mantine-color-green-6)" />
                   <Text mt={3} size="md" c="gray.6">
                     GW-Apple
                   </Text>
@@ -224,13 +175,7 @@ const ProfitLossBody = () => {
             <Heading title="Loss Detail & Margin" opacity={0.8} />
             <Group>
               <Group w="45%">
-                <Avatar
-                  style={{ border: "2px solid var(--mantine-color-red-5)" }}
-                  color="red.5"
-                  bg="red.0"
-                  size="4rem"
-                  radius="xl"
-                >
+                <Avatar style={{ border: "2px solid var(--mantine-color-red-5)" }} color="red.5" bg="red.0" size="4rem" radius="xl">
                   <IconChartSankey size="1.7rem" />
                 </Avatar>
                 <Stack gap={0}>
@@ -243,13 +188,7 @@ const ProfitLossBody = () => {
                 </Stack>
               </Group>
               <Group w="45%">
-                <Avatar
-                  style={{ border: "2px solid var(--mantine-color-red-5)" }}
-                  color="red.5"
-                  bg="red.0"
-                  size="4rem"
-                  radius="xl"
-                >
+                <Avatar style={{ border: "2px solid var(--mantine-color-red-5)" }} color="red.5" bg="red.0" size="4rem" radius="xl">
                   <IconRosetteDiscount size="1.8rem" />
                 </Avatar>
                 <Stack gap={0}>
@@ -272,10 +211,7 @@ const ProfitLossBody = () => {
             <Group justify="space-around">
               <Stack gap={3} align="center">
                 <Group justify="center" gap={8}>
-                  <IconCircleFilled
-                    size="1rem"
-                    color="var(--mantine-color-red-6)"
-                  />
+                  <IconCircleFilled size="1rem" color="var(--mantine-color-red-6)" />
                   <Text mt={3} size="md" c="gray.6">
                     Total Purchases
                   </Text>
@@ -286,10 +222,7 @@ const ProfitLossBody = () => {
               </Stack>
               <Stack gap={3} align="center">
                 <Group justify="center" gap={8}>
-                  <IconCircleFilled
-                    size="1rem"
-                    color="var(--mantine-color-violet-6)"
-                  />
+                  <IconCircleFilled size="1rem" color="var(--mantine-color-violet-6)" />
                   <Text mt={3} size="md" c="gray.6">
                     Total Direct Expenses
                   </Text>
@@ -310,12 +243,7 @@ const ProfitLossBody = () => {
           {
             <Group preventGrowOverflow={false} wrap="nowrap">
               <Card w="300px" p={5}>
-                <Box
-                  style={{ borderRadius: "0.4rem" }}
-                  w="100%"
-                  p={10}
-                  bg="blue.1"
-                >
+                <Box style={{ borderRadius: "0.4rem" }} w="100%" p={10} bg="blue.1">
                   <Text c="blue.6" ta="center">
                     Stationery
                   </Text>
@@ -325,12 +253,7 @@ const ProfitLossBody = () => {
                 </Title>
               </Card>
               <Card w="300px" p={5}>
-                <Box
-                  style={{ borderRadius: "0.4rem" }}
-                  w="100%"
-                  p={10}
-                  bg="blue.1"
-                >
+                <Box style={{ borderRadius: "0.4rem" }} w="100%" p={10} bg="blue.1">
                   <Text c="blue.6" ta="center">
                     Stationery
                   </Text>
@@ -340,12 +263,7 @@ const ProfitLossBody = () => {
                 </Title>
               </Card>
               <Card w="300px" p={5}>
-                <Box
-                  style={{ borderRadius: "0.4rem" }}
-                  w="100%"
-                  p={10}
-                  bg="blue.1"
-                >
+                <Box style={{ borderRadius: "0.4rem" }} w="100%" p={10} bg="blue.1">
                   <Text c="blue.6" ta="center">
                     Stationery
                   </Text>
@@ -355,12 +273,7 @@ const ProfitLossBody = () => {
                 </Title>
               </Card>
               <Card w="300px" p={5}>
-                <Box
-                  style={{ borderRadius: "0.4rem" }}
-                  w="100%"
-                  p={10}
-                  bg="blue.1"
-                >
+                <Box style={{ borderRadius: "0.4rem" }} w="100%" p={10} bg="blue.1">
                   <Text c="blue.6" ta="center">
                     Stationery
                   </Text>
@@ -370,12 +283,7 @@ const ProfitLossBody = () => {
                 </Title>
               </Card>
               <Card w="300px" p={5}>
-                <Box
-                  style={{ borderRadius: "0.4rem" }}
-                  w="100%"
-                  p={10}
-                  bg="blue.1"
-                >
+                <Box style={{ borderRadius: "0.4rem" }} w="100%" p={10} bg="blue.1">
                   <Text c="blue.6" ta="center">
                     Stationery
                   </Text>
@@ -385,12 +293,7 @@ const ProfitLossBody = () => {
                 </Title>
               </Card>
               <Card w="300px" p={5}>
-                <Box
-                  style={{ borderRadius: "0.4rem" }}
-                  w="100%"
-                  p={10}
-                  bg="blue.1"
-                >
+                <Box style={{ borderRadius: "0.4rem" }} w="100%" p={10} bg="blue.1">
                   <Text c="blue.6" ta="center">
                     Stationery
                   </Text>

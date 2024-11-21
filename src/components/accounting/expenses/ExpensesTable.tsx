@@ -1,18 +1,7 @@
 "use client";
 
 import Table from "@/components/common/Table";
-import {
-  Tooltip,
-  Avatar,
-  Box,
-  Group,
-  Button,
-  Stack,
-  Title,
-  Text,
-  Grid,
-  MultiSelect
-} from "@mantine/core";
+import { Tooltip, Avatar, Box, Group, Button, Stack, Title, Text, Grid, MultiSelect } from "@mantine/core";
 import { DateInput } from "@mantine/dates";
 import { useDisclosure } from "@mantine/hooks";
 
@@ -41,8 +30,7 @@ const invoice_data = [
     },
     date: "25-10-2024",
     amount: 500,
-    comment:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+    comment: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
   },
   {
     id: "invoice_id",
@@ -53,8 +41,7 @@ const invoice_data = [
     },
     date: "25-10-2024",
     amount: 500,
-    comment:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+    comment: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
   },
   {
     id: "invoice_id",
@@ -65,8 +52,7 @@ const invoice_data = [
     },
     date: "25-10-2024",
     amount: 500,
-    comment:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+    comment: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
   },
   {
     id: "invoice_id",
@@ -77,8 +63,7 @@ const invoice_data = [
     },
     date: "25-10-2024",
     amount: 500,
-    comment:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+    comment: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
   },
   {
     id: "invoice_id",
@@ -89,8 +74,7 @@ const invoice_data = [
     },
     date: "25-10-2024",
     amount: 500,
-    comment:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+    comment: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
   },
   {
     id: "invoice_id",
@@ -101,8 +85,7 @@ const invoice_data = [
     },
     date: "25-10-2024",
     amount: 500,
-    comment:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+    comment: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
   },
   {
     id: "invoice_id",
@@ -113,8 +96,7 @@ const invoice_data = [
     },
     date: "25-10-2024",
     amount: 500,
-    comment:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+    comment: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
   },
   {
     id: "invoice_id",
@@ -125,8 +107,7 @@ const invoice_data = [
     },
     date: "25-10-2024",
     amount: 500,
-    comment:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+    comment: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
   },
   {
     id: "invoice_id",
@@ -137,8 +118,7 @@ const invoice_data = [
     },
     date: "25-10-2024",
     amount: 500,
-    comment:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+    comment: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
   },
   {
     id: "invoice_id",
@@ -149,8 +129,7 @@ const invoice_data = [
     },
     date: "25-10-2024",
     amount: 500,
-    comment:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
+    comment: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. "
   }
 ];
 
@@ -185,10 +164,8 @@ const columns = [
         <Tooltip label={row.comment}>
           <Box w={300}>
             <Text truncate="end">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde
-              provident eos fugiat id necessitatibus magni ducimus molestias.
-              Placeat, consequatur. Quisquam, quae magnam perspiciatis excepturi
-              iste sint itaque sunt laborum. Nihil?
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde provident eos fugiat id necessitatibus magni ducimus molestias. Placeat,
+              consequatur. Quisquam, quae magnam perspiciatis excepturi iste sint itaque sunt laborum. Nihil?
             </Text>
           </Box>
         </Tooltip>
@@ -199,11 +176,7 @@ const columns = [
     accessor: "actions",
     render: () => {
       return (
-        <Button
-          variant="transparent"
-          size="compact-sm"
-          color="var(--mantine-color-primary-6)"
-        >
+        <Button variant="transparent" size="compact-sm" color="var(--mantine-color-primary-6)">
           Open Invoice
         </Button>
       );
@@ -213,10 +186,10 @@ const columns = [
 
 const ExpensesTable = () => {
   const [opened, { open, close }] = useDisclosure(false);
-  
+
   return (
     <>
-      <ExpenseDrawerBody openedDrawer={opened} closeDrawer={close}/>
+      <ExpenseDrawerBody openedDrawer={opened} closeDrawer={close} />
       <Table
         title="Total Expenses"
         description="All Expenses details"
@@ -226,25 +199,13 @@ const ExpensesTable = () => {
         drawerTitle={"Expense Filter"}
         filter={
           <Stack>
-            <Text size="sm">
-              You can filter expenses with date range and user
-            </Text>
+            <Text size="sm">You can filter expenses with date range and user</Text>
             <Grid grow>
               <Grid.Col span={6}>
-                <DateInput
-                  label="Start Date"
-                  placeholder="Enter Start Date"
-                  valueFormat="YYYY MMM DD"
-                  size="sm"
-                />
+                <DateInput label="Start Date" placeholder="Enter Start Date" valueFormat="YYYY MMM DD" size="sm" />
               </Grid.Col>
               <Grid.Col span={6}>
-                <DateInput
-                  label="End Date"
-                  placeholder="Enter End Date"
-                  valueFormat="YYYY MMM DD"
-                  size="sm"
-                />
+                <DateInput label="End Date" placeholder="Enter End Date" valueFormat="YYYY MMM DD" size="sm" />
               </Grid.Col>
             </Grid>
             <MultiSelect

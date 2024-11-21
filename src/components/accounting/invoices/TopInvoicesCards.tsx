@@ -1,12 +1,7 @@
 "use client";
 
 import { Avatar, Grid, Group, Stack, Text, Card } from "@mantine/core";
-import {
-  IconInvoice,
-  IconMoneybag,
-  IconClockRecord,
-  IconCheckbox
-} from "@tabler/icons-react";
+import { IconInvoice, IconMoneybag, IconClockRecord, IconCheckbox } from "@tabler/icons-react";
 const TopCards = () => {
   return (
     <Grid>
