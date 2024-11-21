@@ -7,6 +7,7 @@ import IproButton from "@/components/core/IproButton";
 import Table from "@/components/common/Table";
 import { JobColumns } from "./job-columns";
 
+
 const JobList = ({ jobs }: { jobs: JobListModel }) => {
   return (
     <Table
