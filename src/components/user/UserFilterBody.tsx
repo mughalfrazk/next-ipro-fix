@@ -1,4 +1,4 @@
-import { Text, Stack, Grid, MultiSelect } from "@mantine/core";
+import { Text, Stack, MultiSelect } from "@mantine/core";
 import IproButton from "@/components/core/IproButton";
 
 const UserFilterBody = () => {
