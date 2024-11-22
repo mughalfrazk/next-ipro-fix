@@ -1,9 +1,9 @@
-import IproButton from "@/components/core/IproButton";
+import { Button, Group, Popover, Text } from "@mantine/core";
+
 import { ModelModel } from "@/lib/models/model.model";
 import { showDateNicely } from "@/utils/functions";
-import { Group } from "@mantine/core";
-import { IconTrash } from "@tabler/icons-react";
 import EditModelDrawer from "./EditModelDrawer";
+import DeleteModelPopover from "./DeleteModelPopover";
 
 export const ModelColumns = [
   {
@@ -25,9 +25,7 @@ export const ModelColumns = [
       return (
         <Group gap={0} justify="flex-end">
           <EditModelDrawer selectedModel={row} />
-          <IproButton isIconOnly variant="subtle">
-            <IconTrash color="var(--mantine-color-red-6)" />
-          </IproButton>
+          <DeleteModelPopover selectedId={row.id} />
         </Group>
       );
     }

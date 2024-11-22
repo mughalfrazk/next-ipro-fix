@@ -23,4 +23,9 @@ const updateModelApi = async (modelId: number, payload: UpdateModelPayloadModel)
   return result;
 };
 
-export { getModelListApi, createModelApi, updateModelApi };
+const deleteModelApi = async (modelId: number) => {
+  const result = await getAuthApiClient().delete(`model/${modelId}`)
+  return result
+}
+
+export { getModelListApi, createModelApi, updateModelApi, deleteModelApi };
