@@ -6,7 +6,7 @@ import { JobListModel } from "@/lib/models/job.model";
 import IproButton from "@/components/core/IproButton";
 import Table from "@/components/common/Table";
 import { JobColumns } from "./job-columns";
-
+import JobFilterBody from "./JobFilterBody";
 
 const JobList = ({ jobs }: { jobs: JobListModel }) => {
   return (
@@ -21,7 +21,8 @@ const JobList = ({ jobs }: { jobs: JobListModel }) => {
       }
       columns={JobColumns}
       data={jobs}
-      filter={<>Hello World</>}
+      drawerTitle="Jobs Filter"
+      filter={<JobFilterBody />}
     />
   );
 };

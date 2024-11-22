@@ -1,10 +1,9 @@
 "use client";
 
 import Table from "@/components/common/Table";
-import { Tooltip, Avatar, Box, Group, Button, Stack, Title, Text, Grid, MultiSelect } from "@mantine/core";
-import { DateInput } from "@mantine/dates";
+import { Tooltip, Avatar, Box, Group, Button, Stack, Title, Text } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-
+import ExpenseFilterBody from "./ExpenseFilterBody";
 import ExpenseDrawerBody from "./AddExpenseDrawer";
 import IproButton from "@/components/core/IproButton";
 
@@ -197,29 +196,7 @@ const ExpensesTable = () => {
         data={invoice_data}
         columns={columns}
         drawerTitle={"Expense Filter"}
-        filter={
-          <Stack>
-            <Text size="sm">You can filter expenses with date range and user</Text>
-            <Grid grow>
-              <Grid.Col span={6}>
-                <DateInput label="Start Date" placeholder="Enter Start Date" valueFormat="YYYY MMM DD" size="sm" />
-              </Grid.Col>
-              <Grid.Col span={6}>
-                <DateInput label="End Date" placeholder="Enter End Date" valueFormat="YYYY MMM DD" size="sm" />
-              </Grid.Col>
-            </Grid>
-            <MultiSelect
-              label="User"
-              placeholder="Select User Roles to Filter"
-              data={["User 1", "User 2", "User 3"]}
-              defaultValue={["All"]}
-              clearable
-            />
-            <Stack align="start">
-              <IproButton>Apply Filter</IproButton>
-            </Stack>
-          </Stack>
-        }
+        filter={<ExpenseFilterBody />}
         rightSection={
           <IproButton variant="outline" fullWidth onClick={open}>
             Create New Expense
