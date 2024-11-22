@@ -25,7 +25,6 @@ const DeleteModelPopover = ({ selectedId }: { selectedId: number }) => {
       showErrorNotification(e.errors?.formErrors?.[0]);
     } finally {
       setLoading(false);
-      setOpened(false);
     }
   };
 

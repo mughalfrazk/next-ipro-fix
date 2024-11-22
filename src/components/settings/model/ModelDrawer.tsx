@@ -31,7 +31,7 @@ const ModelDrawer = ({
         action={async (formData) => {
           await formAction(formData);
 
-          // TODO: doesn't always work, table sometimes doesn't update.
+          // TODO: doesn't always work, user have to refresh manually first time.
           router.push("/dashboard/settings/model");
           router.refresh();
           close();
