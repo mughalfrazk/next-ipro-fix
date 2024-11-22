@@ -1,4 +1,8 @@
-import { CreateModelPayloadModel, ModelListSchema, UpdateModelPayloadModel } from "@/lib/models/model.model";
+import {
+  CreateModelPayloadModel,
+  ModelListSchema,
+  UpdateModelPayloadModel
+} from "@/lib/models/model.model";
 import { getAuthApiClient } from "@/utils/api-client";
 import { parseFactory } from "@/utils/parse-factory";
 
@@ -10,13 +14,13 @@ const getModelListApi = async () => {
 };
 
 const createModelApi = async (payload: CreateModelPayloadModel) => {
-  const result = await getAuthApiClient().post("model", payload)
-  return result
-}
+  const result = await getAuthApiClient().post("model", payload);
+  return result;
+};
 
 const updateModelApi = async (modelId: number, payload: UpdateModelPayloadModel) => {
-  const result = await getAuthApiClient().patch(`model/${modelId}`, payload)
-  return result
-}
+  const result = await getAuthApiClient().patch(`model/${modelId}`, payload);
+  return result;
+};
 
 export { getModelListApi, createModelApi, updateModelApi };

@@ -56,6 +56,6 @@ export const capitalizeFirstLetter = (val: string) => {
 };
 
 export const showDateNicely = (date: string) => {
-  const splitted_date = date.split("T")
-  return `${splitted_date[0]} ${splitted_date[1].split(".")[0]}`
-}
+  const splitted_date = date.split("T");
+  return `${splitted_date[0]} ${splitted_date[1].split(".")[0]}`;
+};

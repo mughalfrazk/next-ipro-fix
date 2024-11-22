@@ -30,7 +30,7 @@ const ModelDrawer = ({
       <form
         action={async (formData) => {
           await formAction(formData);
-          
+
           // TODO: doesn't always work, table sometimes doesn't update.
           router.push("/dashboard/settings/model");
           router.refresh();
@@ -55,7 +55,12 @@ const ModelDrawer = ({
             {...getFieldErrorProps("description")}
           />
           {selectedModel && (
-            <IproTextInput type="number" name="id" defaultValue={selectedModel.id} style={{ display: "none" }} />
+            <IproTextInput
+              type="number"
+              name="id"
+              defaultValue={selectedModel.id}
+              style={{ display: "none" }}
+            />
           )}
           <Group justify="flex-end" gap={10}>
             <IproButton variant="outline" onClick={close}>

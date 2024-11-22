@@ -10,7 +10,12 @@ const EditModelDrawer = ({ selectedModel }: { selectedModel: ModelModel }) => {
 
   return (
     <>
-      <ModelDrawer title="Edit Model Info" selectedModel={selectedModel} opened={opened} close={close} />
+      <ModelDrawer
+        title="Edit Model Info"
+        selectedModel={selectedModel}
+        opened={opened}
+        close={close}
+      />
       <IproButton variant="subtle" isIconOnly onClick={open}>
         <IconEdit />
       </IproButton>

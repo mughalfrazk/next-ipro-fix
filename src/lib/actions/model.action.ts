@@ -10,36 +10,36 @@ import { isRedirectError } from "next/dist/client/components/redirect";
 const createModelAction = async (_: ActionResult, formData: FormData) => {
   const { parsed } = await validatePayload(formData, CreateModelPayloadSchema);
   if (!parsed?.success) {
-    return getFormattedError(parsed?.error)
+    return getFormattedError(parsed?.error);
   }
 
-  console.log(parsed.data)
+  console.log(parsed.data);
   try {
-    await createModelApi(parsed.data)
-    return {}
+    await createModelApi(parsed.data);
+    return {};
   } catch (error) {
     // `redirectTo` won't work without this line
     if (isRedirectError(error)) throw error;
     console.log(error);
     return getFormattedError(error);
   }
-}
+};
 
 const updateModelAction = async (_: ActionResult, formData: FormData) => {
   const { parsed } = await validatePayload(formData, UpdateModelPayloadSchema);
   if (!parsed?.success) {
-    return getFormattedError(parsed?.error)
+    return getFormattedError(parsed?.error);
   }
 
   try {
-    await updateModelApi(parsed.data.id, parsed.data)
-    return {}
+    await updateModelApi(parsed.data.id, parsed.data);
+    return {};
   } catch (error) {
     // `redirectTo` won't work without this line
     if (isRedirectError(error)) throw error;
     console.log(error);
     return getFormattedError(error);
   }
-}
+};
 
-export { createModelAction, updateModelAction }
+export { createModelAction, updateModelAction };
