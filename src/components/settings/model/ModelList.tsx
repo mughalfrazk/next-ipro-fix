@@ -1,11 +1,14 @@
 "use client";
 
 import { useDisclosure } from "@mantine/hooks";
-import Table from "@/components/common/Table";
+
+import { ModelColumns } from "./model-columns";
+import { ModelListModel } from "@/lib/models/model.model";
 import IproButton from "@/components/core/IproButton";
+import Table from "@/components/common/Table";
 import ModelDrawer from "./ModelDrawer";
 
-const ModelList = () => {
+const ModelList = ({ models }: { models: ModelListModel }) => {
   const [opened, { open, close }] = useDisclosure();
 
   return (
@@ -14,6 +17,8 @@ const ModelList = () => {
       <Table
         title="Models List"
         description="Models of different brand's electronics"
+        columns={ModelColumns}
+        data={models}
         rightSection={
           <IproButton fullWidth onClick={open}>
             Create New Model
