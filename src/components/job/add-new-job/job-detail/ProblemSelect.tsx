@@ -32,7 +32,9 @@ const ProblemSelect = ({ index, issue }: ProblemSelectProps) => {
   };
 
   const onProblemChange = (value: string | null) => {
-    const [selectedProblem] = problemOptions.filter((item) => (item as unknown as ComboboxItem).value === value);
+    const [selectedProblem] = problemOptions.filter(
+      (item) => (item as unknown as ComboboxItem).value === value
+    );
     if (value) setProblemItem(selectedProblem as ComboboxItem);
   };
 

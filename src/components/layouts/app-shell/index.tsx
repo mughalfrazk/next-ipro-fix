@@ -15,7 +15,11 @@ const AppShellLayout = ({ children }: { children: ReactNode }) => {
   const [opened, { toggle }] = useDisclosure();
 
   return (
-    <AppShell header={{ height: 60 }} navbar={{ width: 300, breakpoint: "sm", collapsed: { mobile: !opened } }} padding="md">
+    <AppShell
+      header={{ height: 60 }}
+      navbar={{ width: 300, breakpoint: "sm", collapsed: { mobile: !opened } }}
+      padding="md"
+    >
       <AppShell.Header withBorder={false}>
         <Header opened={opened} toggle={toggle} />
       </AppShell.Header>

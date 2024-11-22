@@ -16,7 +16,10 @@ const AddNewUser = () => {
           <Card>
             <Group justify="space-between">
               <Stack>
-                <Heading title="New User Details" description="Add new User by filling out the form"></Heading>
+                <Heading
+                  title="New User Details"
+                  description="Add new User by filling out the form"
+                ></Heading>
               </Stack>
               <IproButton variant="outline">Remove User</IproButton>
             </Group>

@@ -36,7 +36,10 @@ const JobTypesGraphCard = ({ ...props }: CardProps) => {
             {jobTypes.map((item, idx) => (
               <Stack key={idx} gap={0}>
                 <Group align="center" gap={8}>
-                  <IconCircleFilled color={item.color} style={{ width: rem(14), height: rem(14) }} />
+                  <IconCircleFilled
+                    color={item.color}
+                    style={{ width: rem(14), height: rem(14) }}
+                  />
                   {item.name}
                 </Group>
                 <Title order={3}>
@@ -45,7 +48,12 @@ const JobTypesGraphCard = ({ ...props }: CardProps) => {
               </Stack>
             ))}
           </Stack>
-          <DonutChart size={isMobile ? 250 : isMidLargeDesktop ? 300 : isLargeDesktop ? 250 : 350} thickness={30} paddingAngle={3} data={jobTypes} />
+          <DonutChart
+            size={isMobile ? 250 : isMidLargeDesktop ? 300 : isLargeDesktop ? 250 : 350}
+            thickness={30}
+            paddingAngle={3}
+            data={jobTypes}
+          />
         </Group>
       </Stack>
     </Card>

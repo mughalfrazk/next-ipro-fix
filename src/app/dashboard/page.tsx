@@ -148,7 +148,10 @@ const Page = async () => {
         </GridCol>
         <GridCol span={{ sm: 8, lg: 4, base: 12 }}>
           <Card p={20} h={500}>
-            <Heading title="Staff Working Progress" description="Jobs done, earned income and target" />
+            <Heading
+              title="Staff Working Progress"
+              description="Jobs done, earned income and target"
+            />
             <ScrollArea mt={10}>
               {staff.map((item, idx) => (
                 <Group

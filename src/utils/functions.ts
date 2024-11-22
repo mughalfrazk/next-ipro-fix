@@ -26,7 +26,9 @@ export const getNestedInputValues = (formData: FormData) => {
   return dataform_obj;
 };
 
-export const showErrorNotification = (message: string = "Something went wrong, please try again.") => {
+export const showErrorNotification = (
+  message: string = "Something went wrong, please try again."
+) => {
   notifications.show({
     message,
     color: "red",

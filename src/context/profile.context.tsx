@@ -63,7 +63,9 @@ const ProfileProvider = ({ children }: { children: ReactNode }) => {
     getUserProfile();
   }, []);
 
-  return <ProfileContext.Provider value={{ loading, data: profile }}>{children}</ProfileContext.Provider>;
+  return (
+    <ProfileContext.Provider value={{ loading, data: profile }}>{children}</ProfileContext.Provider>
+  );
 };
 
 export default ProfileProvider;

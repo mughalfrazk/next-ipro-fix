@@ -1,5 +1,14 @@
 import { ForwardRefExoticComponent, ReactNode, RefAttributes } from "react";
-import { IconHome, IconTool, IconFocus, IconCalculator, IconUserCircle, IconProps, Icon } from "@tabler/icons-react";
+import {
+  IconHome,
+  IconTool,
+  IconFocus,
+  IconCalculator,
+  IconUserCircle,
+  IconProps,
+  Icon,
+  IconSettings2
+} from "@tabler/icons-react";
 
 export type NavLinkRoute = {
   href?: string;
@@ -15,7 +24,6 @@ const routes: NavLinkRoute[] = [
     icon: IconHome
   },
   {
-    href: "",
     label: "User",
     icon: IconUserCircle,
     children: [
@@ -32,7 +40,6 @@ const routes: NavLinkRoute[] = [
     ]
   },
   {
-    href: "",
     label: "Job",
     icon: IconTool,
     children: [
@@ -55,7 +62,6 @@ const routes: NavLinkRoute[] = [
   },
 
   {
-    href: "",
     label: "Accounting",
     icon: IconCalculator,
     children: [
@@ -77,6 +83,17 @@ const routes: NavLinkRoute[] = [
       {
         href: "/dashboard/accounting/daybook",
         label: "Day Book",
+        icon: IconFocus
+      }
+    ]
+  },
+  {
+    label: "Settings",
+    icon: IconSettings2,
+    children: [
+      {
+        href: "/dashboard/settings/model",
+        label: "Model",
         icon: IconFocus
       }
     ]

@@ -32,7 +32,9 @@ const BrandSelect = ({ index, issue }: BrandSelectProps) => {
   };
 
   const onBrandChange = (value: string | null) => {
-    const [selectedBrand] = brandOptions.filter((item) => (item as unknown as ComboboxItem).value === value);
+    const [selectedBrand] = brandOptions.filter(
+      (item) => (item as unknown as ComboboxItem).value === value
+    );
     if (value) setBrandItem(selectedBrand as ComboboxItem);
   };
 

@@ -7,6 +7,7 @@ import { DateInput } from "@mantine/dates";
 
 const ExpenseDrawerBody = () => {
   const [opened, { open, close }] = useDisclosure(false);
+
   return (
     <Stack align="stretch" justify="center">
       <Modal
@@ -26,7 +27,11 @@ const ExpenseDrawerBody = () => {
       >
         {
           <Stack>
-            <IproTextInput mt={10} label="New Expense Type Name" placeholder="Enter New Expense Type Name" />
+            <IproTextInput
+              mt={10}
+              label="New Expense Type Name"
+              placeholder="Enter New Expense Type Name"
+            />
             <Group justify="flex-end" mt={20}>
               <IproButton variant="outline">Cancal</IproButton>
               <IproButton isSubmit={true}>Save Expense Type</IproButton>
@@ -40,9 +45,19 @@ const ExpenseDrawerBody = () => {
       <IproButton variant="outline" onClick={open}>
         Add New Expense Type
       </IproButton>
-      <IproSelect label="Expense Type" placeholder="Expense Name" data={["Bill", "Snacks", "Dinner", "Salary"]} width={"lg"} />
+      <IproSelect
+        label="Expense Type"
+        placeholder="Expense Name"
+        data={["Bill", "Snacks", "Dinner", "Salary"]}
+        width={"lg"}
+      />
       <IproTextInput label="Amount" placeholder="Enter Expense Amount" />
-      <DateInput label="Expense Date" placeholder="Enter Date" valueFormat="YYYY MMM DD" size="md" />
+      <DateInput
+        label="Expense Date"
+        placeholder="Enter Date"
+        valueFormat="YYYY MMM DD"
+        size="md"
+      />
       <Textarea label="Comment" placeholder="Enter Comment" />
       <Group justify="flex-end" mt={20}>
         <IproButton variant="outline">Cancal</IproButton>

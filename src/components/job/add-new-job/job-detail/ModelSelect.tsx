@@ -32,7 +32,9 @@ const ModelSelect = ({ index, issue }: ModelSelectProps) => {
   };
 
   const onModelChange = (value: string | null) => {
-    const [selectedModel] = modelOptions.filter((item) => (item as unknown as ComboboxItem).value === value);
+    const [selectedModel] = modelOptions.filter(
+      (item) => (item as unknown as ComboboxItem).value === value
+    );
     if (value) setModelItem(selectedModel as ComboboxItem);
   };
 

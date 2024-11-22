@@ -10,9 +10,15 @@ const AvatarMenu = () => {
       </Menu.Target>
 
       <Menu.Dropdown>
-        <Menu.Item leftSection={<IconUserCircle style={{ width: rem(17), height: rem(17) }} />}>Profile</Menu.Item>
+        <Menu.Item leftSection={<IconUserCircle style={{ width: rem(17), height: rem(17) }} />}>
+          Profile
+        </Menu.Item>
         <form action={logoutAction}>
-          <Menu.Item type="submit" color="red" leftSection={<IconLogout2 style={{ width: rem(16), height: rem(16) }} />}>
+          <Menu.Item
+            type="submit"
+            color="red"
+            leftSection={<IconLogout2 style={{ width: rem(16), height: rem(16) }} />}
+          >
             Logout
           </Menu.Item>
         </form>

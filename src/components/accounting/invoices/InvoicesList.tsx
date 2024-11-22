@@ -5,7 +5,13 @@ import { Avatar, Badge, Group, Stack, Button, Title } from "@mantine/core";
 import InvoicesFilterBody from "./InvoicesFilterBody";
 
 const colorForInvoiceStatus = (name: string) => {
-  return name === "Half Paid" ? "red" : name === "Unpaid" ? "indigo" : name === "Paid" ? "green" : "black";
+  return name === "Half Paid"
+    ? "red"
+    : name === "Unpaid"
+      ? "indigo"
+      : name === "Paid"
+        ? "green"
+        : "black";
 };
 
 type RowType = {

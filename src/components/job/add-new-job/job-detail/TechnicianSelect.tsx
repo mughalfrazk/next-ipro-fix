@@ -34,7 +34,9 @@ const TechnicianSelect = ({ technician, getFieldErrorProps }: TechnicianSelectPr
   };
 
   const onTechnicianChange = (value: string | null) => {
-    const [selectedTechnician] = technicianOptions.filter((item) => (item as unknown as ComboboxItem).value === value);
+    const [selectedTechnician] = technicianOptions.filter(
+      (item) => (item as unknown as ComboboxItem).value === value
+    );
     if (value) setTechnicianItem(selectedTechnician as ComboboxItem);
   };
 
