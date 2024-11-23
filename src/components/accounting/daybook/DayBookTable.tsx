@@ -8,7 +8,13 @@ const colorForCashStatus = (name: string) => {
   return name === "Cash-Out" ? "red" : name === "Cash-In" ? "green" : "black";
 };
 const colorForAmountType = (name: string) => {
-  return name === "PURCHSE" ? "red" : name === "EXPENSE" ? "grape" : name === "JOB" ? "green" : "black";
+  return name === "PURCHSE"
+    ? "red"
+    : name === "EXPENSE"
+      ? "grape"
+      : name === "JOB"
+        ? "green"
+        : "black";
 };
 
 type RowType = {

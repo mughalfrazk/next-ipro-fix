@@ -76,10 +76,16 @@ export const JobColumns = [
     render: (row: JobModel) => {
       return !!row?.technician ? (
         <Group>
-          <Avatar key={row.technician.id} name={`${row.technician.first_name} ${row.technician.last_name}`} color="initials" />
+          <Avatar
+            key={row.technician.id}
+            name={`${row.technician.first_name} ${row.technician.last_name}`}
+            color="initials"
+          />
           <Stack gap={2}>
             <Title order={6}>{`${row.technician.first_name} ${row.technician.last_name}`}</Title>
-            <Text size={"0.7rem"}>{`${row.technician.first_name} ${row.technician.last_name}`}</Text>
+            <Text
+              size={"0.7rem"}
+            >{`${row.technician.first_name} ${row.technician.last_name}`}</Text>
           </Stack>
         </Group>
       ) : (

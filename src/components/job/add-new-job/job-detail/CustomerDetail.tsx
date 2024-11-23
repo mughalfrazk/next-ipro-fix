@@ -91,8 +91,13 @@ const CustomerDetail = ({ customer, getFieldErrorProps }: CustomerDetailProps) =
   return (
     <Card>
       <Group justify="space-between">
-        <Heading title="Customer Details" description="Fill out the customer details to create a new Job" />
-        {getFieldErrorProps(["customer", "customer_id"]).error && <Badge color="red">Please fill all the customers details</Badge>}
+        <Heading
+          title="Customer Details"
+          description="Fill out the customer details to create a new Job"
+        />
+        {getFieldErrorProps(["customer", "customer_id"]).error && (
+          <Badge color="red">Please fill all the customers details</Badge>
+        )}
       </Group>
       <Divider mt={10} mb={20} />
 

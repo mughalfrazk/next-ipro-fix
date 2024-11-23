@@ -11,7 +11,9 @@ import { RegisterFormSchema, RegisterFormWithSpecialitySchema } from "@/lib/mode
 const createUserAction = async (_: ActionResult, formData: FormData) => {
   const isTechnicianSelected = !!Number(formData.get("isTechnicianSelected"));
 
-  const validationSchema = isTechnicianSelected ? RegisterFormWithSpecialitySchema : RegisterFormSchema;
+  const validationSchema = isTechnicianSelected
+    ? RegisterFormWithSpecialitySchema
+    : RegisterFormSchema;
   const { parsed, data } = await validatePayload(formData, validationSchema);
 
   if (!parsed?.success) {

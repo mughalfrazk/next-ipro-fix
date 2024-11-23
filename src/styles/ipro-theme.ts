@@ -1,6 +1,13 @@
 "use client";
 
-import { CSSVariablesResolver, DEFAULT_THEME, Loader, MantineThemeOverride, createTheme, mergeMantineTheme } from "@mantine/core";
+import {
+  CSSVariablesResolver,
+  DEFAULT_THEME,
+  Loader,
+  MantineThemeOverride,
+  createTheme,
+  mergeMantineTheme
+} from "@mantine/core";
 import { CssLoader } from "./CssLoader";
 import { generateColors } from "@mantine/colors-generator";
 

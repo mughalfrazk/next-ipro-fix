@@ -1,6 +1,17 @@
 "use client";
 
-import { Avatar, ProgressLabel, ProgressRoot, ProgressSection, Badge, Button, Group, Stack, Text, Title } from "@mantine/core";
+import {
+  Avatar,
+  ProgressLabel,
+  ProgressRoot,
+  ProgressSection,
+  Badge,
+  Button,
+  Group,
+  Stack,
+  Text,
+  Title
+} from "@mantine/core";
 import { redirect } from "next/navigation";
 
 import { ProfileModel, UserModel } from "@/lib/models/user.model";
@@ -43,7 +54,9 @@ export const UserColumns = [
     render: (row: ProfileModel) => {
       return (
         <Badge variant="outline" color={colorForUserRole(row.role.name)} radius="sm" p={12}>
-          {row.role.name === "technician" && row?.speciality ? `${row.role.name}-${row?.speciality.name.split("-")[0]}` : row.role.name}
+          {row.role.name === "technician" && row?.speciality
+            ? `${row.role.name}-${row?.speciality.name.split("-")[0]}`
+            : row.role.name}
         </Badge>
       );
     }

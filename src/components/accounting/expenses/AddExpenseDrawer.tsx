@@ -5,10 +5,22 @@ import IproTextInput from "@/components/core/IproTextInput";
 import IproSelect from "@/components/core/IproSelect";
 import { DateInput } from "@mantine/dates";
 
-const AddExpenseDrawer = ({ openedDrawer, closeDrawer }: { openedDrawer: boolean; closeDrawer: () => void }) => {
+const AddExpenseDrawer = ({
+  openedDrawer,
+  closeDrawer
+}: {
+  openedDrawer: boolean;
+  closeDrawer: () => void;
+}) => {
   const [opened, { open, close }] = useDisclosure(false);
   return (
-    <Drawer opened={openedDrawer} title="Add New Expense" position="right" onClose={closeDrawer} size="29%">
+    <Drawer
+      opened={openedDrawer}
+      title="Add New Expense"
+      position="right"
+      onClose={closeDrawer}
+      size="29%"
+    >
       <Stack align="stretch" justify="center">
         <Modal
           opened={opened}
@@ -37,7 +49,12 @@ const AddExpenseDrawer = ({ openedDrawer, closeDrawer }: { openedDrawer: boolean
         </Modal>
         <Grid align="flex-end">
           <GridCol span={8}>
-            <IproSelect label="Expense Type" placeholder="Expense Name" data={["Bill", "Snacks", "Dinner", "Salary"]} width={"100%"} />
+            <IproSelect
+              label="Expense Type"
+              placeholder="Expense Name"
+              data={["Bill", "Snacks", "Dinner", "Salary"]}
+              width={"100%"}
+            />
           </GridCol>
           <GridCol span={4}>
             <IproButton onClick={open} size="lg" mb={2} fullWidth>
@@ -46,7 +63,12 @@ const AddExpenseDrawer = ({ openedDrawer, closeDrawer }: { openedDrawer: boolean
           </GridCol>
         </Grid>
         <IproTextInput label="Amount" placeholder="Enter Expense Amount" />
-        <DateInput label="Expense Date" placeholder="Enter Date" valueFormat="YYYY MMM DD" size="md" />
+        <DateInput
+          label="Expense Date"
+          placeholder="Enter Date"
+          valueFormat="YYYY MMM DD"
+          size="md"
+        />
         <Textarea label="Comment" placeholder="Enter Comment" />
         <Group justify="flex-end" mt={20}>
           <IproButton variant="outline">Cancal</IproButton>

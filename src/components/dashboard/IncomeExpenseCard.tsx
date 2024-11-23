@@ -1,7 +1,16 @@
 "use client";
 
 import { ReactNode } from "react";
-import { Card, Group, Stack, Title, CardProps, ThemeIcon, Text, NumberFormatter } from "@mantine/core";
+import {
+  Card,
+  Group,
+  Stack,
+  Title,
+  CardProps,
+  ThemeIcon,
+  Text,
+  NumberFormatter
+} from "@mantine/core";
 
 import GrowthBadge from "../common/GrowthBadge";
 
@@ -14,7 +23,15 @@ type IncomeExpenseCardProps = {
   loss?: boolean;
 } & CardProps;
 
-const IncomeExpenseCard = ({ children, iconColor, percentage, amount, icon, loss, ...props }: IncomeExpenseCardProps) => {
+const IncomeExpenseCard = ({
+  children,
+  iconColor,
+  percentage,
+  amount,
+  icon,
+  loss,
+  ...props
+}: IncomeExpenseCardProps) => {
   return (
     <Card {...props}>
       <Stack h="100%" justify="space-between">

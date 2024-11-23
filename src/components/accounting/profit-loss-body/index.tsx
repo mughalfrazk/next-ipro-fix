@@ -1,7 +1,12 @@
 "use client";
 
 import { ScrollArea, Title, Text, Avatar, Grid, Group, Card, Stack, Box } from "@mantine/core";
-import { IconChartSankey, IconChartHistogram, IconRosetteDiscount, IconCircleFilled } from "@tabler/icons-react";
+import {
+  IconChartSankey,
+  IconChartHistogram,
+  IconRosetteDiscount,
+  IconCircleFilled
+} from "@tabler/icons-react";
 import { DateInput } from "@mantine/dates";
 
 import Heading from "@/components/common/Heading";
@@ -14,10 +19,20 @@ const ProfitLossBody = () => {
         <Card>
           <Grid justify="flex-end">
             <Grid.Col span={5}>
-              <DateInput label="Start Date" placeholder="Enter Start Date" valueFormat="YYYY MMM DD" size="md" />
+              <DateInput
+                label="Start Date"
+                placeholder="Enter Start Date"
+                valueFormat="YYYY MMM DD"
+                size="md"
+              />
             </Grid.Col>
             <Grid.Col span={5}>
-              <DateInput label="End Date" placeholder="Enter End Date" valueFormat="YYYY MMM DD" size="md" />
+              <DateInput
+                label="End Date"
+                placeholder="Enter End Date"
+                valueFormat="YYYY MMM DD"
+                size="md"
+              />
             </Grid.Col>
             <Grid.Col span={2}>
               <Stack justify="flex-end" h="100%" pb={3}>
@@ -84,7 +99,13 @@ const ProfitLossBody = () => {
             <Heading title="Profit Total & Margin" opacity={0.8} />
             <Group>
               <Group w="45%">
-                <Avatar style={{ border: "2px solid var(--mantine-color-cyan-5)" }} color="cyan.5" bg="cyan.0" size="4rem" radius="xl">
+                <Avatar
+                  style={{ border: "2px solid var(--mantine-color-cyan-5)" }}
+                  color="cyan.5"
+                  bg="cyan.0"
+                  size="4rem"
+                  radius="xl"
+                >
                   <IconChartHistogram size="1.7rem" />
                 </Avatar>
                 <Stack gap={0}>
@@ -97,7 +118,13 @@ const ProfitLossBody = () => {
                 </Stack>
               </Group>
               <Group w="45%">
-                <Avatar style={{ border: "2px solid var(--mantine-color-blue-5)" }} color="blue.5" bg="blue.0" size="4rem" radius="xl">
+                <Avatar
+                  style={{ border: "2px solid var(--mantine-color-blue-5)" }}
+                  color="blue.5"
+                  bg="blue.0"
+                  size="4rem"
+                  radius="xl"
+                >
                   <IconRosetteDiscount size="1.8rem" />
                 </Avatar>
                 <Stack gap={0}>
@@ -175,7 +202,13 @@ const ProfitLossBody = () => {
             <Heading title="Loss Detail & Margin" opacity={0.8} />
             <Group>
               <Group w="45%">
-                <Avatar style={{ border: "2px solid var(--mantine-color-red-5)" }} color="red.5" bg="red.0" size="4rem" radius="xl">
+                <Avatar
+                  style={{ border: "2px solid var(--mantine-color-red-5)" }}
+                  color="red.5"
+                  bg="red.0"
+                  size="4rem"
+                  radius="xl"
+                >
                   <IconChartSankey size="1.7rem" />
                 </Avatar>
                 <Stack gap={0}>
@@ -188,7 +221,13 @@ const ProfitLossBody = () => {
                 </Stack>
               </Group>
               <Group w="45%">
-                <Avatar style={{ border: "2px solid var(--mantine-color-red-5)" }} color="red.5" bg="red.0" size="4rem" radius="xl">
+                <Avatar
+                  style={{ border: "2px solid var(--mantine-color-red-5)" }}
+                  color="red.5"
+                  bg="red.0"
+                  size="4rem"
+                  radius="xl"
+                >
                   <IconRosetteDiscount size="1.8rem" />
                 </Avatar>
                 <Stack gap={0}>

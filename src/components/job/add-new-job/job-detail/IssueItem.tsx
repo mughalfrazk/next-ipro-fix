@@ -10,7 +10,15 @@ import { IssueModel } from "@/lib/models/issue.model";
 import IproTextInput from "@/components/core/IproTextInput";
 import { useEffect } from "react";
 
-const IssueItem = ({ issue, idx, removeIssue }: { issue: Partial<IssueModel>; idx: number; removeIssue: () => void }) => {
+const IssueItem = ({
+  issue,
+  idx,
+  removeIssue
+}: {
+  issue: Partial<IssueModel>;
+  idx: number;
+  removeIssue: () => void;
+}) => {
   const { lightDark } = useMantineColorScheme();
   const [quantity, setQuantity] = useInputState<number>(0);
   const [charges, setCharges] = useInputState<number>(0);
@@ -93,13 +101,32 @@ const IssueItem = ({ issue, idx, removeIssue }: { issue: Partial<IssueModel>; id
           />
         </GridCol>
         <GridCol span={4}>
-          <IproTextInput type="number" label="Quantity" name={`issues[${idx}][quantity]`} value={quantity} onChange={setQuantity} />
+          <IproTextInput
+            type="number"
+            label="Quantity"
+            name={`issues[${idx}][quantity]`}
+            value={quantity}
+            onChange={setQuantity}
+          />
         </GridCol>
         <GridCol span={4}>
-          <IproTextInput type="number" label="Charges" name={`issues[${idx}][charges]`} value={charges} onChange={setCharges} />
+          <IproTextInput
+            type="number"
+            label="Charges"
+            name={`issues[${idx}][charges]`}
+            value={charges}
+            onChange={setCharges}
+          />
         </GridCol>
         <GridCol span={4}>
-          <IproTextInput type="number" label="Total" name={`issues[${idx}][total]`} value={total} onChange={setTotal} readOnly />
+          <IproTextInput
+            type="number"
+            label="Total"
+            name={`issues[${idx}][total]`}
+            value={total}
+            onChange={setTotal}
+            readOnly
+          />
         </GridCol>
       </Grid>
     </GridCol>

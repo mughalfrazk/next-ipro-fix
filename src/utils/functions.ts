@@ -26,7 +26,9 @@ export const getNestedInputValues = (formData: FormData) => {
   return dataform_obj;
 };
 
-export const showErrorNotification = (message: string = "Something went wrong, please try again.") => {
+export const showErrorNotification = (
+  message: string = "Something went wrong, please try again."
+) => {
   notifications.show({
     message,
     color: "red",
@@ -51,4 +53,9 @@ export const colorForUserRole = (name: string) => {
 
 export const capitalizeFirstLetter = (val: string) => {
   return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+};
+
+export const showDateNicely = (date: string) => {
+  const splitted_date = date.split("T");
+  return `${splitted_date[0]} ${splitted_date[1].split(".")[0]}`;
 };

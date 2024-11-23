@@ -70,7 +70,12 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
         </Group>
       </GridCol>
       {issues.map((issue, idx) => (
-        <IssueItem key={idx} issue={issue} idx={idx} removeIssue={() => setIssues(issues.filter((_, j) => j !== idx))} />
+        <IssueItem
+          key={idx}
+          issue={issue}
+          idx={idx}
+          removeIssue={() => setIssues(issues.filter((_, j) => j !== idx))}
+        />
       ))}
       <GridCol span={12}>
         <Group

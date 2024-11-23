@@ -12,7 +12,13 @@ type CreateUpdateSelectInputProps = {
   getDataFromApiAndSetOption: () => Promise<ComboboxData>;
 } & IproSelectProps;
 
-const CreateUpdateSelectInput = ({ label, name, inputDefaultValue, getDataFromApiAndSetOption, ...otherProps }: CreateUpdateSelectInputProps) => {
+const CreateUpdateSelectInput = ({
+  label,
+  name,
+  inputDefaultValue,
+  getDataFromApiAndSetOption,
+  ...otherProps
+}: CreateUpdateSelectInputProps) => {
   const [optionList, setOptionList] = useState<ComboboxData>([]);
   const [optionItem, setOptionItem] = useState<ComboboxItem>();
 
@@ -28,7 +34,9 @@ const CreateUpdateSelectInput = ({ label, name, inputDefaultValue, getDataFromAp
 
   const onOptionChange = useCallback(
     (value: string | null) => {
-      const [selectedItem] = optionList.filter((item) => (item as unknown as ComboboxItem).value === value);
+      const [selectedItem] = optionList.filter(
+        (item) => (item as unknown as ComboboxItem).value === value
+      );
       if (value) setOptionItem(selectedItem as ComboboxItem);
     },
     [optionList]

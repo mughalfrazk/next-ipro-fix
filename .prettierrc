@@ -5,5 +5,5 @@
   "trailingComma":"none",
   "jsxSingleQuote": false,
   "bracketSpacing": true,
-  "printWidth": 150
+  "printWidth": 100
 }

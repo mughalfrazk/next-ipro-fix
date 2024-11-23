@@ -149,7 +149,16 @@ type TableProps = {
   drawerTitle?: string;
 };
 
-export const Table = ({ columns = dummy_columns, data = dummy_rows, title, description, search, rightSection, filter, drawerTitle }: TableProps) => {
+export const Table = ({
+  columns = dummy_columns,
+  data = dummy_rows,
+  title,
+  description,
+  search,
+  rightSection,
+  filter,
+  drawerTitle
+}: TableProps) => {
   const [opened, { open, close }] = useDisclosure();
 
   return (
@@ -160,7 +169,7 @@ export const Table = ({ columns = dummy_columns, data = dummy_rows, title, descr
         </Drawer>
       )}
       <Card>
-        <Grid align="center" mb={30}>
+        <Grid align="center" justify="space-between" mb={30}>
           {title && (
             <Grid.Col span={2}>
               <Heading title={title} description={description} />

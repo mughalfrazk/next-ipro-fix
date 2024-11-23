@@ -61,7 +61,10 @@ const InvoiveReceiptDrawer = () => {
               </Text>
               <Divider color="black" size="sm" my="sm" variant="dashed" />
               <Center>
-                <Image w={200} src="	https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT__zUYSKisjapIoQLxoKwojgUSoZsRDSODAQ&s" />
+                <Image
+                  w={200}
+                  src="	https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT__zUYSKisjapIoQLxoKwojgUSoZsRDSODAQ&s"
+                />
               </Center>
               <Stack justify="space-between" px={25} pt={20}>
                 <Text ta="center" size="sm">

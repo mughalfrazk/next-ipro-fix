@@ -34,7 +34,9 @@ const RoleSelect = ({ user, getFieldErrorProps }: RoleSelectProps) => {
   };
 
   const onRoleChange = (value: string | null) => {
-    const [selectedRole] = roleOptions.filter((item) => (item as unknown as ComboboxItem).value === value);
+    const [selectedRole] = roleOptions.filter(
+      (item) => (item as unknown as ComboboxItem).value === value
+    );
     if (value) setRoleItem(selectedRole as ComboboxItem);
   };
 
@@ -67,7 +69,11 @@ const RoleSelect = ({ user, getFieldErrorProps }: RoleSelectProps) => {
           <SpecialitySelect user={user} getFieldErrorProps={getFieldErrorProps} />
         </GridCol>
       )}
-      <IproTextInput name="isTechnicianSelected" defaultValue={isTechnicianSelected() ? 1 : 0} style={{ display: "none" }} />
+      <IproTextInput
+        name="isTechnicianSelected"
+        defaultValue={isTechnicianSelected() ? 1 : 0}
+        style={{ display: "none" }}
+      />
     </Grid>
   );
 };
