@@ -16,7 +16,7 @@ export const CreateModelPayloadSchema = z.object({
 
 export const UpdateModelPayloadSchema = z.object({
   id: z.string(),
-  name: z.string().nullish(),
+  name: z.string().min(1, "Name is required"),
   description: z.string().nullish()
 });
 

@@ -1,9 +1,9 @@
-import { Button, Group, Popover, Text } from "@mantine/core";
+import { Group } from "@mantine/core";
 
+import DeleteModelPopover from "./DeleteModelPopover";
 import { ModelModel } from "@/lib/models/model.model";
 import { showDateNicely } from "@/utils/functions";
 import EditModelDrawer from "./EditModelDrawer";
-import DeleteModelPopover from "./DeleteModelPopover";
 
 export const ModelColumns = [
   {

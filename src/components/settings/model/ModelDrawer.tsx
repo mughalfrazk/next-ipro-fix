@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Drawer, Group, Stack } from "@mantine/core";
 
@@ -20,23 +20,29 @@ const ModelDrawer = ({
   selectedModel?: ModelModel;
 }) => {
   const router = useRouter();
-  const { formAction, getFieldErrorProps } = useFormAction(
+  const [isPending, startTransition] = useTransition();
+  const { state, formAction, getFieldErrorProps } = useFormAction(
     !!selectedModel ? updateModelAction : createModelAction,
     {}
   );
 
+  const handleSubmit = async (formData: FormData) => {
+    startTransition(() => {
+      formAction(formData);
+    });
+  };
+
+  useEffect(() => {
+    if (!isPending && typeof state?.success === "string") {
+      close()
+      router.push("/dashboard/settings/model");
+      router.refresh();
+    }
+  }, [isPending, state]);
+
   return (
     <Drawer opened={opened} title={title ?? "Add New Model"} position="right" onClose={close}>
-      <form
-        action={async (formData) => {
-          await formAction(formData);
-
-          // TODO: doesn't always work, user have to refresh manually first time.
-          router.push("/dashboard/settings/model");
-          router.refresh();
-          close();
-        }}
-      >
+      <form action={handleSubmit}>
         <Stack>
           <IproTextInput
             type="text"
