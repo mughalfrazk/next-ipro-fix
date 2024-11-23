@@ -1,8 +1,8 @@
-import IproButton from "@/components/core/IproButton";
-import { Drawer, Stack } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconEdit } from "@tabler/icons-react";
+
 import ModelDrawer from "./ModelDrawer";
+import IproButton from "@/components/core/IproButton";
 import { ModelModel } from "@/lib/models/model.model";
 
 const EditModelDrawer = ({ selectedModel }: { selectedModel: ModelModel }) => {
