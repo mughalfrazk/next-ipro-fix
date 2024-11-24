@@ -3,7 +3,7 @@ import { z } from "zod";
 export const ProblemSchema = z.object({
   id: z.number(),
   name: z.string(),
-  description: z.string(),
+  description: z.string().nullish(),
   created_at: z.string(),
   updated_at: z.string(),
   deleted_at: z.string().nullish()

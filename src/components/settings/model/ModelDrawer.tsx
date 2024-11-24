@@ -56,7 +56,7 @@ const ModelDrawer = ({
             type="text"
             label="Description"
             name="description"
-            defaultValue={selectedModel?.description}
+            defaultValue={selectedModel?.description ?? ""}
             placeholder="A very expensive phone"
             {...getFieldErrorProps("description")}
           />

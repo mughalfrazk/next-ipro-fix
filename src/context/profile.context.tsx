@@ -4,6 +4,9 @@ import { createContext, ReactNode, useContext, useEffect, useState } from "react
 
 import { ProfileModel } from "@/lib/models/user.model";
 import { getProfileApi } from "@/lib/services/api/user.service";
+import { getFormattedError } from "@/utils/format-error";
+import { logoutAction } from "@/lib/actions/auth.action";
+import { showErrorNotification } from "@/utils/functions";
 
 const defaultProfileValues = {
   id: "",
@@ -54,14 +57,18 @@ const ProfileProvider = ({ children }: { children: ReactNode }) => {
       const profile = await getProfileApi();
       setProfile(profile);
     } catch (error) {
+      if (getFormattedError(error)?.errors?.formErrors?.[0].split(":")[0] === "401") {
+        showErrorNotification("Session is ended, please login again.")
+        logoutAction();
+      }
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    getUserProfile();
-  }, []);
+    if (!profile.id) getUserProfile();
+  }, [profile]);
 
   return (
     <ProfileContext.Provider value={{ loading, data: profile }}>{children}</ProfileContext.Provider>
