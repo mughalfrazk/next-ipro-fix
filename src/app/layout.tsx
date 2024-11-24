@@ -7,25 +7,16 @@ import "@mantine/charts/styles.css";
 import "@mantine/dates/styles.css";
 import "@/styles/datatable.css";
 
-import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { SessionProvider } from "next-auth/react";
+import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import NextTopLoader from "nextjs-toploader";
 
 // import localFont from "next/font/local";
-import "../styles/globals.css";
 import { iproTheme, resolver } from "@/styles/ipro-theme";
 import { Notifications } from "@mantine/notifications";
-
-// const geistSans = localFont({
-//   src: "./fonts/GeistVF.woff",
-//   variable: "--font-geist-sans",
-//   weight: "100 900",
-// });
-// const geistMono = localFont({
-//   src: "./fonts/GeistMonoVF.woff",
-//   variable: "--font-geist-mono",
-//   weight: "100 900",
-// });
+import ErrorBoundary from "@/utils/error-boundary";
+import Error from "./error";
+import "../styles/globals.css";
 
 export const metadata = {
   title: "Ipro Fix",
@@ -50,8 +41,10 @@ export default function RootLayout({
             theme={iproTheme}
             cssVariablesResolver={resolver}
           >
-            <Notifications />
-            {children}
+            <ErrorBoundary fallback={<Error />}>
+              <Notifications />
+              {children}
+            </ErrorBoundary>
           </MantineProvider>
         </SessionProvider>
       </body>
