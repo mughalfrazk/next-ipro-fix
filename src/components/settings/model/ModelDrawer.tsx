@@ -34,7 +34,7 @@ const ModelDrawer = ({
 
   useEffect(() => {
     if (!isPending && typeof state?.success === "string") {
-      close()
+      close();
       router.push("/dashboard/settings/model");
       router.refresh();
     }

@@ -1,4 +1,4 @@
-"use server"
+"use server";
 
 import { isRedirectError } from "next/dist/client/components/redirect";
 
@@ -11,7 +11,7 @@ import { ActionResult } from "@/utils/action-results";
 const createModelAction = async (_: ActionResult, formData: FormData) => {
   const { parsed } = await validatePayload(formData, CreateModelPayloadSchema);
   if (!parsed?.success) {
-    console.log(getFormattedError(parsed?.error))
+    console.log(getFormattedError(parsed?.error));
     return getFormattedError(parsed?.error);
   }
 
