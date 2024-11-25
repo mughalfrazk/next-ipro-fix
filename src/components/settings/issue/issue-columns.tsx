@@ -1,5 +1,4 @@
 import { IssueModel } from "@/lib/models/issue.model";
-import { ProblemModel } from "@/lib/models/problem.model";
 import { showDateNicely } from "@/utils/functions";
 
 export const IssueColumn = [
