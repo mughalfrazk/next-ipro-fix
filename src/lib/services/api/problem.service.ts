@@ -1,4 +1,8 @@
-import { ProblemListSchema } from "@/lib/models/problem.model";
+import {
+  ProblemListSchema,
+  UpdateProblemPayloadModal,
+  CreateProblemPayloadModal
+} from "@/lib/models/problem.model";
 import { getAuthApiClient } from "@/utils/api-client";
 import { parseFactory } from "@/utils/parse-factory";
 
@@ -9,4 +13,14 @@ const getProblemListApi = async () => {
   return ProblemListDataParser(result.data);
 };
 
-export { getProblemListApi };
+const createProblemApi = async (payload: CreateProblemPayloadModal) => {
+  const result = await getAuthApiClient().post("problem", payload);
+  return result;
+};
+
+const updateProblemApi = async (problemId: number, payload: UpdateProblemPayloadModal) => {
+  const result = await getAuthApiClient().patch(`problem/${problemId}`, payload);
+  return result;
+};
+
+export { getProblemListApi, createProblemApi, updateProblemApi };

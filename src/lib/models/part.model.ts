@@ -9,7 +9,7 @@ export const PartSchema = z.object({
   deleted_at: z.string().nullish()
 });
 
-export const PartListSchema = z.array(PartSchema)
+export const PartListSchema = z.array(PartSchema);
 
-export type PartModel = z.infer<typeof PartSchema>
-export type PartListModel = z.infer<typeof PartListSchema>
+export type PartModel = z.infer<typeof PartSchema>;
+export type PartListModel = z.infer<typeof PartListSchema>;
