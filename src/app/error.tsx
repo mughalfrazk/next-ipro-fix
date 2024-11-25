@@ -38,7 +38,7 @@ export default function Error({
   const [timer, setTimer] = useState<number>(5);
 
   const goToLogin = () => {
-    router.push("/auth")
+    router.push("/auth");
   };
 
   useEffect(() => {

@@ -8,7 +8,17 @@ const UserFilterBody = () => {
       <MultiSelect
         label="User Roles"
         placeholder="Select User Roles to Filter"
-        data={["Admin", "Accountant", "Receptionist", "Technicians", "Technicians HW", "Technicians SW", "Technicians GW", "Technicians AW", "Staff"]}
+        data={[
+          "Admin",
+          "Accountant",
+          "Receptionist",
+          "Technicians",
+          "Technicians HW",
+          "Technicians SW",
+          "Technicians GW",
+          "Technicians AW",
+          "Staff"
+        ]}
         defaultValue={["All"]}
         clearable
       />

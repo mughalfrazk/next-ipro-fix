@@ -5,10 +5,17 @@ import { DateInput } from "@mantine/dates";
 const DayBookFilterBody = () => {
   return (
     <Stack>
-      <Text size="sm">You can filter day book with date range users cash in and out and amount type</Text>
+      <Text size="sm">
+        You can filter day book with date range users cash in and out and amount type
+      </Text>
       <Grid>
         <Grid.Col span={12}>
-          <DateInput label="Select Date" placeholder="Enter Date" valueFormat="YYYY MMM DD" size="sm" />
+          <DateInput
+            label="Select Date"
+            placeholder="Enter Date"
+            valueFormat="YYYY MMM DD"
+            size="sm"
+          />
         </Grid.Col>
         <Grid.Col span={4}>
           <MultiSelect

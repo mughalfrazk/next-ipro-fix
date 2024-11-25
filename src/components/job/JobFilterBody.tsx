@@ -5,18 +5,36 @@ import { DateInput } from "@mantine/dates";
 const JobFilterBody = () => {
   return (
     <Stack>
-      <Text size="sm">You can filter jobs with date range job type customer technician status and company name</Text>
+      <Text size="sm">
+        You can filter jobs with date range job type customer technician status and company name
+      </Text>
       <Grid grow>
         <Grid.Col span={6}>
-          <DateInput label="Start Date" placeholder="Enter Start Date" valueFormat="YYYY MMM DD" size="sm" />
+          <DateInput
+            label="Start Date"
+            placeholder="Enter Start Date"
+            valueFormat="YYYY MMM DD"
+            size="sm"
+          />
         </Grid.Col>
         <Grid.Col span={6}>
-          <DateInput label="End Date" placeholder="Enter End Date" valueFormat="YYYY MMM DD" size="sm" />
+          <DateInput
+            label="End Date"
+            placeholder="Enter End Date"
+            valueFormat="YYYY MMM DD"
+            size="sm"
+          />
         </Grid.Col>
       </Grid>
       <Grid grow>
         <Grid.Col span={2}>
-          <MultiSelect label="Job Type" placeholder="Select Job Type to Filter" data={["SW", "HW", "AW", "GW"]} defaultValue={["All"]} clearable />
+          <MultiSelect
+            label="Job Type"
+            placeholder="Select Job Type to Filter"
+            data={["SW", "HW", "AW", "GW"]}
+            defaultValue={["All"]}
+            clearable
+          />
         </Grid.Col>
         <Grid.Col span={2}>
           <MultiSelect
