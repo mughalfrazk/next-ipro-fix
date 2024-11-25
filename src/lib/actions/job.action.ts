@@ -1,11 +1,6 @@
 import { isRedirectError } from "next/dist/client/components/redirect";
 import { redirect } from "next/navigation";
 
-import {
-  CreatePurchasesModel,
-  CreatePurchasesSchema,
-  PurchaseModel
-} from "@/lib/models/purchase.model";
 import { CreateJobPayloadModel, CreateJobPayloadSchema } from "@/lib/models/job.model";
 import { getNestedInputValues, showErrorNotification } from "@/utils/functions";
 import { getFormattedError } from "@/utils/format-error";
@@ -58,30 +53,4 @@ const createJobAction = async (_: ActionResult, formData: FormData) => {
   }
 };
 
-const createJobPurchaseAction = async (_: ActionResult, formData: FormData) => {
-  const structuredInput = getNestedInputValues(formData);
-
-  const payload: CreatePurchasesModel = {
-    job_id: formData.get("job_id") as string,
-    purchases: structuredInput.purchases.map((item: PurchaseModel) => ({
-      ...item
-    }))
-  };
-
-  const validatedPayload = await CreatePurchasesSchema.safeParseAsync(payload);
-  if (!validatedPayload.success) {
-    showErrorNotification("Validation errors");
-    return getFormattedError(validatedPayload?.error);
-  }
-
-  try {
-    return {};
-  } catch (error) {
-    // `redirectTo` won't work without this line
-    if (isRedirectError(error)) throw error;
-    console.log(error);
-    return getFormattedError(error);
-  }
-};
-
-export { createJobAction, createJobPurchaseAction };
+export { createJobAction };

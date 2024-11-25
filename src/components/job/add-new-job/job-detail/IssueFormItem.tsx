@@ -10,7 +10,7 @@ import { IssueModel } from "@/lib/models/issue.model";
 import IproTextInput from "@/components/core/IproTextInput";
 import { useEffect } from "react";
 
-const IssueItem = ({
+const IssueFormItem = ({
   issue,
   idx,
   removeIssue
@@ -133,4 +133,4 @@ const IssueItem = ({
   );
 };
 
-export default IssueItem;
+export default IssueFormItem;

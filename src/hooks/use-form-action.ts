@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useFormState } from "react-dom";
-import { notifications } from "@mantine/notifications";
 
 import { ActionResult } from "@/utils/action-results";
+import { showErrorNotification } from "@/utils/functions";
 import { useActionErrors } from "./use-action-errors";
 
 export const useFormAction = (
@@ -16,10 +16,7 @@ export const useFormAction = (
     if (!!state) {
       const result = state as ActionResult;
       if (!!result?.errors?.formErrors?.length) {
-        notifications.show({
-          message: result?.errors?.formErrors[0],
-          color: "red"
-        });
+        showErrorNotification(result?.errors?.formErrors[0])
       }
     }
   }, [state]);
