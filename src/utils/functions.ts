@@ -33,6 +33,7 @@ export const showErrorNotification = (
     message,
     color: "red",
     position: "top-right",
+    autoClose: true,
     classNames: classes
   });
 };

@@ -10,8 +10,7 @@ const Footer = () => {
   } = useProfileContext();
 
   return (
-    <Group p={20} pos={"relative"}>
-      <LoadingOverlay visible={loading} loaderProps={{ type: "oval" }} />
+    <Group p={20}>
       <Avatar src={"https://cdn-icons-png.flaticon.com/512/147/147131.png"} />
       <Stack gap={0}>
         <Text fw={500}>{`${first_name} ${last_name}`}</Text>

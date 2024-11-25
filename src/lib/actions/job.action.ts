@@ -58,30 +58,4 @@ const createJobAction = async (_: ActionResult, formData: FormData) => {
   }
 };
 
-const createJobPurchaseAction = async (_: ActionResult, formData: FormData) => {
-  const structuredInput = getNestedInputValues(formData);
-
-  const payload: CreatePurchasesModel = {
-    job_id: formData.get("job_id") as string,
-    purchases: structuredInput.purchases.map((item: PurchaseModel) => ({
-      ...item
-    }))
-  };
-
-  const validatedPayload = await CreatePurchasesSchema.safeParseAsync(payload);
-  if (!validatedPayload.success) {
-    showErrorNotification("Validation errors");
-    return getFormattedError(validatedPayload?.error);
-  }
-
-  try {
-    return {};
-  } catch (error) {
-    // `redirectTo` won't work without this line
-    if (isRedirectError(error)) throw error;
-    console.log(error);
-    return getFormattedError(error);
-  }
-};
-
-export { createJobAction, createJobPurchaseAction };
+export { createJobAction };

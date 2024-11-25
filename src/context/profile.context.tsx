@@ -7,6 +7,8 @@ import { getProfileApi } from "@/lib/services/api/user.service";
 import { getFormattedError } from "@/utils/format-error";
 import { logoutAction } from "@/lib/actions/auth.action";
 import { showErrorNotification } from "@/utils/functions";
+import { Box, LoadingOverlay } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 
 const defaultProfileValues = {
   id: "",
@@ -49,16 +51,15 @@ const ProfileContext = createContext<ProfileContextType>({
 
 const ProfileProvider = ({ children }: { children: ReactNode }) => {
   const [profile, setProfile] = useState<ProfileModel>(defaultProfileValues);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const getUserProfile = async () => {
     try {
-      setLoading(true);
       const profile = await getProfileApi();
       setProfile(profile);
     } catch (error) {
       if (getFormattedError(error)?.errors?.formErrors?.[0].split(":")[0] === "401") {
-        showErrorNotification("Session is ended, please login again.")
+        showErrorNotification("Session is ended, please login again.");
         logoutAction();
       }
     } finally {
@@ -69,9 +70,18 @@ const ProfileProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if (!profile.id) getUserProfile();
   }, [profile]);
-
+  loading;
   return (
-    <ProfileContext.Provider value={{ loading, data: profile }}>{children}</ProfileContext.Provider>
+    <ProfileContext.Provider value={{ loading, data: profile }}>
+      <Box pos="relative">
+        <LoadingOverlay
+          visible={loading}
+          overlayProps={{ radius: "lg", blur: 10 }}
+          loaderProps={{ type: "dots", size: "xl" }}
+        />
+        {children}
+      </Box>
+    </ProfileContext.Provider>
   );
 };
 
