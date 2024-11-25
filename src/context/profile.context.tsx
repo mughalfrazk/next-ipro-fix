@@ -8,7 +8,6 @@ import { getFormattedError } from "@/utils/format-error";
 import { logoutAction } from "@/lib/actions/auth.action";
 import { showErrorNotification } from "@/utils/functions";
 import { Box, LoadingOverlay } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
 
 const defaultProfileValues = {
   id: "",

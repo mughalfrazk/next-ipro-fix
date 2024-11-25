@@ -1,11 +1,10 @@
 "use client";
 
 import { useProfileContext } from "@/context/profile.context";
-import { Avatar, Group, LoadingOverlay, Stack, Text } from "@mantine/core";
+import { Avatar, Group, Stack, Text } from "@mantine/core";
 
 const Footer = () => {
   const {
-    loading,
     data: { email, first_name, last_name }
   } = useProfileContext();
 
