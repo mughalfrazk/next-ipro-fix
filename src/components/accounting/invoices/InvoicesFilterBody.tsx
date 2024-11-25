@@ -8,10 +8,20 @@ const InvoicesFilterBody = () => {
       <Text size="sm">You can filter invoices by dates, customer and status wise</Text>
       <Grid grow>
         <Grid.Col span={6}>
-          <DateInput label="Start Date" placeholder="Enter Start Date" valueFormat="YYYY MMM DD" size="sm" />
+          <DateInput
+            label="Start Date"
+            placeholder="Enter Start Date"
+            valueFormat="YYYY MMM DD"
+            size="sm"
+          />
         </Grid.Col>
         <Grid.Col span={6}>
-          <DateInput label="End Date" placeholder="Enter End Date" valueFormat="YYYY MMM DD" size="sm" />
+          <DateInput
+            label="End Date"
+            placeholder="Enter End Date"
+            valueFormat="YYYY MMM DD"
+            size="sm"
+          />
         </Grid.Col>
         <Grid.Col span={6}>
           <MultiSelect

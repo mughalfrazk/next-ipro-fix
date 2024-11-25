@@ -1,22 +1,21 @@
 "use server";
 
 import { isRedirectError } from "next/dist/client/components/redirect";
-
-import { CreateModelPayloadSchema, UpdateModelPayloadSchema } from "@/lib/models/model.model";
-import { createModelApi, updateModelApi } from "../services/api/model.service";
+import { CreateBrandPayloadSchema, UpdateBrandPayloadSchema } from "../models/brand.model";
+import { createBrandApi, updateBrandApi } from "../services/api/brand.service";
 import { validatePayload } from "@/utils/validate-payload";
 import { getFormattedError } from "@/utils/format-error";
 import { ActionResult } from "@/utils/action-results";
 
-const createModelAction = async (_: ActionResult, formData: FormData) => {
-  const { parsed } = await validatePayload(formData, CreateModelPayloadSchema);
+const createBrandAction = async (_: ActionResult, formData: FormData) => {
+  const { parsed } = await validatePayload(formData, CreateBrandPayloadSchema);
   if (!parsed?.success) {
     console.log(getFormattedError(parsed?.error));
     return getFormattedError(parsed?.error);
   }
 
   try {
-    await createModelApi(parsed.data);
+    await createBrandApi(parsed.data);
     return { success: "Created successfully!" };
   } catch (error) {
     // `redirectTo` won't work without this line
@@ -25,14 +24,14 @@ const createModelAction = async (_: ActionResult, formData: FormData) => {
   }
 };
 
-const updateModelAction = async (_: ActionResult, formData: FormData) => {
-  const { parsed } = await validatePayload(formData, UpdateModelPayloadSchema);
+const updateBrandAction = async (_: ActionResult, formData: FormData) => {
+  const { parsed } = await validatePayload(formData, UpdateBrandPayloadSchema);
   if (!parsed?.success) {
     return getFormattedError(parsed?.error);
   }
 
   try {
-    await updateModelApi(parsed.data.id, parsed.data);
+    await updateBrandApi(parsed.data.id, parsed.data);
     return { success: "Updated successfully!" };
   } catch (error) {
     // `redirectTo` won't work without this line
@@ -41,4 +40,4 @@ const updateModelAction = async (_: ActionResult, formData: FormData) => {
   }
 };
 
-export { createModelAction, updateModelAction };
+export { createBrandAction, updateBrandAction };

@@ -1,28 +1,27 @@
 import { useEffect, useTransition } from "react";
-import { Drawer, Group, Stack } from "@mantine/core";
 import { useRouter } from "next/navigation";
-
+import { Drawer, Group, Stack } from "@mantine/core";
+import { BrandModel } from "@/lib/models/brand.model";
 import IproButton from "@/components/core/IproButton";
 import IproTextInput from "@/components/core/IproTextInput";
 import { useFormAction } from "@/hooks/use-form-action";
-import { createModelAction, updateModelAction } from "@/lib/actions/model.action";
-import { ModelModel } from "@/lib/models/model.model";
+import { updateBrandAction, createBrandAction } from "@/lib/actions/brand.action";
 
-const ModelDrawer = ({
+const BrandDrawer = ({
   opened,
   close,
   title,
-  selectedModel
+  selectedBrand
 }: {
   opened: boolean;
   close: () => void;
   title?: string;
-  selectedModel?: ModelModel;
+  selectedBrand?: BrandModel;
 }) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const { state, formAction, getFieldErrorProps } = useFormAction(
-    !!selectedModel ? updateModelAction : createModelAction,
+    !!selectedBrand ? updateBrandAction : createBrandAction,
     {}
   );
 
@@ -35,36 +34,36 @@ const ModelDrawer = ({
   useEffect(() => {
     if (!isPending && typeof state?.success === "string") {
       close();
-      router.push("/dashboard/settings/model");
+      router.push("/dashboard/settings/brand");
       router.refresh();
     }
   }, [isPending, state]);
 
   return (
-    <Drawer opened={opened} title={title ?? "Add New Model"} position="right" onClose={close}>
+    <Drawer opened={opened} title={title ?? "Add New Brand"} position="right" onClose={close}>
       <form action={handleSubmit}>
         <Stack>
           <IproTextInput
             type="text"
             label="Name"
             name="name"
-            defaultValue={selectedModel?.name}
-            placeholder="14 pro max"
+            defaultValue={selectedBrand?.name}
+            placeholder="Iphone"
             {...getFieldErrorProps("name")}
           />
           <IproTextInput
             type="text"
             label="Description"
             name="description"
-            defaultValue={selectedModel?.description ?? ""}
-            placeholder="A very expensive phone"
+            defaultValue={selectedBrand?.description ?? ""}
+            placeholder="A very expensive brand"
             {...getFieldErrorProps("description")}
           />
-          {selectedModel && (
+          {selectedBrand && (
             <IproTextInput
               type="number"
               name="id"
-              defaultValue={selectedModel.id}
+              defaultValue={selectedBrand.id}
               style={{ display: "none" }}
             />
           )}
@@ -80,4 +79,4 @@ const ModelDrawer = ({
   );
 };
 
-export default ModelDrawer;
+export default BrandDrawer;

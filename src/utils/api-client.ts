@@ -33,7 +33,7 @@ const getAuthApiClient = () => {
   httpClient.interceptors.response.use(
     (response) => response,
     (error) => {
-      throw error
+      throw error;
       if (typeof window === "undefined") {
         console.log("intercepted on server: ", getFormattedError(error));
         // if (error.status === 403) {
@@ -42,9 +42,8 @@ const getAuthApiClient = () => {
         //   // redirect("/auth");
         //   return Promise.resolve();
         // }
-        
       } else {
-        showErrorNotification("Session is ended, please login again.")
+        showErrorNotification("Session is ended, please login again.");
         // notifications.show({
         //   message: "Session is ended, please login again.",
         //   color: "red"
