@@ -23,4 +23,9 @@ const updateProblemApi = async (problemId: number, payload: UpdateProblemPayload
   return result;
 };
 
-export { getProblemListApi, createProblemApi, updateProblemApi };
+const deleteProblemApi = async (problemId: number) => {
+  const result = await getAuthApiClient().delete(`problem/${problemId}`);
+  return result;
+};
+
+export { getProblemListApi, createProblemApi, updateProblemApi, deleteProblemApi };
