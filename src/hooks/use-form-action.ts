@@ -16,7 +16,7 @@ export const useFormAction = (
     if (!!state) {
       const result = state as ActionResult;
       if (!!result?.errors?.formErrors?.length) {
-        showErrorNotification(result?.errors?.formErrors[0])
+        showErrorNotification(result?.errors?.formErrors[0]);
       }
     }
   }, [state]);

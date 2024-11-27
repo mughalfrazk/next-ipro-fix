@@ -1,6 +1,10 @@
 import { ActionResult } from "@/utils/action-results";
 import { getNestedInputValues, showErrorNotification } from "@/utils/functions";
-import { CreatePurchasesModel, CreatePurchasesSchema, PurchaseModel } from "../models/purchase.model";
+import {
+  CreatePurchasesModel,
+  CreatePurchasesSchema,
+  PurchaseModel
+} from "../models/purchase.model";
 import { getFormattedError } from "@/utils/format-error";
 import { isRedirectError } from "next/dist/client/components/redirect";
 import { createJobPurchasesApi } from "../services/api/purchase.service";
@@ -15,7 +19,7 @@ const createJobPurchaseAction = async (_: ActionResult, formData: FormData) => {
       model_id: +item.model_id,
       part_id: +item.part_id,
       quantity: +item.quantity,
-      total: +item.total,
+      total: +item.total
     }))
   };
 
@@ -26,7 +30,7 @@ const createJobPurchaseAction = async (_: ActionResult, formData: FormData) => {
   }
 
   try {
-    await createJobPurchasesApi(payload)
+    await createJobPurchasesApi(payload);
     return {};
   } catch (error) {
     // `redirectTo` won't work without this line
@@ -36,4 +40,4 @@ const createJobPurchaseAction = async (_: ActionResult, formData: FormData) => {
   }
 };
 
-export { createJobPurchaseAction }
+export { createJobPurchaseAction };

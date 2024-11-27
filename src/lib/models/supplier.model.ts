@@ -9,7 +9,7 @@ export const SupplierSchema = z.object({
   deleted_at: z.string().nullish()
 });
 
-export const SupplierListSchema = z.array(SupplierSchema)
+export const SupplierListSchema = z.array(SupplierSchema);
 
-export type SupplierModel = z.infer<typeof SupplierSchema>
-export type SupplierListModel = z.infer<typeof SupplierListSchema>
+export type SupplierModel = z.infer<typeof SupplierSchema>;
+export type SupplierListModel = z.infer<typeof SupplierListSchema>;
