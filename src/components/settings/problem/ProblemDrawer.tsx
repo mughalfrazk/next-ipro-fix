@@ -13,14 +13,9 @@ type ProblemDrawerProps = {
   close: () => void;
   title?: string;
   selectedProblem?: ProblemModel;
-}
+};
 
-const ProblemDrawer = ({
-  opened,
-  close,
-  title,
-  selectedProblem
-}: ProblemDrawerProps) => {
+const ProblemDrawer = ({ opened, close, title, selectedProblem }: ProblemDrawerProps) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const { state, formAction, getFieldErrorProps } = useFormAction(
@@ -41,7 +36,7 @@ const ProblemDrawer = ({
       router.refresh();
     }
   }, [isPending, state]);
-  
+
   return (
     <Drawer opened={opened} title={title ?? "Add New Brand"} position="right" onClose={close}>
       <form action={handleSubmit}>

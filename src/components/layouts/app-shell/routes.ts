@@ -105,6 +105,11 @@ const routes: NavLinkRoute[] = [
         href: "/dashboard/settings/issue",
         label: "Issue",
         icon: IconFocus
+      },
+      {
+        href: "/dashboard/settings/part",
+        label: "Part",
+        icon: IconFocus
       }
     ]
   }
