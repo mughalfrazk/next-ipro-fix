@@ -7,28 +7,33 @@ import { useFormAction } from "@/hooks/use-form-action";
 import { createProblemAction } from "@/lib/actions/problem.action";
 import { updateProblemAction } from "@/lib/actions/problem.action";
 import { ProblemModel } from "@/lib/models/problem.model";
+
+type ProblemDrawerProps = {
+  opened: boolean;
+  close: () => void;
+  title?: string;
+  selectedProblem?: ProblemModel;
+}
+
 const ProblemDrawer = ({
   opened,
   close,
   title,
   selectedProblem
-}: {
-  opened: boolean;
-  close: () => void;
-  title?: string;
-  selectedProblem?: ProblemModel;
-}) => {
+}: ProblemDrawerProps) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const { state, formAction, getFieldErrorProps } = useFormAction(
     !!selectedProblem ? updateProblemAction : createProblemAction,
     {}
   );
+
   const handleSubmit = async (formData: FormData) => {
     startTransition(() => {
       formAction(formData);
     });
   };
+
   useEffect(() => {
     if (!isPending && typeof state?.success === "string") {
       close();
@@ -36,6 +41,7 @@ const ProblemDrawer = ({
       router.refresh();
     }
   }, [isPending, state]);
+  
   return (
     <Drawer opened={opened} title={title ?? "Add New Brand"} position="right" onClose={close}>
       <form action={handleSubmit}>
