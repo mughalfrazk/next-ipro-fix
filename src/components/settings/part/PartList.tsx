@@ -9,16 +9,21 @@ import PartDrawer from "./PartDrawer";
 
 const PartList = ({ parts }: { parts: PartListModel }) => {
   const [opened, { open, close }] = useDisclosure();
-  return (<>
-    <PartDrawer opened={opened} close={close} />
-    <Table
-      title="Part List"
-      description="Parts of different brand's electronics"
-      columns={PartColumns}
-      data={parts}
-      rightSection={<IproButton fullWidth onClick={open}>Create New Model</IproButton>}
-    />
-  </>
+  return (
+    <>
+      <PartDrawer opened={opened} close={close} />
+      <Table
+        title="Part List"
+        description="Parts of different brand's electronics"
+        columns={PartColumns}
+        data={parts}
+        rightSection={
+          <IproButton fullWidth onClick={open}>
+            Create New Model
+          </IproButton>
+        }
+      />
+    </>
   );
 };
 
