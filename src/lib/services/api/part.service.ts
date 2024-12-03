@@ -1,6 +1,6 @@
 import {
-  CreatePartPayloadModal,
-  UpdatePartPayloadModal,
+  CreatePartPayloadModel,
+  UpdatePartPayloadModel,
   PartListSchema
 } from "@/lib/models/part.model";
 import { getAuthApiClient } from "@/utils/api-client";
@@ -13,12 +13,12 @@ const getPartListApi = async () => {
   return PartListDataParser(result.data);
 };
 
-const createPartApi = async (payload: CreatePartPayloadModal) => {
+const createPartApi = async (payload: CreatePartPayloadModel) => {
   const result = await getAuthApiClient().post("part", payload);
   return result;
 };
 
-const updatePartApi = async (partId: number, payload: UpdatePartPayloadModal) => {
+const updatePartApi = async (partId: number, payload: UpdatePartPayloadModel) => {
   const result = await getAuthApiClient().patch(`part/${partId}`, payload);
   return result;
 };
