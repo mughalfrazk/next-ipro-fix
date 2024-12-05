@@ -1,4 +1,8 @@
-import { PartListSchema } from "@/lib/models/part.model";
+import {
+  CreatePartPayloadModel,
+  UpdatePartPayloadModel,
+  PartListSchema
+} from "@/lib/models/part.model";
 import { getAuthApiClient } from "@/utils/api-client";
 import { parseFactory } from "@/utils/parse-factory";
 
@@ -9,4 +13,19 @@ const getPartListApi = async () => {
   return PartListDataParser(result.data);
 };
 
-export { getPartListApi };
+const createPartApi = async (payload: CreatePartPayloadModel) => {
+  const result = await getAuthApiClient().post("part", payload);
+  return result;
+};
+
+const updatePartApi = async (partId: number, payload: UpdatePartPayloadModel) => {
+  const result = await getAuthApiClient().patch(`part/${partId}`, payload);
+  return result;
+};
+
+const deletePartApi = async (partId: number) => {
+  const result = await getAuthApiClient().delete(`part/${partId}`);
+  return result;
+};
+
+export { getPartListApi, updatePartApi, createPartApi, deletePartApi };

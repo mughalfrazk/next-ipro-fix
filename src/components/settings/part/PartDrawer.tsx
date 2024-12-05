@@ -1,67 +1,66 @@
+import { useEffect, useTransition } from "react";
 import { Drawer, Group, Stack } from "@mantine/core";
+import { useRouter } from "next/navigation";
 import IproButton from "@/components/core/IproButton";
 import IproTextInput from "@/components/core/IproTextInput";
-import { useEffect, useTransition } from "react";
-import { useRouter } from "next/navigation";
 import { useFormAction } from "@/hooks/use-form-action";
-import { createProblemAction } from "@/lib/actions/problem.action";
-import { updateProblemAction } from "@/lib/actions/problem.action";
-import { ProblemModel } from "@/lib/models/problem.model";
+import { PartModel } from "@/lib/models/part.model";
+import { createPartAction, updatePartAction } from "@/lib/actions/part.action";
 
-type ProblemDrawerProps = {
+const PartDrawer = ({
+  opened,
+  close,
+  title,
+  selectedPart
+}: {
   opened: boolean;
   close: () => void;
   title?: string;
-  selectedProblem?: ProblemModel;
-};
-
-const ProblemDrawer = ({ opened, close, title, selectedProblem }: ProblemDrawerProps) => {
+  selectedPart?: PartModel;
+}) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const { state, formAction, getFieldErrorProps } = useFormAction(
-    !!selectedProblem ? updateProblemAction : createProblemAction,
+    !!selectedPart ? updatePartAction : createPartAction,
     {}
   );
-
   const handleSubmit = async (formData: FormData) => {
     startTransition(() => {
       formAction(formData);
     });
   };
-
   useEffect(() => {
     if (!isPending && typeof state?.success === "string") {
       close();
-      router.push("/dashboard/settings/issue");
+      router.push("/dashboard/settings/part");
       router.refresh();
     }
   }, [isPending, state]);
-
   return (
-    <Drawer opened={opened} title={title ?? "Add New Brand"} position="right" onClose={close}>
+    <Drawer opened={opened} title={title ?? "Add New Part"} position="right" onClose={close}>
       <form action={handleSubmit}>
         <Stack>
           <IproTextInput
             type="text"
             label="Name"
             name="name"
-            defaultValue={selectedProblem?.name}
-            placeholder="Broken Glass"
+            defaultValue={selectedPart?.name}
+            placeholder="Screen"
             {...getFieldErrorProps("name")}
           />
           <IproTextInput
             type="text"
             label="Description"
             name="description"
-            defaultValue={selectedProblem?.description ?? ""}
-            placeholder="A very expensive brand"
+            defaultValue={selectedPart?.description ?? ""}
+            placeholder="Phone Screen"
             {...getFieldErrorProps("description")}
           />
-          {selectedProblem && (
+          {selectedPart && (
             <IproTextInput
               type="number"
               name="id"
-              defaultValue={selectedProblem.id}
+              defaultValue={selectedPart.id}
               style={{ display: "none" }}
             />
           )}
@@ -77,4 +76,4 @@ const ProblemDrawer = ({ opened, close, title, selectedProblem }: ProblemDrawerP
   );
 };
 
-export default ProblemDrawer;
+export default PartDrawer;
