@@ -1,4 +1,4 @@
-import { Center, Flex, NumberFormatter, Paper, Stack, Text } from "@mantine/core";
+import { NumberFormatter, Paper, Stack, Text } from "@mantine/core";
 
 import Table from "@/components/common/Table";
 import JobPurchaseFilterBody from "../job/add-new-job/job-purchases/JobPurchaseFilterBody";

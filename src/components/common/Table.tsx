@@ -13,7 +13,6 @@ import {
   Stack,
   Text,
   Title,
-  useMantineTheme
 } from "@mantine/core";
 
 import IproButton from "../core/IproButton";
@@ -319,7 +318,6 @@ export const Table = ({
   PAGE_SIZE = 10
 }: TableProps) => {
   const [opened, { open, close }] = useDisclosure();
-  const theme = useMantineTheme();
 
   const [page, setPage] = useState(1);
   const [records, setRecords] = useState(data.slice(0, PAGE_SIZE));
