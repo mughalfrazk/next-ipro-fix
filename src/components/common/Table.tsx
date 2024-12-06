@@ -1,14 +1,24 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, useState, useEffect } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { DataTable } from "mantine-datatable";
 import { IconFilter, IconSearch } from "@tabler/icons-react";
-import { Avatar, Card, Drawer, Grid, Group, Stack, Text, Title } from "@mantine/core";
+import {
+  Avatar,
+  Card,
+  Drawer,
+  Grid,
+  Group,
+  Stack,
+  Text,
+  Title,
+} from "@mantine/core";
 
 import IproButton from "../core/IproButton";
 import IproTextInput from "../core/IproTextInput";
 import Heading from "./Heading";
+import classes from "./Table.module.css"
 
 type RowType = {
   id: string;
@@ -29,9 +39,9 @@ type RowType = {
 
 const dummy_columns = [
   {
-    accessor: "jobId",
+    accessor: "id",
     render: (row: RowType) => {
-      return <IproButton variant="subtle">{row.jobId}</IproButton>;
+      return <IproButton variant="subtle">{row.id}</IproButton>;
     }
   },
   {
@@ -71,8 +81,7 @@ const dummy_columns = [
 
 const dummy_rows = [
   {
-    id: "0",
-    jobId: "Job-123",
+    id: "01",
     customer: {
       name: "John Doe",
       phone: "XXX XX XXXX"
@@ -87,8 +96,7 @@ const dummy_rows = [
     total: "AED 23000"
   },
   {
-    id: "1",
-    jobId: "Job-123",
+    id: "02",
     customer: {
       name: "John Doe",
       phone: "XXX XX XXXX"
@@ -103,8 +111,7 @@ const dummy_rows = [
     total: "AED 23000"
   },
   {
-    id: "2",
-    jobId: "Job-123",
+    id: "03",
     customer: {
       name: "John Doe",
       phone: "XXX XX XXXX"
@@ -119,8 +126,157 @@ const dummy_rows = [
     total: "AED 23000"
   },
   {
-    id: "3",
-    jobId: "Job-123",
+    id: "04",
+    customer: {
+      name: "John Doe",
+      phone: "XXX XX XXXX"
+    },
+    status: "Pending Work",
+    qty: 20,
+    company_name: "Al humrah ltd",
+    technician: {
+      name: "Albert Fiennes",
+      phone: "XXX XX XXXX"
+    },
+    total: "AED 23000"
+  },
+  {
+    id: "05",
+    customer: {
+      name: "John Doe",
+      phone: "XXX XX XXXX"
+    },
+    status: "Pending Work",
+    qty: 20,
+    company_name: "Al humrah ltd",
+    technician: {
+      name: "Albert Fiennes",
+      phone: "XXX XX XXXX"
+    },
+    total: "AED 23000"
+  },
+  {
+    id: "06",
+    customer: {
+      name: "John Doe",
+      phone: "XXX XX XXXX"
+    },
+    status: "Pending Work",
+    qty: 20,
+    company_name: "Al humrah ltd",
+    technician: {
+      name: "Albert Fiennes",
+      phone: "XXX XX XXXX"
+    },
+    total: "AED 23000"
+  },
+  {
+    id: "07",
+    customer: {
+      name: "John Doe",
+      phone: "XXX XX XXXX"
+    },
+    status: "Pending Work",
+    qty: 20,
+    company_name: "Al humrah ltd",
+    technician: {
+      name: "Albert Fiennes",
+      phone: "XXX XX XXXX"
+    },
+    total: "AED 23000"
+  },
+  {
+    id: "08",
+    customer: {
+      name: "John Doe",
+      phone: "XXX XX XXXX"
+    },
+    status: "Pending Work",
+    qty: 20,
+    company_name: "Al humrah ltd",
+    technician: {
+      name: "Albert Fiennes",
+      phone: "XXX XX XXXX"
+    },
+    total: "AED 23000"
+  },
+  {
+    id: "09",
+    customer: {
+      name: "John Doe",
+      phone: "XXX XX XXXX"
+    },
+    status: "Pending Work",
+    qty: 20,
+    company_name: "Al humrah ltd",
+    technician: {
+      name: "Albert Fiennes",
+      phone: "XXX XX XXXX"
+    },
+    total: "AED 23000"
+  },
+  {
+    id: "10",
+    customer: {
+      name: "John Doe",
+      phone: "XXX XX XXXX"
+    },
+    status: "Pending Work",
+    qty: 20,
+    company_name: "Al humrah ltd",
+    technician: {
+      name: "Albert Fiennes",
+      phone: "XXX XX XXXX"
+    },
+    total: "AED 23000"
+  },
+  {
+    id: "11",
+    customer: {
+      name: "John Doe",
+      phone: "XXX XX XXXX"
+    },
+    status: "Pending Work",
+    qty: 20,
+    company_name: "Al humrah ltd",
+    technician: {
+      name: "Albert Fiennes",
+      phone: "XXX XX XXXX"
+    },
+    total: "AED 23000"
+  },
+  {
+    id: "12",
+    customer: {
+      name: "John Doe",
+      phone: "XXX XX XXXX"
+    },
+    status: "Pending Work",
+    qty: 20,
+    company_name: "Al humrah ltd",
+    technician: {
+      name: "Albert Fiennes",
+      phone: "XXX XX XXXX"
+    },
+    total: "AED 23000"
+  },
+  {
+    id: "13",
+    customer: {
+      name: "John Doe",
+      phone: "XXX XX XXXX"
+    },
+    status: "Pending Work",
+    qty: 20,
+    company_name: "Al humrah ltd",
+    technician: {
+      name: "Albert Fiennes",
+      phone: "XXX XX XXXX"
+    },
+    total: "AED 23000"
+  },
+  {
+    id: "14",
     customer: {
       name: "John Doe",
       phone: "XXX XX XXXX"
@@ -147,6 +303,7 @@ type TableProps = {
   rightSection?: ReactNode;
   filter?: ReactNode;
   drawerTitle?: string;
+  PAGE_SIZE?: number;
 };
 
 export const Table = ({
@@ -157,9 +314,19 @@ export const Table = ({
   search,
   rightSection,
   filter,
-  drawerTitle
+  drawerTitle,
+  PAGE_SIZE = 10
 }: TableProps) => {
   const [opened, { open, close }] = useDisclosure();
+
+  const [page, setPage] = useState(1);
+  const [records, setRecords] = useState(data.slice(0, PAGE_SIZE));
+
+  useEffect(() => {
+    const from = (page - 1) * PAGE_SIZE;
+    const to = from + PAGE_SIZE;
+    setRecords(data.slice(from, to));
+  }, [page]);
 
   return (
     <>
@@ -193,11 +360,13 @@ export const Table = ({
         </Grid>
         <DataTable
           columns={columns}
-          records={data}
+          records={records}
           minHeight={100}
-          classNames={{
-            root: "mantine-table-root"
-          }}
+          classNames={classes}
+          totalRecords={data.length}
+          recordsPerPage={PAGE_SIZE}
+          page={page}
+          onPageChange={(p) => setPage(p)}
         />
       </Card>
     </>

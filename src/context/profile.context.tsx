@@ -57,7 +57,7 @@ const ProfileProvider = ({ children }: { children: ReactNode }) => {
       const profile = await getProfileApi();
       setProfile(profile);
     } catch (error) {
-      if (getFormattedError(error)?.errors?.formErrors?.[0].split(":")[0] === "401") {
+      if (getFormattedError(error)?.errors?.formErrors?.[0]?.split(":")[0] === "401") {
         showErrorNotification("Session is ended, please login again.");
         logoutAction();
       }

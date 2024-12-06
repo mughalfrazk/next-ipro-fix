@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { PartSchema } from "./part.model";
 
 export const PurchaseSchema = z.object({
   id: z.string(),
@@ -8,9 +9,11 @@ export const PurchaseSchema = z.object({
   quantity: z.number().min(1, "Quantity is required"),
   model_id: z.number().min(1, "Model is required"),
   total: z.number().min(1, "Total is required"),
+  charges: z.number().nullish(),
   created_at: z.string(),
   updated_at: z.string(),
-  deleted_at: z.string().nullish()
+  deleted_at: z.string().nullish(),
+  part: PartSchema.nullish()
 });
 
 export const PurchaseListSchema = z.array(PurchaseSchema);
