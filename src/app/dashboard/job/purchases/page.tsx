@@ -1,16 +1,10 @@
-import Table from "@/components/common/Table";
-import JobPurchaseFilterBody from "@/components/job/add-new-job/job-purchases/JobPurchaseFilterBody";
+import PurchasesList from "@/components/purchases/PurchasesList";
+import { getSuppliersWithPurchasesApi } from "@/lib/services/api/supplier.service";
 
-const PurchasesPage = () => {
-  return (
-    <Table
-      title="Total Purchases"
-      description="All Purchases details"
-      search={true}
-      drawerTitle="Purchase Filter"
-      filter={<JobPurchaseFilterBody />}
-    />
-  );
+const PurchasesPage = async () => {
+  const result = await getSuppliersWithPurchasesApi();
+
+  return <PurchasesList purchases={result} />;
 };
 
 export default PurchasesPage;

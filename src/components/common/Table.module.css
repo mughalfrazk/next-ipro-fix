@@ -1,0 +1,6 @@
+.pagination {
+  button[data-active=true] {
+    background-color: var(--mantine-color-primary-6);
+    border: var(--mantine-color-primary-6);
+  }
+}

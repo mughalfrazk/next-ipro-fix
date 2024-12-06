@@ -12,8 +12,6 @@ import Heading from "@/components/common/Heading";
 import IproButton from "@/components/core/IproButton";
 import PurchaseFormItem from "./PurchaseFormItem";
 
-// { purchases: purchasesData }: { purchases: PurchaseListModel | undefined | null }
-
 const JobPurchasesTab = ({
   jobId,
   purchases: purchasesData
@@ -95,7 +93,7 @@ const JobPurchasesTab = ({
             </GridCol>
           )}
         </Grid>
-        {!purchases.length && (
+        {!purchasesData.length && (
           <Group justify="flex-end" mt={20}>
             <IproButton variant="outline">Cancal</IproButton>
             <IproButton isSubmit={true}>Save Purchase</IproButton>

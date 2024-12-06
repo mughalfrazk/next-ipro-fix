@@ -31,13 +31,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <ColorSchemeScript />
+        <ColorSchemeScript defaultColorScheme="light" />
       </head>
       <body>
         <NextTopLoader />
         <SessionProvider>
           <MantineProvider
-            defaultColorScheme="auto"
             theme={iproTheme}
             cssVariablesResolver={resolver}
           >
