@@ -62,7 +62,7 @@ const JobPurchasesTab = ({
               removePurchase={() => setPurchases(purchases.filter((_, j) => j !== idx))}
             />
           ))}
-          {!purchases.length && (
+          {!purchasesData.length && (
             <GridCol span={12}>
               <Group
                 justify="center"
