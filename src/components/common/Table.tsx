@@ -4,21 +4,12 @@ import { ReactNode, useState, useEffect } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { DataTable } from "mantine-datatable";
 import { IconFilter, IconSearch } from "@tabler/icons-react";
-import {
-  Avatar,
-  Card,
-  Drawer,
-  Grid,
-  Group,
-  Stack,
-  Text,
-  Title,
-} from "@mantine/core";
+import { Avatar, Card, Drawer, Grid, Group, Stack, Text, Title } from "@mantine/core";
 
 import IproButton from "../core/IproButton";
 import IproTextInput from "../core/IproTextInput";
 import Heading from "./Heading";
-import classes from "./Table.module.css"
+import classes from "./Table.module.css";
 
 type RowType = {
   id: string;

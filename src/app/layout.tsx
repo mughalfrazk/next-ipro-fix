@@ -36,10 +36,7 @@ export default function RootLayout({
       <body>
         <NextTopLoader />
         <SessionProvider>
-          <MantineProvider
-            theme={iproTheme}
-            cssVariablesResolver={resolver}
-          >
+          <MantineProvider theme={iproTheme} cssVariablesResolver={resolver}>
             <ErrorBoundary fallback={<Error />}>
               <Notifications />
               {children}
