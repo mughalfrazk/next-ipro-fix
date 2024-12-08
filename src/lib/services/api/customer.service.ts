@@ -1,4 +1,4 @@
-import { CustomerListSchema } from "@/lib/models/customer.model";
+import { CreateCustomerPayloadModel, CustomerListSchema } from "@/lib/models/customer.model";
 import { getAuthApiClient } from "@/utils/api-client";
 import { parseFactory } from "@/utils/parse-factory";
 
@@ -9,4 +9,8 @@ const getCustomerListApi = async () => {
   return CustomerListDataParser(result.data);
 };
 
-export { getCustomerListApi };
+const createCustomerApi = async (payload: CreateCustomerPayloadModel) => {
+  const result = await getAuthApiClient().post("customer", payload);
+  return result;
+};
+export { getCustomerListApi, createCustomerApi };

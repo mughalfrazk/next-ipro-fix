@@ -3,7 +3,10 @@ import { getAuthApiClient } from "@/utils/api-client";
 import { parseFactory } from "@/utils/parse-factory";
 
 const SupplierListDataParser = parseFactory(SupplierListSchema, "SupplierListDataParser");
-const SupplierListWithPurchasesDataParser = parseFactory(SupplierListWithPurchasesSchema, "SupplierListWithPurchasesDataParser")
+const SupplierListWithPurchasesDataParser = parseFactory(
+  SupplierListWithPurchasesSchema,
+  "SupplierListWithPurchasesDataParser"
+);
 
 const getSupplierListApi = async () => {
   const result = await getAuthApiClient().get("supplier");
@@ -11,8 +14,8 @@ const getSupplierListApi = async () => {
 };
 
 const getSuppliersWithPurchasesApi = async () => {
-  const result = await getAuthApiClient().get("supplier/purchases")
-  return SupplierListWithPurchasesDataParser(result.data)
-}
+  const result = await getAuthApiClient().get("supplier/purchases");
+  return SupplierListWithPurchasesDataParser(result.data);
+};
 
 export { getSupplierListApi, getSuppliersWithPurchasesApi };

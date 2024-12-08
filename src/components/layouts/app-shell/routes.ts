@@ -7,7 +7,8 @@ import {
   IconUserCircle,
   IconProps,
   Icon,
-  IconSettings2
+  IconSettings2,
+  IconUsers
 } from "@tabler/icons-react";
 
 export type NavLinkRoute = {
@@ -35,6 +36,17 @@ const routes: NavLinkRoute[] = [
       {
         href: "/dashboard/user/add-new",
         label: "Add New User",
+        icon: IconFocus
+      }
+    ]
+  },
+  {
+    label: "Customer",
+    icon: IconUsers,
+    children: [
+      {
+        href: "/dashboard/customer",
+        label: "Customer List",
         icon: IconFocus
       }
     ]
