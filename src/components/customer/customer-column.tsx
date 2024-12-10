@@ -1,9 +1,10 @@
 "use client";
 
 import { CustomerModel } from "@/lib/models/customer.model";
-import Link from "next/link";
+import EditCustomerDrawer from "./EditCustomerDrawer";
 import { Text, Avatar, Stack, Title, Group } from "@mantine/core";
 import { showDateNicely } from "@/utils/functions";
+import DeleteCustomerPopover from "./DeleteCustomerPopover";
 
 export const CustomerColumns = [
   {
@@ -39,11 +40,10 @@ export const CustomerColumns = [
     accessor: "actions",
     render: (row: CustomerModel) => {
       return (
-        <Link href={`/dashboard/customer/${row.id}`}>
-          <Text fw={"bold"} c={"primary.6"}>
-            open customer
-          </Text>
-        </Link>
+        <Group>
+          <EditCustomerDrawer selectedCustomer={row} />
+          <DeleteCustomerPopover selectedCustomer={row} />
+        </Group>
       );
     }
   }
