@@ -38,9 +38,10 @@ export const CustomerColumns = [
   },
   {
     accessor: "actions",
+    textAlign: "right",
     render: (row: CustomerModel) => {
       return (
-        <Group>
+        <Group  gap={0} justify="flex-end">
           <EditCustomerDrawer selectedCustomer={row} />
           <DeleteCustomerPopover selectedCustomer={row} />
         </Group>
