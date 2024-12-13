@@ -1,4 +1,8 @@
-import { SupplierListSchema, SupplierListWithPurchasesSchema } from "@/lib/models/supplier.model";
+import {
+  CreateSupplierPayloadModal,
+  SupplierListSchema,
+  SupplierListWithPurchasesSchema
+} from "@/lib/models/supplier.model";
 import { getAuthApiClient } from "@/utils/api-client";
 import { parseFactory } from "@/utils/parse-factory";
 
@@ -18,4 +22,9 @@ const getSuppliersWithPurchasesApi = async () => {
   return SupplierListWithPurchasesDataParser(result.data);
 };
 
-export { getSupplierListApi, getSuppliersWithPurchasesApi };
+const createSupplierApi = async (payload: CreateSupplierPayloadModal) => {
+  const result = await getAuthApiClient().post("supplier", payload);
+  return result;
+};
+
+export { getSupplierListApi, getSuppliersWithPurchasesApi, createSupplierApi };

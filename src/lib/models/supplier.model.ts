@@ -14,6 +14,15 @@ export const SupplierWithPurchasesSchema = SupplierSchema.extend({
   purchases: PurchaseListSchema
 });
 
+export const CreateSupplierPayloadSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  description: z.string().nullish()
+});
+export const UpdateSupplierPayloadSchema = z.object({
+  id: z.string(),
+  name: z.string().min(1, "Name is required"),
+  description: z.string().nullish()
+});
 export const SupplierListWithPurchasesSchema = z.array(SupplierWithPurchasesSchema);
 
 export const SupplierListSchema = z.array(SupplierSchema);
@@ -22,3 +31,5 @@ export type SupplierModel = z.infer<typeof SupplierSchema>;
 export type SupplierListModel = z.infer<typeof SupplierListSchema>;
 export type SupplierWithPurchasesModel = z.infer<typeof SupplierWithPurchasesSchema>;
 export type SupplierListWithPurchasesModel = z.infer<typeof SupplierListWithPurchasesSchema>;
+export type CreateSupplierPayloadModal = z.infer<typeof CreateSupplierPayloadSchema>;
+export type UpdateSupplierPayloadModal = z.infer<typeof UpdateSupplierPayloadSchema>;
