@@ -52,6 +52,17 @@ const routes: NavLinkRoute[] = [
     ]
   },
   {
+    label: "Supplier",
+    icon: IconUsers,
+    children: [
+      {
+        href: "/dashboard/supplier",
+        label: "Supplier List",
+        icon: IconFocus
+      }
+    ]
+  },
+  {
     label: "Job",
     icon: IconTool,
     children: [
