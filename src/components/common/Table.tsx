@@ -1,10 +1,23 @@
 "use client";
 
-import { ReactNode, useState, useEffect } from "react";
+import { ReactNode, useState, useEffect, Dispatch, SetStateAction } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { DataTable } from "mantine-datatable";
-import { IconFilter, IconSearch } from "@tabler/icons-react";
-import { Avatar, Card, Drawer, Grid, Group, Stack, Text, Title } from "@mantine/core";
+import { IconFilter, IconSearch, IconX } from "@tabler/icons-react";
+import {
+  Avatar,
+  Badge,
+  Box,
+  Card,
+  Drawer,
+  Grid,
+  Group,
+  Paper,
+  rem,
+  Stack,
+  Text,
+  Title
+} from "@mantine/core";
 
 import IproButton from "../core/IproButton";
 import IproTextInput from "../core/IproTextInput";
@@ -283,51 +296,70 @@ const dummy_rows = [
   }
 ];
 
-type TableProps = {
+export type AppliedFiltersType = {
+  name: string;
+  value: string;
+  data: unknown;
+};
+
+type TableProps<T> = {
   title?: string;
-  data?: unknown[];
+  initialData?: T[];
+  data?: T[];
+  setFilteredData?: Dispatch<SetStateAction<T[]>>;
   /* eslint-disable @typescript-eslint/no-explicit-any */
   columns?: any;
   description?: string;
   search?: boolean;
   searchProperty?: string;
   rightSection?: ReactNode;
-  filter?: ReactNode;
+  filter?: (
+    closeFilter: () => void,
+    appliedFilters: AppliedFiltersType[],
+    setAppliedFilters: Dispatch<SetStateAction<AppliedFiltersType[]>>
+  ) => ReactNode | undefined;
   drawerTitle?: string;
   PAGE_SIZE?: number;
 };
 
-export const Table = ({
+export const Table = <T extends object>({
   columns = dummy_columns,
-  data = dummy_rows,
+  initialData,
+  data = dummy_rows as T[],
+  setFilteredData,
   title,
   description,
   search,
   rightSection,
-  filter,
   drawerTitle,
+  filter,
   PAGE_SIZE = 10
-}: TableProps) => {
+}: TableProps<T>) => {
   const [opened, { open, close }] = useDisclosure();
 
   const [page, setPage] = useState(1);
-  const [records, setRecords] = useState(data.slice(0, PAGE_SIZE));
+  const [records, setRecords] = useState((data as unknown[]).slice(0, PAGE_SIZE));
+  const [appliedFilters, setAppliedFilters] = useState<AppliedFiltersType[]>([]);
 
   useEffect(() => {
     const from = (page - 1) * PAGE_SIZE;
     const to = from + PAGE_SIZE;
-    setRecords(data.slice(from, to));
+    setRecords((data as unknown[]).slice(from, to));
   }, [page]);
+
+  useEffect(() => {
+    setRecords((data as unknown[]).slice(0, PAGE_SIZE));
+  }, [data]);
 
   return (
     <>
       {!!filter && (
         <Drawer opened={opened} onClose={close} title={drawerTitle} position="top" size="320px">
-          {filter}
+          {filter(close, appliedFilters, setAppliedFilters)}
         </Drawer>
       )}
       <Card>
-        <Grid align="center" justify="space-between" mb={30}>
+        <Grid align="center" justify="space-between" mb={20}>
           {title && (
             <Grid.Col span={2}>
               <Heading title={title} description={description} />
@@ -349,14 +381,40 @@ export const Table = ({
           )}
           {!!rightSection && <Grid.Col span={2}>{rightSection}</Grid.Col>}
         </Grid>
+        {!!appliedFilters.length && (
+          <Paper px={8} py={6} radius="xl" my={10}>
+            <Group justify="space-between">
+              <Group>
+                {appliedFilters.map((item) => (
+                  <Badge key={item.name} color="var(--mantine-color-primary-6)" tt={"none"}>
+                    {`${item.name}: ${item.value}`}
+                  </Badge>
+                ))}
+              </Group>
+              <IproButton
+                size="xs"
+                px={2}
+                variant="light"
+                radius="xl"
+                isIconOnly={true}
+                onClick={() => {
+                  setAppliedFilters([])
+                  setFilteredData?.([...(initialData as T[])]);
+                }}
+              >
+                <IconX style={{ width: rem(20), height: rem(20) }} />
+              </IproButton>
+            </Group>
+          </Paper>
+        )}
         <DataTable
+          page={page}
           columns={columns}
           records={records}
           minHeight={100}
           classNames={classes}
-          totalRecords={data.length}
+          totalRecords={(data as unknown[]).length}
           recordsPerPage={PAGE_SIZE}
-          page={page}
           onPageChange={(p) => setPage(p)}
         />
       </Card>

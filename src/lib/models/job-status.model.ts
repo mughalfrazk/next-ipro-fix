@@ -8,4 +8,7 @@ export const JobStatusSchema = z.object({
   deleted_at: z.string().nullish()
 });
 
+export const JobStatusListSchema = z.array(JobStatusSchema)
+
 export type JobStatusModel = z.infer<typeof JobStatusSchema>;
+export type JobStatusListModel = z.infer<typeof JobStatusListSchema>;

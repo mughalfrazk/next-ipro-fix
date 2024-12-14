@@ -4,6 +4,7 @@ import { Avatar, Badge, Group, Stack, Text, Title } from "@mantine/core";
 import { JobModel } from "@/lib/models/job.model";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { showDateNicely } from "@/utils/functions";
 
 const colorForJobStatus = (name: string) => {
   return name === "Device Received"
@@ -99,6 +100,14 @@ export const JobColumns = [
     accessor: "total",
     render: (row: JobModel) => {
       return row.issues.reduce((prev, curr) => prev + curr.total, 0);
+    }
+  },
+  {
+    title: "Created at",
+    accessor: "created_at",
+    textAlign: "right",
+    render: (row: JobModel) => {
+      return showDateNicely(row.created_at);
     }
   }
 ];

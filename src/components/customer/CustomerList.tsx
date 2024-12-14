@@ -24,7 +24,7 @@ const CustomerList = ({ customers }: { customers: CustomerListModel }) => {
         columns={CustomerColumns}
         data={customers}
         drawerTitle={"Customer Filter"}
-        filter={"hello world"}
+        // filter={"hello world"}
       />
     </>
   );

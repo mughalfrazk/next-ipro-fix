@@ -1,4 +1,7 @@
-import { Select, SelectProps, TagsInput, TagsInputProps } from "@mantine/core";
+import { ComboboxItem, Select, SelectProps, TagsInput, TagsInputProps } from "@mantine/core";
+
+export type IproSelectOnChangeType = ((value: string | null, option: ComboboxItem) => void) &
+  ((value: string[]) => void);
 
 export type IproSelectProps = {
   componentType?: "tags";

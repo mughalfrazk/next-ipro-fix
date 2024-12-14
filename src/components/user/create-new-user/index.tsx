@@ -89,7 +89,7 @@ const AddNewUser = ({ user }: { user?: ProfileModel }) => {
                     type="number"
                     name="target"
                     label="Assign Target"
-                    defaultValue={user?.target ?? ""}
+                    defaultValue={user?.target ?? 0}
                     {...getFieldErrorProps("target")}
                   />
                 </GridCol>

@@ -1,15 +1,18 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 
-import { JobListModel } from "@/lib/models/job.model";
-import IproButton from "@/components/core/IproButton";
-import Table from "@/components/common/Table";
 import { JobColumns } from "./job-columns";
+import { JobListModel } from "@/lib/models/job.model";
+import Table from "@/components/common/Table";
 import JobFilterBody from "./JobFilterBody";
+import IproButton from "@/components/core/IproButton";
 
 const JobList = ({ jobs }: { jobs: JobListModel }) => {
-  return (
+  const [filteredJobs, setFilteredJobs] = useState<JobListModel>(jobs);
+
+  return ( 
     <Table
       title="Total Job"
       description="All job details and job status"
@@ -20,9 +23,19 @@ const JobList = ({ jobs }: { jobs: JobListModel }) => {
         </Link>
       }
       columns={JobColumns}
-      data={jobs}
+      initialData={jobs}
+      data={filteredJobs}
+      setFilteredData={setFilteredJobs}
       drawerTitle="Jobs Filter"
-      filter={<JobFilterBody />}
+      filter={(close, appliedFilters, setAppliedFilters) => (
+        <JobFilterBody
+          jobs={jobs}
+          close={close}
+          appliedFilters={appliedFilters}
+          setFilteredJobs={setFilteredJobs}
+          setAppliedFilters={setAppliedFilters}
+        />
+      )}
     />
   );
 };
