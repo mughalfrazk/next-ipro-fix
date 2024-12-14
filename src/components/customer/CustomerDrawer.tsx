@@ -66,7 +66,7 @@ const CustomerDrawer = ({
           />
           {selectedCustomer && (
             <IproTextInput
-              type="number"
+              type="string"
               name="id"
               defaultValue={selectedCustomer.id}
               style={{ display: "none" }}
