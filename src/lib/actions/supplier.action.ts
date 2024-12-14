@@ -5,7 +5,7 @@ import { validatePayload } from "@/utils/validate-payload";
 import { CreateSupplierPayloadSchema, UpdateSupplierPayloadSchema } from "../models/supplier.model";
 import { getFormattedError } from "@/utils/format-error";
 import { isRedirectError } from "next/dist/client/components/redirect";
-import { createSupplierApi } from "../services/api/supplier.service";
+import { createSupplierApi, updateSupplierApi } from "../services/api/supplier.service";
 
 const createSupplierAction = async (_: ActionResult, formData: FormData) => {
   const { parsed } = await validatePayload(formData, CreateSupplierPayloadSchema);
@@ -27,8 +27,8 @@ const updateSupplierAction = async (_: ActionResult, formData: FormData) => {
     return getFormattedError(parsed?.error);
   }
   try {
-    await createSupplierApi(parsed.data);
-    return { success: "Created Successfully" };
+    await updateSupplierApi(parsed.data.id, parsed.data);
+    return { success: "Updated Successfully" };
   } catch (error) {
     if (isRedirectError(error)) throw error;
     return getFormattedError(error);

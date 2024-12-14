@@ -13,6 +13,7 @@ export const SupplierColumns = [
       return row.id.slice(-5);
     }
   },
+
   {
     accessor: "Customer",
     render: (row: SupplierModel) => {
@@ -27,6 +28,9 @@ export const SupplierColumns = [
     }
   },
   {
+    accessor: "description"
+  },
+  {
     accessor: "created_at",
     render: (row: SupplierModel) => {
       return showDateNicely(row.created_at);
@@ -39,7 +43,7 @@ export const SupplierColumns = [
       return (
         <Group gap={0} justify="flex-end">
           <EditSupplierDrawer selectedSupplier={row} />
-          <DeleteSupplierPopover selectedSupplier={row} />
+          <DeleteSupplierPopover selectedId={row.id} />
         </Group>
       );
     }

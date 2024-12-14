@@ -31,5 +31,5 @@ export type SupplierModel = z.infer<typeof SupplierSchema>;
 export type SupplierListModel = z.infer<typeof SupplierListSchema>;
 export type SupplierWithPurchasesModel = z.infer<typeof SupplierWithPurchasesSchema>;
 export type SupplierListWithPurchasesModel = z.infer<typeof SupplierListWithPurchasesSchema>;
-export type CreateSupplierPayloadModal = z.infer<typeof CreateSupplierPayloadSchema>;
-export type UpdateSupplierPayloadModal = z.infer<typeof UpdateSupplierPayloadSchema>;
+export type CreateSupplierPayloadModel = z.infer<typeof CreateSupplierPayloadSchema>;
+export type UpdateSupplierPayloadModel = z.infer<typeof UpdateSupplierPayloadSchema>;

@@ -1,7 +1,8 @@
 import {
-  CreateSupplierPayloadModal,
+  CreateSupplierPayloadModel,
   SupplierListSchema,
-  SupplierListWithPurchasesSchema
+  SupplierListWithPurchasesSchema,
+  UpdateSupplierPayloadModel
 } from "@/lib/models/supplier.model";
 import { getAuthApiClient } from "@/utils/api-client";
 import { parseFactory } from "@/utils/parse-factory";
@@ -22,9 +23,26 @@ const getSuppliersWithPurchasesApi = async () => {
   return SupplierListWithPurchasesDataParser(result.data);
 };
 
-const createSupplierApi = async (payload: CreateSupplierPayloadModal) => {
+const createSupplierApi = async (payload: CreateSupplierPayloadModel) => {
   const result = await getAuthApiClient().post("supplier", payload);
   return result;
 };
 
-export { getSupplierListApi, getSuppliersWithPurchasesApi, createSupplierApi };
+const updateSupplierApi = async (SupplierId: string, payload: UpdateSupplierPayloadModel) => {
+  const result = await getAuthApiClient().patch(`Supplier/${SupplierId}`, payload);
+  console.log(result);
+  return result;
+};
+
+const deleteSupplierApi = async (supplierId: string) => {
+  const result = await getAuthApiClient().delete(`supplier/${supplierId}`);
+  return result;
+};
+
+export {
+  getSupplierListApi,
+  getSuppliersWithPurchasesApi,
+  createSupplierApi,
+  updateSupplierApi,
+  deleteSupplierApi
+};
