@@ -60,7 +60,7 @@ const SupplierDrawer = ({
           />
           {selectedSupplier && (
             <IproTextInput
-              type="number"
+              type="string"
               name="id"
               defaultValue={selectedSupplier.id}
               style={{ display: "none" }}

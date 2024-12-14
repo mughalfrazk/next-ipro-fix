@@ -5,10 +5,9 @@ import IproButton from "@/components/core/IproButton";
 import { getFormattedError } from "@/utils/format-error";
 import { showErrorNotification } from "@/utils/functions";
 import { useRouter } from "next/navigation";
-import { createSupplierApi } from "@/lib/services/api/supplier.service";
-import { SupplierModel } from "@/lib/models/supplier.model";
+import { deleteSupplierApi } from "@/lib/services/api/supplier.service";
 
-const DeleteSupplierPopover = ({ selectedSupplier }: { selectedSupplier: SupplierModel }) => {
+const DeleteSupplierPopover = ({ selectedId }: { selectedId: string }) => {
   const router = useRouter();
   const [opened, setOpened] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -16,9 +15,9 @@ const DeleteSupplierPopover = ({ selectedSupplier }: { selectedSupplier: Supplie
   const onDeleteHandler = async () => {
     try {
       setLoading(true);
-      await createSupplierApi(selectedSupplier);
+      await deleteSupplierApi(selectedId);
 
-      router.push("/dashboard/customer");
+      router.push("/dashboard/supplier");
       router.refresh();
     } catch (error) {
       const e = getFormattedError(error);

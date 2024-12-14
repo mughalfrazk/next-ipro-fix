@@ -10,7 +10,7 @@ const EditCustomerDrawer = ({ selectedCustomer }: { selectedCustomer: CustomerMo
   return (
     <>
       <CustomerDrawer
-        title="Edit Model Info"
+        title="Edit Customer Info"
         selectedCustomer={selectedCustomer}
         opened={opened}
         close={close}

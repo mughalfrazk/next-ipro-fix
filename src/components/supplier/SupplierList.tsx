@@ -20,7 +20,7 @@ const SupplierList = ({ suppliers }: { suppliers: SupplierListModel }) => {
         data={suppliers}
         rightSection={
           <IproButton fullWidth onClick={open}>
-            Create New Model
+            Create New Supplier
           </IproButton>
         }
       />
