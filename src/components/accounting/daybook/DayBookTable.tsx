@@ -2,7 +2,6 @@
 
 import Table from "@/components/common/Table";
 import { Avatar, Badge, Group, Stack, Button, Title, Text } from "@mantine/core";
-import DayBookFilterBody from "./DayBookFilterBody";
 
 const colorForCashStatus = (name: string) => {
   return name === "Cash-Out" ? "red" : name === "Cash-In" ? "green" : "black";
