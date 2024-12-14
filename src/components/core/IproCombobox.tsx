@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { CheckIcon, Combobox, Group, Pill, PillsInput, useCombobox } from "@mantine/core";
 
 export type IproComboboxItem = {

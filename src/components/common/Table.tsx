@@ -7,7 +7,6 @@ import { IconFilter, IconSearch, IconX } from "@tabler/icons-react";
 import {
   Avatar,
   Badge,
-  Box,
   Card,
   Drawer,
   Grid,
@@ -398,7 +397,7 @@ export const Table = <T extends object>({
                 radius="xl"
                 isIconOnly={true}
                 onClick={() => {
-                  setAppliedFilters([])
+                  setAppliedFilters([]);
                   setFilteredData?.([...(initialData as T[])]);
                 }}
               >

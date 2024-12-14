@@ -12,7 +12,7 @@ import IproButton from "@/components/core/IproButton";
 const JobList = ({ jobs }: { jobs: JobListModel }) => {
   const [filteredJobs, setFilteredJobs] = useState<JobListModel>(jobs);
 
-  return ( 
+  return (
     <Table
       title="Total Job"
       description="All job details and job status"
