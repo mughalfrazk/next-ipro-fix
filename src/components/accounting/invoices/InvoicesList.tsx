@@ -2,7 +2,6 @@
 
 import Table from "@/components/common/Table";
 import { Avatar, Badge, Group, Stack, Button, Title } from "@mantine/core";
-import InvoicesFilterBody from "./InvoicesFilterBody";
 
 const colorForInvoiceStatus = (name: string) => {
   return name === "Half Paid"
@@ -198,7 +197,7 @@ const InvoicesList = () => {
       data={invoice_data}
       drawerTitle={"Invoice Filter"}
       columns={columns}
-      filter={<InvoicesFilterBody />}
+      // filter={<InvoicesFilterBody />}
     />
   );
 };
