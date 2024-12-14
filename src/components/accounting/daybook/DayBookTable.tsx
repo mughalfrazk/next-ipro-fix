@@ -283,7 +283,7 @@ const DayBookList = () => {
       data={invoice_data}
       columns={columns}
       drawerTitle="Day Book Filter"
-      filter={<DayBookFilterBody />}
+      // filter={<DayBookFilterBody />}
     />
   );
 };
