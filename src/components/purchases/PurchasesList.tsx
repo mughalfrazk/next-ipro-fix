@@ -1,7 +1,6 @@
 import { NumberFormatter, Paper, Stack, Text } from "@mantine/core";
 
 import Table from "@/components/common/Table";
-import JobPurchaseFilterBody from "../job/add-new-job/job-purchases/JobPurchaseFilterBody";
 import { SupplierListWithPurchasesModel } from "@/lib/models/supplier.model";
 import { PurchaseColumns } from "./purchase-columns";
 
@@ -14,7 +13,7 @@ const PurchasesList = ({ purchases }: { purchases: SupplierListWithPurchasesMode
       description="All Purchases details"
       search={true}
       drawerTitle="Purchase Filter"
-      filter={<JobPurchaseFilterBody />}
+      // filter={<JobPurchaseFilterBody />}
       rightSection={
         <Paper py={5} bg="var(--mantine-color-primary-6)">
           <Stack h="100%" justify="center" align="center" c="white" gap={0}>

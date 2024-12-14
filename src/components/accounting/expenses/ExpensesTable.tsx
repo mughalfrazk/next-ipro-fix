@@ -3,7 +3,7 @@
 import Table from "@/components/common/Table";
 import { Tooltip, Avatar, Box, Group, Button, Stack, Title, Text } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import ExpenseFilterBody from "./ExpenseFilterBody";
+
 import ExpenseDrawerBody from "./AddExpenseDrawer";
 import IproButton from "@/components/core/IproButton";
 
@@ -207,7 +207,7 @@ const ExpensesTable = () => {
         data={invoice_data}
         columns={columns}
         drawerTitle={"Expense Filter"}
-        filter={<ExpenseFilterBody />}
+        // filter={<ExpenseFilterBody />}
         rightSection={
           <IproButton variant="outline" fullWidth onClick={open}>
             Create New Expense

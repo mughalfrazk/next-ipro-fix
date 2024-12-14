@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Table from "../common/Table";
-import UserFilterBody from "./UserFilterBody";
 import IproButton from "../core/IproButton";
 import { UserListModel } from "@/lib/models/user.model";
 import { UserColumns } from "./user-columns";
@@ -19,7 +18,7 @@ const UserList = ({ users }: { users: UserListModel }) => {
       columns={UserColumns}
       data={users}
       drawerTitle={"User Filter"}
-      filter={<UserFilterBody />}
+      // filter={<UserFilterBody />}
     />
   );
 };

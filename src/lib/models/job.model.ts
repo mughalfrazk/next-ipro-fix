@@ -44,7 +44,9 @@ export const JobSchema = z.object({
   job_status: JobStatusSchema,
   issues: IssueListSchema,
   purchases: PurchaseListSchema.nullish(),
-  problem_type: ProblemTypeSchema
+  problem_type: ProblemTypeSchema,
+  created_at: z.string(),
+  updated_at: z.string().nullish()
 });
 
 export const JobListSchema = z.array(JobSchema);
