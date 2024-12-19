@@ -128,6 +128,12 @@ const IssueFormItem = ({
             readOnly
           />
         </GridCol>
+        <IproTextInput
+          type="text"
+          name={`issues[${idx}][id]`}
+          defaultValue={issue.id}
+          display={"none"}
+        />
       </Grid>
     </GridCol>
   );

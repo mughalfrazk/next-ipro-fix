@@ -18,6 +18,7 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
   const [problemTypes, setProblemTypes] = useState<ProblemTypeListModel>([]);
   const [issues, setIssues] = useState([
     {
+      id: "new",
       brand_id: 0,
       model_id: 0,
       problem_id: 0,
@@ -37,9 +38,11 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
   }, []);
 
   useEffect(() => {
+    console.log(job)
     if (!!job?.issues?.length) {
       setIssues([
-        ...job.issues.map(({ brand_id, model_id, problem_id, quantity, charges, total }) => ({
+        ...job.issues.map(({ id, brand_id, model_id, problem_id, quantity, charges, total }) => ({
+          id,
           brand_id,
           model_id,
           problem_id,
@@ -77,37 +80,36 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
           removeIssue={() => setIssues(issues.filter((_, j) => j !== idx))}
         />
       ))}
-      {!job && (
-        <GridCol span={12}>
-          <Group
-            justify="center"
-            w={"100%"}
-            variant="subtle"
-            py={14}
-            opacity={0.3}
-            style={{
-              border: "2px dashed var(--mantine-color-dark-1)",
-              borderRadius: "var(--mantine-radius-default)",
-              cursor: "pointer"
-            }}
-            onClick={() =>
-              setIssues([
-                ...issues,
-                {
-                  brand_id: 0,
-                  model_id: 0,
-                  problem_id: 0,
-                  quantity: 0,
-                  charges: 0,
-                  total: 0
-                }
-              ])
-            }
-          >
-            <IconSquareRoundedPlusFilled /> Add new task in the job
-          </Group>
-        </GridCol>
-      )}
+      <GridCol span={12}>
+        <Group
+          justify="center"
+          w={"100%"}
+          variant="subtle"
+          py={14}
+          opacity={0.3}
+          style={{
+            border: "2px dashed var(--mantine-color-dark-1)",
+            borderRadius: "var(--mantine-radius-default)",
+            cursor: "pointer"
+          }}
+          onClick={() =>
+            setIssues([
+              ...issues,
+              {
+                id: "new",
+                brand_id: 0,
+                model_id: 0,
+                problem_id: 0,
+                quantity: 0,
+                charges: 0,
+                total: 0
+              }
+            ])
+          }
+        >
+          <IconSquareRoundedPlusFilled /> Add new task in the job
+        </Group>
+      </GridCol>
     </Grid>
   );
 };
