@@ -28,7 +28,16 @@ const CommentDrawer = () => {
       >
         <IconMessageDots style={{ width: rem(40), height: rem(40) }} />
       </IproButton>
-      <Drawer position="right" opened={opened} onClose={close} title="Job Comments" pos="relative">
+      <Drawer
+        position="right"
+        opened={opened}
+        onClose={close}
+        title="Job Comments"
+        lockScroll={false}
+        styles={{
+          body: { padding: 0, overflowY: "hidden" }
+        }}
+      >
         <CommentDrawerBody />
       </Drawer>
     </Box>
