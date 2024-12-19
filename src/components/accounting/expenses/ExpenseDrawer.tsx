@@ -5,7 +5,7 @@ import IproTextInput from "@/components/core/IproTextInput";
 import IproSelect from "@/components/core/IproSelect";
 import { DateInput } from "@mantine/dates";
 
-const AddExpenseDrawer = ({
+const ExpenseDrawer = ({
   openedDrawer,
   closeDrawer
 }: {
@@ -41,7 +41,7 @@ const AddExpenseDrawer = ({
             <Stack>
               <IproTextInput mt={10} placeholder="Enter New Expense Type Name" />
               <Group justify="flex-end" mt={20}>
-                <IproButton variant="outline">Cancal</IproButton>
+                <IproButton variant="outline" onClick={close}>Cancal</IproButton>
                 <IproButton isSubmit={true}>Save Expense Type</IproButton>
               </Group>
             </Stack>
@@ -78,4 +78,4 @@ const AddExpenseDrawer = ({
     </Drawer>
   );
 };
-export default AddExpenseDrawer;
+export default ExpenseDrawer;
