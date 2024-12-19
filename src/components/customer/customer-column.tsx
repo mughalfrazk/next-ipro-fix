@@ -43,7 +43,7 @@ export const CustomerColumns = [
       return (
         <Group gap={0} justify="flex-end">
           <EditCustomerDrawer selectedCustomer={row} />
-          <DeleteCustomerPopover selectedCustomer={row} />
+          <DeleteCustomerPopover selectedId={row.id} />
         </Group>
       );
     }

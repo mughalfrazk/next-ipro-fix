@@ -1,15 +1,13 @@
 import { useState } from "react";
 import { IconTrash } from "@tabler/icons-react";
 import { ActionIcon, Popover, Stack, Text } from "@mantine/core";
-
+import { deleteCustomerApi } from "@/lib/services/api/customer.service";
 import IproButton from "@/components/core/IproButton";
 import { getFormattedError } from "@/utils/format-error";
 import { showErrorNotification } from "@/utils/functions";
 import { useRouter } from "next/navigation";
-import { createCustomerApi } from "@/lib/services/api/customer.service";
-import { CustomerModel } from "@/lib/models/customer.model";
 
-const DeleteCustomerPopover = ({ selectedCustomer }: { selectedCustomer: CustomerModel }) => {
+const DeleteCustomerPopover = ({ selectedId }: { selectedId: string }) => {
   const router = useRouter();
   const [opened, setOpened] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -17,7 +15,7 @@ const DeleteCustomerPopover = ({ selectedCustomer }: { selectedCustomer: Custome
   const onDeleteHandler = async () => {
     try {
       setLoading(true);
-      await createCustomerApi(selectedCustomer);
+      await deleteCustomerApi(selectedId);
 
       router.push("/dashboard/customer");
       router.refresh();

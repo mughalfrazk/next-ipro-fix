@@ -10,7 +10,7 @@ const EditSupplierDrawer = ({ selectedSupplier }: { selectedSupplier: SupplierMo
   return (
     <>
       <SupplierDrawer
-        title="Edit Model Info"
+        title="Edit Supplier Info"
         selectedSupplier={selectedSupplier}
         opened={opened}
         close={close}
