@@ -115,6 +115,7 @@ const CustomerDetail = ({ customer, getFieldErrorProps }: CustomerDetailProps) =
             onSearchChange={onNameSearchHandler}
             onRemove={(value: string) => onTagRemoveHandler(value, setName)}
             maxDropdownHeight={200}
+            readOnly={!!customer?.id}
           />
         </GridCol>
         <GridCol span={4}>
@@ -130,6 +131,7 @@ const CustomerDetail = ({ customer, getFieldErrorProps }: CustomerDetailProps) =
             onSearchChange={onPhoneSearchHandler}
             onRemove={(value: string) => onTagRemoveHandler(value, setPhone)}
             maxDropdownHeight={200}
+            readOnly={!!customer?.id}
           />
         </GridCol>
         <GridCol span={4}>

@@ -2,7 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { IconFingerprint, IconLockOff, IconServerSpark } from "@tabler/icons-react";
+import {
+  IconChevronLeft,
+  IconFingerprint,
+  IconLockOff,
+  IconServerSpark
+} from "@tabler/icons-react";
 import { Group, rem, RingProgress, Stack, Text, Title } from "@mantine/core";
 
 import IproButton from "@/components/core/IproButton";
@@ -17,7 +22,7 @@ const ErrorDescription = {
   403: {
     icon: <IconFingerprint style={{ height: rem(130), width: rem(130), marginBottom: rem(20) }} />,
     title: "Forbidden Exception!",
-    description: "You are not authorized to perform this action."
+    description: "You are not authorized to access this page."
   },
   500: {
     icon: <IconServerSpark style={{ height: rem(130), width: rem(130), marginBottom: rem(20) }} />,
@@ -27,8 +32,7 @@ const ErrorDescription = {
 };
 
 export default function Error({
-  error,
-  reset
+  error
 }: {
   error?: Error & { digest?: string };
   reset?: () => void;
@@ -67,15 +71,17 @@ export default function Error({
       {ErrorDescription[statusCode as keyof typeof ErrorDescription].icon}
       <Title order={2}>{ErrorDescription[statusCode as keyof typeof ErrorDescription].title}</Title>
       <Text>{ErrorDescription[statusCode as keyof typeof ErrorDescription].description}</Text>
-      <RingProgress
-        mt={20}
-        sections={[{ value: timer * 20, color: "primary.6" }]}
-        label={
-          <Text c="primary.6" fw={700} ta="center" size="xl">
-            {timer}s
-          </Text>
-        }
-      />
+      {statusCode === 401 && (
+        <RingProgress
+          mt={20}
+          sections={[{ value: timer * 20, color: "primary.6" }]}
+          label={
+            <Text c="primary.6" fw={700} ta="center" size="xl">
+              {timer}s
+            </Text>
+          }
+        />
+      )}
       <Group mt={20}>
         {statusCode === 401 ? (
           <IproButton variant="outline" onClick={goToLogin}>
@@ -83,10 +89,13 @@ export default function Error({
           </IproButton>
         ) : (
           <>
-            <IproButton variant="outline" onClick={() => router.back()}>
-              Back
+            <IproButton
+              variant="outline"
+              onClick={() => router.back()}
+              leftSection={<IconChevronLeft />}
+            >
+              Go Back
             </IproButton>
-            <IproButton onClick={reset}>Try again</IproButton>
           </>
         )}
       </Group>
