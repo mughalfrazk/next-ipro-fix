@@ -1,7 +1,10 @@
 import ExpensesList from "@/components/accounting/expenses/ExpensesTable";
+import { getExpenseListApi } from "@/lib/services/api/expense.service";
 
 const ExpensesPage = async () => {
-  return <ExpensesList />;
+  const result = await getExpenseListApi()
+
+  return <ExpensesList expenses={result} />;
 };
 
 export default ExpensesPage;

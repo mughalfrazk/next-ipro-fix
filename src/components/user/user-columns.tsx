@@ -92,9 +92,10 @@ export const UserColumns = [
   },
   {
     accessor: "actions",
+    textAlign: "right",
     render: () => {
       return (
-        <Button variant="transparent" size="compact-sm" color="var(--mantine-color-primary-6)">
+        <Button variant="subtle" color="var(--mantine-color-primary-6)">
           Open User
         </Button>
       );
