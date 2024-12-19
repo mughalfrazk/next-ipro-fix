@@ -87,7 +87,6 @@ const updateJobAction = async (_: ActionResult, formData: FormData) => {
     payload.customer_id = "new";
   }
 
-  console.log(payload);
   const validatedPayload = await CreateJobPayloadSchema.safeParseAsync(payload);
   console.log(validatedPayload.error);
   if (!validatedPayload.success) {
