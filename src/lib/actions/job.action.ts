@@ -1,7 +1,11 @@
 import { isRedirectError } from "next/dist/client/components/redirect";
 import { redirect } from "next/navigation";
 
-import { CreateJobPayloadModel, CreateJobPayloadSchema, UpdateJobPayloadModel } from "@/lib/models/job.model";
+import {
+  CreateJobPayloadModel,
+  CreateJobPayloadSchema,
+  UpdateJobPayloadModel
+} from "@/lib/models/job.model";
 import { getNestedInputValues, showErrorNotification, showNotification } from "@/utils/functions";
 import { getFormattedError } from "@/utils/format-error";
 import { createJobApi, updateJobApi } from "@/lib/services/api/job.service";
@@ -83,17 +87,17 @@ const updateJobAction = async (_: ActionResult, formData: FormData) => {
     payload.customer_id = "new";
   }
 
-  console.log(payload)
+  console.log(payload);
   const validatedPayload = await CreateJobPayloadSchema.safeParseAsync(payload);
-  console.log(validatedPayload.error)
+  console.log(validatedPayload.error);
   if (!validatedPayload.success) {
     showErrorNotification("Validation errors");
     return getFormattedError(validatedPayload?.error);
   }
 
   try {
-    const data = await updateJobApi(payload.id, payload);
-    showNotification("Updated successfully!")
+    await updateJobApi(payload.id, payload);
+    showNotification("Updated successfully!");
     return { success: "Updated successfully!" };
   } catch (error) {
     // `redirectTo` won't work without this line
@@ -101,6 +105,6 @@ const updateJobAction = async (_: ActionResult, formData: FormData) => {
     console.log(error);
     return getFormattedError(error);
   }
-}
+};
 
 export { createJobAction, updateJobAction };

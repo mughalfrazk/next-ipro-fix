@@ -63,15 +63,17 @@ const JobDetailTab = ({ job }: { job?: JobModel }) => {
                 {getFieldErrorProps("issues").error && (
                   <Badge color="red">Please fill all the issues details</Badge>
                 )}
-                {job && <Group>
-                  Job Status:
-                  <CreateUpdateSelectInput
-                    searchable
-                    name="job_status_id"
-                    inputDefaultValue={job?.job_status.id}
-                    getDataFromApiAndSetOption={getJobStatusList}
-                  />
-                </Group>}
+                {job && (
+                  <Group>
+                    Job Status:
+                    <CreateUpdateSelectInput
+                      searchable
+                      name="job_status_id"
+                      inputDefaultValue={job?.job_status.id}
+                      getDataFromApiAndSetOption={getJobStatusList}
+                    />
+                  </Group>
+                )}
               </Group>
               <Divider mt={10} mb={20} />
 

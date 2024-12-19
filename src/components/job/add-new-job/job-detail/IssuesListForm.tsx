@@ -38,7 +38,7 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
   }, []);
 
   useEffect(() => {
-    console.log(job)
+    console.log(job);
     if (!!job?.issues?.length) {
       setIssues([
         ...job.issues.map(({ id, brand_id, model_id, problem_id, quantity, charges, total }) => ({

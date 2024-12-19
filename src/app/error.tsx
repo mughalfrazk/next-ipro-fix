@@ -32,8 +32,7 @@ const ErrorDescription = {
 };
 
 export default function Error({
-  error,
-  reset
+  error
 }: {
   error?: Error & { digest?: string };
   reset?: () => void;

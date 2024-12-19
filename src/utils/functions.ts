@@ -26,13 +26,11 @@ export const getNestedInputValues = (formData: FormData) => {
   return dataform_obj;
 };
 
-export const showNotification = (
-  message: string
-) => {
+export const showNotification = (message: string) => {
   notifications.show({
     message,
     position: "top-right",
-    autoClose: true,
+    autoClose: true
   });
 };
 
