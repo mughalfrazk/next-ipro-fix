@@ -188,7 +188,7 @@ const JobFilterBody = ({
         if (!!startDate && startDate > createdAt) return false;
         if (!!endDate && endDate < createdAt) return false;
         if (jobTypeValue.length) return jobTypeValue.some((j) => j.value === problem_type.id);
-        if (customerValue.length) return customerValue.some((j) => j.value === customer.id);
+        if (customerValue.length) return customerValue.some((j) => j.value === customer?.id);
         if (technicianValue.length && technician)
           return technicianValue.some((j) => j.value === technician.id);
         if (jobStatusValue.length)
