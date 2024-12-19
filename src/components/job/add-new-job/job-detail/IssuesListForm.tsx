@@ -14,19 +14,19 @@ type IssuesListFormProps = {
   job?: JobModel;
 } & FieldErrorPropsType;
 
+type IssueFormType = {
+  id: string;
+  brand_id: number;
+  model_id: number;
+  problem_id: number;
+  quantity: number;
+  charges: number;
+  total: number
+}
+
 const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
   const [problemTypes, setProblemTypes] = useState<ProblemTypeListModel>([]);
-  const [issues, setIssues] = useState([
-    {
-      id: "new",
-      brand_id: 0,
-      model_id: 0,
-      problem_id: 0,
-      quantity: 0,
-      charges: 0,
-      total: 0
-    }
-  ]);
+  const [issues, setIssues] = useState<IssueFormType[]>([]);
 
   const getProblemTypeList = async () => {
     const result = await getProblemTypeListApi();
@@ -38,7 +38,6 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
   }, []);
 
   useEffect(() => {
-    console.log(job);
     if (!!job?.issues?.length) {
       setIssues([
         ...job.issues.map(({ id, brand_id, model_id, problem_id, quantity, charges, total }) => ({
