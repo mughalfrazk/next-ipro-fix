@@ -40,7 +40,7 @@ export const ExpenseColumns = [
     }
   },
   {
-    accessor: "comments",
+    accessor: "comments"
   },
   {
     accessor: "actions",
