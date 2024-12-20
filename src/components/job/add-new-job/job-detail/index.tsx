@@ -2,18 +2,18 @@
 
 import { Badge, Card, Divider, Grid, GridCol, Group, Stack } from "@mantine/core";
 
+import { createJobAction, updateJobAction } from "@/lib/actions/job.action";
+import CreateUpdateSelectInput from "@/components/common/CreateUpdateSelectInput";
+import { getJobStatusListApi } from "@/lib/services/api/job-status.service";
+import { JobModel } from "@/lib/models/job.model";
+import { useFormAction } from "@/hooks/use-form-action";
+import IproTextInput from "@/components/core/IproTextInput";
+import IproButton from "@/components/core/IproButton";
+import TechnicianSelect from "./TechnicianSelect";
 import Heading from "@/components/common/Heading";
 import CustomerDetail from "./CustomerDetail";
 import CommentDrawer from "./CommentDrawer";
 import IssuesListForm from "./IssuesListForm";
-import { createJobAction, updateJobAction } from "@/lib/actions/job.action";
-import { useFormAction } from "@/hooks/use-form-action";
-import IproButton from "@/components/core/IproButton";
-import TechnicianSelect from "./TechnicianSelect";
-import { JobModel } from "@/lib/models/job.model";
-import IproTextInput from "@/components/core/IproTextInput";
-import CreateUpdateSelectInput from "@/components/common/CreateUpdateSelectInput";
-import { getJobStatusListApi } from "@/lib/services/api/job-status.service";
 
 const JobDetailTab = ({ job }: { job?: JobModel }) => {
   const { formAction, getFieldErrorProps } = useFormAction(
@@ -32,7 +32,7 @@ const JobDetailTab = ({ job }: { job?: JobModel }) => {
   return (
     <form action={formAction}>
       <Stack gap={0}>
-        {!!job && <CommentDrawer />}
+        {!!job && <CommentDrawer job={job} />}
         <Grid>
           {!!job && <IproTextInput name="id" defaultValue={job.id} display={"none"} />}
           <GridCol span={8}>

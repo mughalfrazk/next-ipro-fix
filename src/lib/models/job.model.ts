@@ -5,6 +5,7 @@ import { JobStatusSchema } from "./job-status.model";
 import { IssueListSchema } from "./issue.model";
 import { PurchaseListSchema } from "./purchase.model";
 import { ProblemTypeSchema } from "./problem-type.model";
+import { CommentListSchema } from "./comment.model";
 
 export const CreateJobFormSchema = z.record(z.string(), z.string());
 
@@ -76,6 +77,7 @@ export const JobSchema = z.object({
   issues: IssueListSchema,
   purchases: PurchaseListSchema.nullish(),
   problem_type: ProblemTypeSchema,
+  comments: CommentListSchema.nullish(),
   created_at: z.string(),
   updated_at: z.string().nullish()
 });
