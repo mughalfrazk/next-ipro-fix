@@ -1,69 +1,63 @@
-import { Stack, Title, Textarea, Group, Modal } from "@mantine/core";
+"use client";
+
+import { Stack, Textarea, Group, Drawer, Grid, GridCol } from "@mantine/core";
 import IproButton from "@/components/core/IproButton";
 import { useDisclosure } from "@mantine/hooks";
 import IproTextInput from "@/components/core/IproTextInput";
 import IproSelect from "@/components/core/IproSelect";
 import { DateInput } from "@mantine/dates";
+import ExpenseTypeModal from "@/components/settings/expense-type/ExpenseTypeDrawer";
 
-const ExpenseDrawerBody = () => {
-  const [opened, { open, close }] = useDisclosure(false);
-
+const ExpenseDrawer = ({
+  openedDrawer,
+  closeDrawer
+}: {
+  openedDrawer: boolean;
+  closeDrawer: () => void;
+}) => {
+  const [opened, { open, close }] = useDisclosure();
   return (
-    <Stack align="stretch" justify="center">
-      <Modal
-        opened={opened}
-        onClose={close}
-        title="New Expense Type"
-        yOffset="1vh"
-        xOffset="29.5vw"
-        overlayProps={{
-          backgroundOpacity: 0,
-          blur: 0
-        }}
-        transitionProps={{ transition: "fade-left" }}
-        styles={{
-          inner: { display: "flex", justifyContent: "flex-end" }
-        }}
+    <>
+      <ExpenseTypeModal opened={opened} close={close} />
+      <Drawer
+        opened={openedDrawer}
+        title="Add New Expense"
+        position="right"
+        onClose={closeDrawer}
+        size="29%"
+        overlayProps={{ backgroundOpacity: 0 }}
       >
-        {
-          <Stack>
-            <IproTextInput
-              mt={10}
-              label="New Expense Type Name"
-              placeholder="Enter New Expense Type Name"
-            />
-            <Group justify="flex-end" mt={20}>
-              <IproButton variant="outline">Cancal</IproButton>
-              <IproButton isSubmit={true}>Save Expense Type</IproButton>
-            </Group>
-          </Stack>
-        }
-      </Modal>
-      <Title ta={"center"} order={4}>
-        Add New Expense
-      </Title>
-      <IproButton variant="outline" onClick={open}>
-        Add New Expense Type
-      </IproButton>
-      <IproSelect
-        label="Expense Type"
-        placeholder="Expense Name"
-        data={["Bill", "Snacks", "Dinner", "Salary"]}
-        width={"lg"}
-      />
-      <IproTextInput label="Amount" placeholder="Enter Expense Amount" />
-      <DateInput
-        label="Expense Date"
-        placeholder="Enter Date"
-        valueFormat="YYYY MMM DD"
-        size="md"
-      />
-      <Textarea label="Comment" placeholder="Enter Comment" />
-      <Group justify="flex-end" mt={20}>
-        <IproButton variant="outline">Cancal</IproButton>
-        <IproButton isSubmit={true}>Save Expense</IproButton>
-      </Group>
-    </Stack>
+        <Stack align="stretch" justify="center">
+          <Grid align="flex-end">
+            <GridCol span={8}>
+              <IproSelect
+                label="Expense Type"
+                placeholder="Expense Name"
+                data={["Bill", "Snacks", "Dinner", "Salary"]}
+                width={"100%"}
+              />
+            </GridCol>
+            <GridCol span={4}>
+              <IproButton onClick={open} size="lg" mb={2} fullWidth>
+                Add New Type
+              </IproButton>
+            </GridCol>
+          </Grid>
+          <IproTextInput label="Amount" placeholder="Enter Expense Amount" />
+          <DateInput
+            label="Expense Date"
+            placeholder="Enter Date"
+            valueFormat="YYYY MMM DD"
+            size="md"
+          />
+          <Textarea label="Comment" placeholder="Enter Comment" />
+          <Group justify="flex-end" mt={20}>
+            <IproButton variant="outline">Cancal</IproButton>
+            <IproButton isSubmit={true}>Save Expense</IproButton>
+          </Group>
+        </Stack>
+      </Drawer>
+    </>
   );
 };
-export default ExpenseDrawerBody;
+export default ExpenseDrawer;
