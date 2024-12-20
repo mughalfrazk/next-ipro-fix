@@ -36,7 +36,8 @@ const JobDetailTab = ({ job }: { job?: JobModel }) => {
         <Grid>
           {!!job && <IproTextInput name="id" defaultValue={job.id} display={"none"} />}
           <GridCol span={8}>
-            <CustomerDetail customer={job?.customer!} getFieldErrorProps={getFieldErrorProps} />
+          {job?.customer && (
+          <CustomerDetail customer={job.customer} getFieldErrorProps={getFieldErrorProps} />)}
           </GridCol>
           <GridCol span={4}>
             <Card bg="var(--mantine-color-primary-6)">
