@@ -27,4 +27,5 @@ const deleteCustomerApi = async (customerId: string) => {
   const result = await getAuthApiClient().delete(`customer/${customerId}`);
   return result;
 };
+
 export { getCustomerListApi, createCustomerApi, updateCustomerApi, deleteCustomerApi };

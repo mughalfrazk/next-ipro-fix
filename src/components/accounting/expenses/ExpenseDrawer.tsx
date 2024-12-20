@@ -5,7 +5,7 @@ import IproTextInput from "@/components/core/IproTextInput";
 import IproSelect from "@/components/core/IproSelect";
 import { DateInput } from "@mantine/dates";
 
-const ExpenseDrawer = () => {
+const ExpenseDrawerBody = () => {
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
@@ -66,4 +66,4 @@ const ExpenseDrawer = () => {
     </Stack>
   );
 };
-export default ExpenseDrawer;
+export default ExpenseDrawerBody;

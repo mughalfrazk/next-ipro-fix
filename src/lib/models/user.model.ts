@@ -25,7 +25,7 @@ export const UserListSchema = z.array(UserSchema);
 export const ProfileSchema = UserSchema.extend({
   role: RoleSchema,
   speciality: ProblemTypeSchema.nullish(),
-  company: CompanySchema
+  company: CompanySchema.nullish()
 });
 
 export const ProfileListSchema = z.array(ProfileSchema);
