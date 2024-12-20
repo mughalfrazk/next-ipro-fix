@@ -133,6 +133,11 @@ const routes: NavLinkRoute[] = [
         href: "/dashboard/settings/part",
         label: "Part",
         icon: IconFocus
+      },
+      {
+        href: "/dashboard/settings/expense-type",
+        label: "Expense Types",
+        icon: IconFocus
       }
     ]
   }

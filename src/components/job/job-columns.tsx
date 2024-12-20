@@ -43,11 +43,22 @@ export const JobColumns = [
     render: (row: JobModel) => {
       return (
         <Group>
-          <Avatar key={row.customer.name} name={row.customer.name} color="initials" />
-          <Stack gap={2}>
-            <Title order={6}>{row.customer.name}</Title>
-            <Text size={"0.7rem"}>{row.customer.phone}</Text>
-          </Stack>
+          {row.customer ? (
+            <>
+              <Avatar
+                key={row.customer.name}
+                name={row.customer.name}
+                alt="unknown"
+                color="initials"
+              />
+              <Stack gap={2}>
+                <Title order={6}>{row.customer.name}</Title>
+                <Text size={"0.7rem"}>{row.customer.phone}</Text>
+              </Stack>
+            </>
+          ) : (
+            <Text>No customer information available</Text>
+          )}
         </Group>
       );
     }

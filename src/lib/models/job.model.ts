@@ -39,7 +39,7 @@ export const CreateJobPayloadSchema = z.object({
 
 export const JobSchema = z.object({
   id: z.string(),
-  customer: CustomerSchema,
+  customer: CustomerSchema.nullish(),
   technician: UserSchema.nullish(),
   job_status: JobStatusSchema,
   issues: IssueListSchema,

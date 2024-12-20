@@ -21,7 +21,7 @@ const JobDetailTab = ({ job }: { job?: JobModel }) => {
         {!!job && <CommentDrawer />}
         <Grid>
           <GridCol span={8}>
-            <CustomerDetail customer={job?.customer} getFieldErrorProps={getFieldErrorProps} />
+            <CustomerDetail customer={job?.customer!} getFieldErrorProps={getFieldErrorProps} />
           </GridCol>
           <GridCol span={4}>
             <Card bg="var(--mantine-color-primary-6)">
