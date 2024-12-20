@@ -5,10 +5,11 @@ import { useDisclosure } from "@mantine/hooks";
 import { IconMessageDots } from "@tabler/icons-react";
 
 import { useZIndex } from "@/hooks/use-z-index";
+import { JobModel } from "@/lib/models/job.model";
 import IproButton from "@/components/core/IproButton";
 import CommentDrawerBody from "./CommentDrawerBody";
 
-const CommentDrawer = () => {
+const CommentDrawer = ({ job }: { job: JobModel }) => {
   const z = useZIndex();
   const [opened, { open, close }] = useDisclosure();
 
@@ -38,7 +39,7 @@ const CommentDrawer = () => {
           body: { padding: 0, overflowY: "hidden" }
         }}
       >
-        <CommentDrawerBody />
+        <CommentDrawerBody job={job} />
       </Drawer>
     </Box>
   );
