@@ -1,4 +1,4 @@
-import { ExpenseTypeModel } from "@/lib/models/expense.model";
+import { ExpenseTypeModel } from "@/lib/models/expense-type.model";
 import { useDisclosure } from "@mantine/hooks";
 import ExpenseTypeDrawer from "./ExpenseTypeDrawer";
 import IproButton from "@/components/core/IproButton";

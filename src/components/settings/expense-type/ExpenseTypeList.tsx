@@ -4,7 +4,7 @@ import { useDisclosure } from "@mantine/hooks";
 import IproButton from "@/components/core/IproButton";
 import Table from "@/components/common/Table";
 import { ExpenseTypeColumns } from "./expense-type-column";
-import { ExpenseTypeListModel } from "@/lib/models/expense.model";
+import { ExpenseTypeListModel } from "@/lib/models/expense-type.model";
 import ExpenseTypeModal from "./ExpenseTypeDrawer";
 
 const ExpenseTypeList = ({ expenseTypes }: { expenseTypes: ExpenseTypeListModel }) => {

@@ -8,7 +8,7 @@ import { createExspenseTypeApi, updateExpenseTypeApi } from "../services/api/exe
 import {
   CreateExpenseTypePayloadSchema,
   UpdateExpenseTypePayloadSchema
-} from "../models/expense.model";
+} from "../models/expense-type.model";
 
 const createExpenseTypeAction = async (_: ActionResult, formData: FormData) => {
   console.log("this is form data", formData);

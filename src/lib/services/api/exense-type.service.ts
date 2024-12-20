@@ -2,7 +2,7 @@ import {
   ExpenseTypeListSchema,
   CreateExpenseTypePayloadModel,
   UpdateExpenseTypePayloadModel
-} from "@/lib/models/expense.model";
+} from "@/lib/models/expense-type.model";
 import { getAuthApiClient } from "@/utils/api-client";
 import { parseFactory } from "@/utils/parse-factory";
 

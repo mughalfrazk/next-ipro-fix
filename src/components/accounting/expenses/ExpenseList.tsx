@@ -3,8 +3,8 @@
 import { useDisclosure } from "@mantine/hooks";
 import IproButton from "@/components/core/IproButton";
 import Table from "@/components/common/Table";
-import Expensecolumns from "./expense-column";
-import { ExpenseTypeListModel } from "@/lib/models/expense.model";
+import { ExpenseColumns } from "./expense-columns";
+import { ExpenseTypeListModel } from "@/lib/models/expense-type.model";
 import ExpenseDrawer from "./ExpenseDrawer";
 
 const ExpensesList = ({ expenses }: { expenses: ExpenseTypeListModel }) => {
@@ -18,7 +18,7 @@ const ExpensesList = ({ expenses }: { expenses: ExpenseTypeListModel }) => {
         description="All Expenses details"
         search={true}
         drawerTitle={"Expense Filter"}
-        columns={Expensecolumns}
+        columns={ExpenseColumns}
         data={expenses}
         // filter={<ExpenseFilterBody />}
         rightSection={

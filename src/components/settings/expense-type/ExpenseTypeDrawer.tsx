@@ -6,7 +6,7 @@ import {
   createExpenseTypeAction,
   updateExpenseTypeAction
 } from "@/lib/actions/expense-type.action";
-import { ExpenseTypeModel } from "@/lib/models/expense.model";
+import { ExpenseTypeModel } from "@/lib/models/expense-type.model";
 import IproButton from "@/components/core/IproButton";
 import IproTextInput from "@/components/core/IproTextInput";
 

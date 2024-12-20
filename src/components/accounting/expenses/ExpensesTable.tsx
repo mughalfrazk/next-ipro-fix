@@ -2,7 +2,7 @@
 
 import Table from "@/components/common/Table";
 import { useDisclosure } from "@mantine/hooks";
-import { ExpenseTypeListModel } from "@/lib/models/expense.model";
+import { ExpenseTypeListModel } from "@/lib/models/expense-type.model";
 import { ExpenseColumns } from "./expense-columns";
 import IproButton from "@/components/core/IproButton";
 import ExpenseDrawer from "./ExpenseDrawer";
