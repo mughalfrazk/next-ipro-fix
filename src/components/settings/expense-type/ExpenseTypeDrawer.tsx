@@ -58,13 +58,20 @@ const ExpenseTypeDrawer = ({
       <form action={handleSubmit}>
         <Stack>
           <IproTextInput
-            mt={10}
             type="text"
             label="Name"
             name="name"
             defaultValue={selectedExpenseType?.name}
-            placeholder="Enter New Expense Type Name"
+            placeholder="Screen"
             {...getFieldErrorProps("name")}
+          />
+          <IproTextInput
+            type="text"
+            label="Description"
+            name="description"
+            defaultValue={selectedExpenseType?.description ?? ""}
+            placeholder="Phone Screen"
+            {...getFieldErrorProps("description")}
           />
           {selectedExpenseType && (
             <IproTextInput

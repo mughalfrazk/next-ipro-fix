@@ -20,6 +20,7 @@ const createExpenseTypeAction = async (_: ActionResult, formData: FormData) => {
     await createExspenseTypeApi(parsed.data);
     return { success: "Created Successfully" };
   } catch (error) {
+    // `redirectTo` won't work without this line
     if (isRedirectError(error)) throw error;
     console.log("the create action is up and running", getFormattedError(error));
     return getFormattedError(error);

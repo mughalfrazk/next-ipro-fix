@@ -1,10 +1,10 @@
-import { Button, } from "@mantine/core";
+import { Button } from "@mantine/core";
 import { ExpenseTypeModel } from "@/lib/models/expense.model";
 import { showDateNicely } from "@/utils/functions";
 
 export const ExpenseColumns = [
   {
-    accessor: "id",
+    accessor: "id"
     // render: (row: ExpenseTypeModel) => {
     //   return (
     //     <Text fw={"bold"} c={"primary.6"}>
