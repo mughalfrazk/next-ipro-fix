@@ -1,4 +1,7 @@
 import { z } from "zod";
+import { BrandSchema } from "./brand.model";
+import { ProblemSchema } from "./problem.model";
+import { ModelSchema } from "./model.model";
 
 export const IssueSchema = z.object({
   id: z.string(),
@@ -6,6 +9,9 @@ export const IssueSchema = z.object({
   brand_id: z.number(),
   problem_id: z.number(),
   model_id: z.number(),
+  brand: BrandSchema.nullish(),
+  problem: ProblemSchema.nullish(),
+  model: ModelSchema.nullish(),
   quantity: z.number(),
   charges: z.number(),
   total: z.number(),

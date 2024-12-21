@@ -11,6 +11,7 @@ import { getFormattedError } from "@/utils/format-error";
 import { createJobApi, updateJobApi } from "@/lib/services/api/job.service";
 import { ActionResult } from "@/utils/action-results";
 import { IssueModel } from "@/lib/models/issue.model";
+import { revalidatePath } from "next/cache";
 
 const createJobAction = async (_: ActionResult, formData: FormData) => {
   const structuredInput = getNestedInputValues(formData);
@@ -88,7 +89,6 @@ const updateJobAction = async (_: ActionResult, formData: FormData) => {
   }
 
   const validatedPayload = await CreateJobPayloadSchema.safeParseAsync(payload);
-  console.log(validatedPayload.error);
   if (!validatedPayload.success) {
     showErrorNotification("Validation errors");
     return getFormattedError(validatedPayload?.error);
@@ -97,6 +97,7 @@ const updateJobAction = async (_: ActionResult, formData: FormData) => {
   try {
     await updateJobApi(payload.id, payload);
     showNotification("Updated successfully!");
+    revalidatePath(`/dashboard/job/${payload.id}`)
     return { success: "Updated successfully!" };
   } catch (error) {
     // `redirectTo` won't work without this line
