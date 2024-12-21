@@ -71,7 +71,7 @@ export const UpdateJobPayloadSchema = z.object({
 
 export const JobSchema = z.object({
   id: z.string(),
-  customer: CustomerSchema.nullish(),
+  customer: CustomerSchema,
   technician: UserSchema.nullish(),
   job_status: JobStatusSchema,
   issues: IssueListSchema,
