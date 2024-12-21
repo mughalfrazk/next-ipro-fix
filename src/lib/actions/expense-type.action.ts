@@ -4,7 +4,7 @@ import { ActionResult } from "@/utils/action-results";
 import { validatePayload } from "@/utils/validate-payload";
 import { getFormattedError } from "@/utils/format-error";
 import { isRedirectError } from "next/dist/client/components/redirect";
-import { createExspenseTypeApi, updateExpenseTypeApi } from "../services/api/exense-type.service";
+import { createExspenseTypeApi, updateExpenseTypeApi } from "../services/api/expense-type.service";
 import {
   CreateExpenseTypePayloadSchema,
   UpdateExpenseTypePayloadSchema

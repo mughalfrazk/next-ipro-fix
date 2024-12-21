@@ -2,12 +2,13 @@
 
 import Table from "@/components/common/Table";
 import { useDisclosure } from "@mantine/hooks";
-import { ExpenseTypeListModel } from "@/lib/models/expense-type.model";
+
 import { ExpenseColumns } from "./expense-columns";
+import { ExpenseListModel } from "@/lib/models/expense.model";
 import IproButton from "@/components/core/IproButton";
 import ExpenseDrawer from "./ExpenseDrawer";
 
-const ExpensesTable = ({ expenses }: { expenses: ExpenseTypeListModel }) => {
+const ExpensesTable = ({ expenses }: { expenses: ExpenseListModel }) => {
   const [opened, { open, close }] = useDisclosure();
 
   return (

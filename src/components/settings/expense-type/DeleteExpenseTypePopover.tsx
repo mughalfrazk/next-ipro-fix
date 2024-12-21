@@ -6,7 +6,7 @@ import IproButton from "@/components/core/IproButton";
 import { getFormattedError } from "@/utils/format-error";
 import { showErrorNotification } from "@/utils/functions";
 import { useRouter } from "next/navigation";
-import { deleteExpenseTypeApi } from "@/lib/services/api/exense-type.service";
+import { deleteExpenseTypeApi } from "@/lib/services/api/expense-type.service";
 
 const DeleteExpenseTypePopover = ({ selectedId }: { selectedId: number }) => {
   const router = useRouter();
