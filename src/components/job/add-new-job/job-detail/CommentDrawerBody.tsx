@@ -58,7 +58,11 @@ const CommentDrawerBody = ({ job }: { job: JobModel }) => {
           pb={10}
         >
           <IproTextInput type="text" name="job_id" defaultValue={job.id} display="none" />
-          <Textarea name="comment" placeholder="Type anything..." {...getFieldErrorProps("comment")} />
+          <Textarea
+            name="comment"
+            placeholder="Type anything..."
+            {...getFieldErrorProps("comment")}
+          />
           <IproButton isSubmit={true}>Add Comment</IproButton>
         </Stack>
       </form>

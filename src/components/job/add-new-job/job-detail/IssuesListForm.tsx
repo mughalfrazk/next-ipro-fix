@@ -21,8 +21,8 @@ type IssueFormType = {
   problem_id: number;
   quantity: number;
   charges: number;
-  total: number
-}
+  total: number;
+};
 
 const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
   const [problemTypes, setProblemTypes] = useState<ProblemTypeListModel>([]);

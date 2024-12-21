@@ -21,4 +21,4 @@ export const CreateCommentPayloadSchema = z.object({
 
 export type CommentModel = z.infer<typeof CommentSchema>;
 export type CommentListModel = z.infer<typeof CommentListSchema>;
-export type CreateCommentPayloadModel = z.infer<typeof CreateCommentPayloadSchema>
+export type CreateCommentPayloadModel = z.infer<typeof CreateCommentPayloadSchema>;
