@@ -127,22 +127,22 @@ export const mapJobToInvoice = (job: JobModel): InvoiceModel => {
     ],
     purchases: !!job?.purchases?.length
       ? [
-        ...job?.purchases.map((item, idx) => ({
-          id: `${idx}`,
-          item_type: "",
-          charges: item.charges,
-          quantity: item.quantity,
-          total: item.total,
-          model: {
-            id: item?.model?.id,
-            name: item?.model?.name ?? ""
-          },
-          part: {
-            id: item?.part?.id,
-            name: item.part?.name ?? ""
-          }
-        }))
-      ]
+          ...job?.purchases.map((item, idx) => ({
+            id: `${idx}`,
+            item_type: "",
+            charges: item.charges,
+            quantity: item.quantity,
+            total: item.total,
+            model: {
+              id: item?.model?.id,
+              name: item?.model?.name ?? ""
+            },
+            part: {
+              id: item?.part?.id,
+              name: item.part?.name ?? ""
+            }
+          }))
+        ]
       : []
   };
 

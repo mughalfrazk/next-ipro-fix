@@ -45,8 +45,8 @@ const InvoiceTab = ({ job }: { job: JobModel }) => {
   }, [job]);
 
   useEffect(() => {
-    console.log(invoice)
-  }, [invoice])
+    console.log(invoice);
+  }, [invoice]);
 
   return (
     invoice && (
