@@ -1,7 +1,9 @@
 import ExpensesList from "@/components/accounting/expenses/ExpenseList";
-import { getExpenseTypeApi } from "@/lib/services/api/exense-type.service";
+import { getExpenseListApi } from "@/lib/services/api/expense.service";
+
 const ExpensesPage = async () => {
-  const result = await getExpenseTypeApi();
+  const result = await getExpenseListApi();
+
   return <ExpensesList expenses={result} />;
 };
 

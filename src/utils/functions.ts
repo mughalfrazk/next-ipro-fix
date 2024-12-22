@@ -1,5 +1,7 @@
 import { notifications } from "@mantine/notifications";
 import classes from "@/styles/notification.module.css";
+import { JobModel } from "@/lib/models/job.model";
+import { InvoiceModel } from "@/lib/models/invoice.model";
 
 export const getNestedInputValues = (formData: FormData) => {
   const nestedListRegex = /^([^\[]+)(\[\d+\])(\[[^\]]+\])$/;
@@ -60,6 +62,16 @@ export const colorForUserRole = (name: string) => {
             : "black";
 };
 
+export const colorForInvoiceStatus = (name: string) => {
+  return name === "Half Paid"
+    ? "red"
+    : name === "Unpaid"
+      ? "indigo"
+      : name === "Paid"
+        ? "green"
+        : "black";
+};
+
 export const capitalizeFirstLetter = (val: string) => {
   return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 };
@@ -67,4 +79,65 @@ export const capitalizeFirstLetter = (val: string) => {
 export const showDateNicely = (date: string) => {
   const splitted_date = date.split("T");
   return `${splitted_date[0]} ${splitted_date[1].split(".")[0]}`;
+};
+
+export const mapJobToInvoice = (job: JobModel): InvoiceModel => {
+  const issue_total = job.issues.reduce((prev, curr) => prev + curr.total, 0);
+  const purchase_total = job?.purchases?.reduce((prev, curr) => prev + curr.total, 0) ?? 0;
+  const total = issue_total + purchase_total;
+
+  const invoice: InvoiceModel = {
+    id: "",
+    issue_total: issue_total,
+    purchase_total: purchase_total,
+    customer: job.customer,
+    technician: job?.technician?.role?.name === "technician" ? job.technician : null,
+    total,
+    barcode: "",
+    created_at: "",
+    updated_at: "",
+    deleted_at: "",
+    issues: [
+      ...job.issues.map((item, idx) => ({
+        id: `${idx}`,
+        item_type: "",
+        charges: item.charges,
+        quantity: item.quantity,
+        total: 0,
+        brand: {
+          id: item?.brand?.id,
+          name: item.brand?.name
+        },
+        model: {
+          id: item?.model?.id,
+          name: item?.model?.name ?? ""
+        },
+        problem: {
+          id: item?.problem?.id,
+          name: item.problem?.name ?? ""
+        }
+      }))
+    ],
+    purchases: !!job?.purchases?.length
+      ? [
+          ...job?.purchases.map((item, idx) => ({
+            id: `${idx}`,
+            item_type: "",
+            charges: item.charges,
+            quantity: item.quantity,
+            total: item.total,
+            model: {
+              id: item?.model?.id,
+              name: item?.model?.name ?? ""
+            },
+            part: {
+              id: item?.part?.id,
+              name: item.part?.name ?? ""
+            }
+          }))
+        ]
+      : []
+  };
+
+  return invoice;
 };

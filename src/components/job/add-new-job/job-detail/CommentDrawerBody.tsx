@@ -1,17 +1,29 @@
+import { Avatar, Badge, Box, Group, rem, Stack, Text, Textarea } from "@mantine/core";
+import { IconMessages } from "@tabler/icons-react";
+
 import IproButton from "@/components/core/IproButton";
 import IproTextInput from "@/components/core/IproTextInput";
 import { useFormAction } from "@/hooks/use-form-action";
+import { useMantineColorScheme } from "@/hooks/use-mantine-color-scheme-wrapper";
 import { createCommentAction } from "@/lib/actions/comment.action";
 import { JobModel } from "@/lib/models/job.model";
 import { showDateNicely } from "@/utils/functions";
-import { Avatar, Badge, Box, Group, Stack, Text, Textarea } from "@mantine/core";
 
 const CommentDrawerBody = ({ job }: { job: JobModel }) => {
   const { formAction, getFieldErrorProps } = useFormAction(createCommentAction, {});
+  const { lightDark } = useMantineColorScheme();
 
   return (
-    <Box pos="relative" h="92.8vh" style={{ borderTop: "1px solid var(--mantine-color-dark-6)" }}>
+    <Box pos="relative" h="92.8vh" style={{ boxShadow: "#00000038 0px 2px 5px -2px inset" }}>
       <Stack style={{ overflowY: "auto" }} h="77.8vh" gap={0} px={22}>
+        {!job.comments?.length && (
+          <Stack align="center" h="100%" gap={10} opacity={0.3} mt={100}>
+            <IconMessages style={{ width: rem(100), height: rem(100) }} />
+            <Text size="md" fw="bold">
+              No conversation
+            </Text>
+          </Stack>
+        )}
         {job?.comments?.map((item, idx) => (
           <Stack
             key={idx}
@@ -39,7 +51,7 @@ const CommentDrawerBody = ({ job }: { job: JobModel }) => {
                 </Stack>
               </Group>
               <Badge size="lg" radius="md" variant="light" c="lime.7">
-                {item.created_by.role.name}
+                {item.created_by?.role?.name}
               </Badge>
             </Group>
             <Text>{item.comment}</Text>
@@ -49,8 +61,10 @@ const CommentDrawerBody = ({ job }: { job: JobModel }) => {
       <form action={formAction}>
         <Stack
           pos="absolute"
-          bg="var(--mantine-color-dark-8)"
-          style={{ borderTop: "1px solid var(--mantine-color-dark-6)" }}
+          bg={lightDark("var(--mantine-color-gray-2)", "var(--mantine-color-dark-8)")}
+          style={{
+            borderTop: `1px solid ${lightDark("var(--mantine-color-gray-4)", "var(--mantine-color-dark-6)")}`
+          }}
           left={0}
           right={0}
           bottom={0}

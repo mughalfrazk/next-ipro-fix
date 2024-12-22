@@ -1,17 +1,8 @@
 "use client";
 
 import Table from "@/components/common/Table";
+import { colorForInvoiceStatus } from "@/utils/functions";
 import { Avatar, Badge, Group, Stack, Button, Title } from "@mantine/core";
-
-const colorForInvoiceStatus = (name: string) => {
-  return name === "Half Paid"
-    ? "red"
-    : name === "Unpaid"
-      ? "indigo"
-      : name === "Paid"
-        ? "green"
-        : "black";
-};
 
 type RowType = {
   id: string;

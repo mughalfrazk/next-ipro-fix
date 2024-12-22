@@ -10,9 +10,7 @@ import { revalidatePath } from "next/cache";
 
 const createCommentAction = async (_: ActionResult, formData: FormData) => {
   const { parsed } = await validatePayload(formData, CreateCommentPayloadSchema);
-  console.log(parsed?.data);
   if (!parsed?.success) {
-    console.log(getFormattedError(parsed?.error));
     return getFormattedError(parsed?.error);
   }
 

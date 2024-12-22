@@ -318,7 +318,9 @@ type TableProps<T> = {
     setAppliedFilters: Dispatch<SetStateAction<AppliedFiltersType[]>>
   ) => ReactNode | undefined;
   drawerTitle?: string;
+  pagination?: boolean;
   PAGE_SIZE?: number;
+  p?: number;
 };
 
 export const Table = <T extends object>({
@@ -332,13 +334,18 @@ export const Table = <T extends object>({
   rightSection,
   drawerTitle,
   filter,
-  PAGE_SIZE = 10
+  pagination = true,
+  PAGE_SIZE = 10,
+  p
 }: TableProps<T>) => {
   const [opened, { open, close }] = useDisclosure();
 
   const [page, setPage] = useState(1);
-  const [records, setRecords] = useState((data as unknown[]).slice(0, PAGE_SIZE));
+  const [records, setRecords] = useState(
+    (data as unknown[]).slice(0, pagination ? PAGE_SIZE : data.length)
+  );
   const [appliedFilters, setAppliedFilters] = useState<AppliedFiltersType[]>([]);
+  const [paginationProps, setPaginationProps] = useState({});
 
   useEffect(() => {
     const from = (page - 1) * PAGE_SIZE;
@@ -347,8 +354,26 @@ export const Table = <T extends object>({
   }, [page]);
 
   useEffect(() => {
-    setRecords((data as unknown[]).slice(0, PAGE_SIZE));
+    setRecords((data as unknown[]).slice(0, pagination ? PAGE_SIZE : data.length));
   }, [data]);
+
+  useEffect(() => {
+    if (pagination) {
+      setPaginationProps({
+        page: page,
+        totalRecords: (data as unknown[]).length,
+        recordsPerPage: PAGE_SIZE,
+        onPageChange: (p: number) => setPage(p)
+      });
+    } else {
+      setPaginationProps({
+        page: null,
+        totalRecords: null,
+        recordsPerPage: null,
+        onPageChange: null
+      });
+    }
+  }, [pagination, page]);
 
   return (
     <>
@@ -357,7 +382,7 @@ export const Table = <T extends object>({
           {filter(close, appliedFilters, setAppliedFilters)}
         </Drawer>
       )}
-      <Card>
+      <Card p={p}>
         <Grid align="center" justify="space-between" mb={20}>
           {title && (
             <Grid.Col span={2}>
@@ -407,14 +432,11 @@ export const Table = <T extends object>({
           </Paper>
         )}
         <DataTable
-          page={page}
           columns={columns}
           records={records}
           minHeight={100}
           classNames={classes}
-          totalRecords={(data as unknown[]).length}
-          recordsPerPage={PAGE_SIZE}
-          onPageChange={(p) => setPage(p)}
+          {...paginationProps}
         />
       </Card>
     </>

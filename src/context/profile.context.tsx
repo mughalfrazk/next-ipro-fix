@@ -8,6 +8,7 @@ import { getFormattedError } from "@/utils/format-error";
 import { logoutAction } from "@/lib/actions/auth.action";
 import { showErrorNotification } from "@/utils/functions";
 import { Box, LoadingOverlay } from "@mantine/core";
+import { useZIndex } from "@/hooks/use-z-index";
 
 const defaultProfileValues = {
   id: "",
@@ -49,6 +50,7 @@ const ProfileContext = createContext<ProfileContextType>({
 });
 
 const ProfileProvider = ({ children }: { children: ReactNode }) => {
+  const z = useZIndex();
   const [profile, setProfile] = useState<ProfileModel>(defaultProfileValues);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -77,6 +79,7 @@ const ProfileProvider = ({ children }: { children: ReactNode }) => {
           visible={loading}
           overlayProps={{ radius: "lg", blur: 10 }}
           loaderProps={{ type: "dots", size: "xl" }}
+          zIndex={z.tooltip}
         />
         {children}
       </Box>

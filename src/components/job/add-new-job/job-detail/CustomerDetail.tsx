@@ -33,9 +33,7 @@ const CustomerDetail = ({ customer, getFieldErrorProps }: CustomerDetailProps) =
       setCustomers(result);
       setNameOptionsList(result.map((item) => ({ label: item.name, value: item.id })));
       setPhoneOptionsList(result.map((item) => ({ label: item.phone, value: item.id })));
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const onNameChange = (value: string | null) => {
