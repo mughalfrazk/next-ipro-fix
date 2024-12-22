@@ -47,7 +47,7 @@ const RoleSelect = ({ user, getFieldErrorProps }: RoleSelectProps) => {
   }, []);
 
   useEffect(() => {
-    if (user && roleOptions.length) {
+    if (user && user.role && roleOptions.length) {
       onRoleChange(user.role.id);
     }
   }, [user, roleOptions]);
