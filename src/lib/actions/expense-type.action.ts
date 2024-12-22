@@ -11,7 +11,6 @@ import {
 } from "../models/expense-type.model";
 
 const createExpenseTypeAction = async (_: ActionResult, formData: FormData) => {
-  console.log("this is form data", formData);
   const { parsed } = await validatePayload(formData, CreateExpenseTypePayloadSchema);
   if (!parsed?.success) {
     return getFormattedError(parsed?.error);
@@ -22,7 +21,6 @@ const createExpenseTypeAction = async (_: ActionResult, formData: FormData) => {
   } catch (error) {
     // `redirectTo` won't work without this line
     if (isRedirectError(error)) throw error;
-    console.log("the create action is up and running", getFormattedError(error));
     return getFormattedError(error);
   }
 };
@@ -39,7 +37,6 @@ const updateExpenseTypeAction = async (_: ActionResult, formData: FormData) => {
   } catch (error) {
     // `redirectTo` won't work without this line
     if (isRedirectError(error)) throw error;
-    console.log("the update action is up and running", getFormattedError(error));
     return getFormattedError(error);
   }
 };

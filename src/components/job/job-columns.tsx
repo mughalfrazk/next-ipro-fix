@@ -8,13 +8,13 @@ import { showDateNicely } from "@/utils/functions";
 
 const colorForJobStatus = (name: string) => {
   return name === "Device Received"
-    ? "grape"
+    ? "orange.6"
     : name === "Pending Work"
-      ? "red"
+      ? "red.6"
       : name === "Pending Approval"
         ? "indigo"
         : name === "Job Done"
-          ? "cyan"
+          ? "primary.6"
           : name === "Delivered"
             ? "green"
             : "black";
@@ -67,8 +67,8 @@ export const JobColumns = [
     accessor: "status",
     render: (row: JobModel) => {
       return (
-        <Badge variant="outline" color={colorForJobStatus(row.job_status.name)} radius="sm" p={12}>
-          {row.job_status.name}
+        <Badge color={colorForJobStatus(row.job_status.name)} radius="md" size="sm" px={10} pt={10} pb={9}>
+          <Text size="10" fw="bold" c="white">{row.job_status.name}</Text>
         </Badge>
       );
     }

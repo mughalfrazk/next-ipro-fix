@@ -30,7 +30,6 @@ const createSupplierApi = async (payload: CreateSupplierPayloadModel) => {
 
 const updateSupplierApi = async (SupplierId: string, payload: UpdateSupplierPayloadModel) => {
   const result = await getAuthApiClient().patch(`Supplier/${SupplierId}`, payload);
-  console.log(result);
   return result;
 };
 

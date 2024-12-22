@@ -10,7 +10,6 @@ import { ActionResult } from "@/utils/action-results";
 const createBrandAction = async (_: ActionResult, formData: FormData) => {
   const { parsed } = await validatePayload(formData, CreateBrandPayloadSchema);
   if (!parsed?.success) {
-    console.log(getFormattedError(parsed?.error));
     return getFormattedError(parsed?.error);
   }
 
