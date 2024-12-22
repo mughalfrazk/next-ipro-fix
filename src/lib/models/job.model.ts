@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { CustomerSchema } from "./customer.model";
-import { ProfileSchema, UserSchema } from "./user.model";
+import { ProfileSchema } from "./user.model";
 import { JobStatusSchema } from "./job-status.model";
 import { IssueListSchema } from "./issue.model";
 import { PurchaseListSchema } from "./purchase.model";
