@@ -28,6 +28,7 @@ const ACTIONS = {
   SET_END_DATE: "set-end-date"
 };
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const filterReducer = (state: InvoiceFilterState, action: any) => {
   switch (action.type) {
     case ACTIONS.SET_INVOICE_STATUS_OPTION: {
