@@ -50,7 +50,11 @@ const CreateOrUpdateUser = ({ user }: { user?: ProfileModel }) => {
                 <Stack>
                   <Heading
                     title={user?.id ? "User Details" : "Add New User"}
-                    description={user?.id ? "User profile in detail" : "Fill out the form to create any kind of new user."}
+                    description={
+                      user?.id
+                        ? "User profile in detail"
+                        : "Fill out the form to create any kind of new user."
+                    }
                   ></Heading>
                 </Stack>
                 <IproButton variant="outline">Remove User</IproButton>

@@ -5,7 +5,6 @@ import {
   ProgressLabel,
   ProgressRoot,
   ProgressSection,
-  Badge,
   Button,
   Group,
   Stack,
@@ -16,7 +15,6 @@ import {
 import { redirect } from "next/navigation";
 
 import { ProfileModel, UserModel } from "@/lib/models/user.model";
-import { colorForUserRole } from "@/utils/functions";
 import Link from "next/link";
 import RoleBadge from "../common/RoleBadge";
 

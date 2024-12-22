@@ -15,7 +15,7 @@ export type NavLinkRoute = {
   href?: string;
   label: ReactNode;
   icon: ForwardRefExoticComponent<IconProps & RefAttributes<Icon>>;
-  role?: string[],
+  role?: string[];
   children?: NavLinkRoute[];
 };
 
@@ -45,7 +45,7 @@ const routes: NavLinkRoute[] = [
   {
     label: "Customer",
     icon: IconUsers,
-    role: ["super_admin", "admin", "receptionist",  "technician"],
+    role: ["super_admin", "admin", "receptionist", "technician"],
     children: [
       {
         href: "/dashboard/customer",
@@ -85,7 +85,7 @@ const routes: NavLinkRoute[] = [
         href: "/dashboard/job/purchases",
         label: "Purchases",
         icon: IconFocus,
-        role: ["super_admin", "admin"],
+        role: ["super_admin", "admin"]
       }
     ]
   },

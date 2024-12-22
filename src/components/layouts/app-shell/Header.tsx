@@ -15,7 +15,7 @@ type HeaderProps = {
 };
 
 const Header = ({ opened, toggle: AppshellToggle }: HeaderProps) => {
-  const { data } = useProfileContext()
+  const { data } = useProfileContext();
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
   return (
