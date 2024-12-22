@@ -23,7 +23,7 @@ export const UserSchema = z.object({
 export const UserListSchema = z.array(UserSchema);
 
 export const ProfileSchema = UserSchema.extend({
-  role: RoleSchema.nullish(),
+  role: RoleSchema,
   speciality: ProblemTypeSchema.nullish(),
   company: CompanySchema.nullish()
 });

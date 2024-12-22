@@ -50,16 +50,18 @@ export const showErrorNotification = (
 
 export const colorForUserRole = (name: string) => {
   return name === "super_admin"
-    ? "grape"
+    ? "grape.8"
     : name === "receptionist"
-      ? "green"
+      ? "green.9"
       : name === "technician"
-        ? "pink"
+        ? "primary.6"
         : name === "accountant"
-          ? "blue"
+          ? "cyan.9"
           : name === "admin"
-            ? "red"
-            : "black";
+            ? "red.8"
+            : name === "staff"
+              ? "red.8"
+              : "gray.8";
 };
 
 export const colorForInvoiceStatus = (name: string) => {
@@ -122,22 +124,22 @@ export const mapJobToInvoice = (job: JobModel): InvoiceModel => {
     ],
     purchases: !!job?.purchases?.length
       ? [
-          ...job?.purchases.map((item, idx) => ({
-            id: `${idx}`,
-            item_type: "",
-            charges: item.charges,
-            quantity: item.quantity,
-            total: item.total,
-            model: {
-              id: item?.model?.id,
-              name: item?.model?.name ?? ""
-            },
-            part: {
-              id: item?.part?.id,
-              name: item.part?.name ?? ""
-            }
-          }))
-        ]
+        ...job?.purchases.map((item, idx) => ({
+          id: `${idx}`,
+          item_type: "",
+          charges: item.charges,
+          quantity: item.quantity,
+          total: item.total,
+          model: {
+            id: item?.model?.id,
+            name: item?.model?.name ?? ""
+          },
+          part: {
+            id: item?.part?.id,
+            name: item.part?.name ?? ""
+          }
+        }))
+      ]
       : []
   };
 

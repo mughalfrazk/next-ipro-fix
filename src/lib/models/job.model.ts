@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { CustomerSchema } from "./customer.model";
-import { ProfileSchema } from "./user.model";
+import { ProfileSchema, UserSchema } from "./user.model";
 import { JobStatusSchema } from "./job-status.model";
 import { IssueListSchema } from "./issue.model";
 import { PurchaseListSchema } from "./purchase.model";
@@ -72,7 +72,7 @@ export const UpdateJobPayloadSchema = z.object({
 export const JobSchema = z.object({
   id: z.string(),
   customer: CustomerSchema,
-  technician: ProfileSchema.nullish(),
+  technician: UserSchema.nullish(),
   job_status: JobStatusSchema,
   issues: IssueListSchema,
   purchases: PurchaseListSchema.nullish(),
