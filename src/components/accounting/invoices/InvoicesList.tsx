@@ -1,20 +1,34 @@
 "use client";
 
-import Table from "@/components/common/Table";
-import { InvoiceTableModel } from "@/lib/models/invoice.model";
-import { InvoiceColumns } from "./invoice-columns";
-import InvoicesFilterBody from "./InvoicesFilterBody";
+import { useState } from "react";
 
-const InvoicesList = ({ invoices }: { invoices: InvoiceTableModel }) => {
+import Table from "@/components/common/Table";
+import InvoicesFilterBody from "./InvoicesFilterBody";
+import { InvoiceColumns } from "./invoice-columns";
+import { InvoiceTableListModel } from "@/lib/models/invoice.model";
+
+const InvoicesList = ({ invoices }: { invoices: InvoiceTableListModel }) => {
+  const [filteredInvoices, setFilteredInvoices] = useState<InvoiceTableListModel>(invoices);
+
   return (
     <Table
       title="Total Invoices"
       description="All invoices details"
-      // search={true}
-      data={invoices.invoices}
+      search={true}
+      initialData={invoices}
+      data={filteredInvoices}
+      setFilteredData={setFilteredInvoices}
       drawerTitle={"Invoice Filter"}
       columns={InvoiceColumns}
-      // filter={() => <InvoicesFilterBody />}
+      filter={(close, appliedFilters, setAppliedFilters) => (
+        <InvoicesFilterBody
+          invoices={invoices}
+          close={close}
+          appliedFilters={appliedFilters}
+          setFilteredInvoices={setFilteredInvoices}
+          setAppliedFilters={setAppliedFilters}
+        />
+      )}
     />
   );
 };

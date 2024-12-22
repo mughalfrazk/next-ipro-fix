@@ -10,7 +10,7 @@ const InvoicesPage = async () => {
   return (
     <Stack>
       <TopCards stats={result.stats} />
-      <InvoicesList invoices={result} />
+      <InvoicesList invoices={result.invoices} />
     </Stack>
   );
 };

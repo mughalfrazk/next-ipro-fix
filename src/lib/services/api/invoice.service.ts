@@ -8,7 +8,10 @@ import { getAuthApiClient } from "@/utils/api-client";
 import { parseFactory } from "@/utils/parse-factory";
 
 const InvoiceDataParser = parseFactory(InvoiceSchema, "InvoiceDataParser");
-const InvoiceTableWithStatsDataParser = parseFactory(InvoiceTableWithStatsSchema, "InvoiceTableWithStatsDataParser");
+const InvoiceTableWithStatsDataParser = parseFactory(
+  InvoiceTableWithStatsSchema,
+  "InvoiceTableWithStatsDataParser"
+);
 
 const getInvoiceDetailByIdApi = async (job_id: string) => {
   const result = await getAuthApiClient().get(`invoice?job_id=${job_id}`);

@@ -39,6 +39,7 @@ export default function Error({
 }) {
   const router = useRouter();
   const [statusCode, setStatusCode] = useState<number>(500);
+  const [errorText, setErrorText] = useState<string>("");
   const [timer, setTimer] = useState<number>(5);
 
   const goToLogin = () => {
@@ -53,7 +54,10 @@ export default function Error({
     if (!error) return;
 
     const errorText = getFormattedError(error).errors.formErrors?.[0];
-    if (!errorText) return;
+    setErrorText(errorText ?? "");
+    if (!errorText) {
+      return;
+    }
 
     const splittedErrorText = errorText?.split(" ");
     setStatusCode(Number(splittedErrorText[splittedErrorText?.length - 1]));
@@ -69,6 +73,10 @@ export default function Error({
       goToLogin();
     }
   }, [statusCode, timer]);
+
+  if (!statusCode) {
+    return <Text>This is the error: {errorText}</Text>;
+  }
 
   return (
     <Stack justify="center" align="center" h="100vh" gap={0}>
