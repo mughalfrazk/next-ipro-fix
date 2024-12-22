@@ -1,7 +1,6 @@
 import {
   CreateInvoicePayloadModel,
   InvoiceSchema,
-  InvoiceTableSchema,
   InvoiceTableWithStatsSchema
 } from "@/lib/models/invoice.model";
 import { getAuthApiClient } from "@/utils/api-client";

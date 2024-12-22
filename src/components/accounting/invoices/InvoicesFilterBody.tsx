@@ -91,7 +91,7 @@ const InvoicesFilterBody = ({
         const updatedFilters = {
           name: "Customer",
           value: customerValue.reduce(
-            (prev: any, curr: any, idx: any) => `${prev}${idx !== 0 ? " |" : ""} ${curr.label}`,
+            (prev, curr, idx) => `${prev}${idx !== 0 ? " |" : ""} ${curr.label}`,
             ""
           ),
           data: customerValue
@@ -124,7 +124,7 @@ const InvoicesFilterBody = ({
 
         if (!!startDate && startDate > createdAt) return false;
         if (!!endDate && endDate < createdAt) return false;
-        if (customerValue.length) return customerValue.some((j: any) => j.value === customer?.id);
+        if (customerValue.length) return customerValue.some((j) => j.value === customer?.id);
         if (invoiceStatusValue.length)
           return invoiceStatusValue.some((j) => j.value === String(invoice_status.id));
 
