@@ -15,6 +15,7 @@ export type NavLinkRoute = {
   href?: string;
   label: ReactNode;
   icon: ForwardRefExoticComponent<IconProps & RefAttributes<Icon>>;
+  role?: string[];
   children?: NavLinkRoute[];
 };
 
@@ -27,6 +28,7 @@ const routes: NavLinkRoute[] = [
   {
     label: "User",
     icon: IconUserCircle,
+    role: ["super_admin", "admin"],
     children: [
       {
         href: "/dashboard/user",
@@ -43,6 +45,7 @@ const routes: NavLinkRoute[] = [
   {
     label: "Customer",
     icon: IconUsers,
+    role: ["super_admin", "admin", "receptionist", "technician"],
     children: [
       {
         href: "/dashboard/customer",
@@ -54,6 +57,7 @@ const routes: NavLinkRoute[] = [
   {
     label: "Supplier",
     icon: IconUsers,
+    role: ["super_admin", "admin"],
     children: [
       {
         href: "/dashboard/supplier",
@@ -65,6 +69,7 @@ const routes: NavLinkRoute[] = [
   {
     label: "Job",
     icon: IconTool,
+    role: ["super_admin", "admin", "staff", "receptionist", "technician"],
     children: [
       {
         href: "/dashboard/job",
@@ -79,7 +84,8 @@ const routes: NavLinkRoute[] = [
       {
         href: "/dashboard/job/purchases",
         label: "Purchases",
-        icon: IconFocus
+        icon: IconFocus,
+        role: ["super_admin", "admin"]
       }
     ]
   },
@@ -87,6 +93,7 @@ const routes: NavLinkRoute[] = [
   {
     label: "Accounting",
     icon: IconCalculator,
+    role: ["super_admin", "admin", "accountant"],
     children: [
       {
         href: "/dashboard/accounting/invoices",
@@ -113,6 +120,7 @@ const routes: NavLinkRoute[] = [
   {
     label: "Settings",
     icon: IconSettings2,
+    role: ["super_admin", "admin"],
     children: [
       {
         href: "/dashboard/settings/model",

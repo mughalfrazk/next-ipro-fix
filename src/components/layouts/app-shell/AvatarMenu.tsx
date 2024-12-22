@@ -10,7 +10,11 @@ const AvatarMenu = () => {
       </Menu.Target>
 
       <Menu.Dropdown>
-        <Menu.Item leftSection={<IconUserCircle style={{ width: rem(17), height: rem(17) }} />}>
+        <Menu.Item
+          component="a"
+          href="/dashboard/profile"
+          leftSection={<IconUserCircle style={{ width: rem(17), height: rem(17) }} />}
+        >
           Profile
         </Menu.Item>
         <form action={logoutAction}>
