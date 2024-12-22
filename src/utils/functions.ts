@@ -51,16 +51,18 @@ export const showErrorNotification = (
 
 export const colorForUserRole = (name: string) => {
   return name === "super_admin"
-    ? "grape"
+    ? "grape.8"
     : name === "receptionist"
-      ? "green"
+      ? "green.9"
       : name === "technician"
-        ? "pink"
+        ? "primary.6"
         : name === "accountant"
-          ? "blue"
+          ? "cyan.9"
           : name === "admin"
-            ? "red"
-            : "black";
+            ? "red.8"
+            : name === "staff"
+              ? "red.8"
+              : "gray.8";
 };
 
 export const colorForInvoiceStatus = (name: string) => {

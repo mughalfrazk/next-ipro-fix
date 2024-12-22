@@ -28,7 +28,7 @@ import { useFormAction } from "@/hooks/use-form-action";
 import { createUserAction } from "@/lib/actions/user.action";
 import { ProfileModel } from "@/lib/models/user.model";
 
-const AddNewUser = ({ user }: { user?: ProfileModel }) => {
+const CreateOrUpdateUser = ({ user }: { user?: ProfileModel }) => {
   const { formAction, getFieldErrorProps } = useFormAction(createUserAction, {});
   const [progressPercentage, setProgressPercentage] = useState<string>("");
 
@@ -49,8 +49,8 @@ const AddNewUser = ({ user }: { user?: ProfileModel }) => {
               <Group justify="space-between">
                 <Stack>
                   <Heading
-                    title="New User Details"
-                    description="Add new User by filling out the form"
+                    title={user?.id ? "User Details" : "Add New User"}
+                    description={user?.id ? "User profile in detail" : "Fill out the form to create any kind of new user."}
                   ></Heading>
                 </Stack>
                 <IproButton variant="outline">Remove User</IproButton>
@@ -177,4 +177,4 @@ const AddNewUser = ({ user }: { user?: ProfileModel }) => {
   );
 };
 
-export default AddNewUser;
+export default CreateOrUpdateUser;

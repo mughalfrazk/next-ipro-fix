@@ -44,6 +44,7 @@ const createJobAction = async (_: ActionResult, formData: FormData) => {
     showErrorNotification("Validation errors");
     return getFormattedError(validatedPayload?.error);
   }
+  console.log(payload)
 
   try {
     await createJobApi(payload);
