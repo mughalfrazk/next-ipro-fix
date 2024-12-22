@@ -1,8 +1,11 @@
 "use client";
 
-import { Avatar, Grid, Group, Stack, Text, Card } from "@mantine/core";
+import { Avatar, Grid, Group, Stack, Text, Card, NumberFormatter } from "@mantine/core";
 import { IconInvoice, IconMoneybag, IconClockRecord, IconCheckbox } from "@tabler/icons-react";
-const TopCards = () => {
+
+import { InvoiceStatsModel } from "@/lib/models/invoice.model";
+
+const TopCards = ({ stats }: { stats: InvoiceStatsModel }) => {
   return (
     <Grid>
       <Grid.Col span={3}>
@@ -16,7 +19,7 @@ const TopCards = () => {
                 Total Invoices
               </Text>
               <Text c="violet.9" size="xl" fw={600}>
-                AED 556.523
+                {stats.total_invoices}
               </Text>
             </Stack>
           </Group>
@@ -33,7 +36,7 @@ const TopCards = () => {
                 Total Amount
               </Text>
               <Text c="cyan.6" size="xl" fw={600}>
-                AED 556.523
+                <NumberFormatter prefix="AED " value={stats.total_amount} thousandSeparator />
               </Text>
             </Stack>
           </Group>
@@ -50,7 +53,7 @@ const TopCards = () => {
                 Total Pending
               </Text>
               <Text c="teal.6" size="xl" fw={600}>
-                AED 556.523
+                <NumberFormatter prefix="AED " value={stats.total_pending} thousandSeparator />
               </Text>
             </Stack>
           </Group>
@@ -67,7 +70,7 @@ const TopCards = () => {
                 Total Paid
               </Text>
               <Text c="blue.6" size="xl" fw={600}>
-                AED 556.523
+                <NumberFormatter prefix="AED " value={stats.total_paid} thousandSeparator />
               </Text>
             </Stack>
           </Group>

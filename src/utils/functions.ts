@@ -63,13 +63,15 @@ export const colorForUserRole = (name: string) => {
 };
 
 export const colorForInvoiceStatus = (name: string) => {
-  return name === "Half Paid"
+  return name === "Generated"
     ? "red"
-    : name === "Unpaid"
+    : name === "Pending Payment"
       ? "indigo"
-      : name === "Paid"
+      : name === "Overdue"
         ? "green"
-        : "black";
+        : name === "Overdue"
+          ? "primary.6"
+          : "black";
 };
 
 export const capitalizeFirstLetter = (val: string) => {

@@ -5,7 +5,7 @@ import { generateInvoiceForJobApi } from "../services/api/invoice.service";
 
 export const generateInvoiceAction = async (job_id: string, invoice: InvoiceModel) => {
   const issues = invoice.issues.map((item) => ({
-    item_type: "ٰissue",
+    item_type: "issue",
     brand_name: item.brand.name as string,
     brand_id: item.brand.id as number,
     issue_model_name: item.model.name as string,
