@@ -7,7 +7,7 @@ const InvoicesFilterBody = () => {
     <Stack>
       <Text size="sm">You can filter invoices by dates, customer and status wise</Text>
       <Grid grow>
-        <Grid.Col span={6}>
+        <Grid.Col span={3}>
           <DateInput
             label="Start Date"
             placeholder="Enter Start Date"
@@ -15,7 +15,7 @@ const InvoicesFilterBody = () => {
             size="sm"
           />
         </Grid.Col>
-        <Grid.Col span={6}>
+        <Grid.Col span={3}>
           <DateInput
             label="End Date"
             placeholder="Enter End Date"
@@ -23,7 +23,7 @@ const InvoicesFilterBody = () => {
             size="sm"
           />
         </Grid.Col>
-        <Grid.Col span={6}>
+        <Grid.Col span={3}>
           <MultiSelect
             label="Invoice Status"
             placeholder="Select User Roles to Filter"
@@ -32,7 +32,7 @@ const InvoicesFilterBody = () => {
             clearable
           />
         </Grid.Col>
-        <Grid.Col span={6}>
+        <Grid.Col span={3}>
           <MultiSelect
             label="Customers"
             placeholder="Select User Roles to Filter"

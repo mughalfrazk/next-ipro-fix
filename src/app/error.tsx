@@ -46,6 +46,10 @@ export default function Error({
   };
 
   useEffect(() => {
+    console.log("ERROR ERROR ERROR ERROR ERROR ERROR: ", error);
+  }, [error]);
+
+  useEffect(() => {
     if (!error) return;
 
     const errorText = getFormattedError(error).errors.formErrors?.[0];

@@ -82,9 +82,40 @@ export const InvoiceSchema = z.object({
   purchases: z.array(InvoicePurchaseItemSchema).nullish()
 });
 
+export const InvoiceRowSchema = z.object({
+  id: z.string(),
+  total: z.number(),
+  created_at: z.string(),
+  customer: CustomerSchema,
+  invoice_status: InvoiceStatusSchema,
+  devices_qty: z.number(),
+  purchase_total: z.number()
+});
+
+
+export const InvoiceTableListSchema = z.array(InvoiceRowSchema)
+export const InvoiceStatsSchema = z.object({
+  total_invoices: z.number(),
+  total_amount: z.number(),
+  total_pending: z.number(),
+  total_paid: z.number()
+})
+
+export const InvoiceTableSchema = z.object({ invoices: InvoiceTableListSchema });
+export const InvoiceTableWithStatsSchema = z.object({
+  invoices: InvoiceTableListSchema,
+  stats: InvoiceStatsSchema
+});
+
 export type InvoiceModel = z.infer<typeof InvoiceSchema>;
 export type InvoiceIssueItemModel = z.infer<typeof InvoiceIssueItemSchema>;
 export type InvoicePurchaseItemModel = z.infer<typeof InvoicePurchaseItemSchema>;
+
+export type InvoiceTableListModel = z.infer<typeof InvoiceTableListSchema>
+export type InvoiceStatsModel = z.infer<typeof InvoiceStatsSchema>
+export type InvoiceRowModel = z.infer<typeof InvoiceRowSchema>;
+export type InvoiceTableModel = z.infer<typeof InvoiceTableSchema>;
+export type InvoiceTableWithStatsModel = z.infer<typeof InvoiceTableWithStatsSchema>
 
 export type CreateInvoiceItemsPayloadModel = z.infer<typeof CreateInvoiceItemsPayloadSchema>;
 export type CreateInvoicePayloadModel = z.infer<typeof CreateInvoicePayloadSchema>;
