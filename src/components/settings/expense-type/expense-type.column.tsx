@@ -1,9 +1,10 @@
 "use client";
 
-import { ExpenseTypeModel } from "@/lib/models/expense.model";
+import { Group } from "@mantine/core";
+
+import { ExpenseTypeModel } from "@/lib/models/expense-type.model";
 import { showDateNicely } from "@/utils/functions";
 import ExpenseTypeDrawer from "./EditExpenseTypeDrawer";
-import { Group } from "@mantine/core";
 import DeleteExpenseTypePopover from "./DeleteExpenseTypePopover";
 
 export const ExpenseTypeColumns = [
