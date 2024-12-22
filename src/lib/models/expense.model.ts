@@ -11,9 +11,9 @@ export const ExpenseSchema = z.object({
   deleted_at: z.string().nullish(),
   expense_type: ExpenseTypeSchema,
   created_by: UserSchema
-})
+});
 
-export const ExpenseListSchema = z.array(ExpenseSchema)
+export const ExpenseListSchema = z.array(ExpenseSchema);
 
-export type ExpenseModel = z.infer <typeof ExpenseSchema>;
-export type ExpenseListModel = z.infer <typeof ExpenseListSchema>;
+export type ExpenseModel = z.infer<typeof ExpenseSchema>;
+export type ExpenseListModel = z.infer<typeof ExpenseListSchema>;

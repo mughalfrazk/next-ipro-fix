@@ -67,8 +67,17 @@ export const JobColumns = [
     accessor: "status",
     render: (row: JobModel) => {
       return (
-        <Badge color={colorForJobStatus(row.job_status.name)} radius="md" size="sm" px={10} pt={10} pb={9}>
-          <Text size="10" fw="bold" c="white">{row.job_status.name}</Text>
+        <Badge
+          color={colorForJobStatus(row.job_status.name)}
+          radius="md"
+          size="sm"
+          px={10}
+          pt={10}
+          pb={9}
+        >
+          <Text size="10" fw="bold" c="white">
+            {row.job_status.name}
+          </Text>
         </Badge>
       );
     }

@@ -41,7 +41,6 @@ const InvoiceTab = ({ job }: { job: JobModel }) => {
   };
 
   useEffect(() => {
-
     if (!!job.id) getJobInvoice();
   }, [job]);
 
@@ -65,7 +64,7 @@ const InvoiceTab = ({ job }: { job: JobModel }) => {
               </IproButton>
             ) : (
               <Text fs="italic" opacity={0.6}>
-                Can't generate invoice, job is still in progress.
+                Cannot generate invoice, job is still in progress.
               </Text>
             )}
           </Card>

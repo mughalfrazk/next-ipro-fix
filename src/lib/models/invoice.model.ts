@@ -18,7 +18,7 @@ export const CreateInvoiceItemsPayloadSchema = z.object({
   charges: z.number().optional(),
   quantity: z.number().min(1, "Item type is required"),
   total: z.number().min(1, "Item type is required")
-})
+});
 
 export const CreateInvoicePayloadSchema = z.object({
   job_id: z.string().min(1, "Job id is required"),
@@ -28,7 +28,7 @@ export const CreateInvoicePayloadSchema = z.object({
   purchase_total: z.number().min(1, "Purchase total is required"),
   total: z.number().min(1, "Total is required"),
   invoice_items: z.array(CreateInvoiceItemsPayloadSchema)
-})
+});
 
 const InvoiceIssueItemSchema = z.object({
   id: z.string().nullish(),
@@ -48,7 +48,7 @@ const InvoiceIssueItemSchema = z.object({
     id: z.number().nullish(),
     name: z.string()
   })
-})
+});
 
 const InvoicePurchaseItemSchema = z.object({
   id: z.string().nullish(),
@@ -63,7 +63,7 @@ const InvoicePurchaseItemSchema = z.object({
     id: z.number().nullish(),
     name: z.string()
   })
-})
+});
 
 export const InvoiceSchema = z.object({
   id: z.string(),
@@ -80,11 +80,11 @@ export const InvoiceSchema = z.object({
   customer: CustomerSchema,
   issues: z.array(InvoiceIssueItemSchema),
   purchases: z.array(InvoicePurchaseItemSchema).nullish()
-})
+});
 
-export type InvoiceModel = z.infer<typeof InvoiceSchema>
-export type InvoiceIssueItemModel = z.infer<typeof InvoiceIssueItemSchema>
-export type InvoicePurchaseItemModel = z.infer<typeof InvoicePurchaseItemSchema>
+export type InvoiceModel = z.infer<typeof InvoiceSchema>;
+export type InvoiceIssueItemModel = z.infer<typeof InvoiceIssueItemSchema>;
+export type InvoicePurchaseItemModel = z.infer<typeof InvoicePurchaseItemSchema>;
 
-export type CreateInvoiceItemsPayloadModel = z.infer<typeof CreateInvoiceItemsPayloadSchema>
-export type CreateInvoicePayloadModel = z.infer<typeof CreateInvoicePayloadSchema>
+export type CreateInvoiceItemsPayloadModel = z.infer<typeof CreateInvoiceItemsPayloadSchema>;
+export type CreateInvoicePayloadModel = z.infer<typeof CreateInvoicePayloadSchema>;

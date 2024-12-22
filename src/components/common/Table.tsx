@@ -320,7 +320,7 @@ type TableProps<T> = {
   drawerTitle?: string;
   pagination?: boolean;
   PAGE_SIZE?: number;
-  p?: number
+  p?: number;
 };
 
 export const Table = <T extends object>({

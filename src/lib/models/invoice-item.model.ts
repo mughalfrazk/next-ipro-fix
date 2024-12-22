@@ -16,7 +16,6 @@ export const InvoiceItemSchema = z.object({
   deleted_at: z.string().nullish()
 });
 
-
 export const InvoiceItemListSchema = z.array(InvoiceItemSchema);
 
 export type InvoiceItemModel = z.infer<typeof InvoiceItemSchema>;

@@ -2,17 +2,17 @@ import { CreateInvoicePayloadModel, InvoiceSchema } from "@/lib/models/invoice.m
 import { getAuthApiClient } from "@/utils/api-client";
 import { parseFactory } from "@/utils/parse-factory";
 
-const InvoiceDataParser = parseFactory(InvoiceSchema, "InvoiceDataParser")
+const InvoiceDataParser = parseFactory(InvoiceSchema, "InvoiceDataParser");
 
 const getInvoiceDetailByIdApi = async (job_id: string) => {
   const result = await getAuthApiClient().get(`invoice?job_id=${job_id}`);
-  return result.data
-  return InvoiceDataParser(result.data)
+  return result.data;
+  return InvoiceDataParser(result.data);
 };
 
 const generateInvoiceForJobApi = async (payload: CreateInvoicePayloadModel) => {
-  const result = await getAuthApiClient().post("invoice", payload)
-  return result.data
-}
+  const result = await getAuthApiClient().post("invoice", payload);
+  return result.data;
+};
 
 export { getInvoiceDetailByIdApi, generateInvoiceForJobApi };
