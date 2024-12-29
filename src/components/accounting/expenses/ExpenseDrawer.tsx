@@ -38,7 +38,7 @@ const ExpenseDrawer = ({
 
   useEffect(() => {
     if (!isPending && typeof state?.success === "string") {
-      close();
+      closeDrawer();
       router.push("/dashboard/accounting/expenses");
       router.refresh();
     }
