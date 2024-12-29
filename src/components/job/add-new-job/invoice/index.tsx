@@ -44,10 +44,6 @@ const InvoiceTab = ({ job }: { job: JobModel }) => {
     if (!!job.id) getJobInvoice();
   }, [job]);
 
-  useEffect(() => {
-    console.log(invoice);
-  }, [invoice]);
-
   return (
     invoice && (
       <Grid>
