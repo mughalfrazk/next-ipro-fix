@@ -39,11 +39,22 @@ export const ExpenseColumns = [
     }
   },
   {
+    accessor: "Expense Type",
+    render: (row: ExpenseModel) => {
+      return (
+        <Group>
+          <Avatar key={row.expense_type.name} name={row.expense_type.name} color="initials" />
+          <Title order={6}>{row.expense_type.name}</Title>
+        </Group>
+      );
+    }
+  },
+  {
     accessor: "comments"
   },
   {
     accessor: "actions",
-    textAlign: "right",
+    textAlign: "center",
     render: () => {
       return (
         <Button variant="subtle" color="var(--mantine-color-primary-6)">

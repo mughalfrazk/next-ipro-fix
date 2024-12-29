@@ -13,7 +13,14 @@ export const ExpenseSchema = z.object({
   created_by: UserSchema
 });
 
+export const CreateExpensePayloadSchema = z.object({
+  amount: z.number(),
+  comments: z.string().nullish(),
+  expense_type_id: z.number()
+});
+
 export const ExpenseListSchema = z.array(ExpenseSchema);
 
 export type ExpenseModel = z.infer<typeof ExpenseSchema>;
 export type ExpenseListModel = z.infer<typeof ExpenseListSchema>;
+export type CreateExpensePayloadModel = z.infer<typeof CreateExpensePayloadSchema>;

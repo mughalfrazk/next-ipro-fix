@@ -1,61 +1,107 @@
 "use client";
 
-import { Stack, Textarea, Group, Drawer, Grid, GridCol } from "@mantine/core";
+import { Stack, Group, Drawer, Grid, GridCol } from "@mantine/core";
 import IproButton from "@/components/core/IproButton";
 import { useDisclosure } from "@mantine/hooks";
 import IproTextInput from "@/components/core/IproTextInput";
-import IproSelect from "@/components/core/IproSelect";
-import { DateInput } from "@mantine/dates";
 import ExpenseTypeModal from "@/components/settings/expense-type/ExpenseTypeDrawer";
+import { ExpenseModel } from "@/lib/models/expense.model";
+import { useRouter } from "next/navigation";
+import { useEffect, useTransition } from "react";
+import { useFormAction } from "@/hooks/use-form-action";
+import { createExpenseAction, updateExpenseAction } from "@/lib/actions/expense.action";
+import ExpenseTypeSelect from "./ExpenseTypeSelect";
 
 const ExpenseDrawer = ({
   openedDrawer,
-  closeDrawer
+  closeDrawer,
+  title,
+  selectedExpense
 }: {
   openedDrawer: boolean;
   closeDrawer: () => void;
+  title?: string;
+  selectedExpense?: ExpenseModel;
 }) => {
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const { state, formAction, getFieldErrorProps } = useFormAction(
+    !!selectedExpense ? updateExpenseAction : createExpenseAction,
+    {}
+  );
+  const handleSubmit = async (formData: FormData) => {
+    startTransition(() => {
+      console.log("this is handle submit");
+      formAction(formData);
+    });
+  };
+
+  useEffect(() => {
+    if (!isPending && typeof state?.success === "string") {
+      close();
+      router.push("/dashboard/accounting/expenses");
+      router.refresh();
+    }
+  }, [isPending, state]);
   const [opened, { open, close }] = useDisclosure();
   return (
     <>
       <ExpenseTypeModal opened={opened} close={close} />
       <Drawer
         opened={openedDrawer}
-        title="Add New Expense"
+        title={title ?? "Add New Expense"}
         position="right"
         onClose={closeDrawer}
         size="29%"
         overlayProps={{ backgroundOpacity: 0 }}
       >
-        <Stack align="stretch" justify="center">
-          <Grid align="flex-end">
-            <GridCol span={8}>
-              <IproSelect
-                label="Expense Type"
-                placeholder="Expense Name"
-                data={["Bill", "Snacks", "Dinner", "Salary"]}
-                width={"100%"}
+        <form action={handleSubmit}>
+          <Stack align="stretch" justify="center">
+            <Grid align="flex-end">
+              <GridCol span={8}>
+                <ExpenseTypeSelect
+                  expense={selectedExpense}
+                  getFieldErrorProps={getFieldErrorProps}
+                />
+              </GridCol>
+              <GridCol span={4}>
+                <IproButton onClick={open} size="lg" mb={2} fullWidth>
+                  Add New Type
+                </IproButton>
+              </GridCol>
+            </Grid>
+            <IproTextInput
+              type="number"
+              label="Amount"
+              name="amount"
+              defaultValue={selectedExpense?.amount ?? ""}
+              placeholder="4500"
+              {...getFieldErrorProps("amount")}
+            />
+            <IproTextInput
+              type="text"
+              label="Comments"
+              name="comments"
+              defaultValue={selectedExpense?.comments ?? ""}
+              placeholder="Utility Bill"
+              {...getFieldErrorProps("comments")}
+            />
+            {selectedExpense && (
+              <IproTextInput
+                type="number"
+                name="id"
+                defaultValue={selectedExpense.id}
+                style={{ display: "none" }}
               />
-            </GridCol>
-            <GridCol span={4}>
-              <IproButton onClick={open} size="lg" mb={2} fullWidth>
-                Add New Type
+            )}
+            <Group justify="flex-end" gap={10}>
+              <IproButton variant="outline" onClick={close}>
+                Cancel
               </IproButton>
-            </GridCol>
-          </Grid>
-          <IproTextInput label="Amount" placeholder="Enter Expense Amount" />
-          <DateInput
-            label="Expense Date"
-            placeholder="Enter Date"
-            valueFormat="YYYY MMM DD"
-            size="md"
-          />
-          <Textarea label="Comment" placeholder="Enter Comment" />
-          <Group justify="flex-end" mt={20}>
-            <IproButton variant="outline">Cancal</IproButton>
-            <IproButton isSubmit={true}>Save Expense</IproButton>
-          </Group>
-        </Stack>
+              <IproButton isSubmit={true}>Submit</IproButton>
+            </Group>
+          </Stack>
+        </form>
       </Drawer>
     </>
   );

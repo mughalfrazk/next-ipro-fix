@@ -4,8 +4,8 @@ export const ExpenseTypeSchema = z.object({
   id: z.number(),
   name: z.string().min(1, "Name is required"),
   description: z.string().nullish(),
-  created_at: z.string(),
-  updated_at: z.string(),
+  created_at: z.string().nullish(),
+  updated_at: z.string().nullish(),
   deleted_at: z.string().nullish()
 });
 
