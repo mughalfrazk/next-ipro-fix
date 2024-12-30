@@ -6,6 +6,8 @@ import { Burger, Group } from "@mantine/core";
 import { useMantineColorScheme } from "@/hooks/use-mantine-color-scheme-wrapper";
 import IproButton from "@/components/core/IproButton";
 import AvatarMenu from "./AvatarMenu";
+import RoleBadge from "@/components/common/RoleBadge";
+import { useProfileContext } from "@/context/profile.context";
 
 type HeaderProps = {
   opened: boolean;
@@ -13,6 +15,7 @@ type HeaderProps = {
 };
 
 const Header = ({ opened, toggle: AppshellToggle }: HeaderProps) => {
+  const { data } = useProfileContext();
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
   return (
@@ -20,6 +23,7 @@ const Header = ({ opened, toggle: AppshellToggle }: HeaderProps) => {
       <Burger opened={opened} onClick={AppshellToggle} hiddenFrom="sm" size="sm" />
       <h2>Logo</h2>
       <Group gap={10}>
+        <RoleBadge user={data} />
         <IproButton variant="light" radius="xl" isIconOnly onClick={toggleColorScheme}>
           {colorScheme === "dark" ? (
             <IconSun color="var(--mantine-color-primary-0)" />

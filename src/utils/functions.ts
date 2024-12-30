@@ -51,16 +51,18 @@ export const showErrorNotification = (
 
 export const colorForUserRole = (name: string) => {
   return name === "super_admin"
-    ? "grape"
+    ? "grape.8"
     : name === "receptionist"
-      ? "green"
+      ? "green.9"
       : name === "technician"
-        ? "pink"
+        ? "primary.6"
         : name === "accountant"
-          ? "blue"
+          ? "cyan.9"
           : name === "admin"
-            ? "red"
-            : "black";
+            ? "red.8"
+            : name === "staff"
+              ? "red.8"
+              : "gray.8";
 };
 
 export const colorForInvoiceStatus = (name: string) => {
@@ -91,12 +93,14 @@ export const mapJobToInvoice = (job: JobModel): InvoiceModel => {
   const purchase_total = job?.purchases?.reduce((prev, curr) => prev + curr.total, 0) ?? 0;
   const total = issue_total + purchase_total;
 
+  const technician = job?.technician?.role?.name === "technician" ? job.technician : null
+
   const invoice: InvoiceModel = {
     id: "",
     issue_total: issue_total,
     purchase_total: purchase_total,
     customer: job.customer,
-    technician: job?.technician?.role?.name === "technician" ? job.technician : null,
+    technician,
     total,
     barcode: "",
     created_at: "",
@@ -183,4 +187,11 @@ export const colorForExpenseType = (name: string) => {
   ];
 
   return colors[name.length];
+}
+export const titleCase = (s: string) => {
+  return s.toLowerCase()
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ')
+    .replace(/_/g, ' ');
 }

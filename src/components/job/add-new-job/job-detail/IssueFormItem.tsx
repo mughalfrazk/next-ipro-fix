@@ -85,7 +85,6 @@ const IssueFormItem = ({
         </GridCol>
         <GridCol span={4}>
           <CreateUpdateSelectInput
-            searchable
             label="Model Selection"
             name={`issues[${idx}][model_id]`}
             inputDefaultValue={issue.model_id}

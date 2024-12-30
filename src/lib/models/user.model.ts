@@ -21,16 +21,34 @@ export const UserSchema = z.object({
 });
 
 export const UserListSchema = z.array(UserSchema);
+export const UserWithRoleSchema = UserSchema.extend({
+  role: RoleSchema
+})
+
+export const UserWithRoleListSchema = z.array(UserWithRoleSchema);
+
 
 export const ProfileSchema = UserSchema.extend({
-  role: RoleSchema.nullish(),
+  role: RoleSchema,
   speciality: ProblemTypeSchema.nullish(),
   company: CompanySchema.nullish()
 });
 
 export const ProfileListSchema = z.array(ProfileSchema);
 
+export type UserByRoleType = {
+  id: string;
+  name: string;
+  user: {
+    id: string;
+    first_name: string;
+    last_name: string;
+  }[]
+}[]
+
 export type ProfileModel = z.infer<typeof ProfileSchema>;
 export type UserModel = z.infer<typeof UserSchema>;
 export type ProfileListModel = z.infer<typeof ProfileListSchema>;
 export type UserListModel = z.infer<typeof UserListSchema>;
+
+export type UserWithRoleModel = z.infer<typeof UserWithRoleSchema>

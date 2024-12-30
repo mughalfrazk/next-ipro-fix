@@ -106,7 +106,7 @@ export const JobColumns = [
             <Title order={6}>{`${row.technician.first_name} ${row.technician.last_name}`}</Title>
             <Text
               size={"0.7rem"}
-            >{`${row.technician.first_name} ${row.technician.last_name}`}</Text>
+            >{`${row.technician.role.name.toUpperCase()}`}</Text>
           </Stack>
         </Group>
       ) : (
