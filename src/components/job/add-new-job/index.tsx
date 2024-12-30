@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Box, Tabs, TabsList, TabsPanel, TabsTab, Title } from "@mantine/core";
 
-import { JobModel } from "@/lib/models/job.model";
 import JobDetailTab from "@/components/job/add-new-job/job-detail";
 import JobPurchasesTab from "@/components/job/add-new-job/job-purchases";
 import InvoiceTab from "@/components/job/add-new-job/invoice";
+import { useProfileContext } from "@/context/profile.context";
+import { JobModel } from "@/lib/models/job.model";
 import classes from "./add-new.module.css";
 
 const TABS = {
@@ -20,6 +21,9 @@ type TabType = keyof typeof TABS;
 
 const AddNewJobClient = ({ job }: { job: JobModel }) => {
   const queryParams = useSearchParams();
+  const {
+    data: { role }
+  } = useProfileContext();
   const [activeTab, setActiveTab] = useState<string | null>("detail");
 
   const tabs = [
@@ -29,11 +33,19 @@ const AddNewJobClient = ({ job }: { job: JobModel }) => {
     },
     {
       title: "Job Purchases",
-      value: "purchases"
+      value: "purchases",
+      // role: [
+      //   RoleTypes.SUPER_ADMIN,
+      //   RoleTypes.ADMIN,
+      //   RoleTypes.RECEPTIONIST,
+      //   RoleTypes.TECHNICIAN,
+      //   RoleTypes.ACCOUNTANT
+      // ]
     },
     {
       title: "Invoice",
-      value: "invoice"
+      value: "invoice",
+      // role: [RoleTypes.SUPER_ADMIN, RoleTypes.ADMIN, RoleTypes.ACCOUNTANT, RoleTypes.RECEPTIONIST]
     }
   ];
 
@@ -54,25 +66,38 @@ const AddNewJobClient = ({ job }: { job: JobModel }) => {
     >
       <Box w="75%">
         <TabsList grow mb={16}>
-          {tabs.map((item) => (
-            <TabsTab key={item.title} value={item.value} py={15}>
-              <Title order={4} fw={600}>
-                {item.title}
-              </Title>
-            </TabsTab>
-          ))}
+          {tabs.map((item, idx) =>
+            item.role && !item.role?.includes(role.name) ? (
+              <Fragment key={idx} />
+            ) : (
+              <TabsTab key={item.title} value={item.value} py={15}>
+                <Title order={4} fw={600}>
+                  {item.title}
+                </Title>
+              </TabsTab>
+            )
+          )}
         </TabsList>
       </Box>
 
-      <TabsPanel value="detail">
-        <JobDetailTab job={job} />
-      </TabsPanel>
-      <TabsPanel value="purchases">
-        <JobPurchasesTab jobId={job.id} purchases={job?.purchases ?? []} />
-      </TabsPanel>
-      <TabsPanel value="invoice">
-        <InvoiceTab job={job} />
-      </TabsPanel>
+      {(!tabs.filter((i) => i.value === "detail")[0]?.role ||
+        tabs.filter((i) => i.value === "detail")[0].role?.includes(role.name)) && (
+        <TabsPanel value="detail">
+          <JobDetailTab job={job} />
+        </TabsPanel>
+      )}
+      {(!tabs.filter((i) => i.value === "purchases")[0]?.role ||
+        tabs.filter((i) => i.value === "purchases")[0].role?.includes(role.name)) && (
+        <TabsPanel value="purchases">
+          <JobPurchasesTab jobId={job.id} purchases={job?.purchases ?? []} />
+        </TabsPanel>
+      )}
+      {(!tabs.filter((i) => i.value === "invoice")[0]?.role ||
+        tabs.filter((i) => i.value === "invoice")[0].role?.includes(role.name)) && (
+        <TabsPanel value="invoice">
+          <InvoiceTab job={job} />
+        </TabsPanel>
+      )}
     </Tabs>
   );
 };

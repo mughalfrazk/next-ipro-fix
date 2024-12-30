@@ -112,7 +112,7 @@ export const mapJobToInvoice = (job: JobModel): InvoiceModel => {
         item_type: "",
         charges: item.charges,
         quantity: item.quantity,
-        total: 0,
+        total: item.total,
         brand: {
           id: item?.brand?.id,
           name: item.brand?.name

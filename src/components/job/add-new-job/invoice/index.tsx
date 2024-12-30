@@ -13,9 +13,14 @@ import Heading from "@/components/common/Heading";
 import MainInvoiceCard from "./MainInvoiceCard";
 import TechnicianInfoCard from "./TechnicianInfoCard";
 import { generateInvoiceAction } from "@/lib/actions/invoice.action";
+import { useProfileContext } from "@/context/profile.context";
+import { RoleTypes } from "@/types/roles.types";
 
 const InvoiceTab = ({ job }: { job: JobModel }) => {
   const router = useRouter();
+  const {
+    data: { role }
+  } = useProfileContext();
   const [invoice, setInvoice] = useState<InvoiceModel>();
 
   const getJobInvoice = async () => {
