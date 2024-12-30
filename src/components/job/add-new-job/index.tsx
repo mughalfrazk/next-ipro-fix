@@ -7,7 +7,6 @@ import { Box, Tabs, TabsList, TabsPanel, TabsTab, Title } from "@mantine/core";
 import JobDetailTab from "@/components/job/add-new-job/job-detail";
 import JobPurchasesTab from "@/components/job/add-new-job/job-purchases";
 import InvoiceTab from "@/components/job/add-new-job/invoice";
-import { useProfileContext } from "@/context/profile.context";
 import { JobModel } from "@/lib/models/job.model";
 // import { RoleTypes } from "@/types/roles.types";
 import classes from "./add-new.module.css";
@@ -22,9 +21,6 @@ type TabType = keyof typeof TABS;
 
 const AddNewJobClient = ({ job }: { job: JobModel }) => {
   const queryParams = useSearchParams();
-  const {
-    data: { role }
-  } = useProfileContext();
   const [activeTab, setActiveTab] = useState<string | null>("detail");
 
   const tabs = [
