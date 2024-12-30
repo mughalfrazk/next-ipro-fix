@@ -26,7 +26,7 @@ const getUserListByRoleApi = async () => {
   const result = await getAuthApiClient().get("user");
   const users = ProfileListDataParser(result.data)
 
-  let remappedUser: UserByRoleType = []
+  const remappedUser: UserByRoleType = []
 
   for (let i = 0; i < users.length; i++) {
     let newEntry = true
