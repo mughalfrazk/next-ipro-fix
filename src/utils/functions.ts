@@ -2,6 +2,7 @@ import { notifications } from "@mantine/notifications";
 import classes from "@/styles/notification.module.css";
 import { JobModel } from "@/lib/models/job.model";
 import { InvoiceModel } from "@/lib/models/invoice.model";
+import { format } from "date-fns";
 
 export const getNestedInputValues = (formData: FormData) => {
   const nestedListRegex = /^([^\[]+)(\[\d+\])(\[[^\]]+\])$/;
@@ -80,7 +81,9 @@ export const capitalizeFirstLetter = (val: string) => {
 
 export const showDateNicely = (date: string) => {
   const splitted_date = date.split("T");
-  return `${splitted_date[0]} ${splitted_date[1].split(".")[0]}`;
+
+  return format(new Date(date), "dd-MM-yyyy - HH:mm a");
+  return `${splitted_date[0]} - ${splitted_date[1].split(".")[0].split(":").slice(0, 2).join(":")}`;
 };
 
 export const mapJobToInvoice = (job: JobModel): InvoiceModel => {
@@ -122,24 +125,62 @@ export const mapJobToInvoice = (job: JobModel): InvoiceModel => {
     ],
     purchases: !!job?.purchases?.length
       ? [
-          ...job?.purchases.map((item, idx) => ({
-            id: `${idx}`,
-            item_type: "",
-            charges: item.charges,
-            quantity: item.quantity,
-            total: item.total,
-            model: {
-              id: item?.model?.id,
-              name: item?.model?.name ?? ""
-            },
-            part: {
-              id: item?.part?.id,
-              name: item.part?.name ?? ""
-            }
-          }))
-        ]
+        ...job?.purchases.map((item, idx) => ({
+          id: `${idx}`,
+          item_type: "",
+          charges: item.charges,
+          quantity: item.quantity,
+          total: item.total,
+          model: {
+            id: item?.model?.id,
+            name: item?.model?.name ?? ""
+          },
+          part: {
+            id: item?.part?.id,
+            name: item.part?.name ?? ""
+          }
+        }))
+      ]
       : []
   };
 
   return invoice;
 };
+
+export const colorForExpenseType = (name: string) => {
+  // Generate a random color for the expense type.
+  const colors = [
+    "red.8",
+    "green.8",
+    "blue.8",
+    "yellow.8",
+    "purple.8",
+    "cyan.8",
+    "violet.8",
+    "gray.8",
+    "teal.8",
+    "orange.8",
+    "red.8",
+    "green.8",
+    "blue.8",
+    "yellow.8",
+    "purple.8",
+    "cyan.8",
+    "violet.8",
+    "gray.8",
+    "teal.8",
+    "orange.8",
+    "red.8",
+    "green.8",
+    "blue.8",
+    "yellow.8",
+    "purple.8",
+    "cyan.8",
+    "violet.8",
+    "gray.8",
+    "teal.8",
+    "orange.8"
+  ];
+
+  return colors[name.length];
+}

@@ -9,8 +9,12 @@ const getExpenseListApi = async () => {
   return ExpenseListDataParser(result.data);
 };
 
-const createExpenseApi = async (payload: CreateExpensePayloadModel) => {
-  const result = await getAuthApiClient().post("expense", payload);
+const createExpenseApi = async (payload: Partial<CreateExpensePayloadModel>) => {
+  const result = await getAuthApiClient().post("expense", {
+    ...payload,
+    amount: Number(payload.amount),
+    expense_type_id: Number(payload.expense_type_id)
+  });
   return result;
 };
 
