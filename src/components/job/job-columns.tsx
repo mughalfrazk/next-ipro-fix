@@ -1,6 +1,6 @@
 "use client";
 
-import { Avatar, Badge, Group, Stack, Text, Title } from "@mantine/core";
+import { Avatar, Badge, Group, NumberFormatter, Stack, Text, Title } from "@mantine/core";
 import { JobModel } from "@/lib/models/job.model";
 import { redirect } from "next/navigation";
 import Link from "next/link";
@@ -119,7 +119,7 @@ export const JobColumns = [
   {
     accessor: "total",
     render: (row: JobModel) => {
-      return row.issues.reduce((prev, curr) => prev + curr.total, 0);
+      return <NumberFormatter prefix="AED " value={row.issues.reduce((prev, curr) => prev + curr.total, 0)} thousandSeparator />
     }
   },
   {

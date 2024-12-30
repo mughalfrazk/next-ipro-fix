@@ -54,7 +54,7 @@ const Navlinks = () => {
       >
         {item.children.map((subItem, j) => {
           if (role && !!subItem?.role?.length && !subItem?.role?.includes(role?.name)) {
-            return <Fragment key={i}></Fragment>;
+            return <Fragment key={i} />;
           }
 
           return (
