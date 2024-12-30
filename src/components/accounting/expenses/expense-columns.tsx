@@ -1,6 +1,6 @@
-import { Avatar, Button, Group, NumberFormatter, Text, Title } from "@mantine/core";
+import { Avatar, Badge, Button, Group, NumberFormatter, Text, Title } from "@mantine/core";
 import { ExpenseModel } from "@/lib/models/expense.model";
-import { showDateNicely } from "@/utils/functions";
+import { colorForExpenseType, showDateNicely } from "@/utils/functions";
 
 export const ExpenseColumns = [
   {
@@ -26,16 +26,28 @@ export const ExpenseColumns = [
     }
   },
   {
-    title: "Created at",
-    accessor: "created_at",
-    render: (row: ExpenseModel) => {
-      return showDateNicely(row.created_at);
-    }
-  },
-  {
     accessor: "amount",
     render: (row: ExpenseModel) => {
       return <NumberFormatter prefix="AED " value={row.amount} thousandSeparator />;
+    }
+  },
+  {
+    accessor: "Expense Type",
+    render: (row: ExpenseModel) => {
+      return (
+        <Badge
+          color={colorForExpenseType(row.expense_type.name)}
+          radius="md"
+          size="sm"
+          px={10}
+          pt={10}
+          pb={9}
+        >
+          <Text size="10" fw="bold" c="white">
+            {row.expense_type.name}
+          </Text>
+        </Badge>
+      );
     }
   },
   {
@@ -43,13 +55,21 @@ export const ExpenseColumns = [
   },
   {
     accessor: "actions",
-    textAlign: "right",
+    textAlign: "center",
     render: () => {
       return (
         <Button variant="subtle" color="var(--mantine-color-primary-6)">
           Open User
         </Button>
       );
+    }
+  },
+  {
+    title: "Created at",
+    accessor: "created_at",
+    textAlign: "right",
+    render: (row: ExpenseModel) => {
+      return showDateNicely(row.created_at);
     }
   }
 ];

@@ -14,6 +14,7 @@ const InvoiceTableWithStatsDataParser = parseFactory(
 
 const getInvoiceDetailByIdApi = async (job_id: string) => {
   const result = await getAuthApiClient().get(`invoice?job_id=${job_id}`);
+  if (!result.data) return null;
   return InvoiceDataParser(result.data);
 };
 

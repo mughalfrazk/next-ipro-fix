@@ -47,7 +47,7 @@ export default function Error({
   };
 
   useEffect(() => {
-    console.log("ERROR ERROR ERROR ERROR ERROR ERROR: ", error);
+    console.log("ERROR: ", error);
   }, [error]);
 
   useEffect(() => {
@@ -56,11 +56,13 @@ export default function Error({
     const errorText = getFormattedError(error).errors.formErrors?.[0];
     setErrorText(errorText ?? "");
     if (!errorText) {
+      setStatusCode(500);
       return;
     }
 
     const splittedErrorText = errorText?.split(" ");
-    setStatusCode(Number(splittedErrorText[splittedErrorText?.length - 1]));
+    const errorCode = Number(splittedErrorText[splittedErrorText?.length - 1]);
+    setStatusCode(!!errorCode ? errorCode : 500);
   }, [error]);
 
   useEffect(() => {

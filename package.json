@@ -21,6 +21,7 @@
     "axios": "^1.7.7",
     "chroma-js": "^3.1.1",
     "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
     "dayjs": "^1.11.13",
     "mantine-datatable": "7.11.3",
     "next": "14.2.9",
