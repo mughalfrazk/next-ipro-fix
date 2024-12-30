@@ -1,7 +1,6 @@
 import { Avatar, Badge, Button, Group, NumberFormatter, Text, Title } from "@mantine/core";
 import { ExpenseModel } from "@/lib/models/expense.model";
 import { colorForExpenseType, showDateNicely } from "@/utils/functions";
-import { text } from "stream/consumers";
 
 export const ExpenseColumns = [
   {
