@@ -29,7 +29,7 @@ const Login = () => {
       >
         <Image src={whiteLogo.src} alt="White Logo" w="auto" height={40} />
         <Title ta="center" mt={20} c="var(--mantine-color-white)">
-          Welcome to Iprofix 👋🏻
+          Welcome to Iprofix CRM 👋🏻
         </Title>
         <Text ta="center" mt="sm" c="var(--mantine-color-white)">
           Please enter your email and password to login to your account
