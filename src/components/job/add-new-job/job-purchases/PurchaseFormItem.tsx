@@ -66,6 +66,7 @@ const PurchaseFormItem = ({
             name={`purchases[${idx}][supplier_id]`}
             inputDefaultValue={purchase.supplier_id}
             getDataFromApiAndSetOption={getSupplierList}
+            searchable
           />
         </GridCol>
         <GridCol span={4}>
@@ -74,6 +75,7 @@ const PurchaseFormItem = ({
             name={`purchases[${idx}][model_id]`}
             inputDefaultValue={purchase.model_id}
             getDataFromApiAndSetOption={getModelList}
+            searchable
           />
         </GridCol>
         <GridCol span={4}>
@@ -90,6 +92,7 @@ const PurchaseFormItem = ({
             name={`purchases[${idx}][part_id]`}
             inputDefaultValue={purchase.part_id}
             getDataFromApiAndSetOption={getPartList}
+            searchable
           />
         </GridCol>
         <GridCol span={4}>
