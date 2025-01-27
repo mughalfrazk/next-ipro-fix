@@ -77,6 +77,34 @@ export const colorForInvoiceStatus = (name: string) => {
           : "black";
 };
 
+export const colorForJobStatus = (name: string) => {
+  return name === "Device Received"
+    ? "orange.6"
+    : name === "Pending Work"
+      ? "red.6"
+      : name === "Pending Approval"
+        ? "indigo"
+        : name === "Job Done"
+          ? "primary.6"
+          : name === "Delivered"
+            ? "green"
+            : name === "Job Lost"
+              ? "grey"
+              : "black";
+};
+
+export const colorForProblemType = (name: string) => {
+  return name === "SW-Software"
+    ? "red"
+    : name === "HW-Hardware"
+      ? "indigo"
+      : name === "GW-Android"
+        ? "green"
+        : name === "GW-Apple Iphone"
+          ? "primary.6"
+          : "black";
+};
+
 export const capitalizeFirstLetter = (val: string) => {
   return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 };
@@ -195,3 +223,10 @@ export const titleCase = (s: string) => {
     .join(' ')
     .replace(/_/g, ' ');
 }
+
+export const getYesterdayDate = (dateOnly = false): Date => {
+  let d = new Date();
+  d.setDate(d.getDate() - 1);
+  d.setHours(0, 0, 0, 0);
+  return dateOnly ? new Date(d) : d;
+};
