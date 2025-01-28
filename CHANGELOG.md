@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/mughalfrazk/next-ipro-fix/compare/v1.0.0...v1.1.0) (2025-01-27)
+
+
+### Features
+
+* profit loss page ([2ea9f81](https://github.com/mughalfrazk/next-ipro-fix/commit/2ea9f81c6228c3fce7c2b436d1d464c7991aa3ef))
+
 ## 1.0.0 (2025-01-20)
 
 

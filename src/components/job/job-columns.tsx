@@ -4,21 +4,7 @@ import { Avatar, Badge, Group, NumberFormatter, Stack, Text, Title } from "@mant
 import { JobModel } from "@/lib/models/job.model";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { showDateNicely } from "@/utils/functions";
-
-const colorForJobStatus = (name: string) => {
-  return name === "Device Received"
-    ? "orange.6"
-    : name === "Pending Work"
-      ? "red.6"
-      : name === "Pending Approval"
-        ? "indigo"
-        : name === "Job Done"
-          ? "primary.6"
-          : name === "Delivered"
-            ? "green"
-            : "black";
-};
+import { colorForJobStatus, showDateNicely } from "@/utils/functions";
 
 export const createNewJobHandler = () => {
   redirect("/dashboard/job/add-new");
