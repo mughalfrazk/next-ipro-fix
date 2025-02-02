@@ -14,7 +14,7 @@ import Heading from "@/components/common/Heading";
 import CustomerDetail from "./CustomerDetail";
 import CommentDrawer from "./CommentDrawer";
 import IssuesListForm from "./IssuesListForm";
-import InvoiveReceiptDrawer from "./InvoiceReceiptDrawer";
+import JobStickerModal from "./JobStickerModal";
 import { useDisclosure } from "@mantine/hooks";
 
 const JobDetailTab = ({ job }: { job?: JobModel }) => {
@@ -32,7 +32,7 @@ const JobDetailTab = ({ job }: { job?: JobModel }) => {
   };
   return (
     <>
-      <InvoiveReceiptDrawer opened={opened} close={close} />
+      <JobStickerModal opened={opened} close={close} />
       <form action={formAction}>
         <Stack gap={0}>
           {!!job && <CommentDrawer job={job} />}

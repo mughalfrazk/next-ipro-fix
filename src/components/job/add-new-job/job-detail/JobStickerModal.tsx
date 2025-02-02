@@ -1,11 +1,10 @@
 "use client";
 
-import { Modal, Image, Stack, Center, Group, Text, Paper, Divider, Table } from "@mantine/core";
+import { Modal, Image, Stack, Center, Group, Text, Paper, Divider } from "@mantine/core";
 import Heading from "@/components/common/Heading";
 import IproButton from "@/components/core/IproButton";
-import { useDisclosure } from "@mantine/hooks";
 
-const InvoiveReceiptDrawer = ({ opened, close }: { opened: boolean; close: () => void }) => {
+const JobStickerModal = ({ opened, close }: { opened: boolean; close: () => void }) => {
   return (
     <>
       <Modal opened={opened} onClose={close} pos="relative">
@@ -47,4 +46,4 @@ const InvoiveReceiptDrawer = ({ opened, close }: { opened: boolean; close: () =>
   );
 };
 
-export default InvoiveReceiptDrawer;
+export default JobStickerModal;
