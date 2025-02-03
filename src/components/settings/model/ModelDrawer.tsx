@@ -7,6 +7,7 @@ import IproTextInput from "@/components/core/IproTextInput";
 import { useFormAction } from "@/hooks/use-form-action";
 import { createModelAction, updateModelAction } from "@/lib/actions/model.action";
 import { ModelModel } from "@/lib/models/model.model";
+import BrandSelect from "@/components/accounting/expenses/BrandSelect";
 
 const ModelDrawer = ({
   opened,
@@ -44,6 +45,7 @@ const ModelDrawer = ({
     <Drawer opened={opened} title={title ?? "Add New Model"} position="right" onClose={close}>
       <form action={handleSubmit}>
         <Stack>
+          <BrandSelect selectedModel={selectedModel} getFieldErrorProps={getFieldErrorProps} />
           <IproTextInput
             type="text"
             label="Name"
