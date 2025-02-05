@@ -22,7 +22,6 @@ const JobDetailTab = ({ job }: { job?: JobModel }) => {
     job ? updateJobAction : createJobAction,
     {}
   );
-  const [opened, { open, close }] = useDisclosure();
   const getJobStatusList = async () => {
     const result = await getJobStatusListApi();
     return result.map((item) => ({
@@ -32,7 +31,7 @@ const JobDetailTab = ({ job }: { job?: JobModel }) => {
   };
   return (
     <>
-      <JobStickerModal opened={opened} close={close} />
+      {/* <JobStickerModal opened={opened} close={close} /> */}
       <form action={formAction}>
         <Stack gap={0}>
           {!!job && <CommentDrawer job={job} />}
