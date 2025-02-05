@@ -15,12 +15,14 @@ import CustomerDetail from "./CustomerDetail";
 import CommentDrawer from "./CommentDrawer";
 import IssuesListForm from "./IssuesListForm";
 // import JobStickerModal from "./JobStickerModal";
+// import { useDisclosure } from "@mantine/hooks";
 
 const JobDetailTab = ({ job }: { job?: JobModel }) => {
   const { formAction, getFieldErrorProps } = useFormAction(
     job ? updateJobAction : createJobAction,
     {}
   );
+  // const [opened, { open, close }] = useDisclosure();
   const getJobStatusList = async () => {
     const result = await getJobStatusListApi();
     return result.map((item) => ({
