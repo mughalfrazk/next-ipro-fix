@@ -32,12 +32,10 @@ const createJobPurchaseAction = async (_: ActionResult, formData: FormData) => {
 
   try {
     await createJobPurchasesApi(payload);
-    console.log("purchase payload", payload)
     return {};
   } catch (error) {
     // `redirectTo` won't work without this line
     if (isRedirectError(error)) throw error;
-    console.log("purchase payload", payload, "purchase errors", isRedirectError(error))
     return getFormattedError(error);
   }
 };
