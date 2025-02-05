@@ -84,9 +84,6 @@ const JobDetailTab = ({ job }: { job?: JobModel }) => {
 
                 {!job ? (
                   <Group justify="flex-end" mt={20}>
-                    <IproButton onClick={open} variant="outline">
-                      Open Barcode
-                    </IproButton>
                     <IproButton variant="outline">Cancal</IproButton>
                     <IproButton isSubmit={true}>Save Job</IproButton>
                   </Group>
