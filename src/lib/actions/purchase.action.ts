@@ -37,7 +37,6 @@ const createJobPurchaseAction = async (_: ActionResult, formData: FormData) => {
   } catch (error) {
     // `redirectTo` won't work without this line
     if (isRedirectError(error)) throw error;
-    console.log("purchase payload", payload, "purchase errors", isRedirectError(error))
     return getFormattedError(error);
   }
 };
