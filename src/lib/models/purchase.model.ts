@@ -10,7 +10,7 @@ export const PurchaseSchema = z.object({
   quantity: z.number().min(1, "Quantity is required"),
   model_id: z.number().min(1, "Model is required"),
   total: z.number().min(1, "Total is required"),
-  charges: z.number().nullish(),
+  charges: z.number(),
   created_at: z.string(),
   updated_at: z.string(),
   deleted_at: z.string().nullish(),
@@ -28,6 +28,7 @@ export const CreatePurchasesSchema = z.object({
       part_id: z.number().min(1, "Parts is required"),
       model_id: z.number().min(1, "Model is required"),
       quantity: z.number().min(1, "Quantity is required"),
+      charges: z.number(),
       total: z.number().min(1, "Total is required")
     })
     .array()
