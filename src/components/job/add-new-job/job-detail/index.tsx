@@ -14,8 +14,7 @@ import Heading from "@/components/common/Heading";
 import CustomerDetail from "./CustomerDetail";
 import CommentDrawer from "./CommentDrawer";
 import IssuesListForm from "./IssuesListForm";
-import JobStickerModal from "./JobStickerModal";
-import { useDisclosure } from "@mantine/hooks";
+// import JobStickerModal from "./JobStickerModal";
 
 const JobDetailTab = ({ job }: { job?: JobModel }) => {
   const { formAction, getFieldErrorProps } = useFormAction(
