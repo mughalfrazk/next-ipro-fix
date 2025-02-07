@@ -90,9 +90,7 @@ export const JobColumns = [
           />
           <Stack gap={2}>
             <Title order={6}>{`${row.technician.first_name} ${row.technician.last_name}`}</Title>
-            <Text
-              size={"0.7rem"}
-            >{`${row.technician.role.name.toUpperCase()}`}</Text>
+            <Text size={"0.7rem"}>{`${row.technician.role.name.toUpperCase()}`}</Text>
           </Stack>
         </Group>
       ) : (
@@ -105,7 +103,13 @@ export const JobColumns = [
   {
     accessor: "total",
     render: (row: JobModel) => {
-      return <NumberFormatter prefix="AED " value={row.issues.reduce((prev, curr) => prev + curr.total, 0)} thousandSeparator />
+      return (
+        <NumberFormatter
+          prefix="AED "
+          value={row.issues.reduce((prev, curr) => prev + curr.total, 0)}
+          thousandSeparator
+        />
+      );
     }
   },
   {

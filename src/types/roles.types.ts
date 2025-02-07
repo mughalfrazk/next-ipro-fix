@@ -5,4 +5,4 @@ export const RoleTypes = {
   RECEPTIONIST: "receptionist",
   STAFF: "staff",
   TECHNICIAN: "technician"
-}
+};
