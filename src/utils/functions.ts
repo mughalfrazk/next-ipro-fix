@@ -2,6 +2,7 @@ import { notifications } from "@mantine/notifications";
 import classes from "@/styles/notification.module.css";
 import { JobModel } from "@/lib/models/job.model";
 import { InvoiceModel } from "@/lib/models/invoice.model";
+import { format } from "date-fns";
 
 export const getNestedInputValues = (formData: FormData) => {
   const nestedListRegex = /^([^\[]+)(\[\d+\])(\[[^\]]+\])$/;
@@ -50,16 +51,18 @@ export const showErrorNotification = (
 
 export const colorForUserRole = (name: string) => {
   return name === "super_admin"
-    ? "grape"
+    ? "grape.8"
     : name === "receptionist"
-      ? "green"
+      ? "green.9"
       : name === "technician"
-        ? "pink"
+        ? "primary.6"
         : name === "accountant"
-          ? "blue"
+          ? "cyan.9"
           : name === "admin"
-            ? "red"
-            : "black";
+            ? "red.8"
+            : name === "staff"
+              ? "red.8"
+              : "gray.8";
 };
 
 export const colorForInvoiceStatus = (name: string) => {
@@ -74,13 +77,43 @@ export const colorForInvoiceStatus = (name: string) => {
           : "black";
 };
 
+export const colorForJobStatus = (name: string) => {
+  return name === "Device Received"
+    ? "orange.6"
+    : name === "Pending Work"
+      ? "red.6"
+      : name === "Pending Approval"
+        ? "indigo"
+        : name === "Job Done"
+          ? "primary.6"
+          : name === "Delivered"
+            ? "green"
+            : name === "Job Lost"
+              ? "grey"
+              : "black";
+};
+
+export const colorForProblemType = (name: string) => {
+  return name === "SW-Software"
+    ? "red"
+    : name === "HW-Hardware"
+      ? "indigo"
+      : name === "GW-Android"
+        ? "green"
+        : name === "GW-Apple Iphone"
+          ? "primary.6"
+          : "black";
+};
+
 export const capitalizeFirstLetter = (val: string) => {
   return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 };
 
 export const showDateNicely = (date: string) => {
   const splitted_date = date.split("T");
-  return `${splitted_date[0]} ${splitted_date[1].split(".")[0]}`;
+
+  return format(new Date(date), "dd-MM-yyyy - HH:mm a");
+  return `${splitted_date[0]} - ${splitted_date[1].split(".")[0].split(":").slice(0, 2).join(":")}`;
 };
 
 export const mapJobToInvoice = (job: JobModel): InvoiceModel => {
@@ -88,12 +121,14 @@ export const mapJobToInvoice = (job: JobModel): InvoiceModel => {
   const purchase_total = job?.purchases?.reduce((prev, curr) => prev + curr.total, 0) ?? 0;
   const total = issue_total + purchase_total;
 
+  const technician = job?.technician?.role?.name === "technician" ? job.technician : null
+
   const invoice: InvoiceModel = {
     id: "",
     issue_total: issue_total,
     purchase_total: purchase_total,
     customer: job.customer,
-    technician: job?.technician?.role?.name === "technician" ? job.technician : null,
+    technician,
     total,
     barcode: "",
     created_at: "",
@@ -105,7 +140,7 @@ export const mapJobToInvoice = (job: JobModel): InvoiceModel => {
         item_type: "",
         charges: item.charges,
         quantity: item.quantity,
-        total: 0,
+        total: item.total,
         brand: {
           id: item?.brand?.id,
           name: item.brand?.name
@@ -122,24 +157,76 @@ export const mapJobToInvoice = (job: JobModel): InvoiceModel => {
     ],
     purchases: !!job?.purchases?.length
       ? [
-          ...job?.purchases.map((item, idx) => ({
-            id: `${idx}`,
-            item_type: "",
-            charges: item.charges,
-            quantity: item.quantity,
-            total: item.total,
-            model: {
-              id: item?.model?.id,
-              name: item?.model?.name ?? ""
-            },
-            part: {
-              id: item?.part?.id,
-              name: item.part?.name ?? ""
-            }
-          }))
-        ]
+        ...job?.purchases.map((item, idx) => ({
+          id: `${idx}`,
+          item_type: "",
+          charges: item.charges,
+          quantity: item.quantity,
+          total: item.total,
+          model: {
+            id: item?.model?.id,
+            name: item?.model?.name ?? ""
+          },
+          part: {
+            id: item?.part?.id,
+            name: item.part?.name ?? ""
+          }
+        }))
+      ]
       : []
   };
 
   return invoice;
+};
+
+export const colorForExpenseType = (name: string) => {
+  // Generate a random color for the expense type.
+  const colors = [
+    "red.8",
+    "green.8",
+    "blue.8",
+    "yellow.8",
+    "purple.8",
+    "cyan.8",
+    "violet.8",
+    "gray.8",
+    "teal.8",
+    "orange.8",
+    "red.8",
+    "green.8",
+    "blue.8",
+    "yellow.8",
+    "purple.8",
+    "cyan.8",
+    "violet.8",
+    "gray.8",
+    "teal.8",
+    "orange.8",
+    "red.8",
+    "green.8",
+    "blue.8",
+    "yellow.8",
+    "purple.8",
+    "cyan.8",
+    "violet.8",
+    "gray.8",
+    "teal.8",
+    "orange.8"
+  ];
+
+  return colors[name.length];
+}
+export const titleCase = (s: string) => {
+  return s.toLowerCase()
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ')
+    .replace(/_/g, ' ');
+}
+
+export const getYesterdayDate = (dateOnly = false): Date => {
+  const d = new Date();
+  d.setDate(d.getDate() - 1);
+  d.setHours(0, 0, 0, 0);
+  return dateOnly ? new Date(d) : d;
 };

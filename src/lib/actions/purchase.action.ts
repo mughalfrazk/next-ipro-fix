@@ -1,5 +1,5 @@
 import { ActionResult } from "@/utils/action-results";
-import { getNestedInputValues, showErrorNotification } from "@/utils/functions";
+import { getNestedInputValues, showErrorNotification, showNotification } from "@/utils/functions";
 import {
   CreatePurchasesModel,
   CreatePurchasesSchema,
@@ -32,6 +32,7 @@ const createJobPurchaseAction = async (_: ActionResult, formData: FormData) => {
 
   try {
     await createJobPurchasesApi(payload);
+    showNotification("Updated successfully!");
     return {};
   } catch (error) {
     // `redirectTo` won't work without this line

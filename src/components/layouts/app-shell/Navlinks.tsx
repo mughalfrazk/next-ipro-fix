@@ -6,7 +6,8 @@ import { NavLink, Title } from "@mantine/core";
 import classes from "./Navlinks.module.css";
 
 import routes, { NavLinkRoute } from "./routes";
-import { ButtonHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, Fragment } from "react";
+import { useProfileContext } from "@/context/profile.context";
 
 const navlinkProps = (item: NavLinkRoute) => ({
   renderRoot: (props: LinkProps) =>
@@ -28,6 +29,9 @@ const navlinkProps = (item: NavLinkRoute) => ({
 const Navlinks = () => {
   const router = useRouter();
   const pathname = usePathname();
+  const {
+    data: { role }
+  } = useProfileContext();
 
   const onParentNavlinkClick = (item: NavLinkRoute) => {
     if (!!item.children?.length && item?.href) {
@@ -35,8 +39,12 @@ const Navlinks = () => {
     }
   };
 
-  return routes.map((item, i) =>
-    !!item.children?.length ? (
+  return routes.map((item, i) => {
+    if (role && !!item?.role?.length && !item?.role?.includes(role?.name)) {
+      return <Fragment key={i}></Fragment>;
+    }
+
+    return !!item.children?.length ? (
       <NavLink
         key={i}
         classNames={classes}
@@ -44,19 +52,25 @@ const Navlinks = () => {
         active={pathname === item?.href}
         onClick={() => onParentNavlinkClick(item)}
       >
-        {item.children.map((subItem, j) => (
-          <NavLink
-            key={j}
-            classNames={classes}
-            {...navlinkProps(subItem)}
-            active={pathname === subItem?.href}
-          />
-        ))}
+        {item.children.map((subItem, j) => {
+          if (role && !!subItem?.role?.length && !subItem?.role?.includes(role?.name)) {
+            return <Fragment key={i} />;
+          }
+
+          return (
+            <NavLink
+              key={j}
+              classNames={classes}
+              {...navlinkProps(subItem)}
+              active={pathname === subItem?.href}
+            />
+          );
+        })}
       </NavLink>
     ) : (
       <NavLink key={i} classNames={classes} {...navlinkProps(item)} />
-    )
-  );
+    );
+  });
 };
 
 export default Navlinks;

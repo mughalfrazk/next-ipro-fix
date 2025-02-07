@@ -81,15 +81,16 @@ const IssueFormItem = ({
             name={`issues[${idx}][brand_id]`}
             inputDefaultValue={issue.brand_id}
             getDataFromApiAndSetOption={getBrandList}
+            searchable
           />
         </GridCol>
         <GridCol span={4}>
           <CreateUpdateSelectInput
-            searchable
             label="Model Selection"
             name={`issues[${idx}][model_id]`}
             inputDefaultValue={issue.model_id}
             getDataFromApiAndSetOption={getModelList}
+            searchable
           />
         </GridCol>
         <GridCol span={4}>
@@ -98,6 +99,7 @@ const IssueFormItem = ({
             name={`issues[${idx}][problem_id]`}
             inputDefaultValue={issue.problem_id}
             getDataFromApiAndSetOption={getProblemList}
+            searchable
           />
         </GridCol>
         <GridCol span={4}>

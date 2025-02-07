@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Box, Tabs, TabsList, TabsPanel, TabsTab, Title } from "@mantine/core";
 
-import { JobModel } from "@/lib/models/job.model";
 import JobDetailTab from "@/components/job/add-new-job/job-detail";
 import JobPurchasesTab from "@/components/job/add-new-job/job-purchases";
 import InvoiceTab from "@/components/job/add-new-job/invoice";
+import { JobModel } from "@/lib/models/job.model";
+// import { RoleTypes } from "@/types/roles.types";
 import classes from "./add-new.module.css";
 
 const TABS = {
@@ -30,10 +31,18 @@ const AddNewJobClient = ({ job }: { job: JobModel }) => {
     {
       title: "Job Purchases",
       value: "purchases"
+      // role: [
+      //   RoleTypes.SUPER_ADMIN,
+      //   RoleTypes.ADMIN,
+      //   RoleTypes.RECEPTIONIST,
+      //   RoleTypes.TECHNICIAN,
+      //   RoleTypes.ACCOUNTANT
+      // ]
     },
     {
       title: "Invoice",
       value: "invoice"
+      // role: [RoleTypes.SUPER_ADMIN, RoleTypes.ADMIN, RoleTypes.ACCOUNTANT, RoleTypes.RECEPTIONIST]
     }
   ];
 
@@ -78,3 +87,48 @@ const AddNewJobClient = ({ job }: { job: JobModel }) => {
 };
 
 export default AddNewJobClient;
+
+{
+  /* <Tabs
+variant="unstyled"
+defaultValue={TABS.detail}
+classNames={classes}
+value={activeTab}
+onChange={setActiveTab}
+>
+<Box w="75%">
+  <TabsList grow mb={16}>
+    {tabs.map((item, idx) =>
+      item.role && !item.role?.includes(role.name) ? (
+        <Fragment key={idx} />
+      ) : (
+        <TabsTab key={item.title} value={item.value} py={15}>
+          <Title order={4} fw={600}>
+            {item.title}
+          </Title>
+        </TabsTab>
+      )
+    )}
+  </TabsList>
+</Box>
+
+{(!tabs.filter((i) => i.value === "detail")[0]?.role ||
+  tabs.filter((i) => i.value === "detail")[0].role?.includes(role.name)) && (
+  <TabsPanel value="detail">
+    <JobDetailTab job={job} />
+  </TabsPanel>
+)}
+{(!tabs.filter((i) => i.value === "purchases")[0]?.role ||
+  tabs.filter((i) => i.value === "purchases")[0].role?.includes(role.name)) && (
+  <TabsPanel value="purchases">
+    <JobPurchasesTab jobId={job.id} purchases={job?.purchases ?? []} />
+  </TabsPanel>
+)}
+{(!tabs.filter((i) => i.value === "invoice")[0]?.role ||
+  tabs.filter((i) => i.value === "invoice")[0].role?.includes(role.name)) && (
+  <TabsPanel value="invoice">
+    <InvoiceTab job={job} />
+  </TabsPanel>
+)}
+</Tabs> */
+}

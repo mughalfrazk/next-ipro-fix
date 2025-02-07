@@ -14,9 +14,9 @@ export const ExpenseSchema = z.object({
 });
 
 export const CreateExpensePayloadSchema = z.object({
-  amount: z.number(),
+  amount: z.string(),
   comments: z.string().nullish(),
-  expense_type_id: z.number()
+  expense_type_id: z.string()
 });
 
 export const ExpenseListSchema = z.array(ExpenseSchema);

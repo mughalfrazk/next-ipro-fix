@@ -15,6 +15,9 @@ export const ExpenseTypeColumns = [
     accessor: "name"
   },
   {
+    accessor: "description"
+  },
+  {
     accessor: "created_at",
     render: (row: ExpenseTypeModel) => {
       return showDateNicely(row.created_at);

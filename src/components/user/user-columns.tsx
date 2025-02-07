@@ -5,18 +5,18 @@ import {
   ProgressLabel,
   ProgressRoot,
   ProgressSection,
-  Badge,
   Button,
   Group,
   Stack,
   Text,
-  Title
+  Title,
+  NumberFormatter
 } from "@mantine/core";
 import { redirect } from "next/navigation";
 
 import { ProfileModel, UserModel } from "@/lib/models/user.model";
-import { colorForUserRole } from "@/utils/functions";
 import Link from "next/link";
+import RoleBadge from "../common/RoleBadge";
 
 export const createNewJobHandler = () => {
   redirect("/dashboard/user/add-new");
@@ -51,17 +51,7 @@ export const UserColumns = [
   },
   {
     accessor: "role",
-    render: (row: ProfileModel) => {
-      return row.role ? (
-        <Badge variant="outline" color={colorForUserRole(row.role.name)} radius="sm" p={12}>
-          {row.role.name === "technician" && row?.speciality
-            ? `${row.role.name}-${row?.speciality.name.split("-")[0]}`
-            : row.role.name}
-        </Badge>
-      ) : (
-        <></>
-      );
-    }
+    render: (row: ProfileModel) => <RoleBadge user={row} />
   },
   {
     accessor: "phone"
@@ -72,6 +62,13 @@ export const UserColumns = [
   },
   {
     accessor: "target",
+    render: (row: UserModel) => {
+      return <NumberFormatter prefix="AED " value={row?.target ?? 0} thousandSeparator />;
+    }
+  },
+  {
+    accessor: "progress",
+    title: "Progress",
     render: (row: UserModel) => {
       let progressPercentage = (((row.progress ?? 0) / (row.target ?? 1)) * 100).toFixed(2);
 
@@ -86,20 +83,22 @@ export const UserColumns = [
     }
   },
   {
-    accessor: "progress",
-    title: "Earned Amount",
+    accessor: "Earned Amount",
+    title: "progress",
     render: (row: UserModel) => {
-      return `AED ${row.progress ?? 0}`;
+      return <NumberFormatter prefix="AED " value={row?.progress ?? 0} thousandSeparator />;
     }
   },
   {
     accessor: "actions",
     textAlign: "right",
-    render: () => {
+    render: (row: UserModel) => {
       return (
-        <Button variant="subtle" color="var(--mantine-color-primary-6)">
-          Open User
-        </Button>
+        <Link href={`/dashboard/user/${row.id}`}>
+          <Button variant="subtle" color="var(--mantine-color-primary-6)">
+            Open User
+          </Button>
+        </Link>
       );
     }
   }

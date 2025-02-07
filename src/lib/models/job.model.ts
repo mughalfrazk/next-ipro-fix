@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { CustomerSchema } from "./customer.model";
-import { ProfileSchema } from "./user.model";
+import { UserWithRoleSchema } from "./user.model";
 import { JobStatusSchema } from "./job-status.model";
 import { IssueListSchema } from "./issue.model";
 import { PurchaseListSchema } from "./purchase.model";
@@ -13,7 +13,7 @@ export const CreateJobPayloadSchema = z.object({
   problem_type_id: z
     .string({ message: "Problem Type is required" })
     .min(1, "Problem Type is required"),
-  technician_id: z.string({ message: "Problem Type is required" }),
+  technician_id: z.string({ message: "Technician is required" }),
   issues: z
     .object({
       problem_id: z.number({ message: "Issue name is required" }).min(1, "Issue name is required"),
@@ -72,7 +72,7 @@ export const UpdateJobPayloadSchema = z.object({
 export const JobSchema = z.object({
   id: z.string(),
   customer: CustomerSchema,
-  technician: ProfileSchema.nullish(),
+  technician: UserWithRoleSchema.nullish(),
   job_status: JobStatusSchema,
   issues: IssueListSchema,
   purchases: PurchaseListSchema.nullish(),

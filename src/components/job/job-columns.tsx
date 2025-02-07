@@ -1,24 +1,10 @@
 "use client";
 
-import { Avatar, Badge, Group, Stack, Text, Title } from "@mantine/core";
+import { Avatar, Badge, Group, NumberFormatter, Stack, Text, Title } from "@mantine/core";
 import { JobModel } from "@/lib/models/job.model";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { showDateNicely } from "@/utils/functions";
-
-const colorForJobStatus = (name: string) => {
-  return name === "Device Received"
-    ? "orange.6"
-    : name === "Pending Work"
-      ? "red.6"
-      : name === "Pending Approval"
-        ? "indigo"
-        : name === "Job Done"
-          ? "primary.6"
-          : name === "Delivered"
-            ? "green"
-            : "black";
-};
+import { colorForJobStatus, showDateNicely } from "@/utils/functions";
 
 export const createNewJobHandler = () => {
   redirect("/dashboard/job/add-new");
@@ -106,7 +92,7 @@ export const JobColumns = [
             <Title order={6}>{`${row.technician.first_name} ${row.technician.last_name}`}</Title>
             <Text
               size={"0.7rem"}
-            >{`${row.technician.first_name} ${row.technician.last_name}`}</Text>
+            >{`${row.technician.role.name.toUpperCase()}`}</Text>
           </Stack>
         </Group>
       ) : (
@@ -119,7 +105,7 @@ export const JobColumns = [
   {
     accessor: "total",
     render: (row: JobModel) => {
-      return row.issues.reduce((prev, curr) => prev + curr.total, 0);
+      return <NumberFormatter prefix="AED " value={row.issues.reduce((prev, curr) => prev + curr.total, 0)} thousandSeparator />
     }
   },
   {
