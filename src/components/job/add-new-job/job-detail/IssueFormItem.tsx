@@ -1,14 +1,22 @@
 import { useInputState } from "@mantine/hooks";
-import { CloseButton, Grid, GridCol, Group, Title } from "@mantine/core";
+import {
+  CloseButton,
+  ComboboxData,
+  ComboboxItem,
+  Grid,
+  GridCol,
+  Group,
+  Title
+} from "@mantine/core";
 
 import CreateUpdateSelectInput from "@/components/common/CreateUpdateSelectInput";
 import { useMantineColorScheme } from "@/hooks/use-mantine-color-scheme-wrapper";
 import { getProblemListApi } from "@/lib/services/api/problem.service";
 import { getBrandListApi } from "@/lib/services/api/brand.service";
-import { getModelListApi } from "@/lib/services/api/model.service";
+import { getModelListByBrandIdApi } from "@/lib/services/api/model.service";
 import { IssueModel } from "@/lib/models/issue.model";
 import IproTextInput from "@/components/core/IproTextInput";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const IssueFormItem = ({
   issue,
@@ -24,6 +32,10 @@ const IssueFormItem = ({
   const [charges, setCharges] = useInputState<number>(0);
   const [total, setTotal] = useInputState<number>(0);
 
+  const [selectedBrand, setSelectedBrand] = useState<ComboboxItem>();
+  const [clearModel, setClearModel] = useState<boolean>(false);
+  const [updatedModelList, setUpdatedModelList] = useState<ComboboxData>([]);
+
   const getBrandList = async () => {
     const result = await getBrandListApi();
     return result.map((item) => ({
@@ -33,11 +45,15 @@ const IssueFormItem = ({
   };
 
   const getModelList = async () => {
-    const result = await getModelListApi();
-    return result.map((item) => ({
+    if (!selectedBrand) return [];
+
+    const result = await getModelListByBrandIdApi(selectedBrand.value);
+    const comboboxData = result.map((item) => ({
       label: item.name,
       value: String(item.id)
     }));
+
+    setUpdatedModelList(comboboxData);
   };
 
   const getProblemList = async () => {
@@ -57,6 +73,11 @@ const IssueFormItem = ({
       setTotal(issue.total);
     }
   }, [issue]);
+
+  useEffect(() => {
+    setClearModel(true);
+    getModelList();
+  }, [selectedBrand]);
 
   return (
     <GridCol key={idx} span={12}>
@@ -81,6 +102,7 @@ const IssueFormItem = ({
             name={`issues[${idx}][brand_id]`}
             inputDefaultValue={issue.brand_id}
             getDataFromApiAndSetOption={getBrandList}
+            setSelectedValue={setSelectedBrand}
             searchable
           />
         </GridCol>
@@ -89,7 +111,9 @@ const IssueFormItem = ({
             label="Model Selection"
             name={`issues[${idx}][model_id]`}
             inputDefaultValue={issue.model_id}
-            getDataFromApiAndSetOption={getModelList}
+            onValueClear={clearModel}
+            syncData={updatedModelList}
+            setOnValueClear={setClearModel}
             searchable
           />
         </GridCol>

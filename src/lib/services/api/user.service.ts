@@ -1,5 +1,10 @@
 import { RegisterFormWithSpecialityModel } from "@/lib/models/auth.model";
-import { ProfileListSchema, ProfileSchema, UserByRoleType, UserListSchema } from "@/lib/models/user.model";
+import {
+  ProfileListSchema,
+  ProfileSchema,
+  UserByRoleType,
+  UserListSchema
+} from "@/lib/models/user.model";
 import { getAuthApiClient } from "@/utils/api-client";
 import { parseFactory } from "@/utils/parse-factory";
 
@@ -24,43 +29,44 @@ const getUserListApi = async () => {
 
 const getUserListByRoleApi = async () => {
   const result = await getAuthApiClient().get("user");
-  const users = ProfileListDataParser(result.data)
+  const users = ProfileListDataParser(result.data);
 
-  const remappedUser: UserByRoleType = []
+  const remappedUser: UserByRoleType = [];
 
   for (let i = 0; i < users.length; i++) {
-    let newEntry = true
+    let newEntry = true;
     if (users[i].role.name !== "super_admin") {
-      remappedUser.map(item => {
+      remappedUser.map((item) => {
         if (item.name === users[i].role.name) {
-          newEntry = false
+          newEntry = false;
           item.user.push({
             id: users[i].id,
             first_name: users[i].first_name,
-            last_name: users[i].last_name,
-          })
+            last_name: users[i].last_name
+          });
         }
-  
-        return item
-      })
-  
+
+        return item;
+      });
+
       if (newEntry) {
         remappedUser.push({
           id: users[i].role.id,
           name: users[i].role.name,
-          user: [{
-            id: users[i].id,
-            first_name: users[i].first_name,
-            last_name: users[i].last_name
-          }]
-        })
+          user: [
+            {
+              id: users[i].id,
+              first_name: users[i].first_name,
+              last_name: users[i].last_name
+            }
+          ]
+        });
       }
     }
-
   }
 
-  return remappedUser
-}
+  return remappedUser;
+};
 
 const getUserDetailApi = async (id: string) => {
   const result = await getAuthApiClient().get(`user/${id}`);
@@ -72,4 +78,11 @@ const createUserApi = async (payload: Partial<RegisterFormWithSpecialityModel>) 
   return result;
 };
 
-export { getProfileApi, getTechniciansApi, getUserListByRoleApi, getUserListApi, getUserDetailApi, createUserApi };
+export {
+  getProfileApi,
+  getTechniciansApi,
+  getUserListByRoleApi,
+  getUserListApi,
+  getUserDetailApi,
+  createUserApi
+};

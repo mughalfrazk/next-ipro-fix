@@ -15,10 +15,8 @@ import { IssueModel } from "@/lib/models/issue.model";
 const createJobAction = async (_: ActionResult, formData: FormData) => {
   const structuredInput = getNestedInputValues(formData);
 
-
-  console.log(!structuredInput?.issues?.length)
   if (!structuredInput?.issues?.length) {
-    return getFormattedError("Issues are required.")
+    return getFormattedError("Issues are required.");
   }
 
   const payload: CreateJobPayloadModel = {

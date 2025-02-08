@@ -121,7 +121,7 @@ export const mapJobToInvoice = (job: JobModel): InvoiceModel => {
   const purchase_total = job?.purchases?.reduce((prev, curr) => prev + curr.total, 0) ?? 0;
   const total = issue_total + purchase_total;
 
-  const technician = job?.technician?.role?.name === "technician" ? job.technician : null
+  const technician = job?.technician?.role?.name === "technician" ? job.technician : null;
 
   const invoice: InvoiceModel = {
     id: "",
@@ -157,22 +157,22 @@ export const mapJobToInvoice = (job: JobModel): InvoiceModel => {
     ],
     purchases: !!job?.purchases?.length
       ? [
-        ...job?.purchases.map((item, idx) => ({
-          id: `${idx}`,
-          item_type: "",
-          charges: item.charges,
-          quantity: item.quantity,
-          total: item.total,
-          model: {
-            id: item?.model?.id,
-            name: item?.model?.name ?? ""
-          },
-          part: {
-            id: item?.part?.id,
-            name: item.part?.name ?? ""
-          }
-        }))
-      ]
+          ...job?.purchases.map((item, idx) => ({
+            id: `${idx}`,
+            item_type: "",
+            charges: item.charges,
+            quantity: item.quantity,
+            total: item.total,
+            model: {
+              id: item?.model?.id,
+              name: item?.model?.name ?? ""
+            },
+            part: {
+              id: item?.part?.id,
+              name: item.part?.name ?? ""
+            }
+          }))
+        ]
       : []
   };
 
@@ -215,14 +215,15 @@ export const colorForExpenseType = (name: string) => {
   ];
 
   return colors[name.length];
-}
+};
 export const titleCase = (s: string) => {
-  return s.toLowerCase()
-    .split(' ')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ')
-    .replace(/_/g, ' ');
-}
+  return s
+    .toLowerCase()
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ")
+    .replace(/_/g, " ");
+};
 
 export const getYesterdayDate = (dateOnly = false): Date => {
   const d = new Date();
