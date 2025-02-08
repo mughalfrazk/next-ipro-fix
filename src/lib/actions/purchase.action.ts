@@ -19,6 +19,7 @@ const createJobPurchaseAction = async (_: ActionResult, formData: FormData) => {
       model_id: +item.model_id,
       part_id: +item.part_id,
       quantity: +item.quantity,
+      charges: +item.charges,
       total: +item.total
     }))
   };

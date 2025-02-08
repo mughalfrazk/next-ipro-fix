@@ -12,6 +12,15 @@ import Heading from "@/components/common/Heading";
 import IproButton from "@/components/core/IproButton";
 import PurchaseFormItem from "./PurchaseFormItem";
 
+const defaultPurchase = {
+  supplier_id: "",
+  model_id: 0,
+  part_id: 0,
+  quantity: 0,
+  charges: 0,
+  total: 0
+};
+
 const JobPurchasesTab = ({
   jobId,
   purchases: purchasesData
@@ -20,24 +29,17 @@ const JobPurchasesTab = ({
   purchases: PurchaseListModel;
 }) => {
   const { formAction } = useFormAction(createJobPurchaseAction, {});
-  const [purchases, setPurchases] = useState([
-    {
-      supplier_id: "",
-      model_id: 0,
-      part_id: 0,
-      quantity: 0,
-      total: 0
-    }
-  ]);
+  const [purchases, setPurchases] = useState([defaultPurchase]);
 
   useEffect(() => {
     if (purchasesData.length) {
       setPurchases([
-        ...purchasesData.map(({ supplier_id, model_id, part_id, quantity, total }) => ({
+        ...purchasesData.map(({ supplier_id, model_id, part_id, quantity, charges, total }) => ({
           supplier_id,
           model_id,
           part_id,
           quantity,
+          charges,
           total
         }))
       ]);
@@ -75,18 +77,7 @@ const JobPurchasesTab = ({
                   borderRadius: "var(--mantine-radius-default)",
                   cursor: "pointer"
                 }}
-                onClick={() =>
-                  setPurchases([
-                    ...purchases,
-                    {
-                      supplier_id: "",
-                      model_id: 0,
-                      part_id: 0,
-                      quantity: 0,
-                      total: 0
-                    }
-                  ])
-                }
+                onClick={() => setPurchases([...purchases, defaultPurchase])}
               >
                 <IconSquareRoundedPlusFilled /> Add new task in the job
               </Group>
