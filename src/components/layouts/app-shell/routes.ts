@@ -124,22 +124,22 @@ const routes: NavLinkRoute[] = [
     children: [
       {
         href: "/dashboard/settings/model",
-        label: "Model",
+        label: "Models",
         icon: IconFocus
       },
       {
         href: "/dashboard/settings/brand",
-        label: "Brand",
+        label: "Brands",
         icon: IconFocus
       },
       {
         href: "/dashboard/settings/issue",
-        label: "Issue",
+        label: "Issues",
         icon: IconFocus
       },
       {
         href: "/dashboard/settings/part",
-        label: "Part",
+        label: "Parts",
         icon: IconFocus
       },
       {

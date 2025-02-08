@@ -47,7 +47,7 @@ const PurchaseFormItem = ({
       value: String(item.id)
     }));
   };
-  
+
   useEffect(() => setTotal(charges * quantity), [charges, quantity]);
 
   useEffect(() => {

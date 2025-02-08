@@ -7,7 +7,8 @@ import IproTextInput from "@/components/core/IproTextInput";
 import { useFormAction } from "@/hooks/use-form-action";
 import { createModelAction, updateModelAction } from "@/lib/actions/model.action";
 import { ModelModel } from "@/lib/models/model.model";
-import BrandSelect from "@/components/accounting/expenses/BrandSelect";
+import CreateUpdateSelectInput from "@/components/common/CreateUpdateSelectInput";
+import { getBrandListApi } from "@/lib/services/api/brand.service";
 
 const ModelDrawer = ({
   opened,
@@ -22,10 +23,18 @@ const ModelDrawer = ({
 }) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
-  const { state, formAction, getFieldErrorProps } = useFormAction(
+  const { state, formAction, errors, getFieldErrorProps } = useFormAction(
     !!selectedModel ? updateModelAction : createModelAction,
     {}
   );
+
+  const getBrandList = async () => {
+    const result = await getBrandListApi();
+    return result.map((item) => ({
+      label: item.name,
+      value: String(item.id)
+    }));
+  };
 
   const handleSubmit = async (formData: FormData) => {
     startTransition(() => {
@@ -45,7 +54,6 @@ const ModelDrawer = ({
     <Drawer opened={opened} title={title ?? "Add New Model"} position="right" onClose={close}>
       <form action={handleSubmit}>
         <Stack>
-          <BrandSelect selectedModel={selectedModel} getFieldErrorProps={getFieldErrorProps} />
           <IproTextInput
             type="text"
             label="Name"
@@ -62,6 +70,15 @@ const ModelDrawer = ({
             placeholder="A very expensive phone"
             {...getFieldErrorProps("description")}
           />
+          <CreateUpdateSelectInput
+            label="Brand"
+            name="brand_id"
+            placeholder="Select brand from list"
+            inputDefaultValue={selectedModel?.brand?.id}
+            getDataFromApiAndSetOption={getBrandList}
+            searchable
+            {...getFieldErrorProps("brand_id")}
+          />
           {selectedModel && (
             <IproTextInput
               type="number"
@@ -70,6 +87,7 @@ const ModelDrawer = ({
               style={{ display: "none" }}
             />
           )}
+
           <Group justify="flex-end" gap={10}>
             <IproButton variant="outline" onClick={close}>
               Cancel

@@ -8,11 +8,11 @@ export const ModelSchema = z.object({
   created_at: z.string(),
   updated_at: z.string(),
   deleted_at: z.string().nullish(),
-  brand: BrandSchema
+  brand: BrandSchema.nullish()
 });
 
 export const CreateModelPayloadSchema = z.object({
-  brand_id: z.string(),
+  brand_id: z.string().min(1, "Brand is required"),
   name: z.string().min(1, "Name is required"),
   description: z.string().nullish()
 });
