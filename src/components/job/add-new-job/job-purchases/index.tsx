@@ -26,6 +26,7 @@ const JobPurchasesTab = ({
       model_id: 0,
       part_id: 0,
       quantity: 0,
+      charges: 0,
       total: 0
     }
   ]);
@@ -33,11 +34,12 @@ const JobPurchasesTab = ({
   useEffect(() => {
     if (purchasesData.length) {
       setPurchases([
-        ...purchasesData.map(({ supplier_id, model_id, part_id, quantity, total }) => ({
+        ...purchasesData.map(({ supplier_id, model_id, part_id, quantity, charges, total }) => ({
           supplier_id,
           model_id,
           part_id,
           quantity,
+          charges,
           total
         }))
       ]);
@@ -83,6 +85,7 @@ const JobPurchasesTab = ({
                       model_id: 0,
                       part_id: 0,
                       quantity: 0,
+                      charges: 0,
                       total: 0
                     }
                   ])
