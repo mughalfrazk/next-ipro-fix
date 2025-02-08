@@ -18,8 +18,11 @@ const getModelListByBrandIdApi = async (brand_id: string) => {
   return ModelListDataParser(result.data);
 };
 
-const createModelApi = async (payload: CreateModelPayloadModel) => {
-  const result = await getAuthApiClient().post("model", payload);
+const createModelApi = async (payload: Partial<CreateModelPayloadModel>) => {
+  const result = await getAuthApiClient().post("model", {
+    ...payload,
+    brand_id: Number(payload.brand_id)
+  });
   return result;
 };
 

@@ -14,9 +14,9 @@ export const ExpenseSchema = z.object({
 });
 
 export const CreateExpensePayloadSchema = z.object({
-  amount: z.string(),
+  amount: z.string().min(2, "Amount should be more than 10"),
   comments: z.string().nullish(),
-  expense_type_id: z.string()
+  expense_type_id: z.string().min(1, "Expense type is required")
 });
 
 export const ExpenseListSchema = z.array(ExpenseSchema);
