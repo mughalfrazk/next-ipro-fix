@@ -1,5 +1,5 @@
 import { ComboboxItem, Select, SelectProps, TagsInput, TagsInputProps } from "@mantine/core";
-import { MutableRefObject, RefObject } from "react";
+import { RefObject } from "react";
 
 export type IproSelectOnChangeType = ((value: string | null, option: ComboboxItem) => void) &
   ((value: string[]) => void);

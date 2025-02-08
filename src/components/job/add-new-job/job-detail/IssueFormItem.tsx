@@ -1,6 +1,5 @@
 import { useInputState } from "@mantine/hooks";
 import {
-  Button,
   CloseButton,
   ComboboxData,
   ComboboxItem,
