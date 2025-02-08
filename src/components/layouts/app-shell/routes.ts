@@ -69,7 +69,6 @@ const routes: NavLinkRoute[] = [
   {
     label: "Job",
     icon: IconTool,
-    role: ["super_admin", "admin", "staff", "receptionist", "technician"],
     children: [
       {
         href: "/dashboard/job",

@@ -9,7 +9,7 @@ import JobPurchasesTab from "@/components/job/add-new-job/job-purchases";
 import InvoiceTab from "@/components/job/add-new-job/invoice";
 import { JobModel } from "@/lib/models/job.model";
 // import { RoleTypes } from "@/types/roles.types";
-import classes from "./add-new.module.css";
+import classes from "./job-detail-page.module.css";
 
 const TABS = {
   detail: "detail",
@@ -19,7 +19,7 @@ const TABS = {
 
 type TabType = keyof typeof TABS;
 
-const AddNewJobClient = ({ job }: { job: JobModel }) => {
+const JobDetailPage = ({ job }: { job: JobModel }) => {
   const queryParams = useSearchParams();
   const [activeTab, setActiveTab] = useState<string | null>("detail");
 
@@ -86,7 +86,7 @@ const AddNewJobClient = ({ job }: { job: JobModel }) => {
   );
 };
 
-export default AddNewJobClient;
+export default JobDetailPage;
 
 {
   /* <Tabs
