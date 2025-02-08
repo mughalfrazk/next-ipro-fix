@@ -21,8 +21,8 @@ const PurchaseFormItem = ({
 }) => {
   const { lightDark } = useMantineColorScheme();
   const [quantity, setQuantity] = useInputState<number>(0);
-    const [charges, setCharges] = useInputState<number>(0);
-    const [total, setTotal] = useInputState<number>(0);
+  const [charges, setCharges] = useInputState<number>(0);
+  const [total, setTotal] = useInputState<number>(0);
 
   const getModelList = async () => {
     const result = await getModelListApi();
@@ -47,7 +47,8 @@ const PurchaseFormItem = ({
       value: String(item.id)
     }));
   };
-useEffect(() => setTotal(charges * quantity), [charges, quantity]);
+  
+  useEffect(() => setTotal(charges * quantity), [charges, quantity]);
 
   useEffect(() => {
     if (!!purchase) {
@@ -110,7 +111,7 @@ useEffect(() => setTotal(charges * quantity), [charges, quantity]);
           />
         </GridCol>
         <GridCol span={4}>
-        <IproTextInput
+          <IproTextInput
             type="number"
             label="Charges"
             name={`purchases[${idx}][charges]`}
