@@ -23,7 +23,7 @@ const ModelDrawer = ({
 }) => {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
-  const { state, formAction, errors, getFieldErrorProps } = useFormAction(
+  const { state, formAction, getFieldErrorProps } = useFormAction(
     !!selectedModel ? updateModelAction : createModelAction,
     {}
   );
