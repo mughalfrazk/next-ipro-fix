@@ -28,7 +28,7 @@ export const CreatePurchasesSchema = z.object({
       part_id: z.number().min(1, "Parts is required"),
       model_id: z.number().min(1, "Model is required"),
       quantity: z.number().min(1, "Quantity is required"),
-      charges: z.number(),
+      charges: z.number().min(1, "Total is required"),
       total: z.number().min(1, "Total is required")
     })
     .array()
