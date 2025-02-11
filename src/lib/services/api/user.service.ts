@@ -4,7 +4,7 @@ import {
   ProfileListSchema,
   UserByRoleType,
   UserListSchema,
-  UpdateUserTechPayloadModel,
+  UpdateUserTechPayloadModel
 } from "@/lib/models/user.model";
 import { getAuthApiClient } from "@/utils/api-client";
 import { parseFactory } from "@/utils/parse-factory";
@@ -80,10 +80,10 @@ const createUserApi = async (payload: Partial<RegisterFormWithSpecialityModel>) 
 };
 
 const updateUserApi = async (id: string, payload: UpdateUserTechPayloadModel) => {
-  console.log(payload)
-  const result = await getAuthApiClient().patch(`user/${id}`, payload)
-  return result
-}
+  console.log(payload);
+  const result = await getAuthApiClient().patch(`user/${id}`, payload);
+  return result;
+};
 
 export {
   getProfileApi,

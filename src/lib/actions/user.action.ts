@@ -43,18 +43,27 @@ const updateUserAction = async (_: ActionResult, formData: FormData) => {
 
   if (!parsed?.success) {
     showErrorNotification("Validation errors");
-    console.log(parsed?.error)
+    console.log(parsed?.error);
     return getFormattedError(parsed?.error);
   }
 
   try {
-    await updateUserApi(parsed.data?.id, isTechnicianSelected ? { ...parsed.data, progress: Number(parsed.data.progress), target: Number(parsed.data.target) } : parsed.data);
-    showNotification("Updated successfully")
+    await updateUserApi(
+      parsed.data?.id,
+      isTechnicianSelected
+        ? {
+            ...parsed.data,
+            progress: Number(parsed.data.progress),
+            target: Number(parsed.data.target)
+          }
+        : parsed.data
+    );
+    showNotification("Updated successfully");
     return {};
   } catch (error) {
     // `redirectTo` won't work without this line
     if (isRedirectError(error)) throw error;
-    console.log(error)
+    console.log(error);
     return getFormattedError(error);
   }
 };

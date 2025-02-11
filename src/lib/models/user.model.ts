@@ -50,13 +50,13 @@ export const UpdateUserPayloadSchema = z.object({
   first_name: z.string().min(1, "First name is required"),
   last_name: z.string().min(1, "Last name is required"),
   phone: z.string().min(1, "Phone is required"),
-  address: z.string().min(1, "Address is required"),
-})
+  address: z.string().min(1, "Address is required")
+});
 
 export const UpdateUserTechPayloadSchema = UpdateUserPayloadSchema.extend({
   target: z.string().nullish(),
-  progress: z.string(),
-})
+  progress: z.string()
+});
 
 export type ProfileModel = z.infer<typeof ProfileSchema>;
 export type UserModel = z.infer<typeof UserSchema>;
@@ -64,5 +64,5 @@ export type ProfileListModel = z.infer<typeof ProfileListSchema>;
 export type UserListModel = z.infer<typeof UserListSchema>;
 
 export type UserWithRoleModel = z.infer<typeof UserWithRoleSchema>;
-export type UpdateUserPayloadModel = z.infer<typeof UpdateUserPayloadSchema>
-export type UpdateUserTechPayloadModel = z.infer<typeof UpdateUserTechPayloadSchema>
+export type UpdateUserPayloadModel = z.infer<typeof UpdateUserPayloadSchema>;
+export type UpdateUserTechPayloadModel = z.infer<typeof UpdateUserTechPayloadSchema>;
