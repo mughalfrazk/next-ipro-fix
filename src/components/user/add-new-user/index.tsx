@@ -68,7 +68,13 @@ const CreateOrUpdateUser = ({ user }: { user?: ProfileModel }) => {
                     }
                   ></Heading>
                 </Stack>
-                <IproButton variant="outline" color="red">Deactivate User</IproButton>
+                <IproButton
+                  variant="outline"
+                  color="var(--mantine-color-red-5)"
+                  style={{ borderColor: "var(--mantine-color-red-5)" }}
+                >
+                  Deactivate User
+                </IproButton>
               </Group>
               <Divider mt={10} mb={20} />
               <Grid>

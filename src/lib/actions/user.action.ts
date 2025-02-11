@@ -39,7 +39,7 @@ const updateUserAction = async (_: ActionResult, formData: FormData) => {
   const validationSchema = isTechnicianSelected
     ? UpdateUserTechPayloadSchema
     : UpdateUserPayloadSchema;
-  const { parsed, data } = await validatePayload(formData, validationSchema);
+  const { parsed } = await validatePayload(formData, validationSchema);
 
   if (!parsed?.success) {
     showErrorNotification("Validation errors");
