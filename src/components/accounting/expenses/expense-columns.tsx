@@ -1,6 +1,8 @@
-import { Avatar, Badge, Button, Group, NumberFormatter, Text, Title } from "@mantine/core";
+import { Avatar, Badge,  Group, NumberFormatter, Text, Title } from "@mantine/core";
 import { ExpenseModel } from "@/lib/models/expense.model";
 import { colorForExpenseType, showDateNicely } from "@/utils/functions";
+import Link from "next/link";
+import IproButton from "@/components/core/IproButton";
 
 export const ExpenseColumns = [
   {
@@ -56,11 +58,21 @@ export const ExpenseColumns = [
   {
     accessor: "actions",
     textAlign: "center",
-    render: () => {
+    render: (row: ExpenseModel) => {
       return (
-        <Button variant="subtle" color="var(--mantine-color-primary-6)">
-          Open User
-        </Button>
+        <>
+        { row.purchase?.job_id?(
+        <Link href={`/dashboard/job/${row.purchase?.job_id}?tab=purchases`}>
+        <IproButton variant="subtle" color="var(--mantine-color-primary-6)">
+          Open Invoice
+        </IproButton>
+        </Link> 
+        ):(
+          <IproButton variant="subtle" disabled color="var(--mantine-color-primary-6)">
+          no action available
+        </IproButton>
+        )}
+        </>
       );
     }
   },
