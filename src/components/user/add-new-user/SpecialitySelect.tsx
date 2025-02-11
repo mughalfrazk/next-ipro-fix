@@ -55,6 +55,7 @@ const SpecialitySelect = ({ user, getFieldErrorProps }: SpecialitySelectProps) =
       data={specialityOptions}
       value={specialityItem?.value as string & string[]}
       onOptionSubmit={onSpecialityChange}
+      readOnly={!!user}
       {...getFieldErrorProps("speciality_id")}
     />
   );

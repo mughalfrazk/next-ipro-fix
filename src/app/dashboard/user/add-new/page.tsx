@@ -1,4 +1,4 @@
-import AddNewUser from "@/components/user/create-new-user";
+import AddNewUser from "@/components/user/add-new-user";
 
 const AddNewUserPage = () => {
   return <AddNewUser />;

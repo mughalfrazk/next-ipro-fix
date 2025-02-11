@@ -1,9 +1,10 @@
 import { RegisterFormWithSpecialityModel } from "@/lib/models/auth.model";
 import {
-  ProfileListSchema,
   ProfileSchema,
+  ProfileListSchema,
   UserByRoleType,
-  UserListSchema
+  UserListSchema,
+  UpdateUserTechPayloadModel,
 } from "@/lib/models/user.model";
 import { getAuthApiClient } from "@/utils/api-client";
 import { parseFactory } from "@/utils/parse-factory";
@@ -78,11 +79,18 @@ const createUserApi = async (payload: Partial<RegisterFormWithSpecialityModel>) 
   return result;
 };
 
+const updateUserApi = async (id: string, payload: UpdateUserTechPayloadModel) => {
+  console.log(payload)
+  const result = await getAuthApiClient().patch(`user/${id}`, payload)
+  return result
+}
+
 export {
   getProfileApi,
   getTechniciansApi,
   getUserListByRoleApi,
   getUserListApi,
   getUserDetailApi,
-  createUserApi
+  createUserApi,
+  updateUserApi
 };
