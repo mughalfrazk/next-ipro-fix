@@ -84,7 +84,7 @@ export const UserColumns = [
   },
   {
     accessor: "Earned Amount",
-    title: "progress",
+    title: "Progress Amount",
     render: (row: UserModel) => {
       return <NumberFormatter prefix="AED " value={row?.progress ?? 0} thousandSeparator />;
     }

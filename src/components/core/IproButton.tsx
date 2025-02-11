@@ -1,7 +1,7 @@
 "use client";
 
 import { MouseEventHandler, ReactNode } from "react";
-import { Button, ButtonProps } from "@mantine/core";
+import { Button, ButtonProps, MantineColor } from "@mantine/core";
 
 import IproSubmitButton, { SubmitButtonProps } from "./IproSubmitButton";
 import classes from "./IproButton.module.css";
@@ -27,6 +27,7 @@ export interface IproButtonProps extends ButtonProps {
   ariaLabel?: string;
   variant?: "filled" | "light" | "outline" | "subtle";
   size?: "xs" | "sm" | "md" | "lg" | "xl";
+  color?: MantineColor;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   isIconOnly?: boolean;
   isCompact?: boolean;
@@ -38,6 +39,7 @@ const IproButton = ({
   ariaLabel,
   variant = "filled",
   size = "lg",
+  color,
   onClick,
   isIconOnly = false,
   isSubmit = false,
@@ -47,6 +49,7 @@ const IproButton = ({
     <Button
       variant={variant}
       classNames={classes}
+      c={color}
       aria-label={ariaLabel}
       h={getHeight(size)}
       px={isIconOnly ? 7 : undefined}

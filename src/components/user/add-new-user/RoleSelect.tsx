@@ -17,6 +17,7 @@ type RoleSelectProps = {
 const RoleSelect = ({ user, getFieldErrorProps }: RoleSelectProps) => {
   const [roleOptions, setRoleOptions] = useState<ComboboxData>([]);
   const [roleItem, setRoleItem] = useState<ComboboxItem>();
+  const [isTechnician, setIsTechnician] = useState<boolean>(false);
 
   const getRoleList = async () => {
     try {
@@ -40,8 +41,6 @@ const RoleSelect = ({ user, getFieldErrorProps }: RoleSelectProps) => {
     if (value) setRoleItem(selectedRole as ComboboxItem);
   };
 
-  const isTechnicianSelected = () => roleItem?.label === "Technician";
-
   useEffect(() => {
     getRoleList();
   }, []);
@@ -52,28 +51,42 @@ const RoleSelect = ({ user, getFieldErrorProps }: RoleSelectProps) => {
     }
   }, [user, roleOptions]);
 
+  useEffect(() => {
+    if (roleItem?.label === "Technician") setIsTechnician(true);
+    else setIsTechnician(false);
+  }, [roleItem?.label]);
+
   return (
     <Grid>
-      <GridCol span={isTechnicianSelected() ? 6 : 12}>
+      <GridCol span={isTechnician ? 4 : 12}>
         <IproSelect
           name="role_id"
           label="User Role"
           data={roleOptions}
           value={roleItem?.value as string & string[]}
           onOptionSubmit={onRoleChange}
+          readOnly={!!user}
           {...getFieldErrorProps("role_id")}
         />
       </GridCol>
-      {isTechnicianSelected() && (
-        <GridCol span={6}>
+      {isTechnician && (
+        <GridCol span={4}>
           <SpecialitySelect user={user} getFieldErrorProps={getFieldErrorProps} />
         </GridCol>
       )}
-      <IproTextInput
-        name="isTechnicianSelected"
-        defaultValue={isTechnicianSelected() ? 1 : 0}
-        style={{ display: "none" }}
-      />
+      {isTechnician && (
+        <GridCol span={4}>
+          <IproTextInput
+            type="number"
+            name="target"
+            label="Assign Target"
+            defaultValue={user?.target ?? 0}
+            readOnly={!!user}
+            {...getFieldErrorProps("target")}
+          />
+        </GridCol>
+      )}
+      <input name="isTechnicianSelected" value={isTechnician ? 1 : 0} onChange={() => {}} hidden />
     </Grid>
   );
 };

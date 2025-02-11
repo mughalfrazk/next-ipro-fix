@@ -24,4 +24,5 @@ const deleteBrandApi = async (brandId: number) => {
   const result = await getAuthApiClient().delete(`brand/${brandId}`);
   return result;
 };
+
 export { getBrandListApi, createBrandApi, updateBrandApi, deleteBrandApi };
