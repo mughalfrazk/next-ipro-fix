@@ -1,6 +1,6 @@
 export type ActionResult = {
   errors?: ActionErrors;
-  success?: string;
+  success?: unknown;
 };
 
 export type ActionErrors = {

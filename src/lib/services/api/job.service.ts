@@ -2,6 +2,7 @@ import {
   CreateJobPayloadModel,
   JobListSchema,
   JobSchema,
+  UpdateJobOptionalPayloadModal,
   UpdateJobPayloadModel
 } from "@/lib/models/job.model";
 import { getAuthApiClient } from "@/utils/api-client";
@@ -20,6 +21,11 @@ const updateJobApi = async (job_id: string, payload: UpdateJobPayloadModel) => {
   return result;
 };
 
+const updateJobOptionalApi = async (job_id: string, payload: UpdateJobOptionalPayloadModal) => {
+  const result = await getAuthApiClient().patch(`job/${job_id}/optional`, payload);
+  return result;
+};
+
 const getJobListApi = async () => {
   const result = await getAuthApiClient().get("job");
   return JobListDataParser(result.data);
@@ -30,4 +36,9 @@ const getJobDetailApi = async (job_id: string) => {
   return JobDataParser(result.data);
 };
 
-export { createJobApi, updateJobApi, getJobListApi, getJobDetailApi };
+const rejectJobApi = async (job_id: string) => {
+  const result = await getAuthApiClient().patch(`job/${job_id}/reject`);
+  return result;
+};
+
+export { createJobApi, updateJobApi, updateJobOptionalApi, getJobListApi, getJobDetailApi, rejectJobApi };

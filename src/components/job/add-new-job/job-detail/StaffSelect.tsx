@@ -1,30 +1,30 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { getUserListByRoleApi } from "@/lib/services/api/user.service";
 import { Combobox, Input, InputBase, useCombobox } from "@mantine/core";
 
-import { titleCase } from "@/utils/functions";
-import { FieldErrorPropsType } from "@/hooks/use-action-errors";
 import { UserByRoleType, UserModel } from "@/lib/models/user.model";
 import IproTextInput from "@/components/core/IproTextInput";
+import { titleCase } from "@/utils/functions";
 
-type TechnicianSelectProps = {
-  technician: UserModel | undefined | null;
-} & FieldErrorPropsType;
+type StaffSelectProps = {
+  staff: UserModel | undefined | null;
+  setSelectedStaff?: Dispatch<SetStateAction<string>>;
+};
 
-const TechnicianSelect = ({ technician, getFieldErrorProps }: TechnicianSelectProps) => {
-  const [technicianOptions, setTechnicianOptions] = useState<UserByRoleType>([]);
+const StaffSelect = ({ staff, setSelectedStaff }: StaffSelectProps) => {
+  const [technicianOptions, setStaffOptions] = useState<UserByRoleType>([]);
   const [selectUserName, setSelectedUserName] = useState<string>("");
   const [value, setValue] = useState<string>("");
 
-  const getTechniciansList = async () => {
+  const getStaffsList = async () => {
     const data = await getUserListByRoleApi();
-    setTechnicianOptions(data);
+    setStaffOptions(data);
   };
 
   useEffect(() => {
-    getTechniciansList();
+    getStaffsList();
   }, []);
 
   const combobox = useCombobox({
@@ -40,11 +40,11 @@ const TechnicianSelect = ({ technician, getFieldErrorProps }: TechnicianSelectPr
   }, [value]);
 
   useEffect(() => {
-    if (!!technician) {
-      setValue(technician?.id);
-      setSelectedUserName(`${technician.first_name} ${technician.last_name}`);
+    if (!!staff) {
+      setValue(staff?.id);
+      setSelectedUserName(`${staff.first_name} ${staff.last_name}`);
     }
-  }, [technician]);
+  }, [staff]);
 
   return (
     <>
@@ -55,6 +55,7 @@ const TechnicianSelect = ({ technician, getFieldErrorProps }: TechnicianSelectPr
         withinPortal={true}
         onOptionSubmit={(val) => {
           setValue(val);
+          if (setSelectedStaff) setSelectedStaff(val);
           combobox.closeDropdown();
         }}
       >
@@ -62,23 +63,12 @@ const TechnicianSelect = ({ technician, getFieldErrorProps }: TechnicianSelectPr
           <InputBase
             type="button"
             component="button"
-            label="Staff Member"
+            label="Select Staff Member"
             rightSection={<Combobox.Chevron />}
             onClick={() => combobox.toggleDropdown()}
             rightSectionPointerEvents="none"
-            {...getFieldErrorProps("technician_id")}
             size="md"
             pointer
-            styles={{
-              label: {
-                color: "white"
-              },
-              input: {
-                backgroundColor: "transparent",
-                borderColor: "white",
-                color: "white"
-              }
-            }}
           >
             {selectUserName || <Input.Placeholder c="white">Pick value</Input.Placeholder>}
           </InputBase>
@@ -103,4 +93,4 @@ const TechnicianSelect = ({ technician, getFieldErrorProps }: TechnicianSelectPr
   );
 };
 
-export default TechnicianSelect;
+export default StaffSelect;

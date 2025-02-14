@@ -9,7 +9,7 @@ type CreateUpdateSelectInputProps = {
   label?: string;
   name: string;
   inputDefaultValue: string | number | undefined;
-  getDataFromApiAndSetOption?: () => Promise<ComboboxData>;
+  asyncDataMethod?: () => Promise<ComboboxData>;
   setSelectedValue?: Dispatch<SetStateAction<ComboboxItem | undefined>>;
   onValueClear?: boolean;
   setOnValueClear?: Dispatch<SetStateAction<boolean>>;
@@ -20,7 +20,7 @@ const CreateUpdateSelectInput = ({
   label,
   name,
   inputDefaultValue,
-  getDataFromApiAndSetOption,
+  asyncDataMethod,
   setSelectedValue,
   onValueClear,
   setOnValueClear,
@@ -33,10 +33,10 @@ const CreateUpdateSelectInput = ({
   const [searchValue, setSearchValue] = useState<string>("");
 
   const getDataFromApi = useCallback(async () => {
-    if (!getDataFromApiAndSetOption) return;
+    if (!asyncDataMethod) return;
 
     try {
-      const result = await getDataFromApiAndSetOption();
+      const result = await asyncDataMethod();
       setOptionList(result);
     } catch (error) {
       const e = getFormattedError(error);

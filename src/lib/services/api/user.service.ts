@@ -34,9 +34,11 @@ const getUserListByRoleApi = async () => {
 
   const remappedUser: UserByRoleType = [];
 
+  const filteredRoles = ["super_admin", "admin", "accountant"]
+
   for (let i = 0; i < users.length; i++) {
     let newEntry = true;
-    if (users[i].role.name !== "super_admin") {
+    if (!filteredRoles.includes(users[i].role.name)) {
       remappedUser.map((item) => {
         if (item.name === users[i].role.name) {
           newEntry = false;
@@ -80,7 +82,6 @@ const createUserApi = async (payload: Partial<RegisterFormWithSpecialityModel>) 
 };
 
 const updateUserApi = async (id: string, payload: UpdateUserTechPayloadModel) => {
-  console.log(payload);
   const result = await getAuthApiClient().patch(`user/${id}`, payload);
   return result;
 };

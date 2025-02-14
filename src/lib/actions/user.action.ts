@@ -43,7 +43,6 @@ const updateUserAction = async (_: ActionResult, formData: FormData) => {
 
   if (!parsed?.success) {
     showErrorNotification("Validation errors");
-    console.log(parsed?.error);
     return getFormattedError(parsed?.error);
   }
 

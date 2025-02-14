@@ -81,16 +81,16 @@ export const JobColumns = [
   {
     accessor: "technician",
     render: (row: JobModel) => {
-      return !!row?.technician ? (
+      return !!row?.staff ? (
         <Group>
           <Avatar
-            key={row.technician.id}
-            name={`${row.technician.first_name} ${row.technician.last_name}`}
+            key={row.staff.id}
+            name={`${row.staff.first_name} ${row.staff.last_name}`}
             color="initials"
           />
           <Stack gap={2}>
-            <Title order={6}>{`${row.technician.first_name} ${row.technician.last_name}`}</Title>
-            <Text size={"0.7rem"}>{`${row.technician.role.name.toUpperCase()}`}</Text>
+            <Title order={6}>{`${row.staff.first_name} ${row.staff.last_name}`}</Title>
+            <Text size={"0.7rem"}>{`${row.staff.role.name.toUpperCase()}`}</Text>
           </Stack>
         </Group>
       ) : (
