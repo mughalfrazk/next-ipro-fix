@@ -1,4 +1,4 @@
-import { Modal, Button, Group, Box } from "@mantine/core";
+import { Modal, Group, Box } from "@mantine/core";
 import { ReactNode } from "react";
 import IproButton from "../core/IproButton";
 

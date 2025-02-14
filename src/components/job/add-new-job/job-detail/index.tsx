@@ -28,10 +28,9 @@ import IssuesListForm from "./IssuesListForm";
 import { IconInnerShadowBottomRightFilled } from "@tabler/icons-react";
 import { colorForUserRole } from "@/utils/functions";
 import ActionBar from "./ActionBar";
-import { useEffect } from "react";
 
 const JobDetailTab = ({ job }: { job?: JobModel }) => {
-  const { state, formAction, getFieldErrorProps } = useFormAction(
+  const { formAction, getFieldErrorProps } = useFormAction(
     job ? updateJobAction : createJobAction,
     {}
   );
