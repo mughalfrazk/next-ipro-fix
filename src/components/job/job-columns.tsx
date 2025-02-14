@@ -79,7 +79,7 @@ export const JobColumns = [
     accessor: "customer.company_name"
   },
   {
-    accessor: "technician",
+    accessor: "Assigned To",
     render: (row: JobModel) => {
       return !!row?.technician ? (
         <Group>
