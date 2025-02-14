@@ -99,7 +99,7 @@ const updateJobAction = async (_: ActionResult, formData: FormData) => {
   }
 
   try {
-    await updateJobApi(payload.id, payload);
+    await updateJobApi(payload.id as string, payload);
     showNotification("Updated successfully!");
     // revalidatePath(`/dashboard/job/${payload.id}?tab=detail`)
     return { success: "Updated successfully!" };
