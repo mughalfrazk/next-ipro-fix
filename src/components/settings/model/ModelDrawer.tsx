@@ -75,7 +75,7 @@ const ModelDrawer = ({
             name="brand_id"
             placeholder="Select brand from list"
             inputDefaultValue={selectedModel?.brand?.id}
-            getDataFromApiAndSetOption={getBrandList}
+            asyncDataMethod={getBrandList}
             searchable
             {...getFieldErrorProps("brand_id")}
           />

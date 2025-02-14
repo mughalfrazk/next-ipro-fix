@@ -101,7 +101,7 @@ const IssueFormItem = ({
             label="Brand Name"
             name={`issues[${idx}][brand_id]`}
             inputDefaultValue={issue.brand_id}
-            getDataFromApiAndSetOption={getBrandList}
+            asyncDataMethod={getBrandList}
             setSelectedValue={setSelectedBrand}
             searchable
           />
@@ -122,7 +122,7 @@ const IssueFormItem = ({
             label="Issue Name"
             name={`issues[${idx}][problem_id]`}
             inputDefaultValue={issue.problem_id}
-            getDataFromApiAndSetOption={getProblemList}
+            asyncDataMethod={getProblemList}
             searchable
           />
         </GridCol>

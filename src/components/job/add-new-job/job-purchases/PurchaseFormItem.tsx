@@ -79,7 +79,7 @@ const PurchaseFormItem = ({
             label="Supplier Name"
             name={`purchases[${idx}][supplier_id]`}
             inputDefaultValue={purchase.supplier_id}
-            getDataFromApiAndSetOption={getSupplierList}
+            asyncDataMethod={getSupplierList}
             searchable
           />
         </GridCol>
@@ -88,7 +88,7 @@ const PurchaseFormItem = ({
             label="Model Selection"
             name={`purchases[${idx}][model_id]`}
             inputDefaultValue={purchase.model_id}
-            getDataFromApiAndSetOption={getModelList}
+            asyncDataMethod={getModelList}
             searchable
           />
         </GridCol>
@@ -106,7 +106,7 @@ const PurchaseFormItem = ({
             label="Part"
             name={`purchases[${idx}][part_id]`}
             inputDefaultValue={purchase.part_id}
-            getDataFromApiAndSetOption={getPartList}
+            asyncDataMethod={getPartList}
             searchable
           />
         </GridCol>

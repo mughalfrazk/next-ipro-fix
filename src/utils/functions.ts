@@ -49,7 +49,7 @@ export const showErrorNotification = (
   });
 };
 
-export const colorForUserRole = (name: string) => {
+export const colorForUserRole = (name: string | undefined) => {
   return name === "super_admin"
     ? "grape.8"
     : name === "receptionist"
@@ -79,18 +79,16 @@ export const colorForInvoiceStatus = (name: string) => {
 
 export const colorForJobStatus = (name: string) => {
   return name === "Device Received"
-    ? "orange.6"
-    : name === "Pending Work"
-      ? "red.6"
-      : name === "Pending Approval"
-        ? "indigo"
+    ? "orange.9"
+      : name === "In Progress"
+        ? "indigo.6"
         : name === "Job Done"
           ? "primary.6"
           : name === "Delivered"
-            ? "green"
+            ? "green.9"
             : name === "Job Lost"
-              ? "grey"
-              : "black";
+              ? "red.7"
+              : "grey.7";
 };
 
 export const colorForProblemType = (name: string) => {

@@ -76,7 +76,7 @@ const ExpenseDrawer = ({
                   name="expense_type_id"
                   placeholder="Select expense type from list"
                   inputDefaultValue={selectedExpense?.expense_type.id}
-                  getDataFromApiAndSetOption={getExpenseTypeList}
+                  asyncDataMethod={getExpenseTypeList}
                   searchable
                   {...getFieldErrorProps("expense_type_id")}
                 />
