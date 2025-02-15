@@ -98,8 +98,13 @@ const updateJobAction = async (_: ActionResult, formData: FormData) => {
     return getFormattedError(validatedPayload?.error);
   }
 
+  if (!payload.id) {
+    showErrorNotification("Invalid job id selected.")
+    return
+  }
+
   try {
-    await updateJobApi(payload.id as string, payload);
+    await updateJobApi(payload.id, payload);
     showNotification("Updated successfully!");
     // revalidatePath(`/dashboard/job/${payload.id}?tab=detail`)
     return { success: "Updated successfully!" };
