@@ -8,7 +8,7 @@ import IproButton from "@/components/core/IproButton";
 import IproModal from "@/components/core/IproModal";
 import JobStickerModal from "./JobStickerModal";
 import StaffSelect from "./StaffSelect";
-import { rejectJobApi, updateJobOptionalApi } from "@/lib/services/api/job.service";
+import { assignStaffToJobApi, rejectJobApi, updateJobOptionalApi } from "@/lib/services/api/job.service";
 import { JobModel } from "@/lib/models/job.model";
 import { useDisclosure } from "@mantine/hooks";
 import { useRouter } from "next/navigation";
@@ -57,7 +57,7 @@ const ActionBar = ({ job }: { job: JobModel }) => {
 
     selectedStaff;
     try {
-      await updateJobOptionalApi(job.id, { staff_id: selectedStaff });
+      await assignStaffToJobApi(job.id, selectedStaff);
       closeAssignmentModal();
       router.refresh();
     } catch (error) {
