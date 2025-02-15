@@ -7,8 +7,9 @@ import { Box, Tabs, TabsList, TabsPanel, TabsTab, Title } from "@mantine/core";
 import JobDetailTab from "@/components/job/add-new-job/job-detail";
 import JobPurchasesTab from "@/components/job/add-new-job/job-purchases";
 import InvoiceTab from "@/components/job/add-new-job/invoice";
+import { useProfileContext } from "@/context/profile.context";
 import { JobModel } from "@/lib/models/job.model";
-// import { RoleTypes } from "@/types/roles.types";
+import { RoleTypes } from "@/types/roles.types";
 import classes from "./job-detail-page.module.css";
 
 const TABS = {
@@ -21,30 +22,41 @@ type TabType = keyof typeof TABS;
 
 const JobDetailPage = ({ job }: { job: JobModel }) => {
   const queryParams = useSearchParams();
+  const {
+    data: { role }
+  } = useProfileContext();
+
   const [activeTab, setActiveTab] = useState<string | null>("detail");
 
   const tabs = [
     {
       title: "Job Details",
-      value: "detail"
+      value: "detail",
+      component: <JobDetailTab job={job} />
     },
     {
       title: "Job Purchases",
-      value: "purchases"
-      // role: [
-      //   RoleTypes.SUPER_ADMIN,
-      //   RoleTypes.ADMIN,
-      //   RoleTypes.RECEPTIONIST,
-      //   RoleTypes.TECHNICIAN,
-      //   RoleTypes.ACCOUNTANT
-      // ]
+      value: "purchases",
+      component: <JobPurchasesTab jobId={job.id} purchases={job?.purchases ?? []} />
     },
     {
       title: "Invoice",
-      value: "invoice"
-      // role: [RoleTypes.SUPER_ADMIN, RoleTypes.ADMIN, RoleTypes.ACCOUNTANT, RoleTypes.RECEPTIONIST]
+      value: "invoice",
+      component: <InvoiceTab job={job} />,
+      role: [
+        RoleTypes.SUPER_ADMIN,
+        RoleTypes.ADMIN,
+        RoleTypes.ACCOUNTANT,
+        RoleTypes.RECEPTIONIST,
+        RoleTypes.TECHNICIAN
+      ]
     }
   ];
+
+  const isTabPermitted = (tab: string) => {
+    const tabProps = tabs.filter((i) => i.value === tab)[0];
+    return !tabProps?.role?.length || tabProps?.role?.includes(role.name);
+  };
 
   useEffect(() => {
     const tab = queryParams.get("tab");
@@ -63,72 +75,36 @@ const JobDetailPage = ({ job }: { job: JobModel }) => {
     >
       <Box w="75%">
         <TabsList grow mb={16}>
-          {tabs.map((item) => (
-            <TabsTab key={item.title} value={item.value} py={15}>
-              <Title order={4} fw={600}>
-                {item.title}
-              </Title>
-            </TabsTab>
-          ))}
+          {tabs.map(
+            (item) =>
+              (!item.role?.length || item.role?.includes(role.name)) && (
+                <TabsTab key={item.title} value={item.value} py={15}>
+                  <Title order={4} fw={600}>
+                    {item.title}
+                  </Title>
+                </TabsTab>
+              )
+          )}
         </TabsList>
       </Box>
 
-      <TabsPanel value="detail">
-        <JobDetailTab job={job} />
-      </TabsPanel>
-      <TabsPanel value="purchases">
-        <JobPurchasesTab jobId={job.id} purchases={job?.purchases ?? []} />
-      </TabsPanel>
-      <TabsPanel value="invoice">
-        <InvoiceTab job={job} />
-      </TabsPanel>
+      {isTabPermitted("detail") && (
+        <TabsPanel value="detail">
+          <JobDetailTab job={job} />
+        </TabsPanel>
+      )}
+      {isTabPermitted("purchases") && (
+        <TabsPanel value="purchases">
+          <JobPurchasesTab jobId={job.id} purchases={job?.purchases ?? []} />
+        </TabsPanel>
+      )}
+      {isTabPermitted("invoice") && (
+        <TabsPanel value="invoice">
+          <InvoiceTab job={job} />
+        </TabsPanel>
+      )}
     </Tabs>
   );
 };
 
 export default JobDetailPage;
-
-{
-  /* <Tabs
-variant="unstyled"
-defaultValue={TABS.detail}
-classNames={classes}
-value={activeTab}
-onChange={setActiveTab}
->
-<Box w="75%">
-  <TabsList grow mb={16}>
-    {tabs.map((item, idx) =>
-      item.role && !item.role?.includes(role.name) ? (
-        <Fragment key={idx} />
-      ) : (
-        <TabsTab key={item.title} value={item.value} py={15}>
-          <Title order={4} fw={600}>
-            {item.title}
-          </Title>
-        </TabsTab>
-      )
-    )}
-  </TabsList>
-</Box>
-
-{(!tabs.filter((i) => i.value === "detail")[0]?.role ||
-  tabs.filter((i) => i.value === "detail")[0].role?.includes(role.name)) && (
-  <TabsPanel value="detail">
-    <JobDetailTab job={job} />
-  </TabsPanel>
-)}
-{(!tabs.filter((i) => i.value === "purchases")[0]?.role ||
-  tabs.filter((i) => i.value === "purchases")[0].role?.includes(role.name)) && (
-  <TabsPanel value="purchases">
-    <JobPurchasesTab jobId={job.id} purchases={job?.purchases ?? []} />
-  </TabsPanel>
-)}
-{(!tabs.filter((i) => i.value === "invoice")[0]?.role ||
-  tabs.filter((i) => i.value === "invoice")[0].role?.includes(role.name)) && (
-  <TabsPanel value="invoice">
-    <InvoiceTab job={job} />
-  </TabsPanel>
-)}
-</Tabs> */
-}
