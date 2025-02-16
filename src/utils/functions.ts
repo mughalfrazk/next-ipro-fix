@@ -1,10 +1,11 @@
+import { format } from "date-fns";
 import { notifications } from "@mantine/notifications";
-import classes from "@/styles/notification.module.css";
+
 import { JobModel } from "@/lib/models/job.model";
 import { InvoiceModel } from "@/lib/models/invoice.model";
-import { format } from "date-fns";
-import { ProfileModel, UserModel } from "@/lib/models/user.model";
+import { ProfileModel } from "@/lib/models/user.model";
 import { RoleTypes } from "@/types/roles.types";
+import classes from "@/styles/notification.module.css";
 
 export const getNestedInputValues = (formData: FormData) => {
   const nestedListRegex = /^([^\[]+)(\[\d+\])(\[[^\]]+\])$/;

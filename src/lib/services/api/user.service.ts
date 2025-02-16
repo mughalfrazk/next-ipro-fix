@@ -31,7 +31,7 @@ const getUserListApi = async () => {
   return ProfileListDataParser(result.data);
 };
 
-const getUserListByRoleApi = async (problem_type: ProblemTypeModel, rolesToFilter: string[] = [RoleTypes.SUPER_ADMIN, RoleTypes.ADMIN, RoleTypes.ACCOUNTANT]) => {
+const getUserListByRoleApi = async (problem_type: ProblemTypeModel, _: string[] = [RoleTypes.SUPER_ADMIN, RoleTypes.ADMIN, RoleTypes.ACCOUNTANT]) => {
   const result = await getAuthApiClient().get("user");
   const users = ProfileListDataParser(result.data);
 
