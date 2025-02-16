@@ -33,7 +33,7 @@ const StaffSelect = ({ label, speciality, staff, setSelectedStaff }: StaffSelect
       filteredRoles = [RoleTypes.SUPER_ADMIN, RoleTypes.ADMIN, RoleTypes.ACCOUNTANT];
     }
 
-    const data = await getUserListByRoleApi(speciality, filteredRoles);
+    const data = await getUserListByRoleApi(speciality);
     setStaffOptions(data);
   };
 
