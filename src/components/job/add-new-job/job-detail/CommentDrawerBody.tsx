@@ -11,7 +11,7 @@ import { showDateNicely } from "@/utils/functions";
 import { useEffect, useState } from "react";
 
 const CommentDrawerBody = ({ job }: { job: JobModel }) => {
-  const { formAction, getFieldErrorProps } = useFormAction(createCommentAction, {});
+  const { formAction } = useFormAction(createCommentAction, {});
   const { lightDark } = useMantineColorScheme();
   const [commentText, setCommentText] = useState("");
  useEffect(() => {
