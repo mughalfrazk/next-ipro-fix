@@ -80,6 +80,11 @@ const CreateOrUpdateUser = ({ user }: { user?: ProfileModel }) => {
               </Group>
               <Divider mt={10} mb={20} />
               <Grid>
+                {user?.email && (
+                  <GridCol span={12}>
+                    Email: {user?.email} <Divider mt={20} />
+                  </GridCol>
+                )}
                 <GridCol span={4}>
                   <IproTextInput
                     name="first_name"

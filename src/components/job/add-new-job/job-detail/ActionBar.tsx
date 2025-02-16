@@ -1,21 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Badge, Card, GridCol, Group, rem, Text } from "@mantine/core";
 
 import { colorForJobStatus, showErrorNotification, showNotification } from "@/utils/functions";
-import { IconAlertCircleFilled, IconBarcode, IconUserFilled } from "@tabler/icons-react";
+import {
+  IconAlertCircleFilled,
+  IconBarcode,
+  IconCircleDashedCheck,
+  IconClipboardData,
+  IconUserFilled
+} from "@tabler/icons-react";
+import { assignStaffToJobApi, rejectJobApi } from "@/lib/services/api/job.service";
 import ConfirmationModel from "@/components/common/ConfirmationDialog";
+import { useProfileContext } from "@/context/profile.context";
+import { getFormattedError } from "@/utils/format-error";
 import IproButton from "@/components/core/IproButton";
 import IproModal from "@/components/core/IproModal";
-import JobStickerModal from "./JobStickerModal";
-import StaffSelect from "./StaffSelect";
-import { rejectJobApi, updateJobOptionalApi } from "@/lib/services/api/job.service";
 import { JobModel } from "@/lib/models/job.model";
+import JobStickerModal from "./JobStickerModal";
+import { RoleTypes } from "@/types/roles.types";
 import { useDisclosure } from "@mantine/hooks";
 import { useRouter } from "next/navigation";
-import { getFormattedError } from "@/utils/format-error";
+import StaffSelect from "./StaffSelect";
 
 const ActionBar = ({ job }: { job: JobModel }) => {
   const router = useRouter();
+  const {
+    data: { role }
+  } = useProfileContext();
+
   const [opened, { open, close }] = useDisclosure(false);
   const [openedBarcodeModal, { open: openBarcodeModal, close: closeBarcodeModal }] =
     useDisclosure(false);
@@ -57,7 +69,7 @@ const ActionBar = ({ job }: { job: JobModel }) => {
 
     selectedStaff;
     try {
-      await updateJobOptionalApi(job.id, { staff_id: selectedStaff });
+      await assignStaffToJobApi(job.id, selectedStaff);
       closeAssignmentModal();
       router.refresh();
     } catch (error) {
@@ -67,21 +79,31 @@ const ActionBar = ({ job }: { job: JobModel }) => {
     }
   };
 
-  useEffect(() => {
-    console.log("selectedStaff: ", selectedStaff);
-  }, [selectedStaff]);
-
   return (
     <>
       <IproModal
         title="Assign job to staff"
         opened={openedAssignmentModal}
         onClose={closeAssignmentModal}
-        confirmButtonText="Update"
+        confirmButtonText={
+          role.name === RoleTypes.TECHNICIAN
+            ? "Complete Job"
+            : role.name === RoleTypes.STAFF
+              ? "Assign to Technician"
+              : "Assign to Staff"
+        }
         confirmButtonLoading={assignStaffLoading}
         moveFormard={assignStaffHandler}
       >
-        <StaffSelect staff={job.staff} setSelectedStaff={setSelectedStaff} />
+        <Text mb={10}>
+          {role.name === RoleTypes.TECHNICIAN
+            ? "Mark job as complete and assign it back to the receptionist"
+            : role.name === RoleTypes.STAFF
+              ? "To start the work on the job, assign it to technician"
+              : "Assign the job to a staff member to make it in progress."}
+        </Text>
+
+        <StaffSelect speciality={job.problem_type} staff={job.staff} setSelectedStaff={setSelectedStaff} />
       </IproModal>
       <IproModal
         title="Job Barcode"
@@ -136,10 +158,22 @@ const ActionBar = ({ job }: { job: JobModel }) => {
                   </IproButton>
                   <IproButton
                     size="md"
-                    leftSection={<IconUserFilled style={{ width: rem(20), height: rem(20) }} />}
+                    leftSection={
+                      role.name === RoleTypes.TECHNICIAN ? (
+                        <IconCircleDashedCheck style={{ width: rem(22), height: rem(22) }} />
+                      ) : role.name === RoleTypes.STAFF ? (
+                        <IconClipboardData style={{ width: rem(22), height: rem(22) }} />
+                      ) : (
+                        <IconUserFilled style={{ width: rem(20), height: rem(20) }} />
+                      )
+                    }
                     onClick={openAssignmentModal}
                   >
-                    Assign to staff
+                    {role.name === RoleTypes.TECHNICIAN
+                      ? "Complete job"
+                      : role.name === RoleTypes.STAFF
+                        ? "Assign to Technician"
+                        : "Assign to Staff"}
                   </IproButton>
                 </>
               )}

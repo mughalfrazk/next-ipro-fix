@@ -41,6 +41,6 @@ export const generateInvoiceAction = async (job_id: string, invoice: InvoiceMode
   try {
     await generateInvoiceForJobApi(payload);
   } catch (error) {
-    throw error;
+    throw error
   }
 };

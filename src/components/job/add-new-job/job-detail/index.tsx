@@ -28,6 +28,7 @@ import IssuesListForm from "./IssuesListForm";
 import { IconInnerShadowBottomRightFilled } from "@tabler/icons-react";
 import { colorForUserRole } from "@/utils/functions";
 import ActionBar from "./ActionBar";
+import { JobStatusTypes } from "@/types/job_status.types";
 
 const JobDetailTab = ({ job }: { job?: JobModel }) => {
   const { formAction, getFieldErrorProps } = useFormAction(
@@ -42,8 +43,12 @@ const JobDetailTab = ({ job }: { job?: JobModel }) => {
         <Grid>
           {!!job && <IproTextInput name="id" defaultValue={job.id} display={"none"} />}
           {!!job && <ActionBar job={job} />}
-          <GridCol span={!!job ? 9 : 12}>
-            <CustomerDetail customer={job?.customer} getFieldErrorProps={getFieldErrorProps} />
+          <GridCol span={{ md: !!job ? 9 : 12, sm: 12 }}>
+            <CustomerDetail
+              job={job}
+              customer={job?.customer}
+              getFieldErrorProps={getFieldErrorProps}
+            />
           </GridCol>
           {!!job && (
             <GridCol span={3}>
@@ -104,10 +109,13 @@ const JobDetailTab = ({ job }: { job?: JobModel }) => {
                   <IproButton isSubmit={true}>Save Job</IproButton>
                 </Group>
               ) : (
-                <Group justify="flex-end" mt={20}>
-                  <IproButton variant="outline">Cancal</IproButton>
-                  <IproButton isSubmit={true}>Update Job</IproButton>
-                </Group>
+                (job.job_status.name === JobStatusTypes.DEVICE_RECEIVED ||
+                  job.job_status.name === JobStatusTypes.IN_PROGRESS) && (
+                  <Group justify="flex-end" mt={20}>
+                    <IproButton variant="outline">Cancal</IproButton>
+                    <IproButton isSubmit={true}>Update Job</IproButton>
+                  </Group>
+                )
               )}
             </Card>
           </GridCol>

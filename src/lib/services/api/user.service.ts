@@ -1,4 +1,5 @@
 import { RegisterFormWithSpecialityModel } from "@/lib/models/auth.model";
+import { ProblemTypeModel } from "@/lib/models/problem-type.model";
 import {
   ProfileSchema,
   ProfileListSchema,
@@ -6,7 +7,9 @@ import {
   UserListSchema,
   UpdateUserTechPayloadModel
 } from "@/lib/models/user.model";
+import { RoleTypes } from "@/types/roles.types";
 import { getAuthApiClient } from "@/utils/api-client";
+import { getRoleNiceName } from "@/utils/functions";
 import { parseFactory } from "@/utils/parse-factory";
 
 const ProfileDataParser = parseFactory(ProfileSchema, "ProfileDataParser");
@@ -28,44 +31,48 @@ const getUserListApi = async () => {
   return ProfileListDataParser(result.data);
 };
 
-const getUserListByRoleApi = async () => {
+const getUserListByRoleApi = async (problem_type: ProblemTypeModel) => {
   const result = await getAuthApiClient().get("user");
   const users = ProfileListDataParser(result.data);
 
   const remappedUser: UserByRoleType = [];
 
-  const filteredRoles = ["super_admin", "admin", "accountant"]
+  const filteredRoles = [RoleTypes.SUPER_ADMIN, RoleTypes.ADMIN, RoleTypes.ACCOUNTANT]
 
   for (let i = 0; i < users.length; i++) {
     let newEntry = true;
-    if (!filteredRoles.includes(users[i].role.name)) {
-      remappedUser.map((item) => {
-        if (item.name === users[i].role.name) {
-          newEntry = false;
-          item.user.push({
+    if (filteredRoles.includes(users[i].role.name)) { continue; }
+    if (users[i].role.name === RoleTypes.TECHNICIAN && users[i]?.speciality?.id !== problem_type.id) {
+      continue;
+    }
+
+    remappedUser.map((item) => {
+      if (item.name === users[i].role.name) {
+        newEntry = false;
+        item.user.push({
+          id: users[i].id,
+          first_name: users[i].first_name,
+          last_name: users[i].last_name
+        });
+      }
+
+      return item;
+    });
+
+    if (newEntry) {
+      remappedUser.push({
+        id: users[i].role.id,
+        name: getRoleNiceName(users[i]).toUpperCase(),
+        user: [
+          {
             id: users[i].id,
             first_name: users[i].first_name,
             last_name: users[i].last_name
-          });
-        }
-
-        return item;
+          }
+        ]
       });
-
-      if (newEntry) {
-        remappedUser.push({
-          id: users[i].role.id,
-          name: users[i].role.name,
-          user: [
-            {
-              id: users[i].id,
-              first_name: users[i].first_name,
-              last_name: users[i].last_name
-            }
-          ]
-        });
-      }
     }
+
   }
 
   return remappedUser;

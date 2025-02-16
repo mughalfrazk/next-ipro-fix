@@ -1,8 +1,11 @@
+import { format } from "date-fns";
 import { notifications } from "@mantine/notifications";
-import classes from "@/styles/notification.module.css";
+
 import { JobModel } from "@/lib/models/job.model";
 import { InvoiceModel } from "@/lib/models/invoice.model";
-import { format } from "date-fns";
+import { ProfileModel } from "@/lib/models/user.model";
+import { RoleTypes } from "@/types/roles.types";
+import classes from "@/styles/notification.module.css";
 
 export const getNestedInputValues = (formData: FormData) => {
   const nestedListRegex = /^([^\[]+)(\[\d+\])(\[[^\]]+\])$/;
@@ -80,15 +83,15 @@ export const colorForInvoiceStatus = (name: string) => {
 export const colorForJobStatus = (name: string) => {
   return name === "Device Received"
     ? "orange.9"
-      : name === "In Progress"
-        ? "indigo.6"
-        : name === "Job Done"
-          ? "primary.6"
-          : name === "Delivered"
-            ? "green.9"
-            : name === "Job Lost"
-              ? "red.7"
-              : "grey.7";
+    : name === "In Progress"
+      ? "indigo.6"
+      : name === "Job Done"
+        ? "primary.6"
+        : name === "Delivered"
+          ? "green.9"
+          : name === "Job Lost"
+            ? "red.7"
+            : "grey.7";
 };
 
 export const colorForProblemType = (name: string) => {
@@ -155,22 +158,22 @@ export const mapJobToInvoice = (job: JobModel): InvoiceModel => {
     ],
     purchases: !!job?.purchases?.length
       ? [
-          ...job?.purchases.map((item, idx) => ({
-            id: `${idx}`,
-            item_type: "",
-            charges: item.charges,
-            quantity: item.quantity,
-            total: item.total,
-            model: {
-              id: item?.model?.id,
-              name: item?.model?.name ?? ""
-            },
-            part: {
-              id: item?.part?.id,
-              name: item.part?.name ?? ""
-            }
-          }))
-        ]
+        ...job?.purchases.map((item, idx) => ({
+          id: `${idx}`,
+          item_type: "",
+          charges: item.charges,
+          quantity: item.quantity,
+          total: item.total,
+          model: {
+            id: item?.model?.id,
+            name: item?.model?.name ?? ""
+          },
+          part: {
+            id: item?.part?.id,
+            name: item.part?.name ?? ""
+          }
+        }))
+      ]
       : []
   };
 
@@ -229,3 +232,9 @@ export const getYesterdayDate = (dateOnly = false): Date => {
   d.setHours(0, 0, 0, 0);
   return dateOnly ? new Date(d) : d;
 };
+
+export const getRoleNiceName = (user: ProfileModel) => {
+  return user.role.name === RoleTypes.TECHNICIAN && user?.speciality
+    ? `${titleCase(user.role.name)}-${user?.speciality?.name?.split("-")?.[0]?.toUpperCase()}`
+    : titleCase(user.role.name)
+}

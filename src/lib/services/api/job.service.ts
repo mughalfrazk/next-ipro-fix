@@ -26,6 +26,11 @@ const updateJobOptionalApi = async (job_id: string, payload: UpdateJobOptionalPa
   return result;
 };
 
+const assignStaffToJobApi = async (job_id: string, staff_id: string) => {
+  const result = await getAuthApiClient().patch(`job/${job_id}/assign-staff/${staff_id}`);
+  return result;
+};
+
 const getJobListApi = async () => {
   const result = await getAuthApiClient().get("job");
   return JobListDataParser(result.data);
@@ -41,4 +46,4 @@ const rejectJobApi = async (job_id: string) => {
   return result;
 };
 
-export { createJobApi, updateJobApi, updateJobOptionalApi, getJobListApi, getJobDetailApi, rejectJobApi };
+export { createJobApi, updateJobApi, updateJobOptionalApi, assignStaffToJobApi, getJobListApi, getJobDetailApi, rejectJobApi };
