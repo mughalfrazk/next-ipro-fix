@@ -1,5 +1,5 @@
 import { ProfileModel } from "@/lib/models/user.model";
-import { colorForUserRole, getRoleNiceName, titleCase } from "@/utils/functions";
+import { colorForUserRole, getRoleNiceName } from "@/utils/functions";
 import { Badge } from "@mantine/core";
 
 const RoleBadge = ({ user }: { user: ProfileModel }) => {

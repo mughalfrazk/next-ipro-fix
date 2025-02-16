@@ -28,10 +28,10 @@ const StaffSelect = ({ label, speciality, staff, setSelectedStaff }: StaffSelect
   const [value, setValue] = useState<string>("");
 
   const getStaffsList = async () => {
-    let filteredRoles: string[] = [];
-    if (role.name === RoleTypes.STAFF) {
-      filteredRoles = [RoleTypes.SUPER_ADMIN, RoleTypes.ADMIN, RoleTypes.ACCOUNTANT];
-    }
+    // let filteredRoles: string[] = [];
+    // if (role.name === RoleTypes.STAFF) {
+    //   filteredRoles = [RoleTypes.SUPER_ADMIN, RoleTypes.ADMIN, RoleTypes.ACCOUNTANT];
+    // }
 
     const data = await getUserListByRoleApi(speciality);
     setStaffOptions(data);
