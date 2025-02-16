@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Card, Divider, Grid, GridCol, Group } from "@mantine/core";
-import { IconSquareRoundedPlusFilled } from "@tabler/icons-react";
+import { Card, Center, Divider, Grid, GridCol, Group, rem, Stack, Text } from "@mantine/core";
+import { IconBoxOff, IconSquareRoundedPlusFilled } from "@tabler/icons-react";
 
 import { createJobPurchaseAction } from "@/lib/actions/purchase.action";
 import { PurchaseListModel } from "@/lib/models/purchase.model";
@@ -11,6 +11,8 @@ import IproTextInput from "@/components/core/IproTextInput";
 import Heading from "@/components/common/Heading";
 import IproButton from "@/components/core/IproButton";
 import PurchaseFormItem from "./PurchaseFormItem";
+import { JobModel } from "@/lib/models/job.model";
+import { JobStatusTypes } from "@/types/job_status.types";
 
 const defaultPurchase = {
   supplier_id: "",
@@ -22,10 +24,10 @@ const defaultPurchase = {
 };
 
 const JobPurchasesTab = ({
-  jobId,
+  job,
   purchases: purchasesData
 }: {
-  jobId: string;
+  job: JobModel;
   purchases: PurchaseListModel;
 }) => {
   const { formAction } = useFormAction(createJobPurchaseAction, {});
@@ -46,25 +48,46 @@ const JobPurchasesTab = ({
     }
   }, [purchasesData]);
 
+  const isPermitted = () => {
+    if (!job) return true;
+    else if (
+      job.job_status.name === JobStatusTypes.DEVICE_RECEIVED ||
+      job.job_status.name === JobStatusTypes.DEVICE_RECEIVED
+    )
+      return true;
+    return false;
+  };
+
   return (
     <form action={formAction}>
-      <Card pb={100}>
+      <Card pb={60}>
         <Heading
           title="Job Purchase Details"
           description="Add new Purchase for this job by clicking + icon"
         />
         <Divider mt={10} mb={20} />
-        <IproTextInput name="job_id" defaultValue={jobId} style={{ display: "none" }} />
+        <IproTextInput name="job_id" defaultValue={job.id} style={{ display: "none" }} />
         <Grid>
-          {purchases.map((item, idx) => (
-            <PurchaseFormItem
-              key={idx}
-              purchase={item}
-              idx={idx}
-              removePurchase={() => setPurchases(purchases.filter((_, j) => j !== idx))}
-            />
-          ))}
-          {!purchasesData.length && (
+          {!purchasesData.length && isPermitted() ? (
+            purchases.map((item, idx) => (
+              <PurchaseFormItem
+                key={idx}
+                purchase={item}
+                idx={idx}
+                removePurchase={() => setPurchases(purchases.filter((_, j) => j !== idx))}
+              />
+            ))
+          ) : (
+            <Center opacity={0.3} w="100%" mt={30}>
+              <IconBoxOff style={{ width: rem(40), height: rem(40) }} />
+              <Stack gap={0}>
+                <Text ms={15} size="lg" lh={1}>
+                  There are no purchases for this job
+                </Text>
+              </Stack>
+            </Center>
+          )}
+          {!purchasesData.length && isPermitted() && (
             <GridCol span={12}>
               <Group
                 justify="center"
@@ -84,7 +107,7 @@ const JobPurchasesTab = ({
             </GridCol>
           )}
         </Grid>
-        {!purchasesData.length && (
+        {!purchasesData.length && isPermitted() && (
           <Group justify="flex-end" mt={20}>
             <IproButton variant="outline">Cancal</IproButton>
             <IproButton isSubmit={true}>Save Purchase</IproButton>

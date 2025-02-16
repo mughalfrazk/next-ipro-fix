@@ -7,19 +7,33 @@ import { Combobox, Input, InputBase, useCombobox } from "@mantine/core";
 import { UserByRoleType, UserModel } from "@/lib/models/user.model";
 import IproTextInput from "@/components/core/IproTextInput";
 import { titleCase } from "@/utils/functions";
+import { useProfileContext } from "@/context/profile.context";
+import { RoleTypes } from "@/types/roles.types";
+import { ProblemTypeModel } from "@/lib/models/problem-type.model";
 
 type StaffSelectProps = {
+  label?: string;
+  speciality: ProblemTypeModel;
   staff: UserModel | undefined | null;
   setSelectedStaff?: Dispatch<SetStateAction<string>>;
 };
 
-const StaffSelect = ({ staff, setSelectedStaff }: StaffSelectProps) => {
+const StaffSelect = ({ label, speciality, staff, setSelectedStaff }: StaffSelectProps) => {
+  const {
+    data: { role }
+  } = useProfileContext();
+
   const [technicianOptions, setStaffOptions] = useState<UserByRoleType>([]);
   const [selectUserName, setSelectedUserName] = useState<string>("");
   const [value, setValue] = useState<string>("");
 
   const getStaffsList = async () => {
-    const data = await getUserListByRoleApi();
+    let filteredRoles: string[] = [];
+    if (role.name === RoleTypes.STAFF) {
+      filteredRoles = [RoleTypes.SUPER_ADMIN, RoleTypes.ADMIN, RoleTypes.ACCOUNTANT];
+    }
+
+    const data = await getUserListByRoleApi(speciality, filteredRoles);
     setStaffOptions(data);
   };
 
@@ -63,7 +77,7 @@ const StaffSelect = ({ staff, setSelectedStaff }: StaffSelectProps) => {
           <InputBase
             type="button"
             component="button"
-            label="Select Staff Member"
+            label={label}
             rightSection={<Combobox.Chevron />}
             onClick={() => combobox.toggleDropdown()}
             rightSectionPointerEvents="none"

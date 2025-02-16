@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   IconChevronLeft,
-  IconFingerprint,
+  IconFingerprintOff,
   IconLockOff,
   IconServerSpark
 } from "@tabler/icons-react";
@@ -20,7 +20,7 @@ const ErrorDescription = {
     description: "Please login again, you are being refirected in"
   },
   403: {
-    icon: <IconFingerprint style={{ height: rem(130), width: rem(130), marginBottom: rem(20) }} />,
+    icon: <IconFingerprintOff style={{ height: rem(130), width: rem(130), marginBottom: rem(20) }} />,
     title: "Forbidden Exception!",
     description: "You are not authorized to access this page."
   },

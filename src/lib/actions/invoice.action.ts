@@ -1,5 +1,6 @@
 "use server";
 
+import { getFormattedError } from "@/utils/format-error";
 import { CreateInvoicePayloadModel, InvoiceModel } from "../models/invoice.model";
 import { generateInvoiceForJobApi } from "../services/api/invoice.service";
 
@@ -41,6 +42,6 @@ export const generateInvoiceAction = async (job_id: string, invoice: InvoiceMode
   try {
     await generateInvoiceForJobApi(payload);
   } catch (error) {
-    throw error;
+    throw error
   }
 };

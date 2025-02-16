@@ -100,7 +100,7 @@ const updateJobAction = async (_: ActionResult, formData: FormData) => {
 
   if (!payload.id) {
     showErrorNotification("Invalid job id selected.")
-    return
+    return {}
   }
 
   try {

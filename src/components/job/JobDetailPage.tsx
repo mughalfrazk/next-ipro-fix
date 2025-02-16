@@ -31,18 +31,15 @@ const JobDetailPage = ({ job }: { job: JobModel }) => {
   const tabs = [
     {
       title: "Job Details",
-      value: "detail",
-      component: <JobDetailTab job={job} />
+      value: "detail"
     },
     {
       title: "Job Purchases",
-      value: "purchases",
-      component: <JobPurchasesTab jobId={job.id} purchases={job?.purchases ?? []} />
+      value: "purchases"
     },
     {
       title: "Invoice",
       value: "invoice",
-      component: <InvoiceTab job={job} />,
       role: [
         RoleTypes.SUPER_ADMIN,
         RoleTypes.ADMIN,
@@ -95,7 +92,7 @@ const JobDetailPage = ({ job }: { job: JobModel }) => {
       )}
       {isTabPermitted("purchases") && (
         <TabsPanel value="purchases">
-          <JobPurchasesTab jobId={job.id} purchases={job?.purchases ?? []} />
+          <JobPurchasesTab job={job} purchases={job?.purchases ?? []} />
         </TabsPanel>
       )}
       {isTabPermitted("invoice") && (
