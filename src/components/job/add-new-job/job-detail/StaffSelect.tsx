@@ -4,12 +4,10 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { getUserListByRoleApi } from "@/lib/services/api/user.service";
 import { Combobox, Input, InputBase, useCombobox } from "@mantine/core";
 
-import { UserByRoleType, UserModel } from "@/lib/models/user.model";
 import IproTextInput from "@/components/core/IproTextInput";
-import { titleCase } from "@/utils/functions";
-import { useProfileContext } from "@/context/profile.context";
-import { RoleTypes } from "@/types/roles.types";
+import { UserByRoleType, UserModel } from "@/lib/models/user.model";
 import { ProblemTypeModel } from "@/lib/models/problem-type.model";
+import { titleCase } from "@/utils/functions";
 
 type StaffSelectProps = {
   label?: string;
@@ -19,10 +17,6 @@ type StaffSelectProps = {
 };
 
 const StaffSelect = ({ label, speciality, staff, setSelectedStaff }: StaffSelectProps) => {
-  const {
-    data: { role }
-  } = useProfileContext();
-
   const [technicianOptions, setStaffOptions] = useState<UserByRoleType>([]);
   const [selectUserName, setSelectedUserName] = useState<string>("");
   const [value, setValue] = useState<string>("");
