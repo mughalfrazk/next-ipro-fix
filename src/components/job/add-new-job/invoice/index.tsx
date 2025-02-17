@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Card, Grid, GridCol, Image, Text } from "@mantine/core";
+import { Card, Grid, GridCol, Text } from "@mantine/core";
 import { useRouter } from "next/navigation";
 
 import { getInvoiceDetailByIdApi } from "@/lib/services/api/invoice.service";
