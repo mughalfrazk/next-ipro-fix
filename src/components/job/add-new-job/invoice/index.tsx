@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Card, Grid, GridCol, Image, Text } from "@mantine/core";
+import { Card, Grid, GridCol, Text } from "@mantine/core";
 import { useRouter } from "next/navigation";
 
 import { getInvoiceDetailByIdApi } from "@/lib/services/api/invoice.service";
@@ -68,7 +68,7 @@ const InvoiceTab = ({ job }: { job: JobModel }) => {
             )}
           </Card>
           <TechnicianInfoCard invoice={invoice} />
-          {!!invoice.id && (
+          {/* {!!invoice.id && (
             <Card mt={15}>
               <Heading title="Job Barcode" mb={20} />
               <Image
@@ -78,7 +78,7 @@ const InvoiceTab = ({ job }: { job: JobModel }) => {
               />
               <IproButton>Print Barcode</IproButton>
             </Card>
-          )}
+          )} */}
         </GridCol>
       </Grid>
     )
