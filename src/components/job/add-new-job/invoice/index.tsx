@@ -68,7 +68,7 @@ const InvoiceTab = ({ job }: { job: JobModel }) => {
             )}
           </Card>
           <TechnicianInfoCard invoice={invoice} />
-          {!!invoice.id && (
+          {/* {!!invoice.id && (
             <Card mt={15}>
               <Heading title="Job Barcode" mb={20} />
               <Image
@@ -78,7 +78,7 @@ const InvoiceTab = ({ job }: { job: JobModel }) => {
               />
               <IproButton>Print Barcode</IproButton>
             </Card>
-          )}
+          )} */}
         </GridCol>
       </Grid>
     )
