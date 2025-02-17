@@ -85,9 +85,8 @@ const JobPurchasesTab = ({
             purchases.map((item, idx) => (
               <PurchaseFormItem
                 key={idx}
-                purchase={item}
                 idx={idx}
-                isPermitted={isPermitted}
+                purchase={item}
                 removePurchase={() => setPurchases(purchases.filter((_, j) => j !== idx))}
               />
             ))
