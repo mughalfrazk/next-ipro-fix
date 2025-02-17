@@ -71,7 +71,13 @@ const ActionBar = ({ job }: { job: JobModel }) => {
     try {
       await assignStaffToJobApi(job.id, selectedStaff);
       closeAssignmentModal();
-      router.refresh();
+
+      if (role.name === RoleTypes.STAFF) {
+        router.push("/dashboard/job");
+        router.refresh();
+      } else {
+        router.refresh();
+      }
     } catch (error) {
       showErrorNotification(getFormattedError(error)?.errors?.formErrors?.[0]);
     } finally {
@@ -103,7 +109,11 @@ const ActionBar = ({ job }: { job: JobModel }) => {
               : "Assign the job to a staff member to make it in progress."}
         </Text>
 
-        <StaffSelect speciality={job.problem_type} staff={job.staff} setSelectedStaff={setSelectedStaff} />
+        <StaffSelect
+          speciality={job.problem_type}
+          staff={job.staff}
+          setSelectedStaff={setSelectedStaff}
+        />
       </IproModal>
       <IproModal
         title="Job Barcode"

@@ -29,12 +29,25 @@ import { IconInnerShadowBottomRightFilled } from "@tabler/icons-react";
 import { colorForUserRole } from "@/utils/functions";
 import ActionBar from "./ActionBar";
 import { JobStatusTypes } from "@/types/job_status.types";
+import { useProfileContext } from "@/context/profile.context";
+import { RoleTypes } from "@/types/roles.types";
 
 const JobDetailTab = ({ job }: { job?: JobModel }) => {
+  const {
+    data: { role }
+  } = useProfileContext();
   const { formAction, getFieldErrorProps } = useFormAction(
     job ? updateJobAction : createJobAction,
     {}
   );
+
+  const isPermitted = (): boolean => {
+    if (role.name === RoleTypes.STAFF) return false;
+    if (job?.job_status.name === JobStatusTypes.JOB_DONE) return false;
+    if (job?.job_status.name === JobStatusTypes.JOB_LOST) return false;
+    if (job?.job_status.name === JobStatusTypes.DELIVERED) return false;
+    return true;
+  };
 
   return (
     <form action={formAction}>
@@ -109,8 +122,7 @@ const JobDetailTab = ({ job }: { job?: JobModel }) => {
                   <IproButton isSubmit={true}>Save Job</IproButton>
                 </Group>
               ) : (
-                (job.job_status.name === JobStatusTypes.DEVICE_RECEIVED ||
-                  job.job_status.name === JobStatusTypes.IN_PROGRESS) && (
+                isPermitted() && (
                   <Group justify="flex-end" mt={20}>
                     <IproButton variant="outline">Cancal</IproButton>
                     <IproButton isSubmit={true}>Update Job</IproButton>
