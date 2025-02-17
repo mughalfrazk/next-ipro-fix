@@ -47,7 +47,7 @@ const getUserListByRoleApi = async (problem_type: ProblemTypeModel) => {
     }
 
     remappedUser.map((item) => {
-      if (item.name === users[i].role.name) {
+      if (item.name === getRoleNiceName(users[i]).toUpperCase()) {
         newEntry = false;
         item.user.push({
           id: users[i].id,
@@ -61,7 +61,7 @@ const getUserListByRoleApi = async (problem_type: ProblemTypeModel) => {
 
     if (newEntry) {
       remappedUser.push({
-        id: users[i].role.id,
+        id: users[i].role.name === RoleTypes.TECHNICIAN ? (users[i]?.speciality?.id ?? users[i].role.id) : users[i].role.id,
         name: getRoleNiceName(users[i]).toUpperCase(),
         user: [
           {

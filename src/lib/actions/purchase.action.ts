@@ -1,10 +1,12 @@
-import { ActionResult } from "@/utils/action-results";
-import { getNestedInputValues, showErrorNotification, showNotification } from "@/utils/functions";
+import { redirect } from "next/navigation";
+
 import {
   CreatePurchasesModel,
   CreatePurchasesSchema,
   PurchaseModel
 } from "../models/purchase.model";
+import { ActionResult } from "@/utils/action-results";
+import { getNestedInputValues, showErrorNotification, showNotification } from "@/utils/functions";
 import { getFormattedError } from "@/utils/format-error";
 import { isRedirectError } from "next/dist/client/components/redirect";
 import { createJobPurchasesApi } from "../services/api/purchase.service";
@@ -27,11 +29,13 @@ const createJobPurchaseAction = async (_: ActionResult, formData: FormData) => {
   const validatedPayload = await CreatePurchasesSchema.safeParseAsync(payload);
   if (!validatedPayload.success) {
     showErrorNotification("Validation errors");
+    console.log(getFormattedError(validatedPayload?.error))
     return getFormattedError(validatedPayload?.error);
   }
 
   try {
     await createJobPurchasesApi(payload);
+    redirect(`/dashboard/job/${payload.job_id}?tab=purchases`);
     showNotification("Updated successfully!");
     return {};
   } catch (error) {

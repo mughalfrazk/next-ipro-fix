@@ -84,21 +84,24 @@ const JobDetailPage = ({ job }: { job: JobModel }) => {
           )}
         </TabsList>
       </Box>
-
-      {isTabPermitted("detail") && (
-        <TabsPanel value="detail">
-          <JobDetailTab job={job} />
-        </TabsPanel>
-      )}
-      {isTabPermitted("purchases") && (
-        <TabsPanel value="purchases">
-          <JobPurchasesTab job={job} purchases={job?.purchases ?? []} />
-        </TabsPanel>
-      )}
-      {isTabPermitted("invoice") && (
-        <TabsPanel value="invoice">
-          <InvoiceTab job={job} />
-        </TabsPanel>
+      {!!job && (
+        <>
+          {isTabPermitted("detail") && (
+            <TabsPanel value="detail">
+              <JobDetailTab job={job} />
+            </TabsPanel>
+          )}
+          {isTabPermitted("purchases") && (
+            <TabsPanel value="purchases">
+              <JobPurchasesTab job={job} purchases={job?.purchases ?? []} />
+            </TabsPanel>
+          )}
+          {isTabPermitted("invoice") && (
+            <TabsPanel value="invoice">
+              <InvoiceTab job={job} />
+            </TabsPanel>
+          )}
+        </>
       )}
     </Tabs>
   );

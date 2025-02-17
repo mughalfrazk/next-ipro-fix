@@ -56,11 +56,8 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
 
   const isPermitted = () => {
     if (!job) return true;
-    else if (
-      job.job_status.name === JobStatusTypes.DEVICE_RECEIVED ||
-      job.job_status.name === JobStatusTypes.DEVICE_RECEIVED
-    )
-      return true;
+    if (job.job_status.name === JobStatusTypes.DEVICE_RECEIVED) return true;
+    if (job.job_status.name === JobStatusTypes.IN_PROGRESS) return true;  
     return false;
   };
 
