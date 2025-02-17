@@ -13,12 +13,10 @@ import { useEffect } from "react";
 const PurchaseFormItem = ({
   idx,
   purchase,
-  isPermitted,
   removePurchase
 }: {
   idx: number;
   purchase: Partial<PurchaseModel>;
-  isPermitted: () => void;
   removePurchase: () => void;
 }) => {
   const { lightDark } = useMantineColorScheme();
