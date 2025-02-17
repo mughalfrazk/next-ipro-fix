@@ -13,8 +13,16 @@ const getModelListApi = async () => {
   return ModelListDataParser(result.data);
 };
 
-const createModelApi = async (payload: CreateModelPayloadModel) => {
-  const result = await getAuthApiClient().post("model", payload);
+const getModelListByBrandIdApi = async (brand_id: string) => {
+  const result = await getAuthApiClient().get(`model?brand_id=${brand_id}`);
+  return ModelListDataParser(result.data);
+};
+
+const createModelApi = async (payload: Partial<CreateModelPayloadModel>) => {
+  const result = await getAuthApiClient().post("model", {
+    ...payload,
+    brand_id: Number(payload.brand_id)
+  });
   return result;
 };
 
@@ -28,4 +36,10 @@ const deleteModelApi = async (modelId: number) => {
   return result;
 };
 
-export { getModelListApi, createModelApi, updateModelApi, deleteModelApi };
+export {
+  getModelListApi,
+  getModelListByBrandIdApi,
+  createModelApi,
+  updateModelApi,
+  deleteModelApi
+};

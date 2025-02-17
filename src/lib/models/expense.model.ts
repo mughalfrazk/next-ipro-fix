@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { ExpenseTypeSchema } from "./expense-type.model";
 import { UserSchema } from "./user.model";
+import { PurchaseSchema } from "./purchase.model";
 
 export const ExpenseSchema = z.object({
   id: z.string(),
@@ -10,13 +11,14 @@ export const ExpenseSchema = z.object({
   updated_at: z.string(),
   deleted_at: z.string().nullish(),
   expense_type: ExpenseTypeSchema,
-  created_by: UserSchema
+  created_by: UserSchema,
+  purchase: PurchaseSchema.nullish()
 });
 
 export const CreateExpensePayloadSchema = z.object({
-  amount: z.string(),
+  amount: z.string().min(2, "Amount should be more than 10"),
   comments: z.string().nullish(),
-  expense_type_id: z.string()
+  expense_type_id: z.string().min(1, "Expense type is required")
 });
 
 export const ExpenseListSchema = z.array(ExpenseSchema);

@@ -9,12 +9,14 @@ import IproTextInput from "@/components/core/IproTextInput";
 import { CustomerListModel, CustomerModel } from "@/lib/models/customer.model";
 import { getCustomerListApi } from "@/lib/services/api/customer.service";
 import { FieldErrorPropsType } from "@/hooks/use-action-errors";
+import { JobModel } from "@/lib/models/job.model";
 
 type CustomerDetailProps = {
+  job?: JobModel;
   customer?: CustomerModel;
 } & FieldErrorPropsType;
 
-const CustomerDetail = ({ customer, getFieldErrorProps }: CustomerDetailProps) => {
+const CustomerDetail = ({ job, customer, getFieldErrorProps }: CustomerDetailProps) => {
   const [customers, setCustomers] = useState<CustomerListModel>([]);
   const [nameOptionsList, setNameOptionsList] = useState<ComboboxData>([]);
   const [phoneOptionsList, setPhoneOptionsList] = useState<ComboboxData>([]);
@@ -29,10 +31,12 @@ const CustomerDetail = ({ customer, getFieldErrorProps }: CustomerDetailProps) =
 
   const getCustomerList = async () => {
     try {
-      const result = await getCustomerListApi();
-      setCustomers(result);
-      setNameOptionsList(result.map((item) => ({ label: item.name, value: item.id })));
-      setPhoneOptionsList(result.map((item) => ({ label: item.phone, value: item.id })));
+      if (!job) {
+        const result = await getCustomerListApi();
+        setCustomers(result);
+        setNameOptionsList(result.map((item) => ({ label: item.name, value: item.id })));
+        setPhoneOptionsList(result.map((item) => ({ label: item.phone, value: item.id })));
+      }
     } catch (error) {}
   };
 

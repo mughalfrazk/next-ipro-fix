@@ -4,8 +4,6 @@ import { CreateInvoicePayloadModel, InvoiceModel } from "../models/invoice.model
 import { generateInvoiceForJobApi } from "../services/api/invoice.service";
 
 export const generateInvoiceAction = async (job_id: string, invoice: InvoiceModel) => {
-  console.log(invoice.issues)
-
   const issues = invoice.issues.map((item) => ({
     item_type: "issue",
     brand_name: item.brand.name as string,
@@ -43,6 +41,6 @@ export const generateInvoiceAction = async (job_id: string, invoice: InvoiceMode
   try {
     await generateInvoiceForJobApi(payload);
   } catch (error) {
-    throw error;
+    throw error
   }
 };

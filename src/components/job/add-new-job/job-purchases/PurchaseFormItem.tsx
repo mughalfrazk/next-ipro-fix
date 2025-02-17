@@ -7,6 +7,8 @@ import { PurchaseModel } from "@/lib/models/purchase.model";
 import { getModelListApi } from "@/lib/services/api/model.service";
 import { getSupplierListApi } from "@/lib/services/api/supplier.service";
 import { getPartListApi } from "@/lib/services/api/part.service";
+import { useInputState } from "@mantine/hooks";
+import { useEffect } from "react";
 
 const PurchaseFormItem = ({
   idx,
@@ -18,6 +20,9 @@ const PurchaseFormItem = ({
   removePurchase: () => void;
 }) => {
   const { lightDark } = useMantineColorScheme();
+  const [quantity, setQuantity] = useInputState<number>(0);
+  const [charges, setCharges] = useInputState<number>(0);
+  const [total, setTotal] = useInputState<number>(0);
 
   const getModelList = async () => {
     const result = await getModelListApi();
@@ -43,6 +48,15 @@ const PurchaseFormItem = ({
     }));
   };
 
+  useEffect(() => setTotal(charges * quantity), [charges, quantity]);
+
+  useEffect(() => {
+    if (!!purchase) {
+      setQuantity(purchase.quantity);
+      setCharges(purchase.charges);
+      setTotal(purchase.total);
+    }
+  }, [purchase]);
   return (
     <GridCol span={12}>
       <Grid>
@@ -65,7 +79,7 @@ const PurchaseFormItem = ({
             label="Supplier Name"
             name={`purchases[${idx}][supplier_id]`}
             inputDefaultValue={purchase.supplier_id}
-            getDataFromApiAndSetOption={getSupplierList}
+            asyncDataMethod={getSupplierList}
             searchable
           />
         </GridCol>
@@ -74,7 +88,7 @@ const PurchaseFormItem = ({
             label="Model Selection"
             name={`purchases[${idx}][model_id]`}
             inputDefaultValue={purchase.model_id}
-            getDataFromApiAndSetOption={getModelList}
+            asyncDataMethod={getModelList}
             searchable
           />
         </GridCol>
@@ -82,25 +96,37 @@ const PurchaseFormItem = ({
           <IproTextInput
             type="number"
             label="Quantity"
-            defaultValue={purchase.quantity}
             name={`purchases[${idx}][quantity]`}
+            value={quantity}
+            onChange={setQuantity}
           />
         </GridCol>
-        <GridCol span={8}>
+        <GridCol span={4}>
           <CreateUpdateSelectInput
             label="Part"
             name={`purchases[${idx}][part_id]`}
             inputDefaultValue={purchase.part_id}
-            getDataFromApiAndSetOption={getPartList}
+            asyncDataMethod={getPartList}
             searchable
           />
         </GridCol>
         <GridCol span={4}>
           <IproTextInput
             type="number"
+            label="Charges"
+            name={`purchases[${idx}][charges]`}
+            value={charges}
+            onChange={setCharges}
+          />
+        </GridCol>
+        <GridCol span={4}>
+          <IproTextInput
+            type="number"
             label="Total"
-            defaultValue={purchase.total}
             name={`purchases[${idx}][total]`}
+            value={total}
+            onChange={setTotal}
+            readOnly
           />
         </GridCol>
       </Grid>

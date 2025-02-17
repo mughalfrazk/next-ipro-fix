@@ -14,7 +14,11 @@ const TechnicianInfoCard = ({ invoice }: TechnicianInfoCardProps) => (
     {invoice.technician ? (
       <Stack gap={0}>
         <Group ps={10} mb={20}>
-          <Avatar name="Albert Flores" size="lg" color="initials" />
+          <Avatar
+            name={`${invoice.technician?.first_name} ${invoice.technician?.last_name}`}
+            size="lg"
+            color="initials"
+          />
           <Stack gap={0}>
             <Title order={4} c="primary">
               {`${invoice.technician?.first_name} ${invoice.technician?.last_name}`}

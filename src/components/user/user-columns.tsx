@@ -40,7 +40,7 @@ export const UserColumns = [
     render: (row: UserModel) => {
       return (
         <Group>
-          <Avatar src="../../assets/Avatar_man.png" alt="user_image" />
+          <Avatar color="initials" alt="user_image" name={`${row.first_name} ${row.last_name}`} />
           <Stack gap={2}>
             <Title order={6}>{`${row.first_name} ${row.last_name}`}</Title>
             <Text size="sm">{`${row.email}`}</Text>
@@ -84,7 +84,7 @@ export const UserColumns = [
   },
   {
     accessor: "Earned Amount",
-    title: "progress",
+    title: "Progress Amount",
     render: (row: UserModel) => {
       return <NumberFormatter prefix="AED " value={row?.progress ?? 0} thousandSeparator />;
     }

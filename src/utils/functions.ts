@@ -1,8 +1,11 @@
+import { format } from "date-fns";
 import { notifications } from "@mantine/notifications";
-import classes from "@/styles/notification.module.css";
+
 import { JobModel } from "@/lib/models/job.model";
 import { InvoiceModel } from "@/lib/models/invoice.model";
-import { format } from "date-fns";
+import { ProfileModel } from "@/lib/models/user.model";
+import { RoleTypes } from "@/types/roles.types";
+import classes from "@/styles/notification.module.css";
 
 export const getNestedInputValues = (formData: FormData) => {
   const nestedListRegex = /^([^\[]+)(\[\d+\])(\[[^\]]+\])$/;
@@ -49,7 +52,7 @@ export const showErrorNotification = (
   });
 };
 
-export const colorForUserRole = (name: string) => {
+export const colorForUserRole = (name: string | undefined) => {
   return name === "super_admin"
     ? "grape.8"
     : name === "receptionist"
@@ -79,18 +82,16 @@ export const colorForInvoiceStatus = (name: string) => {
 
 export const colorForJobStatus = (name: string) => {
   return name === "Device Received"
-    ? "orange.6"
-    : name === "Pending Work"
-      ? "red.6"
-      : name === "Pending Approval"
-        ? "indigo"
-        : name === "Job Done"
-          ? "primary.6"
-          : name === "Delivered"
-            ? "green"
-            : name === "Job Lost"
-              ? "grey"
-              : "black";
+    ? "orange.9"
+    : name === "In Progress"
+      ? "indigo.6"
+      : name === "Job Done"
+        ? "primary.6"
+        : name === "Delivered"
+          ? "green.9"
+          : name === "Job Lost"
+            ? "red.7"
+            : "grey.7";
 };
 
 export const colorForProblemType = (name: string) => {
@@ -121,7 +122,7 @@ export const mapJobToInvoice = (job: JobModel): InvoiceModel => {
   const purchase_total = job?.purchases?.reduce((prev, curr) => prev + curr.total, 0) ?? 0;
   const total = issue_total + purchase_total;
 
-  const technician = job?.technician?.role?.name === "technician" ? job.technician : null
+  const technician = job?.technician?.role?.name === "technician" ? job.technician : null;
 
   const invoice: InvoiceModel = {
     id: "",
@@ -215,14 +216,15 @@ export const colorForExpenseType = (name: string) => {
   ];
 
   return colors[name.length];
-}
+};
 export const titleCase = (s: string) => {
-  return s.toLowerCase()
-    .split(' ')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ')
-    .replace(/_/g, ' ');
-}
+  return s
+    .toLowerCase()
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ")
+    .replace(/_/g, " ");
+};
 
 export const getYesterdayDate = (dateOnly = false): Date => {
   const d = new Date();
@@ -230,3 +232,9 @@ export const getYesterdayDate = (dateOnly = false): Date => {
   d.setHours(0, 0, 0, 0);
   return dateOnly ? new Date(d) : d;
 };
+
+export const getRoleNiceName = (user: ProfileModel) => {
+  return user.role.name === RoleTypes.TECHNICIAN && user?.speciality
+    ? `${titleCase(user.role.name)}-${user?.speciality?.name?.split("-")?.[0]?.toUpperCase()}`
+    : titleCase(user.role.name)
+}

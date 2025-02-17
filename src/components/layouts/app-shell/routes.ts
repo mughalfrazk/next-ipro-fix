@@ -57,7 +57,7 @@ const routes: NavLinkRoute[] = [
   {
     label: "Supplier",
     icon: IconUsers,
-    role: ["super_admin", "admin"],
+    role: ["super_admin", "admin", "receptionist", "technician"],
     children: [
       {
         href: "/dashboard/supplier",
@@ -69,7 +69,6 @@ const routes: NavLinkRoute[] = [
   {
     label: "Job",
     icon: IconTool,
-    role: ["super_admin", "admin", "staff", "receptionist", "technician"],
     children: [
       {
         href: "/dashboard/job",
@@ -124,22 +123,22 @@ const routes: NavLinkRoute[] = [
     children: [
       {
         href: "/dashboard/settings/model",
-        label: "Model",
+        label: "Models",
         icon: IconFocus
       },
       {
         href: "/dashboard/settings/brand",
-        label: "Brand",
+        label: "Brands",
         icon: IconFocus
       },
       {
         href: "/dashboard/settings/issue",
-        label: "Issue",
+        label: "Issues",
         icon: IconFocus
       },
       {
         href: "/dashboard/settings/part",
-        label: "Part",
+        label: "Parts",
         icon: IconFocus
       },
       {

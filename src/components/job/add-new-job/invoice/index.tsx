@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Card, Grid, GridCol, Image, Text } from "@mantine/core";
+import { Card, Grid, GridCol, Text } from "@mantine/core";
 import { useRouter } from "next/navigation";
 
 import { getInvoiceDetailByIdApi } from "@/lib/services/api/invoice.service";
@@ -13,6 +13,7 @@ import Heading from "@/components/common/Heading";
 import MainInvoiceCard from "./MainInvoiceCard";
 import TechnicianInfoCard from "./TechnicianInfoCard";
 import { generateInvoiceAction } from "@/lib/actions/invoice.action";
+import { getFormattedError } from "@/utils/format-error";
 
 const InvoiceTab = ({ job }: { job: JobModel }) => {
   const router = useRouter();
@@ -26,17 +27,15 @@ const InvoiceTab = ({ job }: { job: JobModel }) => {
   };
 
   const createJobInvoice = async (job_id: string, invoice: InvoiceModel) => {
-    if (!invoice.technician) {
-      showErrorNotification("Technician not added.");
-      return;
-    }
-
     try {
       await generateInvoiceAction(job_id, invoice);
       router.push(`/dashboard/job/${job_id}?tab=invoice`);
       router.refresh();
     } catch (error) {
-      showErrorNotification("Something went wrong, please try again.");
+      showErrorNotification(
+        getFormattedError(error)?.errors?.formErrors?.[0] ??
+          "Something went wrong, please try again."
+      );
     }
   };
 
@@ -69,7 +68,7 @@ const InvoiceTab = ({ job }: { job: JobModel }) => {
             )}
           </Card>
           <TechnicianInfoCard invoice={invoice} />
-          {!!invoice.id && (
+          {/* {!!invoice.id && (
             <Card mt={15}>
               <Heading title="Job Barcode" mb={20} />
               <Image
@@ -79,7 +78,7 @@ const InvoiceTab = ({ job }: { job: JobModel }) => {
               />
               <IproButton>Print Barcode</IproButton>
             </Card>
-          )}
+          )} */}
         </GridCol>
       </Grid>
     )

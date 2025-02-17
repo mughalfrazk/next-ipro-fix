@@ -1,4 +1,4 @@
-import CreateOrUpdateUser from "@/components/user/create-new-user";
+import CreateOrUpdateUser from "@/components/user/add-new-user";
 import { getProfileApi } from "@/lib/services/api/user.service";
 
 const UserDetail = async () => {

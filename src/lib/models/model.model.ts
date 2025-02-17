@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { BrandSchema } from "./brand.model";
 
 export const ModelSchema = z.object({
   id: z.number(),
@@ -6,16 +7,18 @@ export const ModelSchema = z.object({
   description: z.string().nullish(),
   created_at: z.string(),
   updated_at: z.string(),
-  deleted_at: z.string().nullish()
+  deleted_at: z.string().nullish(),
+  brand: BrandSchema.nullish()
 });
 
 export const CreateModelPayloadSchema = z.object({
+  brand_id: z.string().min(1, "Brand is required"),
   name: z.string().min(1, "Name is required"),
   description: z.string().nullish()
 });
 
 export const UpdateModelPayloadSchema = z.object({
-  id: z.string(),
+  id: z.number(),
   name: z.string().min(1, "Name is required"),
   description: z.string().nullish()
 });

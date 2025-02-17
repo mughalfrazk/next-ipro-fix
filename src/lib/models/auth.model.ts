@@ -19,14 +19,14 @@ export const RegisterFormSchema = z.object({
   last_name: z.string().min(1, "Last name is required"),
   email: z.string().min(1, "Email is required"),
   password: z.string().min(1, "Password is required"),
-  target: z.string().min(1, "Target is required"),
   phone: z.string().min(1, "Phone is required"),
   address: z.string().min(1, "Address is required"),
   role_id: z.string().min(1, "Technician is required")
 });
 
 export const RegisterFormWithSpecialitySchema = RegisterFormSchema.extend({
-  speciality_id: z.string().min(1, "Speciality is required")
+  speciality_id: z.string().min(1, "Speciality is required"),
+  target: z.string().min(2, "Target should be more than 10")
 });
 
 export type LoginFormModel = z.infer<typeof LoginFormSchema>;

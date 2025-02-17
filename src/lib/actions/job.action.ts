@@ -15,10 +15,8 @@ import { IssueModel } from "@/lib/models/issue.model";
 const createJobAction = async (_: ActionResult, formData: FormData) => {
   const structuredInput = getNestedInputValues(formData);
 
-
-  console.log(!structuredInput?.issues?.length)
   if (!structuredInput?.issues?.length) {
-    return getFormattedError("Issues are required.")
+    return getFormattedError("Issues are required.");
   }
 
   const payload: CreateJobPayloadModel = {
@@ -48,13 +46,14 @@ const createJobAction = async (_: ActionResult, formData: FormData) => {
   const validatedPayload = await CreateJobPayloadSchema.safeParseAsync(payload);
   if (!validatedPayload.success) {
     showErrorNotification("Validation errors");
+    console.log(getFormattedError(validatedPayload?.error))
     return getFormattedError(validatedPayload?.error);
   }
 
   try {
-    await createJobApi(payload);
-    redirect("/dashboard/job");
-    return {};
+    const response = await createJobApi(payload);
+    redirect(`/dashboard/job/${response.data.id}`);
+    return { success: response.data };
   } catch (error) {
     // `redirectTo` won't work without this line
     if (isRedirectError(error)) throw error;
@@ -68,6 +67,7 @@ const updateJobAction = async (_: ActionResult, formData: FormData) => {
   const payload: UpdateJobPayloadModel = {
     id: formData.get("id") as string,
     technician_id: formData.get("technician_id") as string,
+    staff_id: formData.get("staff_id") as string,
     problem_type_id: formData.get("problem_type_id") as string,
     job_status_id: Number(formData.get("job_status_id") as string),
     customer_id: formData.get("customer_id") as string,
@@ -96,6 +96,11 @@ const updateJobAction = async (_: ActionResult, formData: FormData) => {
   if (!validatedPayload.success) {
     showErrorNotification("Validation errors");
     return getFormattedError(validatedPayload?.error);
+  }
+
+  if (!payload.id) {
+    showErrorNotification("Invalid job id selected.")
+    return {}
   }
 
   try {
