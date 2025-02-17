@@ -1,5 +1,31 @@
 # Changelog
 
+## [1.2.0](https://github.com/mughalfrazk/next-ipro-fix/compare/v1.1.0...v1.2.0) (2025-02-17)
+
+
+### Features
+
+* assign client by receptionist ([7bee9e7](https://github.com/mughalfrazk/next-ipro-fix/commit/7bee9e7326efa9b1aeb914a5510ea9959f265ce4))
+* barcode modal when job is created ([9061cd4](https://github.com/mughalfrazk/next-ipro-fix/commit/9061cd40ec9b90293b570575be0b8f90b8dfba15))
+* **job:** lock tabs by role ([804b4b3](https://github.com/mughalfrazk/next-ipro-fix/commit/804b4b38b8de5e45f36efc6fb05e5392de3b3d2a))
+* **job:** new layout for create and update job ([a917e97](https://github.com/mughalfrazk/next-ipro-fix/commit/a917e9785a55fbfc5d206becc3c7cbe2cceee57d))
+* **user:** update user functionality ([7351fea](https://github.com/mughalfrazk/next-ipro-fix/commit/7351fea44fdf5a6208f1001e9a8c7b9c1f38d9d6))
+
+
+### Bug Fixes
+
+* deleted space ([607447a](https://github.com/mughalfrazk/next-ipro-fix/commit/607447a71fe47e9ce6120899f8ce698294b034c5))
+* deployment error ([9c1949a](https://github.com/mughalfrazk/next-ipro-fix/commit/9c1949a59abf4e8388f88d5c18dd9468f6a5827c))
+* deployment error ([8abcb9d](https://github.com/mughalfrazk/next-ipro-fix/commit/8abcb9dd29ef17912b5b509636041adbe363b47d))
+* deployment errors ([6a439be](https://github.com/mughalfrazk/next-ipro-fix/commit/6a439be251ed1d93d017f75ab6d519f1ac872440))
+* deployment errors ([2ba5457](https://github.com/mughalfrazk/next-ipro-fix/commit/2ba5457c35512712bf0f2e9fcf1b42b02ee92422))
+* open invoice button at the place of open user in expense list that leads to the purchased tab in job detail ([876402e](https://github.com/mughalfrazk/next-ipro-fix/commit/876402e7ebcf11e85e721c3d4933c39cc91ed6bb))
+* remove the open barcode sticker button ([4d1e67c](https://github.com/mughalfrazk/next-ipro-fix/commit/4d1e67c35443d33e1745bcb0a77f72a047930df2))
+* resetting the text area after posting the comment ([289b26d](https://github.com/mughalfrazk/next-ipro-fix/commit/289b26def8dfe4330620dbb1b9857c89c70cd473))
+* resolve conflicts ([e10969e](https://github.com/mughalfrazk/next-ipro-fix/commit/e10969e90d1d2c41124f6f5aa566bbfc2e77a5d7))
+* sending brand attached with models ([7ded1c4](https://github.com/mughalfrazk/next-ipro-fix/commit/7ded1c4db10f80d851bf08c534c6e8245c49027f))
+* single field for charges in the purchased adding the amount in the total of purchase ([c934bb5](https://github.com/mughalfrazk/next-ipro-fix/commit/c934bb55961b9543bb75b3fe1a1eb351f82a6cec))
+
 ## [1.1.0](https://github.com/mughalfrazk/next-ipro-fix/compare/v1.0.0...v1.1.0) (2025-01-27)
 
 
