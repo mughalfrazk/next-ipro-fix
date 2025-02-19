@@ -46,7 +46,7 @@ const createJobAction = async (_: ActionResult, formData: FormData) => {
   const validatedPayload = await CreateJobPayloadSchema.safeParseAsync(payload);
   if (!validatedPayload.success) {
     showErrorNotification("Validation errors");
-    console.log(getFormattedError(validatedPayload?.error))
+    console.log(getFormattedError(validatedPayload?.error));
     return getFormattedError(validatedPayload?.error);
   }
 
@@ -99,8 +99,8 @@ const updateJobAction = async (_: ActionResult, formData: FormData) => {
   }
 
   if (!payload.id) {
-    showErrorNotification("Invalid job id selected.")
-    return {}
+    showErrorNotification("Invalid job id selected.");
+    return {};
   }
 
   try {

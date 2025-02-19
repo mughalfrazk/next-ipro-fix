@@ -46,4 +46,12 @@ const rejectJobApi = async (job_id: string) => {
   return result;
 };
 
-export { createJobApi, updateJobApi, updateJobOptionalApi, assignStaffToJobApi, getJobListApi, getJobDetailApi, rejectJobApi };
+export {
+  createJobApi,
+  updateJobApi,
+  updateJobOptionalApi,
+  assignStaffToJobApi,
+  getJobListApi,
+  getJobDetailApi,
+  rejectJobApi
+};

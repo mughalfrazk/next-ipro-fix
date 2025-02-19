@@ -158,22 +158,22 @@ export const mapJobToInvoice = (job: JobModel): InvoiceModel => {
     ],
     purchases: !!job?.purchases?.length
       ? [
-        ...job?.purchases.map((item, idx) => ({
-          id: `${idx}`,
-          item_type: "",
-          charges: item.charges,
-          quantity: item.quantity,
-          total: item.total,
-          model: {
-            id: item?.model?.id,
-            name: item?.model?.name ?? ""
-          },
-          part: {
-            id: item?.part?.id,
-            name: item.part?.name ?? ""
-          }
-        }))
-      ]
+          ...job?.purchases.map((item, idx) => ({
+            id: `${idx}`,
+            item_type: "",
+            charges: item.charges,
+            quantity: item.quantity,
+            total: item.total,
+            model: {
+              id: item?.model?.id,
+              name: item?.model?.name ?? ""
+            },
+            part: {
+              id: item?.part?.id,
+              name: item.part?.name ?? ""
+            }
+          }))
+        ]
       : []
   };
 
@@ -236,5 +236,5 @@ export const getYesterdayDate = (dateOnly = false): Date => {
 export const getRoleNiceName = (user: ProfileModel) => {
   return user.role.name === RoleTypes.TECHNICIAN && user?.speciality
     ? `${titleCase(user.role.name)}-${user?.speciality?.name?.split("-")?.[0]?.toUpperCase()}`
-    : titleCase(user.role.name)
-}
+    : titleCase(user.role.name);
+};

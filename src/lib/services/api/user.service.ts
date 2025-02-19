@@ -37,12 +37,17 @@ const getUserListByRoleApi = async (problem_type: ProblemTypeModel) => {
 
   const remappedUser: UserByRoleType = [];
 
-  const filteredRoles = [RoleTypes.SUPER_ADMIN, RoleTypes.ADMIN, RoleTypes.ACCOUNTANT]
+  const filteredRoles = [RoleTypes.SUPER_ADMIN, RoleTypes.ADMIN, RoleTypes.ACCOUNTANT];
 
   for (let i = 0; i < users.length; i++) {
     let newEntry = true;
-    if (filteredRoles.includes(users[i].role.name)) { continue; }
-    if (users[i].role.name === RoleTypes.TECHNICIAN && users[i]?.speciality?.id !== problem_type.id) {
+    if (filteredRoles.includes(users[i].role.name)) {
+      continue;
+    }
+    if (
+      users[i].role.name === RoleTypes.TECHNICIAN &&
+      users[i]?.speciality?.id !== problem_type.id
+    ) {
       continue;
     }
 
@@ -72,7 +77,6 @@ const getUserListByRoleApi = async (problem_type: ProblemTypeModel) => {
         ]
       });
     }
-
   }
 
   return remappedUser;
