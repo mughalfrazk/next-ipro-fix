@@ -1,10 +1,10 @@
+import { getJobHistoryListApi } from "@/lib/services/api/job.service";
 import JobHistoryList from "@/components/job/job-history/JobHistoryList";
-import { getJobListApi } from "@/lib/services/api/job.service";
 
 const JobsHistoryPage = async () => {
-  const result = await getJobListApi();
+  const result = await getJobHistoryListApi();
 
-  return <JobHistoryList jobs={result} />;
+  return <JobHistoryList jobs={result.reverse()} />;
 };
 
 export default JobsHistoryPage;

@@ -31,6 +31,11 @@ const assignStaffToJobApi = async (job_id: string, staff_id: string) => {
   return result;
 };
 
+const getJobHistoryListApi = async () => {
+  const result = await getAuthApiClient().get("job/history");
+  return JobListDataParser(result.data);
+}
+
 const getJobListApi = async () => {
   const result = await getAuthApiClient().get("job");
   return JobListDataParser(result.data);
@@ -53,5 +58,6 @@ export {
   assignStaffToJobApi,
   getJobListApi,
   getJobDetailApi,
-  rejectJobApi
+  rejectJobApi,
+  getJobHistoryListApi
 };

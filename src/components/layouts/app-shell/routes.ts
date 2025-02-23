@@ -90,7 +90,7 @@ const routes: NavLinkRoute[] = [
         href: "/dashboard/job/job-history",
         label: "Your Completed Jobs",
         icon: IconFocus,
-        role: ["super_admin", "admin"]
+        role: ["super_admin", "admin", "technician"]
       }
     ]
   },
