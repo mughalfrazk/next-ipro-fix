@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { IconAlertSquareRoundedFilled, IconMessageFilled } from "@tabler/icons-react";
 import { Avatar, Group, Indicator, Menu, Stack, Text } from "@mantine/core";
 

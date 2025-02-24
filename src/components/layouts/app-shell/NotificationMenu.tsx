@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Divider, Group, Indicator, Menu, Stack, Text } from "@mantine/core";
+import { Divider, Group, Indicator, Menu, Text } from "@mantine/core";
 import { IconBellRinging2Filled, IconInbox } from "@tabler/icons-react";
 
 import IproButton from "@/components/core/IproButton";
