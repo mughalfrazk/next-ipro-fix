@@ -5,7 +5,7 @@ type IproModalProps = {
   moveFormard?: () => void;
   close?: () => void;
   confirmButtonText?: string;
-  confirmButtonLoading?: boolean
+  confirmButtonLoading?: boolean;
 } & ModalProps;
 
 const IproModal = ({
@@ -17,7 +17,14 @@ const IproModal = ({
   ...otherProps
 }: IproModalProps) => {
   return (
-    <Modal title={<Text fw="bold" size="lg">{title}</Text>} {...otherProps}>
+    <Modal
+      title={
+        <Text fw="bold" size="lg">
+          {title}
+        </Text>
+      }
+      {...otherProps}
+    >
       {children}
       <Group
         mt="10"
@@ -29,7 +36,10 @@ const IproModal = ({
         <IproButton onClick={otherProps.onClose} variant="outline">
           Cancel
         </IproButton>
-        <IproButton onClick={!!moveFormard ? moveFormard : otherProps.onClose} loading={!!confirmButtonLoading}>
+        <IproButton
+          onClick={!!moveFormard ? moveFormard : otherProps.onClose}
+          loading={!!confirmButtonLoading}
+        >
           {confirmButtonText}
         </IproButton>
       </Group>
