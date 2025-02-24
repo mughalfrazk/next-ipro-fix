@@ -49,6 +49,13 @@ const JobDetailTab = ({ job }: { job?: JobModel }) => {
     return true;
   };
 
+  const isJobBeyondProgress = (): boolean => {
+    if (job?.job_status.name === JobStatusTypes.DEVICE_RECEIVED) return false;
+    if (job?.job_status.name === JobStatusTypes.IN_PROGRESS) return false;
+    if (!job?.technician) return false;
+    return true;
+  };
+
   return (
     <form action={formAction}>
       <Stack gap={0}>
@@ -56,11 +63,12 @@ const JobDetailTab = ({ job }: { job?: JobModel }) => {
         <Grid>
           {!!job && <IproTextInput name="id" defaultValue={job.id} display={"none"} />}
           {!!job && <ActionBar job={job} />}
-          <GridCol span={{ md: !!job ? 9 : 12, sm: 12 }}>
+          <GridCol span={{ md: isJobBeyondProgress() ? 6 : !!job ? 9 : 12, sm: 12 }}>
             <CustomerDetail
               job={job}
               customer={job?.customer}
               getFieldErrorProps={getFieldErrorProps}
+              isJobBeyondProgress={isJobBeyondProgress}
             />
           </GridCol>
           {!!job && (
@@ -95,6 +103,46 @@ const JobDetailTab = ({ job }: { job?: JobModel }) => {
                         size={"0.7rem"}
                         lts={0.6}
                       >{`${job.staff?.role.name.toUpperCase()}`}</Text>
+                    </Group>
+                  </Stack>
+                </Group>
+              </Card>
+            </GridCol>
+          )}
+          {!!job?.technician && (
+            <GridCol span={3}>
+              <Card>
+                <Heading
+                  title="Job Technician"
+                  description="The technician who completed the job."
+                />
+                <Divider mt={10} mb={20} />
+                <Group gap={20} py={5.4} px={12}>
+                  <Avatar
+                    size="lg"
+                    color="initials"
+                    alt={`${job.technician?.first_name} ${job.technician?.last_name}`}
+                    name={`${job.technician?.first_name} ${job.technician?.last_name}`}
+                  ></Avatar>
+                  <Stack gap={0}>
+                    <Title
+                      order={4}
+                    >{`${job.technician?.first_name} ${job.technician?.last_name}`}</Title>
+                    <Group gap={0} ms={-8} align="center">
+                      <ThemeIcon
+                        variant="outline"
+                        color={colorForUserRole(job.technician?.role?.name)}
+                        style={{ border: 0, padding: 0 }}
+                        size="md"
+                      >
+                        <IconInnerShadowBottomRightFilled
+                          style={{ width: rem(16), height: rem(16) }}
+                        />
+                      </ThemeIcon>
+                      <Text
+                        size={"0.7rem"}
+                        lts={0.6}
+                      >{`${job.technician?.role.name.toUpperCase()}`}</Text>
                     </Group>
                   </Stack>
                 </Group>
