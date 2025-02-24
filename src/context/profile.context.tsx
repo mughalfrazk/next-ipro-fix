@@ -2,7 +2,7 @@
 
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
-import { ProfileModel } from "@/lib/models/user.model";
+import { ProfileWithNotificationsModel } from "@/lib/models/user.model";
 import { getProfileApi } from "@/lib/services/api/user.service";
 import { getFormattedError } from "@/utils/format-error";
 import { logoutAction } from "@/lib/actions/auth.action";
@@ -36,25 +36,29 @@ const defaultProfileValues = {
     created_at: "",
     updated_at: "",
     deleted_at: null
-  }
+  },
+  user_notifications: []
 };
 
 type ProfileContextType = {
   loading: boolean;
-  data: ProfileModel;
+  data: ProfileWithNotificationsModel;
+  updateProfile: () => void;
 };
 
 const ProfileContext = createContext<ProfileContextType>({
   loading: false,
-  data: defaultProfileValues
+  data: defaultProfileValues,
+  updateProfile: () => {}
 });
 
 const ProfileProvider = ({ children }: { children: ReactNode }) => {
   const z = useZIndex();
-  const [profile, setProfile] = useState<ProfileModel>(defaultProfileValues);
+  const [profile, setProfile] = useState<ProfileWithNotificationsModel>(defaultProfileValues);
   const [loading, setLoading] = useState<boolean>(true);
 
   const getUserProfile = async () => {
+    setLoading(true);
     try {
       const profile = await getProfileApi();
       setProfile(profile);
@@ -71,9 +75,9 @@ const ProfileProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if (!profile.id) getUserProfile();
   }, [profile]);
-  loading;
+
   return (
-    <ProfileContext.Provider value={{ loading, data: profile }}>
+    <ProfileContext.Provider value={{ loading, data: profile, updateProfile: getUserProfile }}>
       <Box pos="relative">
         <LoadingOverlay
           visible={loading}

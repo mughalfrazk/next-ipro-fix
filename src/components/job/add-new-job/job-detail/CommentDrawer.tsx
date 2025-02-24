@@ -1,17 +1,25 @@
 "use client";
 
+import { useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { Box, Center, Drawer, rem, Text } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
 import { IconMessageDots } from "@tabler/icons-react";
+import { useDisclosure } from "@mantine/hooks";
 
-import { useZIndex } from "@/hooks/use-z-index";
-import { JobModel } from "@/lib/models/job.model";
 import IproButton from "@/components/core/IproButton";
 import CommentDrawerBody from "./CommentDrawerBody";
+import { JobModel } from "@/lib/models/job.model";
+import { useZIndex } from "@/hooks/use-z-index";
 
 const CommentDrawer = ({ job }: { job: JobModel }) => {
   const z = useZIndex();
+  const queryParams = useSearchParams();
   const [opened, { open, close }] = useDisclosure();
+
+  useEffect(() => {
+    const tab = queryParams.get("tab");
+    if (tab === "comment") open();
+  }, []);
 
   return (
     <Box pos="relative">
