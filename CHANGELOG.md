@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.3.0](https://github.com/mughalfrazk/next-ipro-fix/compare/v1.2.0...v1.3.0) (2025-02-24)
+
+
+### Features
+
+* apply job list history api ([9ca9a85](https://github.com/mughalfrazk/next-ipro-fix/commit/9ca9a85e684dfbed22e890d856cc894461a45668))
+* job history list created ran the format as well ([8fd7c68](https://github.com/mughalfrazk/next-ipro-fix/commit/8fd7c688340cefb7e29a0afe9c3a2e506ec44159))
+* **notifications:** user notifications ([d377341](https://github.com/mughalfrazk/next-ipro-fix/commit/d377341ce0c9e60bc4b76221fbfd9a0cfef312a5))
+
 ## [1.2.0](https://github.com/mughalfrazk/next-ipro-fix/compare/v1.1.0...v1.2.0) (2025-02-17)
 
 
