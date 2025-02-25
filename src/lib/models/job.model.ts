@@ -74,10 +74,11 @@ export const UpdateJobOptionalPayloadSchema = z.object({
   id: z.string({ message: "Job id is required" }).nullish(),
   problem_type_id: z
     .string({ message: "Problem Type is required" })
-    .min(1, "Problem Type is required").nullish(),
+    .min(1, "Problem Type is required")
+    .nullish(),
   job_status_id: z.number().min(1, "Job Status is required").nullish(),
   technician_id: z.string({ message: "Problem Type is required" }).nullish(),
-  staff_id: z.string({ message: "Problem Type is required" }).nullish(),
+  staff_id: z.string({ message: "Problem Type is required" }).nullish()
 });
 
 export const JobSchema = z.object({
@@ -99,6 +100,6 @@ export const JobListSchema = z.array(JobSchema);
 
 export type CreateJobPayloadModel = z.infer<typeof CreateJobPayloadSchema>;
 export type UpdateJobPayloadModel = z.infer<typeof UpdateJobPayloadSchema>;
-export type UpdateJobOptionalPayloadModal = z.infer<typeof UpdateJobOptionalPayloadSchema>
+export type UpdateJobOptionalPayloadModal = z.infer<typeof UpdateJobOptionalPayloadSchema>;
 export type JobModel = z.infer<typeof JobSchema>;
 export type JobListModel = z.infer<typeof JobListSchema>;

@@ -51,6 +51,7 @@ export const JobColumns = [
   },
   {
     accessor: "status",
+    textAlign: "center",
     render: (row: JobModel) => {
       return (
         <Badge

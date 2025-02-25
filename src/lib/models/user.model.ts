@@ -2,6 +2,7 @@ import { z } from "zod";
 import { CompanySchema } from "./company.model";
 import { RoleSchema } from "./role.model";
 import { ProblemTypeSchema } from "./problem-type.model";
+import { UserNotificationListSchema } from "./user-notification.model";
 
 export const UserSchema = z.object({
   id: z.string(),
@@ -33,6 +34,10 @@ export const ProfileSchema = UserSchema.extend({
   company: CompanySchema.nullish()
 });
 
+export const ProfileWithNotificationsSchema = ProfileSchema.extend({
+  user_notifications: UserNotificationListSchema
+})
+
 export const ProfileListSchema = z.array(ProfileSchema);
 
 export type UserByRoleType = {
@@ -59,8 +64,9 @@ export const UpdateUserTechPayloadSchema = UpdateUserPayloadSchema.extend({
 });
 
 export type ProfileModel = z.infer<typeof ProfileSchema>;
-export type UserModel = z.infer<typeof UserSchema>;
 export type ProfileListModel = z.infer<typeof ProfileListSchema>;
+export type ProfileWithNotificationsModel = z.infer<typeof ProfileWithNotificationsSchema>
+export type UserModel = z.infer<typeof UserSchema>;
 export type UserListModel = z.infer<typeof UserListSchema>;
 
 export type UserWithRoleModel = z.infer<typeof UserWithRoleSchema>;

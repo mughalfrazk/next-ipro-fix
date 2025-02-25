@@ -3,11 +3,12 @@
 import { IconMoon, IconSun } from "@tabler/icons-react";
 import { Burger, Group } from "@mantine/core";
 
+import { useProfileContext } from "@/context/profile.context";
 import { useMantineColorScheme } from "@/hooks/use-mantine-color-scheme-wrapper";
 import IproButton from "@/components/core/IproButton";
-import AvatarMenu from "./AvatarMenu";
 import RoleBadge from "@/components/common/RoleBadge";
-import { useProfileContext } from "@/context/profile.context";
+import NotificationMenu from "./NotificationMenu";
+import AvatarMenu from "./AvatarMenu";
 
 type HeaderProps = {
   opened: boolean;
@@ -24,6 +25,7 @@ const Header = ({ opened, toggle: AppshellToggle }: HeaderProps) => {
       <h2>Logo</h2>
       <Group gap={10}>
         <RoleBadge user={data} />
+        <NotificationMenu />
         <IproButton variant="light" radius="xl" isIconOnly onClick={toggleColorScheme}>
           {colorScheme === "dark" ? (
             <IconSun color="var(--mantine-color-primary-0)" />

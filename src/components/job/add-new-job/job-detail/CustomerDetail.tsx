@@ -1,7 +1,17 @@
 "use client";
 
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { Badge, Card, ComboboxData, Divider, Grid, GridCol, Group } from "@mantine/core";
+import {
+  Badge,
+  Card,
+  ComboboxData,
+  Divider,
+  Grid,
+  GridCol,
+  Group,
+  Stack,
+  Text
+} from "@mantine/core";
 
 import Heading from "@/components/common/Heading";
 import IproSelect from "@/components/core/IproSelect";
@@ -14,9 +24,15 @@ import { JobModel } from "@/lib/models/job.model";
 type CustomerDetailProps = {
   job?: JobModel;
   customer?: CustomerModel;
+  isJobBeyondProgress?: () => boolean;
 } & FieldErrorPropsType;
 
-const CustomerDetail = ({ job, customer, getFieldErrorProps }: CustomerDetailProps) => {
+const CustomerDetail = ({
+  job,
+  customer,
+  getFieldErrorProps,
+  isJobBeyondProgress
+}: CustomerDetailProps) => {
   const [customers, setCustomers] = useState<CustomerListModel>([]);
   const [nameOptionsList, setNameOptionsList] = useState<ComboboxData>([]);
   const [phoneOptionsList, setPhoneOptionsList] = useState<ComboboxData>([]);
@@ -105,45 +121,72 @@ const CustomerDetail = ({ job, customer, getFieldErrorProps }: CustomerDetailPro
 
       <Grid>
         <GridCol span={4}>
-          <IproSelect
-            componentType="tags"
-            name="customer_name"
-            label="Customer Name"
-            maxTags={1}
-            value={name as string & string[]}
-            data={nameOptionsList}
-            searchValue={nameSearch}
-            onOptionSubmit={onNameChange}
-            onSearchChange={onNameSearchHandler}
-            onRemove={(value: string) => onTagRemoveHandler(value, setName)}
-            maxDropdownHeight={200}
-            readOnly={!!customer?.id}
-          />
+          {isJobBeyondProgress?.() ? (
+            <Stack gap={5} my={8}>
+              <Text size="sm" fw="bold">
+                Name:
+              </Text>
+              <Text>{job?.customer.name}</Text>
+            </Stack>
+          ) : (
+            <IproSelect
+              componentType="tags"
+              name="customer_name"
+              label="Customer Name"
+              maxTags={1}
+              value={name as string & string[]}
+              data={nameOptionsList}
+              searchValue={nameSearch}
+              onOptionSubmit={onNameChange}
+              onSearchChange={onNameSearchHandler}
+              onRemove={(value: string) => onTagRemoveHandler(value, setName)}
+              maxDropdownHeight={200}
+              readOnly={!!customer?.id}
+            />
+          )}
         </GridCol>
         <GridCol span={4}>
-          <IproSelect
-            componentType="tags"
-            name="customer_phone"
-            label="Mobile Number"
-            maxTags={1}
-            value={phone as string & string[]}
-            data={phoneOptionsList}
-            searchValue={phoneSearch}
-            onOptionSubmit={onPhoneChange}
-            onSearchChange={onPhoneSearchHandler}
-            onRemove={(value: string) => onTagRemoveHandler(value, setPhone)}
-            maxDropdownHeight={200}
-            readOnly={!!customer?.id}
-          />
+          {isJobBeyondProgress?.() ? (
+            <Stack gap={5} my={8}>
+              <Text size="sm" fw="bold">
+                Phone:
+              </Text>
+              <Text>{job?.customer.phone}</Text>
+            </Stack>
+          ) : (
+            <IproSelect
+              componentType="tags"
+              name="customer_phone"
+              label="Mobile Number"
+              maxTags={1}
+              value={phone as string & string[]}
+              data={phoneOptionsList}
+              searchValue={phoneSearch}
+              onOptionSubmit={onPhoneChange}
+              onSearchChange={onPhoneSearchHandler}
+              onRemove={(value: string) => onTagRemoveHandler(value, setPhone)}
+              maxDropdownHeight={200}
+              readOnly={!!customer?.id}
+            />
+          )}
         </GridCol>
         <GridCol span={4}>
-          <IproTextInput
-            name="customer_company_name"
-            label="Company Name"
-            value={company}
-            readOnly={!!customerId}
-            onChange={(e) => setCompany(e.currentTarget.value)}
-          />
+          {isJobBeyondProgress?.() ? (
+            <Stack gap={5} my={8}>
+              <Text size="sm" fw="bold">
+                Company name:
+              </Text>
+              <Text>{job?.customer.company_name}</Text>
+            </Stack>
+          ) : (
+            <IproTextInput
+              name="customer_company_name"
+              label="Company Name"
+              value={company}
+              readOnly={!!customerId}
+              onChange={(e) => setCompany(e.currentTarget.value)}
+            />
+          )}
         </GridCol>
         <IproTextInput
           name="customer_id"

@@ -6,7 +6,10 @@ const AvatarMenu = () => {
   return (
     <Menu shadow="md" width={200}>
       <Menu.Target>
-        <Avatar src="https://cdn-icons-png.flaticon.com/512/147/147131.png" />
+        <Avatar
+          style={{ cursor: "pointer" }}
+          src="https://cdn-icons-png.flaticon.com/512/147/147131.png"
+        />
       </Menu.Target>
 
       <Menu.Dropdown>

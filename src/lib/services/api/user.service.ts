@@ -2,23 +2,25 @@ import { RegisterFormWithSpecialityModel } from "@/lib/models/auth.model";
 import { ProblemTypeModel } from "@/lib/models/problem-type.model";
 import {
   ProfileSchema,
-  ProfileListSchema,
   UserByRoleType,
   UserListSchema,
-  UpdateUserTechPayloadModel
+  ProfileListSchema,
+  UpdateUserTechPayloadModel,
+  ProfileWithNotificationsSchema
 } from "@/lib/models/user.model";
 import { RoleTypes } from "@/types/roles.types";
 import { getAuthApiClient } from "@/utils/api-client";
 import { getRoleNiceName } from "@/utils/functions";
 import { parseFactory } from "@/utils/parse-factory";
 
+const ProfileWithNotificationsDataParser = parseFactory(ProfileWithNotificationsSchema, "ProfileWithNotificationsDataParser");
 const ProfileDataParser = parseFactory(ProfileSchema, "ProfileDataParser");
 const ProfileListDataParser = parseFactory(ProfileListSchema, "ProfileListDataParser");
 const UserListDataParser = parseFactory(UserListSchema, "UserListDataParser");
 
 const getProfileApi = async () => {
   const result = await getAuthApiClient().get("auth/profile");
-  return ProfileDataParser(result.data);
+  return ProfileWithNotificationsDataParser(result.data);
 };
 
 const getTechniciansApi = async () => {
@@ -37,12 +39,17 @@ const getUserListByRoleApi = async (problem_type: ProblemTypeModel) => {
 
   const remappedUser: UserByRoleType = [];
 
-  const filteredRoles = [RoleTypes.SUPER_ADMIN, RoleTypes.ADMIN, RoleTypes.ACCOUNTANT]
+  const filteredRoles = [RoleTypes.SUPER_ADMIN, RoleTypes.ADMIN, RoleTypes.ACCOUNTANT];
 
   for (let i = 0; i < users.length; i++) {
     let newEntry = true;
-    if (filteredRoles.includes(users[i].role.name)) { continue; }
-    if (users[i].role.name === RoleTypes.TECHNICIAN && users[i]?.speciality?.id !== problem_type.id) {
+    if (filteredRoles.includes(users[i].role.name)) {
+      continue;
+    }
+    if (
+      users[i].role.name === RoleTypes.TECHNICIAN &&
+      users[i]?.speciality?.id !== problem_type.id
+    ) {
       continue;
     }
 
@@ -72,7 +79,6 @@ const getUserListByRoleApi = async (problem_type: ProblemTypeModel) => {
         ]
       });
     }
-
   }
 
   return remappedUser;
