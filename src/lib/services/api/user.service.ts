@@ -99,6 +99,11 @@ const updateUserApi = async (id: string, payload: UpdateUserTechPayloadModel) =>
   return result;
 };
 
+const updatePasswordApi = async (id: string, password: string) => {
+  const result = await getAuthApiClient().patch(`auth/update-password/${id}`, { password });
+  return result;
+};
+
 export {
   getProfileApi,
   getTechniciansApi,
@@ -106,5 +111,6 @@ export {
   getUserListApi,
   getUserDetailApi,
   createUserApi,
-  updateUserApi
+  updateUserApi,
+  updatePasswordApi
 };
