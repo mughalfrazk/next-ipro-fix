@@ -56,7 +56,12 @@ const CreateOrUpdateUser = ({ user }: { user?: ProfileModel }) => {
 
   return (
     <Fragment>
-      <ChangePasswordModel title="Set new password" userId={user?.id} opened={openedPasswordDialog} onClose={closePasswordDialog} />
+      <ChangePasswordModel
+        title="Set new password"
+        userId={user?.id}
+        opened={openedPasswordDialog}
+        onClose={closePasswordDialog}
+      />
       <form action={formAction}>
         <Stack gap={0}>
           <Grid>
@@ -217,7 +222,9 @@ const CreateOrUpdateUser = ({ user }: { user?: ProfileModel }) => {
                 </Grid>
                 <Group justify="flex-end" mt={20}>
                   <IproButton variant="outline">Cancal</IproButton>
-                  <IproButton variant="filled" onClick={openPasswordDialog}>Change Password</IproButton>
+                  <IproButton variant="filled" onClick={openPasswordDialog}>
+                    Change Password
+                  </IproButton>
                   <IproButton isSubmit={true}>{user ? "Update" : "Save"} User</IproButton>
                 </Group>
               </Card>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import IproTextInput from "../core/IproTextInput";
 import IproModal from "../core/IproModal";
 import { updatePasswordApi } from "@/lib/services/api/user.service";

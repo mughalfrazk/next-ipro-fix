@@ -24,7 +24,7 @@ export const ActionSchema = z.object({
   created_at: z.string(),
   updated_at: z.string(),
   deleted_at: z.string().nullish()
-})
+});
 
 export const NotificationSchema = z.object({
   id: z.number(),
@@ -35,8 +35,8 @@ export const NotificationSchema = z.object({
   description: z.string(),
   created_at: z.string(),
   updated_at: z.string(),
-  deleted_at: z.string().nullish(),
-})
+  deleted_at: z.string().nullish()
+});
 
 export const UserNotificationSchema = z.object({
   id: z.number(),

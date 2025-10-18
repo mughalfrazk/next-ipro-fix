@@ -36,7 +36,7 @@ export const ProfileSchema = UserSchema.extend({
 
 export const ProfileWithNotificationsSchema = ProfileSchema.extend({
   user_notifications: UserNotificationListSchema
-})
+});
 
 export const ProfileListSchema = z.array(ProfileSchema);
 
@@ -65,7 +65,7 @@ export const UpdateUserTechPayloadSchema = UpdateUserPayloadSchema.extend({
 
 export type ProfileModel = z.infer<typeof ProfileSchema>;
 export type ProfileListModel = z.infer<typeof ProfileListSchema>;
-export type ProfileWithNotificationsModel = z.infer<typeof ProfileWithNotificationsSchema>
+export type ProfileWithNotificationsModel = z.infer<typeof ProfileWithNotificationsSchema>;
 export type UserModel = z.infer<typeof UserSchema>;
 export type UserListModel = z.infer<typeof UserListSchema>;
 

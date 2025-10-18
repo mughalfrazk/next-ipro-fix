@@ -13,7 +13,10 @@ import { getAuthApiClient } from "@/utils/api-client";
 import { getRoleNiceName } from "@/utils/functions";
 import { parseFactory } from "@/utils/parse-factory";
 
-const ProfileWithNotificationsDataParser = parseFactory(ProfileWithNotificationsSchema, "ProfileWithNotificationsDataParser");
+const ProfileWithNotificationsDataParser = parseFactory(
+  ProfileWithNotificationsSchema,
+  "ProfileWithNotificationsDataParser"
+);
 const ProfileDataParser = parseFactory(ProfileSchema, "ProfileDataParser");
 const ProfileListDataParser = parseFactory(ProfileListSchema, "ProfileListDataParser");
 const UserListDataParser = parseFactory(UserListSchema, "UserListDataParser");
@@ -68,7 +71,10 @@ const getUserListByRoleApi = async (problem_type: ProblemTypeModel) => {
 
     if (newEntry) {
       remappedUser.push({
-        id: users[i].role.name === RoleTypes.TECHNICIAN ? (users[i]?.speciality?.id ?? users[i].role.id) : users[i].role.id,
+        id:
+          users[i].role.name === RoleTypes.TECHNICIAN
+            ? (users[i]?.speciality?.id ?? users[i].role.id)
+            : users[i].role.id,
         name: getRoleNiceName(users[i]).toUpperCase(),
         user: [
           {
