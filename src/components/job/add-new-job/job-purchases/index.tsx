@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Card, Center, Divider, Grid, GridCol, Group, rem, Stack, Text } from "@mantine/core";
 import { IconBoxOff, IconSquareRoundedPlusFilled } from "@tabler/icons-react";
 
@@ -15,14 +15,18 @@ import { JobModel } from "@/lib/models/job.model";
 import { JobStatusTypes } from "@/types/job_status.types";
 import { useProfileContext } from "@/context/profile.context";
 import { RoleTypes } from "@/types/roles.types";
+import { removePurchaseApi } from "@/lib/services/api/purchase.service";
+import { getFormattedError } from "@/utils/format-error";
+import { showErrorNotification, showNotification } from "@/utils/functions";
 
-type PurchaseFormType = {
+export type PurchaseFormType = {
   supplier_id: string;
   model_id: number;
   part_id: number;
   quantity: number;
   charges: number;
   total: number;
+  id?: string;
 };
 
 const defaultPurchase: PurchaseFormType = {
@@ -31,7 +35,8 @@ const defaultPurchase: PurchaseFormType = {
   part_id: 0,
   quantity: 0,
   charges: 0,
-  total: 0
+  total: 0,
+  id: "new"
 };
 
 const JobPurchasesTab = ({
@@ -46,18 +51,33 @@ const JobPurchasesTab = ({
   } = useProfileContext();
   const { formAction } = useFormAction(createJobPurchaseAction, {});
   const [purchases, setPurchases] = useState<PurchaseFormType[]>([]);
+  const [newPurchases, setNewPurchases] = useState<PurchaseFormType[]>([]);
 
+  const removePurchaseFromJob = async (purchase: PurchaseFormType, index: number) => {
+    if (!purchase.id) return;
+    try {
+      await removePurchaseApi(job.id, purchase?.id);
+      setPurchases(purchases.filter((_, j) => j !== index));
+      showNotification("Purchase deleted");
+    } catch (e) {
+      const error = getFormattedError(e);
+      showErrorNotification(error?.errors?.formErrors?.[0]);
+    }
+  };
   useEffect(() => {
     if (purchasesData.length) {
       setPurchases([
-        ...purchasesData.map(({ supplier_id, model_id, part_id, quantity, charges, total }) => ({
-          supplier_id,
-          model_id,
-          part_id,
-          quantity,
-          charges,
-          total
-        }))
+        ...purchasesData.map(
+          ({ id, supplier_id, model_id, part_id, quantity, charges, total }) => ({
+            id,
+            supplier_id,
+            model_id,
+            part_id,
+            quantity,
+            charges,
+            total
+          })
+        )
       ]);
     }
   }, [purchasesData]);
@@ -67,7 +87,7 @@ const JobPurchasesTab = ({
     if (job.job_status.name === JobStatusTypes.JOB_DONE) return false;
     if (job.job_status.name === JobStatusTypes.DELIVERED) return false;
     if (job.job_status.name === JobStatusTypes.JOB_LOST) return false;
-    if (purchasesData.length) return false;
+
     return true;
   };
 
@@ -82,14 +102,26 @@ const JobPurchasesTab = ({
         <IproTextInput name="job_id" defaultValue={job.id} style={{ display: "none" }} />
         <Grid>
           {!!purchases.length ? (
-            purchases.map((item, idx) => (
-              <PurchaseFormItem
-                key={idx}
-                idx={idx}
-                purchase={item}
-                removePurchase={() => setPurchases(purchases.filter((_, j) => j !== idx))}
-              />
-            ))
+            <Fragment>
+              {purchases.map((item, idx) => (
+                <PurchaseFormItem
+                  key={idx}
+                  idx={idx}
+                  purchase={item}
+                  totalPurchases={purchases.length}
+                  removePurchase={() => removePurchaseFromJob(item, idx)}
+                />
+              ))}
+              {newPurchases.map((item, idx) => (
+                <PurchaseFormItem
+                  key={purchases.length + idx}
+                  idx={purchases.length + idx}
+                  purchase={item}
+                  totalPurchases={purchases.length}
+                  removePurchase={() => setNewPurchases(newPurchases.filter((_, j) => j !== idx))}
+                />
+              ))}
+            </Fragment>
           ) : (
             <Center opacity={0.3} w="100%" my={30}>
               <IconBoxOff style={{ width: rem(40), height: rem(40) }} />
@@ -100,7 +132,7 @@ const JobPurchasesTab = ({
               </Stack>
             </Center>
           )}
-          {!purchasesData.length && isPermitted() && (
+          {isPermitted() && !newPurchases.length && (
             <GridCol span={12}>
               <Group
                 justify="center"
@@ -113,7 +145,7 @@ const JobPurchasesTab = ({
                   borderRadius: "var(--mantine-radius-default)",
                   cursor: "pointer"
                 }}
-                onClick={() => setPurchases([...purchases, defaultPurchase])}
+                onClick={() => setNewPurchases((prev) => [...prev, defaultPurchase])}
               >
                 <IconSquareRoundedPlusFilled /> Add new purchase in the job
               </Group>
@@ -123,7 +155,9 @@ const JobPurchasesTab = ({
         {(!purchasesData.length || purchases) && isPermitted() && (
           <Group justify="flex-end" mt={20}>
             <IproButton variant="outline">Cancal</IproButton>
-            <IproButton isSubmit={true}>Save Purchase</IproButton>
+            <IproButton disabled={newPurchases.length === 0} isSubmit={true}>
+              Add New Purchase
+            </IproButton>
           </Group>
         )}
       </Card>

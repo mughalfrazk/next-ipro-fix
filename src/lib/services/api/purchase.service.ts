@@ -14,4 +14,8 @@ const createJobPurchasesApi = async (payload: CreatePurchasesModel) => {
   return result;
 };
 
-export { createJobPurchasesApi, getPurchasesByJobId };
+const removePurchaseApi = async (job_id: string, purchase_id: string) => {
+  const result = await getAuthApiClient().post(`purchase/${job_id}/remove-purchase/${purchase_id}`)
+}
+
+export { createJobPurchasesApi, getPurchasesByJobId, removePurchaseApi };

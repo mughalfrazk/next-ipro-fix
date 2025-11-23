@@ -64,7 +64,7 @@ const IproButton = ({
   );
 
   if (isSubmit) {
-    return <IproSubmitButton btn={ButtonComponent} />;
+    return <IproSubmitButton btn={(props) => <ButtonComponent {...props} disabled={defaultProps.disabled} />} />;
   }
 
   return <ButtonComponent />;

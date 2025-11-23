@@ -24,6 +24,7 @@ export const CreatePurchasesSchema = z.object({
   job_id: z.string({ message: "Job is required" }).min(1, "Job is required"),
   purchases: z
     .object({
+      id: z.string().min(1, "Valid supplier is required"),
       supplier_id: z.string().min(1, "Valid supplier is required"),
       part_id: z.number().min(1, "Parts is required"),
       model_id: z.number().min(1, "Model is required"),

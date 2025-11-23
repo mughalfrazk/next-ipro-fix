@@ -13,10 +13,12 @@ import { useEffect } from "react";
 const PurchaseFormItem = ({
   idx,
   purchase,
+  totalPurchases,
   removePurchase
 }: {
   idx: number;
   purchase: Partial<PurchaseModel>;
+  totalPurchases: number;
   removePurchase: () => void;
 }) => {
   const { lightDark } = useMantineColorScheme();
@@ -48,6 +50,13 @@ const PurchaseFormItem = ({
     }));
   };
 
+  const isClosable = () => {
+    if (purchase.id === "new") return true;
+
+    if (totalPurchases === 1) return false;
+    return true;
+  };
+
   useEffect(() => setTotal(charges * quantity), [charges, quantity]);
 
   useEffect(() => {
@@ -60,20 +69,22 @@ const PurchaseFormItem = ({
   return (
     <GridCol span={12}>
       <Grid>
-        {idx !== 0 && (
-          <GridCol pt={30} pb={20}>
-            <Group
-              justify="space-between"
-              bg={lightDark("var(--mantine-color-gray-2)", "var(--mantine-color-dark-7)")}
-              px={20}
-              py={10}
-              style={{ borderRadius: "0.5rem" }}
-            >
-              <Title order={5}>Purchase {idx}</Title>
-              <CloseButton onClick={removePurchase} />
-            </Group>
-          </GridCol>
-        )}
+        <GridCol pt={idx === 0 ? 10 : 30} pb={20}>
+          <Group
+            justify="space-between"
+            bg={lightDark("var(--mantine-color-gray-2)", "var(--mantine-color-dark-7)")}
+            px={20}
+            py={10}
+            style={{ borderRadius: "0.5rem" }}
+          >
+            <Title order={5}>
+              Purchase {idx + 1}
+            </Title>
+            {isClosable() && <CloseButton onClick={removePurchase} />}
+          </Group>
+        </GridCol>
+
+        <input name={`purchases[${idx}][id]`} value={purchase.id} type="hidden" />
         <GridCol span={4}>
           <CreateUpdateSelectInput
             label="Supplier Name"

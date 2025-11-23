@@ -7,11 +7,11 @@ export type SubmitButtonProps = {
   disabled?: boolean;
 };
 
-const IproSubmitButton = ({ btn }: { btn: (submitProps: SubmitButtonProps) => ReactNode }) => {
+const IproSubmitButton = ({ btn, disabled }: { btn: (submitProps: SubmitButtonProps) => ReactNode }) => {
   const { pending } = useFormStatus();
   const ButtonComponent = btn;
 
-  return <ButtonComponent type="submit" loading={pending} disabled={pending} />;
+  return <ButtonComponent type="submit" loading={pending} disabled={pending || disabled} />;
 };
 
 export default IproSubmitButton;
