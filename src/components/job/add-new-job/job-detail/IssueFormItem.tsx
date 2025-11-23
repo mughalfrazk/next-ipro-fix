@@ -17,15 +17,19 @@ import { getModelListByBrandIdApi } from "@/lib/services/api/model.service";
 import { IssueModel } from "@/lib/models/issue.model";
 import IproTextInput from "@/components/core/IproTextInput";
 import { useEffect, useState } from "react";
+import { JobModel } from "@/lib/models/job.model";
+import { JobStatusTypes } from "@/types/job_status.types";
 
 const IssueFormItem = ({
   issue,
   idx,
-  removeIssue
+  removeIssue,
+  job
 }: {
   issue: Partial<IssueModel>;
   idx: number;
   removeIssue: () => void;
+  job?: JobModel;
 }) => {
   const { lightDark } = useMantineColorScheme();
   const [quantity, setQuantity] = useInputState<number>(0);
@@ -64,6 +68,17 @@ const IssueFormItem = ({
     }));
   };
 
+  const isIssueDeletable = () => {
+    if (!job?.id) return true
+
+    if (job?.issues?.length === 1) return false
+    else if (job?.job_status.name === JobStatusTypes.DELIVERED) return false;
+    else if (job?.job_status.name === JobStatusTypes.JOB_DONE) return false;
+    else if (job?.job_status.name === JobStatusTypes.JOB_LOST) return false;
+
+    return true;
+  };
+
   useEffect(() => setTotal(charges * quantity), [charges, quantity]);
 
   useEffect(() => {
@@ -82,20 +97,20 @@ const IssueFormItem = ({
   return (
     <GridCol key={idx} span={12}>
       <Grid>
-        {idx !== 0 && (
-          <GridCol pt={30} pb={20}>
-            <Group
-              justify="space-between"
-              bg={lightDark("var(--mantine-color-gray-2)", "var(--mantine-color-dark-7)")}
-              px={20}
-              py={10}
-              style={{ borderRadius: "0.5rem" }}
-            >
-              <Title order={5}>Extra Job {idx}</Title>
-              <CloseButton onClick={removeIssue} />
-            </Group>
-          </GridCol>
-        )}
+        <GridCol pt={idx === 0 ? 10 : 30} pb={20}>
+          <Group
+            justify="space-between"
+            bg={lightDark("var(--mantine-color-gray-2)", "var(--mantine-color-dark-7)")}
+            px={20}
+            py={10}
+            style={{ borderRadius: "0.5rem" }}
+          >
+            <Title order={5}>
+              {idx !== 0 && "Extra"} Job {idx + 1}
+            </Title>
+            {isIssueDeletable() && <CloseButton onClick={removeIssue} />}
+          </Group>
+        </GridCol>
         <GridCol span={4}>
           <CreateUpdateSelectInput
             label="Brand Name"

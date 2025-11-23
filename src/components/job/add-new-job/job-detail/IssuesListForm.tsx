@@ -10,6 +10,9 @@ import { FieldErrorPropsType } from "@/hooks/use-action-errors";
 import { JobModel } from "@/lib/models/job.model";
 import IssueFormItem from "./IssueFormItem";
 import { JobStatusTypes } from "@/types/job_status.types";
+import { getFormattedError } from "@/utils/format-error";
+import { showErrorNotification } from "@/utils/functions";
+import { removeIssueFromJobApi } from "@/lib/services/api/job.service";
 
 type IssuesListFormProps = {
   job?: JobModel;
@@ -32,6 +35,21 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
   const getProblemTypeList = async () => {
     const result = await getProblemTypeListApi();
     setProblemTypes(result);
+  };
+
+  const removeIssueFromJob = async (issue: IssueFormType, index: number) => {
+    if (!job?.id) {
+      setIssues(issues.filter((_, j) => j !== index));
+      return;
+    }
+
+    try {
+      await removeIssueFromJobApi(job.id, issue.id);
+      setIssues(issues.filter((_, j) => j !== index));
+    } catch (e) {
+      const error = getFormattedError(e);
+      showErrorNotification(error?.errors?.formErrors?.[0]);
+    }
   };
 
   useEffect(() => {
@@ -84,7 +102,8 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
           key={idx}
           issue={issue}
           idx={idx}
-          removeIssue={() => setIssues(issues.filter((_, j) => j !== idx))}
+          job={job}
+          removeIssue={() => removeIssueFromJob(issue, idx)}
         />
       ))}
       {isPermitted() && (

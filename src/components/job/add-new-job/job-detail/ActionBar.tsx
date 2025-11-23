@@ -9,7 +9,7 @@ import {
   IconClipboardData,
   IconUserFilled
 } from "@tabler/icons-react";
-import { assignStaffToJobApi, rejectJobApi } from "@/lib/services/api/job.service";
+import { assignStaffToJobApi, deliverJobApi, rejectJobApi } from "@/lib/services/api/job.service";
 import ConfirmationModel from "@/components/common/ConfirmationDialog";
 import { useProfileContext } from "@/context/profile.context";
 import { getFormattedError } from "@/utils/format-error";
@@ -21,6 +21,7 @@ import { RoleTypes } from "@/types/roles.types";
 import { useDisclosure } from "@mantine/hooks";
 import { useRouter } from "next/navigation";
 import StaffSelect from "./StaffSelect";
+import { JobStatusTypes } from "@/types/job_status.types";
 
 const ActionBar = ({ job }: { job: JobModel }) => {
   const router = useRouter();
@@ -29,6 +30,8 @@ const ActionBar = ({ job }: { job: JobModel }) => {
   } = useProfileContext();
 
   const [opened, { open, close }] = useDisclosure(false);
+  const [openedDeliveredModal, { open: openDeliveredModal, close: closeDeliveredModal }] =
+    useDisclosure(false);
   const [openedBarcodeModal, { open: openBarcodeModal, close: closeBarcodeModal }] =
     useDisclosure(false);
   const [openedAssignmentModal, { open: openAssignmentModal, close: closeAssignmentModal }] =
@@ -52,6 +55,42 @@ const ActionBar = ({ job }: { job: JobModel }) => {
     } finally {
       setRejectLoading(false);
     }
+  };
+
+  const deliverJobHandler = async () => {
+    if (!job?.id) return showErrorNotification("Invalid Job");
+
+    setRejectLoading(true);
+    try {
+      await deliverJobApi(job.id);
+      showNotification("Job marked is delivered");
+      close();
+      router.refresh();
+    } catch (error) {
+      showErrorNotification(getFormattedError(error)?.errors?.formErrors?.[0]);
+    } finally {
+      setRejectLoading(false);
+    }
+  };
+
+  const isReadyToDeliver = () => {
+    if (
+      (role.name === RoleTypes.ADMIN || role.name === RoleTypes.RECEPTIONIST) &&
+      job.job_status.name === JobStatusTypes.JOB_DONE
+    ) {
+      return true;
+    }
+
+    return false;
+  };
+
+  const moveForward = () => {
+    if (isReadyToDeliver()) {
+      openDeliveredModal();
+      return;
+    }
+
+    openAssignmentModal();
   };
 
   const assignStaffHandler = async () => {
@@ -82,6 +121,20 @@ const ActionBar = ({ job }: { job: JobModel }) => {
       showErrorNotification(getFormattedError(error)?.errors?.formErrors?.[0]);
     } finally {
       setAssignStaffLoading(false);
+    }
+  };
+
+  const getActionTitle = () => {
+    if (isReadyToDeliver()) {
+      return "Mark as Delivered";
+    } else if (role.name === RoleTypes.TECHNICIAN) {
+      return "Complete job";
+    } else if (role.name !== RoleTypes.STAFF) {
+      return "Assign to Staff";
+    } else if (job.job_status.name === JobStatusTypes.JOB_DONE) {
+      return "Assign to Receptionist";
+    } else {
+      return "Assign to Technician";
     }
   };
 
@@ -125,6 +178,12 @@ const ActionBar = ({ job }: { job: JobModel }) => {
       </IproModal>
       <ConfirmationModel action={rejectJobHandler} disclosure={{ opened, close }}>
         Are you sure you want to reject the job?
+      </ConfirmationModel>
+      <ConfirmationModel
+        action={deliverJobHandler}
+        disclosure={{ opened: openedDeliveredModal, close: closeDeliveredModal }}
+      >
+        Are you sure you want to mark this job as delivered?
       </ConfirmationModel>
       <GridCol span={12}>
         <Card
@@ -177,13 +236,9 @@ const ActionBar = ({ job }: { job: JobModel }) => {
                         <IconUserFilled style={{ width: rem(20), height: rem(20) }} />
                       )
                     }
-                    onClick={openAssignmentModal}
+                    onClick={moveForward}
                   >
-                    {role.name === RoleTypes.TECHNICIAN
-                      ? "Complete job"
-                      : role.name === RoleTypes.STAFF
-                        ? "Assign to Technician"
-                        : "Assign to Staff"}
+                    {getActionTitle()}
                   </IproButton>
                 </>
               )}
