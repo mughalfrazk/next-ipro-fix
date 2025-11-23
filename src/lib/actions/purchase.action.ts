@@ -28,7 +28,7 @@ const createJobPurchaseAction = async (_: ActionResult, formData: FormData) => {
     }))
   };
 
-  payload = { ...payload, purchases: payload.purchases.filter(item => item?.id === 'new') } 
+  payload = { ...payload, purchases: payload.purchases.filter((item) => item?.id === "new") };
 
   const validatedPayload = await CreatePurchasesSchema.safeParseAsync(payload);
   if (!validatedPayload.success) {
@@ -37,7 +37,7 @@ const createJobPurchaseAction = async (_: ActionResult, formData: FormData) => {
     return getFormattedError(validatedPayload?.error);
   }
 
-  console.log(payload)
+  console.log(payload);
 
   try {
     await createJobPurchasesApi(payload);
@@ -51,7 +51,10 @@ const createJobPurchaseAction = async (_: ActionResult, formData: FormData) => {
   }
 };
 
-const createJobPurchaseHandler = async (job_id: string, payload: PurchaseFormType[]): Promise<{ errors?: ActionErrors }> => {
+const createJobPurchaseHandler = async (
+  job_id: string,
+  payload: PurchaseFormType[]
+): Promise<{ errors?: ActionErrors }> => {
   const body: CreatePurchasesModel = {
     job_id,
     purchases: payload.map((item: PurchaseFormType) => ({

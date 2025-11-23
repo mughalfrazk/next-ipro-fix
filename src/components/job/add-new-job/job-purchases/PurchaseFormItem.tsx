@@ -77,9 +77,7 @@ const PurchaseFormItem = ({
             py={10}
             style={{ borderRadius: "0.5rem" }}
           >
-            <Title order={5}>
-              Purchase {idx + 1}
-            </Title>
+            <Title order={5}>Purchase {idx + 1}</Title>
             {isClosable() && <CloseButton onClick={removePurchase} />}
           </Group>
         </GridCol>

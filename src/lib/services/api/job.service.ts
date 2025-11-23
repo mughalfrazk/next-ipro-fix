@@ -47,14 +47,14 @@ const getJobDetailApi = async (job_id: string) => {
 };
 
 const removeIssueFromJobApi = async (job_id: string, issue_id: string) => {
-  const result = await getAuthApiClient().patch(`job/${job_id}/remove-issue/${issue_id}`)
-  return result.data
-}
+  const result = await getAuthApiClient().patch(`job/${job_id}/remove-issue/${issue_id}`);
+  return result.data;
+};
 
 const deliverJobApi = async (job_id: string) => {
   const result = await getAuthApiClient().get(`job/${job_id}/delivered`);
-  return result
-}
+  return result;
+};
 
 const rejectJobApi = async (job_id: string) => {
   const result = await getAuthApiClient().patch(`job/${job_id}/reject`);
@@ -71,5 +71,5 @@ export {
   getJobHistoryListApi,
   removeIssueFromJobApi,
   deliverJobApi,
-  rejectJobApi,
+  rejectJobApi
 };

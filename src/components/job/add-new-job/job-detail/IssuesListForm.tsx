@@ -46,7 +46,7 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
     try {
       await removeIssueFromJobApi(job.id, issue.id);
       setIssues(issues.filter((_, j) => j !== index));
-      showNotification("Issue deleted")
+      showNotification("Issue deleted");
     } catch (e) {
       const error = getFormattedError(e);
       showErrorNotification(error?.errors?.formErrors?.[0]);

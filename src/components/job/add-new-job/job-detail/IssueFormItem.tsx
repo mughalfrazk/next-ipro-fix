@@ -69,9 +69,9 @@ const IssueFormItem = ({
   };
 
   const isIssueDeletable = () => {
-    if (!job?.id) return true
+    if (!job?.id) return true;
 
-    if (job?.issues?.length === 1) return false
+    if (job?.issues?.length === 1) return false;
     else if (job?.job_status.name === JobStatusTypes.DELIVERED) return false;
     else if (job?.job_status.name === JobStatusTypes.JOB_DONE) return false;
     else if (job?.job_status.name === JobStatusTypes.JOB_LOST) return false;
