@@ -11,7 +11,7 @@ import { JobModel } from "@/lib/models/job.model";
 import IssueFormItem from "./IssueFormItem";
 import { JobStatusTypes } from "@/types/job_status.types";
 import { getFormattedError } from "@/utils/format-error";
-import { showErrorNotification } from "@/utils/functions";
+import { showNotification, showErrorNotification } from "@/utils/functions";
 import { removeIssueFromJobApi } from "@/lib/services/api/job.service";
 
 type IssuesListFormProps = {
@@ -46,6 +46,7 @@ const IssuesListForm = ({ job, getFieldErrorProps }: IssuesListFormProps) => {
     try {
       await removeIssueFromJobApi(job.id, issue.id);
       setIssues(issues.filter((_, j) => j !== index));
+      showNotification("Issue deleted")
     } catch (e) {
       const error = getFormattedError(e);
       showErrorNotification(error?.errors?.formErrors?.[0]);
