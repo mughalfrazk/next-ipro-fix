@@ -9,12 +9,15 @@ import IproSelect from "@/components/core/IproSelect";
 import IproTextInput from "@/components/core/IproTextInput";
 import SpecialitySelect from "./SpecialitySelect";
 import { ProfileModel } from "@/lib/models/user.model";
+import { RoleTypes } from "@/types/roles.types";
+import { useProfileContext } from "@/context/profile.context";
 
 type RoleSelectProps = {
   user?: ProfileModel;
 } & FieldErrorPropsType;
 
 const RoleSelect = ({ user, getFieldErrorProps }: RoleSelectProps) => {
+  const { data: currentUser } = useProfileContext();
   const [roleOptions, setRoleOptions] = useState<ComboboxData>([]);
   const [roleItem, setRoleItem] = useState<ComboboxItem>();
   const [isTechnician, setIsTechnician] = useState<boolean>(false);
@@ -81,7 +84,11 @@ const RoleSelect = ({ user, getFieldErrorProps }: RoleSelectProps) => {
             name="target"
             label="Assign Target"
             defaultValue={user?.target ?? 0}
-            readOnly={!!user}
+            disabled={
+              ![RoleTypes.SUPER_ADMIN, RoleTypes.ADMIN].includes(
+                currentUser?.role?.name?.toLowerCase() ?? ""
+              )
+            }
             {...getFieldErrorProps("target")}
           />
         </GridCol>

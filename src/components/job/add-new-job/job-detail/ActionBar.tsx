@@ -84,6 +84,14 @@ const ActionBar = ({ job }: { job: JobModel }) => {
     return false;
   };
 
+  const isDelivered = () => {
+    if (job.job_status.name === JobStatusTypes.DELIVERED) {
+      return true;
+    }
+
+    return false;
+  };
+
   const moveForward = () => {
     if (isReadyToDeliver()) {
       openDeliveredModal();
@@ -225,21 +233,23 @@ const ActionBar = ({ job }: { job: JobModel }) => {
                   <IproButton size="md" leftSection={<IconBarcode />} onClick={openBarcodeModal}>
                     Show Barcode
                   </IproButton>
-                  <IproButton
-                    size="md"
-                    leftSection={
-                      role.name === RoleTypes.TECHNICIAN ? (
-                        <IconCircleDashedCheck style={{ width: rem(22), height: rem(22) }} />
-                      ) : role.name === RoleTypes.STAFF ? (
-                        <IconClipboardData style={{ width: rem(22), height: rem(22) }} />
-                      ) : (
-                        <IconUserFilled style={{ width: rem(20), height: rem(20) }} />
-                      )
-                    }
-                    onClick={moveForward}
-                  >
-                    {getActionTitle()}
-                  </IproButton>
+                  {!isDelivered() && (
+                    <IproButton
+                      size="md"
+                      leftSection={
+                        role.name === RoleTypes.TECHNICIAN ? (
+                          <IconCircleDashedCheck style={{ width: rem(22), height: rem(22) }} />
+                        ) : role.name === RoleTypes.STAFF ? (
+                          <IconClipboardData style={{ width: rem(22), height: rem(22) }} />
+                        ) : (
+                          <IconUserFilled style={{ width: rem(20), height: rem(20) }} />
+                        )
+                      }
+                      onClick={moveForward}
+                    >
+                      {getActionTitle()}
+                    </IproButton>
+                  )}
                 </>
               )}
             </Group>

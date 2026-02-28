@@ -42,21 +42,19 @@ const updateUserAction = async (_: ActionResult, formData: FormData) => {
   const { parsed } = await validatePayload(formData, validationSchema);
 
   if (!parsed?.success) {
+    console.log(parsed?.error);
     showErrorNotification("Validation errors");
     return getFormattedError(parsed?.error);
   }
 
+  const payload = { ...parsed.data };
+  if (isTechnicianSelected) {
+    if (parsed.data.progress) payload["progress"] = Number(parsed.data.progress);
+    if (parsed.data.target) payload["target"] = Number(parsed.data.target);
+  }
+
   try {
-    await updateUserApi(
-      parsed.data?.id,
-      isTechnicianSelected
-        ? {
-            ...parsed.data,
-            progress: Number(parsed.data.progress),
-            target: Number(parsed.data.target)
-          }
-        : parsed.data
-    );
+    await updateUserApi(parsed.data?.id, payload);
     showNotification("Updated successfully");
     return {};
   } catch (error) {

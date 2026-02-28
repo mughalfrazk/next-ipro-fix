@@ -52,7 +52,7 @@ const removeIssueFromJobApi = async (job_id: string, issue_id: string) => {
 };
 
 const deliverJobApi = async (job_id: string) => {
-  const result = await getAuthApiClient().get(`job/${job_id}/delivered`);
+  const result = await getAuthApiClient().patch(`job/${job_id}/delivered`);
   return result;
 };
 

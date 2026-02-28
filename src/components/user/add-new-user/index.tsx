@@ -1,23 +1,19 @@
 "use client";
 
-import { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
 import {
   Card,
   Divider,
   Grid,
   GridCol,
   Group,
-  Image,
   Stack,
-  Flex,
-  Box,
   Title,
   Paper,
   Slider,
   Badge,
   NumberFormatter,
-  Text,
-  ActionIcon
+  Text
 } from "@mantine/core";
 
 import IproTextInput from "../../core/IproTextInput";
@@ -25,10 +21,9 @@ import IproButton from "../../core/IproButton";
 import Heading from "../../common/Heading";
 import RoleSelect from "./RoleSelect";
 import { createUserAction, updateUserAction } from "@/lib/actions/user.action";
-import { IconCircleCheckFilled, IconEdit } from "@tabler/icons-react";
 import { useFormAction } from "@/hooks/use-form-action";
 import { ProfileModel } from "@/lib/models/user.model";
-import { useDisclosure, useInputState } from "@mantine/hooks";
+import { useDisclosure } from "@mantine/hooks";
 import ChangePasswordModel from "../ChangePasswordModel";
 
 const CreateOrUpdateUser = ({ user }: { user?: ProfileModel }) => {
@@ -38,21 +33,12 @@ const CreateOrUpdateUser = ({ user }: { user?: ProfileModel }) => {
     user ? updateUserAction : createUserAction,
     {}
   );
-  const [progressPercentage, setProgressPercentage] = useState<number>(0);
-  const [progress, setProgress] = useInputState<number>(0);
-  const [editProgress, setEditProgress] = useState<boolean>();
 
-  useEffect(() => {
-    if (user?.progress && user.target) {
-      const perc = (((user.progress ?? 0) / (user.target ?? 0)) * 100).toFixed(2);
-      setProgressPercentage(+perc);
-      setProgress(user?.progress);
-    }
-  }, [progressPercentage, user]);
-
-  useEffect(() => {
-    if (!!user?.target) setProgress(user.progress);
-  }, [user]);
+  const isTechnician = user?.role?.name?.toLowerCase() === "technician";
+  const hasTarget = !!user?.target && user.target > 0;
+  const progressPercentage = hasTarget
+    ? +(((user?.progress ?? 0) / (user?.target ?? 1)) * 100).toFixed(2)
+    : 0;
 
   return (
     <Fragment>
@@ -65,7 +51,7 @@ const CreateOrUpdateUser = ({ user }: { user?: ProfileModel }) => {
       <form action={formAction}>
         <Stack gap={0}>
           <Grid>
-            <Grid.Col span={9}>
+            <Grid.Col span={12}>
               <Card pb={100}>
                 <Group justify="space-between">
                   <Stack>
@@ -151,72 +137,42 @@ const CreateOrUpdateUser = ({ user }: { user?: ProfileModel }) => {
                       {...getFieldErrorProps("address")}
                     />
                   </GridCol>
-                  {user && !!user.target && (
+                  {user && isTechnician && (
                     <GridCol span={12} mt={10}>
                       <Paper p={18} withBorder style={{ backgroundColor: "transparent" }}>
                         <Group align="center" justify="space-between">
                           <Title order={5} mb={10}>
                             Progress
                           </Title>
-                          <Badge color="primary.6" mb={10}>
-                            <NumberFormatter suffix="%" value={progressPercentage} />
-                          </Badge>
+                          {hasTarget && (
+                            <Badge color="primary.6" mb={10}>
+                              <NumberFormatter suffix="%" value={progressPercentage} />
+                            </Badge>
+                          )}
                         </Group>
                         <Slider
-                          color="primary.6"
-                          defaultValue={user.progress ?? 0}
-                          value={progress}
-                          onChange={setProgress}
-                          max={user.target}
+                          color={hasTarget ? "primary.6" : "gray.4"}
+                          value={hasTarget ? (user.progress ?? 0) : 0}
+                          max={hasTarget ? (user.target ?? 0) : 100}
+                          disabled={!hasTarget}
+                          thumbSize={hasTarget ? undefined : 0}
+                          styles={!hasTarget ? { thumb: { display: "none" } } : undefined}
                         />
                         <Divider mt={20} mb={15} />
                         <Group>
                           <Text size="sm">Progress:</Text>
-                          <Group align="center">
-                            {editProgress && (
-                              <IproTextInput
-                                type="number"
-                                name="progress"
-                                value={progress}
-                                onChange={setProgress}
-                                size="sm"
-                                width="100"
-                              />
-                            )}
-
-                            {!editProgress && <Text fw="bold">{progress ?? 0}</Text>}
-                            <ActionIcon
-                              color="primary.6"
-                              onClick={() =>
-                                setEditProgress((prevState) => {
-                                  if (!progress && prevState) setProgress(user.progress);
-                                  return !prevState;
-                                })
-                              }
-                            >
-                              {editProgress ? (
-                                <IconCircleCheckFilled style={{ width: "70%", height: "70%" }} />
-                              ) : (
-                                <IconEdit style={{ width: "70%", height: "70%" }} />
-                              )}
-                            </ActionIcon>
-                          </Group>
-                          /<Text size="sm">Target:</Text>
-                          <Text fw="bold">{user.target}</Text>
+                          <Text fw="bold">{user.progress ?? 0}</Text>
+                          <Text size="sm">/</Text>
+                          <Text size="sm">Target:</Text>
+                          <Text fw="bold">{user.target ?? 0}</Text>
                         </Group>
+                        {!hasTarget && (
+                          <Text size="xs" c="dimmed" mt={10}>
+                            No target assigned yet.
+                          </Text>
+                        )}
                       </Paper>
                     </GridCol>
-                  )}
-                  {Boolean(!!user && user.target) && (
-                    <IproTextInput
-                      type="number"
-                      name="progress"
-                      value={progress}
-                      onChange={setProgress}
-                      size="sm"
-                      width="100"
-                      display="none"
-                    />
                   )}
                   {!!user && <input type="text" name="id" defaultValue={user.id} hidden />}
                 </Grid>
@@ -229,17 +185,10 @@ const CreateOrUpdateUser = ({ user }: { user?: ProfileModel }) => {
                 </Group>
               </Card>
             </Grid.Col>
-            <Grid.Col span={3}>
+            {/* <Grid.Col span={3}>
               <Card h={"100%"} bg="var(--mantine-color-primary-6)">
                 <Flex justify="center" align="center" h="100%">
                   <Stack justify="center">
-                    {/* <Button
-                    color="white"
-                    leftSection={<IconRefresh size={20} />}
-                    variant="transparent"
-                  >
-                    Reset Image
-                  </Button> */}
                     <Box py="lg">
                       <Image
                         radius={400}
@@ -248,13 +197,10 @@ const CreateOrUpdateUser = ({ user }: { user?: ProfileModel }) => {
                         src="https://img.freepik.com/free-photo/smiling-young-man-with-crossed-arms-outdoors_1140-255.jpg?t=st=1730317491~exp=1730321091~hmac=746e33b631e0260e55f509d7000a63a365bb62c36824057115c99266383490f4&w=740"
                       />
                     </Box>
-                    {/* <Button mb={10} variant="outline" color="white">
-                    Change Image
-                  </Button> */}
                   </Stack>
                 </Flex>
               </Card>
-            </Grid.Col>
+            </Grid.Col> */}
           </Grid>
         </Stack>
       </form>

@@ -60,7 +60,7 @@ export const UpdateUserPayloadSchema = z.object({
 
 export const UpdateUserTechPayloadSchema = UpdateUserPayloadSchema.extend({
   target: z.string().nullish(),
-  progress: z.string()
+  progress: z.string().nullish()
 });
 
 export type ProfileModel = z.infer<typeof ProfileSchema>;
