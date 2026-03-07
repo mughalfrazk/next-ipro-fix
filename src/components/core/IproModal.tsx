@@ -6,6 +6,7 @@ type IproModalProps = {
   close?: () => void;
   confirmButtonText?: string;
   confirmButtonLoading?: boolean;
+  hideActions?: boolean;
 } & ModalProps;
 
 const IproModal = ({
@@ -14,6 +15,7 @@ const IproModal = ({
   moveFormard,
   confirmButtonText = "Confirm",
   confirmButtonLoading,
+  hideActions = false,
   ...otherProps
 }: IproModalProps) => {
   return (
@@ -26,23 +28,25 @@ const IproModal = ({
       {...otherProps}
     >
       {children}
-      <Group
-        mt="10"
-        pt="sm"
-        gap={10}
-        justify="flex-end"
-        style={{ borderTop: "1px solid var(--mantine-color-default-border)" }}
-      >
-        <IproButton onClick={otherProps.onClose} variant="outline">
-          Cancel
-        </IproButton>
-        <IproButton
-          onClick={!!moveFormard ? moveFormard : otherProps.onClose}
-          loading={!!confirmButtonLoading}
+      {!hideActions && (
+        <Group
+          mt="10"
+          pt="sm"
+          gap={10}
+          justify="flex-end"
+          style={{ borderTop: "1px solid var(--mantine-color-default-border)" }}
         >
-          {confirmButtonText}
-        </IproButton>
-      </Group>
+          <IproButton onClick={otherProps.onClose} variant="outline">
+            Cancel
+          </IproButton>
+          <IproButton
+            onClick={!!moveFormard ? moveFormard : otherProps.onClose}
+            loading={!!confirmButtonLoading}
+          >
+            {confirmButtonText}
+          </IproButton>
+        </Group>
+      )}
     </Modal>
   );
 };
