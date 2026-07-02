@@ -1,3 +1,5 @@
+"use server";
+
 import { isRedirectError } from "next/dist/client/components/redirect";
 import { redirect } from "next/navigation";
 
@@ -6,9 +8,9 @@ import {
   CreateJobPayloadSchema,
   UpdateJobPayloadModel
 } from "@/lib/models/job.model";
-import { getNestedInputValues, showErrorNotification, showNotification } from "@/utils/functions";
+import { getNestedInputValues } from "@/utils/form-data";
 import { createJobApi, updateJobApi } from "@/lib/services/api/job.service";
-import { getFormattedError } from "@/utils/format-error";
+import { getFormattedError, getValidationError } from "@/utils/format-error";
 import { ActionResult } from "@/utils/action-results";
 import { IssueModel } from "@/lib/models/issue.model";
 
@@ -28,7 +30,7 @@ const createJobAction = async (_: ActionResult, formData: FormData) => {
       phone: formData.get("customer_phone") as string,
       company_name: formData.get("customer_company_name") as string
     },
-    issues: structuredInput.issues.map((item: IssueModel) => ({
+    issues: (structuredInput.issues ?? []).map((item: IssueModel) => ({
       ...item,
       problem_id: +item.problem_id,
       brand_id: +item.brand_id,
@@ -45,9 +47,7 @@ const createJobAction = async (_: ActionResult, formData: FormData) => {
 
   const validatedPayload = await CreateJobPayloadSchema.safeParseAsync(payload);
   if (!validatedPayload.success) {
-    showErrorNotification("Validation errors");
-    console.log(getFormattedError(validatedPayload?.error));
-    return getFormattedError(validatedPayload?.error);
+    return getValidationError(validatedPayload?.error);
   }
 
   try {
@@ -76,7 +76,7 @@ const updateJobAction = async (_: ActionResult, formData: FormData) => {
       phone: formData.get("customer_phone") as string,
       company_name: formData.get("customer_company_name") as string
     },
-    issues: structuredInput.issues.map((item: IssueModel) => ({
+    issues: (structuredInput.issues ?? []).map((item: IssueModel) => ({
       ...item,
       id: item.id,
       problem_id: +item.problem_id,
@@ -94,19 +94,15 @@ const updateJobAction = async (_: ActionResult, formData: FormData) => {
 
   const validatedPayload = await CreateJobPayloadSchema.safeParseAsync(payload);
   if (!validatedPayload.success) {
-    showErrorNotification("Validation errors");
-    return getFormattedError(validatedPayload?.error);
+    return getValidationError(validatedPayload?.error);
   }
 
   if (!payload.id) {
-    showErrorNotification("Invalid job id selected.");
-    return {};
+    return getFormattedError("Invalid job id selected.");
   }
 
   try {
     await updateJobApi(payload.id, payload);
-    showNotification("Updated successfully!");
-    // revalidatePath(`/dashboard/job/${payload.id}?tab=detail`)
     return { success: "Updated successfully!" };
   } catch (error) {
     // `redirectTo` won't work without this line

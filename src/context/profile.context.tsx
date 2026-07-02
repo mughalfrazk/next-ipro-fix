@@ -73,8 +73,10 @@ const ProfileProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    if (!profile.id) getUserProfile();
-  }, [profile]);
+    getUserProfile();
+    // Fetch the profile once on mount; consumers can refetch via updateProfile().
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <ProfileContext.Provider value={{ loading, data: profile, updateProfile: getUserProfile }}>

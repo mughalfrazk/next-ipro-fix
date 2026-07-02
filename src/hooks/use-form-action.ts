@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useFormState } from "react-dom";
 
 import { ActionResult } from "@/utils/action-results";
-import { showErrorNotification } from "@/utils/functions";
+import { showErrorNotification, showNotification } from "@/utils/functions";
 import { useActionErrors } from "./use-action-errors";
 
 export const useFormAction = (
@@ -17,6 +17,10 @@ export const useFormAction = (
       const result = state as ActionResult;
       if (!!result?.errors?.formErrors?.length) {
         showErrorNotification(result?.errors?.formErrors[0]);
+      } else if (typeof result?.success === "string" && result.success.length) {
+        // Success feedback is centralized here so server actions don't need to
+        // call client-only Mantine notifications directly.
+        showNotification(result.success);
       }
     }
   }, [state]);
