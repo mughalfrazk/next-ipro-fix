@@ -116,6 +116,21 @@ export function getFormattedError(error: unknown): { errors: ActionErrors } {
   };
 }
 
+/// Like getFormattedError, but guarantees a top-level form message so it can be
+/// surfaced as a notification even when the error only produced field errors.
+/// Use this in server actions that previously showed a client-side "Validation
+/// errors" toast, since server actions cannot call client-only notifications.
+export function getValidationError(
+  error: unknown,
+  fallback = "Please fix the errors and try again."
+): { errors: ActionErrors } {
+  const formatted = getFormattedError(error);
+  if (!formatted.errors.formErrors?.length) {
+    formatted.errors.formErrors = [fallback];
+  }
+  return formatted;
+}
+
 /// Format a ZodError into an ActionErrors object
 function formatZodError(error: ZodError): ActionErrors {
   const zodErrors = error.flatten();

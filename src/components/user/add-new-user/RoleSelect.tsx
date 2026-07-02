@@ -93,6 +93,9 @@ const RoleSelect = ({ user, getFieldErrorProps }: RoleSelectProps) => {
           />
         </GridCol>
       )}
+      {/* Preserve the current progress on update — it is auto-calculated, not
+          admin-editable, so submit it as a hidden field to avoid it being reset. */}
+      {isTechnician && <input type="hidden" name="progress" defaultValue={user?.progress ?? 0} />}
       <input name="isTechnicianSelected" value={isTechnician ? 1 : 0} onChange={() => {}} hidden />
     </Grid>
   );

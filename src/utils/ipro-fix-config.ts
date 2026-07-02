@@ -1,25 +1,8 @@
-const initEnv = {
-  NEXT_PUBLIC_IPRO_FIX_BASE_URL: "",
-  AUTH_SECRET: ""
+// Only public (NEXT_PUBLIC_*) config belongs here — this module is imported by
+// the axios client, which runs on both the server and the browser. AUTH_SECRET
+// is intentionally NOT exposed here; NextAuth reads it from the environment.
+const config = {
+  NEXT_PUBLIC_IPRO_FIX_BASE_URL: process.env.NEXT_PUBLIC_IPRO_FIX_BASE_URL ?? ""
 };
-
-const production: typeof initEnv = { ...initEnv };
-production.AUTH_SECRET = process.env.AUTH_SECRET ?? "";
-production.NEXT_PUBLIC_IPRO_FIX_BASE_URL = process.env.NEXT_PUBLIC_IPRO_FIX_BASE_URL ?? "";
-
-const development: typeof initEnv = { ...initEnv };
-development.AUTH_SECRET = process.env.AUTH_SECRET ?? "";
-development.NEXT_PUBLIC_IPRO_FIX_BASE_URL = process.env.NEXT_PUBLIC_IPRO_FIX_BASE_URL ?? "";
-
-let config: typeof production;
-switch (process.env.NEXT_PUBLIC_IPRO_FIX_ENV) {
-  case "production":
-    config = production;
-    break;
-  case "development":
-  default:
-    config = development;
-    break;
-}
 
 export default config;

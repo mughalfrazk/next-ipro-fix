@@ -101,7 +101,16 @@ const JobPurchasesTab = ({
         <Divider mt={10} mb={20} />
         <IproTextInput name="job_id" defaultValue={job.id} style={{ display: "none" }} />
         <Grid>
-          {!!purchases.length ? (
+          {!purchases.length && !newPurchases.length ? (
+            <Center opacity={0.3} w="100%" my={30}>
+              <IconBoxOff style={{ width: rem(40), height: rem(40) }} />
+              <Stack gap={0}>
+                <Text ms={15} size="lg" lh={1}>
+                  There are no purchases for this job
+                </Text>
+              </Stack>
+            </Center>
+          ) : (
             <Fragment>
               {purchases.map((item, idx) => (
                 <PurchaseFormItem
@@ -122,15 +131,6 @@ const JobPurchasesTab = ({
                 />
               ))}
             </Fragment>
-          ) : (
-            <Center opacity={0.3} w="100%" my={30}>
-              <IconBoxOff style={{ width: rem(40), height: rem(40) }} />
-              <Stack gap={0}>
-                <Text ms={15} size="lg" lh={1}>
-                  There are no purchases for this job
-                </Text>
-              </Stack>
-            </Center>
           )}
           {isPermitted() && !newPurchases.length && (
             <GridCol span={12}>

@@ -17,8 +17,8 @@ export const LoginResponseSchema = z.object({
 export const RegisterFormSchema = z.object({
   first_name: z.string().min(1, "First name is required"),
   last_name: z.string().min(1, "Last name is required"),
-  email: z.string().min(1, "Email is required"),
-  password: z.string().min(1, "Password is required"),
+  email: z.string().min(1, "Email is required").email("Invalid email"),
+  password: z.string().min(8, "Password must be at least 8 characters"),
   phone: z.string().min(1, "Phone is required"),
   address: z.string().min(1, "Address is required"),
   role_id: z.string().min(1, "Technician is required")
@@ -26,7 +26,7 @@ export const RegisterFormSchema = z.object({
 
 export const RegisterFormWithSpecialitySchema = RegisterFormSchema.extend({
   speciality_id: z.string().min(1, "Speciality is required"),
-  target: z.string().min(2, "Target should be more than 10")
+  target: z.string().min(1, "Target is required")
 });
 
 export type LoginFormModel = z.infer<typeof LoginFormSchema>;
