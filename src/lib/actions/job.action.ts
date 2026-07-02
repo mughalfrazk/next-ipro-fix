@@ -30,7 +30,7 @@ const createJobAction = async (_: ActionResult, formData: FormData) => {
       phone: formData.get("customer_phone") as string,
       company_name: formData.get("customer_company_name") as string
     },
-    issues: structuredInput.issues.map((item: IssueModel) => ({
+    issues: (structuredInput.issues ?? []).map((item: IssueModel) => ({
       ...item,
       problem_id: +item.problem_id,
       brand_id: +item.brand_id,
@@ -76,7 +76,7 @@ const updateJobAction = async (_: ActionResult, formData: FormData) => {
       phone: formData.get("customer_phone") as string,
       company_name: formData.get("customer_company_name") as string
     },
-    issues: structuredInput.issues.map((item: IssueModel) => ({
+    issues: (structuredInput.issues ?? []).map((item: IssueModel) => ({
       ...item,
       id: item.id,
       problem_id: +item.problem_id,
