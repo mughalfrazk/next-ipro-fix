@@ -1,11 +1,14 @@
 import Image from "next/image";
+import { Geist } from "next/font/google";
 import IproLogo from "@/components/common/IproLogo";
 import NavMobile from "./NavMobile";
 import styles from "./page.module.css";
 
+const geist = Geist({ subsets: ["latin"] });
+
 export default function WebsitePage() {
   return (
-    <div className={styles.page}>
+    <div className={`${styles.page} ${geist.className}`}>
       {/* Announcement bar */}
       <div
         className={styles.animBar}
@@ -1101,8 +1104,12 @@ export default function WebsitePage() {
                 We usually reply within the hour during opening times.
               </div>
               <div className={styles.formInputRow}>
+                <label htmlFor="contact-name" className={styles.srOnly}>Your name</label>
                 <input
+                  id="contact-name"
+                  name="name"
                   placeholder="Your name"
+                  className={styles.formInput}
                   style={{
                     border: "1.5px solid #d7dfe7",
                     borderRadius: 11,
@@ -1110,13 +1117,17 @@ export default function WebsitePage() {
                     fontSize: 15,
                     color: "#14202c",
                     background: "#ffffff",
-                    outline: "none",
                     fontFamily: "inherit",
                     colorScheme: "light"
                   }}
                 />
+                <label htmlFor="contact-phone" className={styles.srOnly}>Phone number</label>
                 <input
+                  id="contact-phone"
+                  name="phone"
+                  type="tel"
                   placeholder="Phone number"
+                  className={styles.formInput}
                   style={{
                     border: "1.5px solid #d7dfe7",
                     borderRadius: 11,
@@ -1124,14 +1135,17 @@ export default function WebsitePage() {
                     fontSize: 15,
                     color: "#14202c",
                     background: "#ffffff",
-                    outline: "none",
                     fontFamily: "inherit",
                     colorScheme: "light"
                   }}
                 />
               </div>
+              <label htmlFor="contact-device" className={styles.srOnly}>Device</label>
               <input
+                id="contact-device"
+                name="device"
                 placeholder="Device (e.g. iPhone 15 Pro)"
+                className={styles.formInput}
                 style={{
                   border: "1.5px solid #d7dfe7",
                   borderRadius: 11,
@@ -1139,7 +1153,6 @@ export default function WebsitePage() {
                   fontSize: 15,
                   color: "#14202c",
                   background: "#ffffff",
-                  outline: "none",
                   fontFamily: "inherit",
                   width: "100%",
                   boxSizing: "border-box",
@@ -1148,9 +1161,13 @@ export default function WebsitePage() {
                   colorScheme: "light"
                 }}
               />
+              <label htmlFor="contact-message" className={styles.srOnly}>Message</label>
               <textarea
+                id="contact-message"
+                name="message"
                 placeholder="What's the problem?"
                 rows={4}
+                className={styles.formInput}
                 style={{
                   border: "1.5px solid #d7dfe7",
                   borderRadius: 11,
@@ -1158,7 +1175,6 @@ export default function WebsitePage() {
                   fontSize: 15,
                   color: "#14202c",
                   background: "#ffffff",
-                  outline: "none",
                   fontFamily: "inherit",
                   width: "100%",
                   boxSizing: "border-box",
