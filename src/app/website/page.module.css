@@ -1,0 +1,464 @@
+.page {
+  margin: 0;
+  background: #ffffff;
+}
+
+/* ── Animations ─────────────────────────────────────────── */
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .animBar {
+    animation: fadeDown 0.45s ease-out both;
+  }
+  .animNav {
+    animation: fadeDown 0.45s 0.05s ease-out both;
+  }
+  .animBadge {
+    animation: fadeUp 0.5s 0.1s ease-out both;
+  }
+  .animH1 {
+    animation: fadeUp 0.6s 0.18s ease-out both;
+  }
+  .animSubtitle {
+    animation: fadeUp 0.6s 0.28s ease-out both;
+  }
+  .animButtons {
+    animation: fadeUp 0.6s 0.38s ease-out both;
+  }
+  .animTrust {
+    animation: fadeUp 0.5s 0.48s ease-out both;
+  }
+  .animSection {
+    animation: fadeIn 0.7s 0.15s ease-out both;
+  }
+}
+
+/* Nav links */
+.navLink {
+  color: #45525f;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+.navLink:hover {
+  color: #238be6;
+}
+
+.navPhone {
+  font-size: 15px;
+  font-weight: 600;
+  color: #238be6;
+  text-decoration: none;
+}
+
+.bookBtn {
+  background: #238be6;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.bookBtn:hover {
+  background: #1a6fc0;
+}
+
+/* Hero buttons */
+.heroPrimary {
+  background: #238be6;
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 15px 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(35, 139, 230, 0.3);
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.heroPrimary:hover {
+  background: #1a6fc0;
+}
+
+.heroSecondary {
+  background: #ffffff;
+  color: #1c2733;
+  border: 1.5px solid #d7dfe7;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition:
+    border-color 0.15s,
+    color 0.15s;
+}
+.heroSecondary:hover {
+  border-color: #238be6;
+  color: #238be6;
+}
+
+.heroWhatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #238be6;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 14px 12px;
+  text-decoration: none;
+}
+
+/* Service cards */
+.serviceCard {
+  background: #ffffff;
+  border: 1px solid #e7edf3;
+  border-radius: 14px;
+  padding: 26px 24px;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
+}
+.serviceCard:hover {
+  border-color: #b9dcf9;
+  box-shadow: 0 8px 24px rgba(35, 139, 230, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Footer links */
+.footerLink {
+  color: #94a3b1;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.footerLink:hover {
+  color: #ffffff;
+}
+
+/* CTA section buttons */
+.ctaPrimary {
+  background: #ffffff;
+  color: #1a6fc0;
+  font-size: 17px;
+  font-weight: 700;
+  padding: 15px 30px;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(15, 60, 100, 0.25);
+  transition: background 0.15s;
+}
+.ctaPrimary:hover {
+  background: #f0f7fe;
+}
+
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 14px 26px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.ctaSecondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Contact form send button */
+.sendBtn {
+  background: #238be6;
+  color: #ffffff;
+  font-size: 16.5px;
+  font-weight: 700;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  transition: background 0.15s;
+}
+.sendBtn:hover {
+  background: #1a6fc0;
+}
+
+.employeeLogin {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #3d4f5e;
+  text-decoration: none;
+  font-size: 12.5px;
+  border-left: 1px solid #26333f;
+  padding-left: 24px;
+  transition: color 0.15s;
+}
+.employeeLogin:hover {
+  color: #6d7c8a;
+}
+
+/* Free diagnosis card link */
+.diagnosisLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  color: #1a6fc0;
+  font-size: 14.5px;
+  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: 10px;
+  align-self: flex-start;
+  margin-top: 20px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.diagnosisLink:hover {
+  background: #f0f7fe;
+}
+
+/* Nav inner */
+.navInner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+}
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Contact form inputs row */
+.formInputRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.formInput {
+  outline: none;
+}
+.formInput:focus-visible {
+  outline: 2px solid #238be6;
+  outline-offset: 2px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Footer bottom bar */
+.footerBottom {
+  border-top: 1px solid #26333f;
+  padding-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13.5px;
+  color: #6d7c8a;
+}
+.footerSocial {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Hamburger + mobile menu */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #14202c;
+  padding: 4px;
+  line-height: 0;
+}
+
+.mobileMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #eef2f6;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 20px 20px;
+  gap: 4px;
+  box-shadow: 0 8px 24px rgba(20, 32, 44, 0.08);
+}
+
+.mobileLink {
+  color: #45525f;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px 4px;
+  border-bottom: 1px solid #f0f4f8;
+  transition: color 0.15s;
+}
+.mobileLink:last-of-type {
+  border-bottom: none;
+}
+.mobileLink:hover {
+  color: #238be6;
+}
+
+.mobileBookBtn {
+  margin-top: 8px;
+  background: #238be6;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+  transition: background 0.15s;
+}
+.mobileBookBtn:hover {
+  background: #1a6fc0;
+}
+
+/* Responsive grid layouts */
+.howItWorksGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+
+.whyChooseGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+}
+
+.testimonialsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+@media (max-width: 900px) {
+  .howItWorksGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .whyChooseGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .testimonialsGrid {
+    grid-template-columns: 1fr;
+  }
+  .contactGrid {
+    grid-template-columns: 1fr;
+  }
+  .footerGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .howItWorksGrid {
+    grid-template-columns: 1fr;
+  }
+  .footerGrid {
+    grid-template-columns: 1fr;
+  }
+  .formInputRow {
+    grid-template-columns: 1fr;
+  }
+  .footerBottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .footerSocial {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navInner {
+    padding: 14px 20px;
+    position: relative;
+  }
+  .navLinks {
+    display: none;
+  }
+  .navActions {
+    display: none;
+  }
+  .hamburger {
+    display: block;
+  }
+}
