@@ -151,7 +151,7 @@ export default function WebsitePage() {
             <div style={{ fontSize: 14, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#238be6", marginBottom: 12 }}>How it works</div>
             <h2 style={{ fontSize: 40, fontWeight: 800, letterSpacing: "-0.02em", color: "#14202c", margin: 0 }}>From broken to fixed in four steps</h2>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 28 }}>
+          <div className={styles.howItWorksGrid}>
             {[
               { n: "1", title: "Diagnose", body: "Drop off your device or message us. We diagnose the fault free of charge, usually within 15 minutes." },
               { n: "2", title: "Quote", body: "You get a fixed price upfront — parts, labour and warranty included. No work starts until you approve." },
@@ -170,7 +170,7 @@ export default function WebsitePage() {
 
       {/* Why choose us */}
       <section style={{ padding: "84px 32px", background: "#f7fafc", borderTop: "1px solid #eef2f6", borderBottom: "1px solid #eef2f6" }}>
-        <div style={{ maxWidth: 1240, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 72, alignItems: "center" }}>
+        <div style={{ maxWidth: 1240, margin: "0 auto" }} className={styles.whyChooseGrid}>
           <div>
             <div style={{ fontSize: 14, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#238be6", marginBottom: 12 }}>Why Ipro Fix</div>
             <h2 style={{ fontSize: 40, fontWeight: 800, letterSpacing: "-0.02em", lineHeight: 1.15, color: "#14202c", margin: "0 0 32px" }}>Repairs you can actually trust</h2>
@@ -237,7 +237,7 @@ export default function WebsitePage() {
             <h2 style={{ fontSize: 40, fontWeight: 800, letterSpacing: "-0.02em", color: "#14202c", margin: "0 0 14px" }}>Rated 4.9 by 1,200+ customers</h2>
             <div style={{ fontSize: 20, color: "#f5a623", letterSpacing: 3 }}>★★★★★</div>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+          <div className={styles.testimonialsGrid}>
             {[
               { initials: "SM", name: "Sara M.", sub: "iPhone 14 screen", quote: "Shattered my iPhone screen at 10am, picked it up good as new by lunch. Fair price, no upselling, and they showed me the old parts." },
               { initials: "AK", name: "Ahmed K.", sub: "Water damage + data recovery", quote: "Two other shops said my water-damaged Samsung was dead. Ipro Fix recovered everything — the phone AND five years of photos." },
@@ -281,7 +281,7 @@ export default function WebsitePage() {
             <div style={{ fontSize: 14, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#238be6", marginBottom: 12 }}>Visit us</div>
             <h2 style={{ fontSize: 40, fontWeight: 800, letterSpacing: "-0.02em", color: "#14202c", margin: 0 }}>Find us or send a message</h2>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: 24, alignItems: "stretch" }}>
+          <div className={styles.contactGrid}>
             <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
               <div style={{ background: "#f7fafc", border: "1px solid #e7edf3", borderRadius: 16, padding: 32, flex: 1 }}>
                 <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
@@ -337,7 +337,7 @@ export default function WebsitePage() {
       {/* Footer */}
       <footer style={{ background: "#14202c", padding: "64px 32px 32px" }}>
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr 1fr", gap: 48, marginBottom: 48 }}>
+          <div className={styles.footerGrid}>
             <div>
               <IproLogo variant="dark" size={34} style={{ marginBottom: 16 }} />
               <p style={{ fontSize: 14.5, lineHeight: 1.6, color: "#94a3b1", margin: 0, maxWidth: 300 }}>Professional phone &amp; device repair. Genuine parts, certified technicians, 90-day warranty — most repairs done the same day.</p>

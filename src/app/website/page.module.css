@@ -170,3 +170,50 @@
   transition: background 0.15s;
 }
 .diagnosisLink:hover { background: #f0f7fe; }
+
+/* Responsive grid layouts */
+.howItWorksGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+
+.whyChooseGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+}
+
+.testimonialsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+@media (max-width: 900px) {
+  .howItWorksGrid { grid-template-columns: repeat(2, 1fr); }
+  .whyChooseGrid { grid-template-columns: 1fr; gap: 40px; }
+  .testimonialsGrid { grid-template-columns: 1fr; }
+  .contactGrid { grid-template-columns: 1fr; }
+  .footerGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .howItWorksGrid { grid-template-columns: 1fr; }
+  .footerGrid { grid-template-columns: 1fr; }
+}
