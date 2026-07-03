@@ -41,12 +41,12 @@ const Navlinks = () => {
 
   return routes.map((item, i) => {
     if (role && !!item?.role?.length && !item?.role?.includes(role?.name)) {
-      return <Fragment key={i}></Fragment>;
+      return <Fragment key={`${item.href}-${i}`}></Fragment>;
     }
 
     return !!item.children?.length ? (
       <NavLink
-        key={i}
+        key={`${item.href}-${i}`}
         classNames={classes}
         {...navlinkProps(item)}
         active={pathname === item?.href}
@@ -54,12 +54,12 @@ const Navlinks = () => {
       >
         {item.children.map((subItem, j) => {
           if (role && !!subItem?.role?.length && !subItem?.role?.includes(role?.name)) {
-            return <Fragment key={i} />;
+            return <Fragment key={`${subItem.href}-${j}`} />;
           }
 
           return (
             <NavLink
-              key={j}
+              key={`${subItem.href}-${j}`}
               classNames={classes}
               {...navlinkProps(subItem)}
               active={pathname === subItem?.href}

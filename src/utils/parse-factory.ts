@@ -5,15 +5,12 @@ import { z } from "zod";
  * https://github.com/colinhacks/zod/issues/105
  */
 export const parseFactory =
-  <T extends z.ZodTypeAny>(schema: T, name: string, skipLog?: boolean) =>
+  <T extends z.ZodTypeAny>(schema: T, name: string) =>
   (data: unknown): z.infer<T> => {
-    if (!skipLog) {
-      console.debug(`Parsing schema ${name}`);
-    }
     try {
       return schema.parse(data);
     } catch (err) {
-      console.error(err);
+      console.error(`Failed to parse ${name}:`, err);
       throw err;
     }
   };

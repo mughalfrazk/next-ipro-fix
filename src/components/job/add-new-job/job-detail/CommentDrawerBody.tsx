@@ -18,7 +18,7 @@ const CommentDrawerBody = ({ job }: { job: JobModel }) => {
   useEffect(() => {
     setCommentText("");
   }, [job.comments?.length]);
-  
+
   return (
     <Box pos="relative" h="92.8vh" style={{ boxShadow: "#00000038 0px 2px 5px -2px inset" }}>
       <Stack style={{ overflowY: "auto" }} h="77.8vh" gap={0} px={22}>

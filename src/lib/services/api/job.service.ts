@@ -34,7 +34,7 @@ const assignStaffToJobApi = async (job_id: string, staff_id: string) => {
 const getJobHistoryListApi = async () => {
   const result = await getAuthApiClient().get("job/history");
   return JobListDataParser(result.data);
-}
+};
 
 const getJobListApi = async () => {
   const result = await getAuthApiClient().get("job");
@@ -44,6 +44,16 @@ const getJobListApi = async () => {
 const getJobDetailApi = async (job_id: string) => {
   const result = await getAuthApiClient().get(`job/${job_id}`);
   return JobDataParser(result.data);
+};
+
+const removeIssueFromJobApi = async (job_id: string, issue_id: string) => {
+  const result = await getAuthApiClient().patch(`job/${job_id}/remove-issue/${issue_id}`);
+  return result.data;
+};
+
+const deliverJobApi = async (job_id: string) => {
+  const result = await getAuthApiClient().patch(`job/${job_id}/delivered`);
+  return result;
 };
 
 const rejectJobApi = async (job_id: string) => {
@@ -58,6 +68,8 @@ export {
   assignStaffToJobApi,
   getJobListApi,
   getJobDetailApi,
-  rejectJobApi,
-  getJobHistoryListApi
+  getJobHistoryListApi,
+  removeIssueFromJobApi,
+  deliverJobApi,
+  rejectJobApi
 };

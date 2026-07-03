@@ -7,31 +7,6 @@ import { ProfileModel } from "@/lib/models/user.model";
 import { RoleTypes } from "@/types/roles.types";
 import classes from "@/styles/notification.module.css";
 
-export const getNestedInputValues = (formData: FormData) => {
-  const nestedListRegex = /^([^\[]+)(\[\d+\])(\[[^\]]+\])$/;
-  /* eslint-disable @typescript-eslint/no-explicit-any */
-  const dataform_obj: any = {};
-  for (const [key, value] of Object.entries(Object.fromEntries(formData.entries()))) {
-    /* eslint-disable @typescript-eslint/no-explicit-any */
-    const match: any = key.match(nestedListRegex);
-
-    const match01 = match?.[1];
-    const match02 = match?.[2].replace(/[\])}[{(]/g, "");
-    const match03 = match?.[3].replace(/[\])}[{(]/g, "");
-
-    if (!dataform_obj[match01]) {
-      dataform_obj[match01] = [];
-    }
-    if (!dataform_obj?.[match01][match02]) {
-      dataform_obj[match01][match02] = {};
-    }
-
-    dataform_obj[match01][match02][match03] = value;
-  }
-
-  return dataform_obj;
-};
-
 export const showNotification = (message: string) => {
   notifications.show({
     message,
@@ -75,9 +50,7 @@ export const colorForInvoiceStatus = (name: string) => {
       ? "indigo"
       : name === "Overdue"
         ? "green"
-        : name === "Overdue"
-          ? "primary.6"
-          : "black";
+        : "black";
 };
 
 export const colorForJobStatus = (name: string) => {
@@ -111,10 +84,7 @@ export const capitalizeFirstLetter = (val: string) => {
 };
 
 export const showDateNicely = (date: string) => {
-  const splitted_date = date.split("T");
-
-  return format(new Date(date), "dd-MM-yyyy - HH:mm a");
-  return `${splitted_date[0]} - ${splitted_date[1].split(".")[0].split(":").slice(0, 2).join(":")}`;
+  return format(new Date(date), "dd-MM-yyyy - hh:mm a");
 };
 
 export const mapJobToInvoice = (job: JobModel): InvoiceModel => {
@@ -181,28 +151,8 @@ export const mapJobToInvoice = (job: JobModel): InvoiceModel => {
 };
 
 export const colorForExpenseType = (name: string) => {
-  // Generate a random color for the expense type.
+  // Deterministically map an expense type name to a stable color from the palette.
   const colors = [
-    "red.8",
-    "green.8",
-    "blue.8",
-    "yellow.8",
-    "purple.8",
-    "cyan.8",
-    "violet.8",
-    "gray.8",
-    "teal.8",
-    "orange.8",
-    "red.8",
-    "green.8",
-    "blue.8",
-    "yellow.8",
-    "purple.8",
-    "cyan.8",
-    "violet.8",
-    "gray.8",
-    "teal.8",
-    "orange.8",
     "red.8",
     "green.8",
     "blue.8",
@@ -215,7 +165,12 @@ export const colorForExpenseType = (name: string) => {
     "orange.8"
   ];
 
-  return colors[name.length];
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = (hash * 31 + name.charCodeAt(i)) | 0;
+  }
+
+  return colors[Math.abs(hash) % colors.length];
 };
 export const titleCase = (s: string) => {
   return s
