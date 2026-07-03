@@ -1,5 +1,6 @@
 import Image from "next/image";
 import IproLogo from "@/components/common/IproLogo";
+import NavMobile from "./NavMobile";
 import styles from "./page.module.css";
 
 export default function WebsitePage() {
@@ -7,6 +8,7 @@ export default function WebsitePage() {
     <div className={styles.page}>
       {/* Announcement bar */}
       <div
+        className={styles.animBar}
         style={{
           background: "#14202c",
           color: "#ffffff",
@@ -22,6 +24,7 @@ export default function WebsitePage() {
 
       {/* Nav */}
       <header
+        className={styles.animNav}
         style={{
           position: "sticky",
           top: 0,
@@ -31,18 +34,9 @@ export default function WebsitePage() {
           borderBottom: "1px solid #eef2f6"
         }}
       >
-        <div
-          style={{
-            maxWidth: 1240,
-            margin: "0 auto",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            padding: "16px 32px"
-          }}
-        >
+        <div className={styles.navInner}>
           <IproLogo variant="light" size={34} />
-          <nav style={{ display: "flex", alignItems: "center", gap: 32 }}>
+          <nav className={styles.navLinks}>
             <a href="#services" className={styles.navLink}>
               Services
             </a>
@@ -56,7 +50,8 @@ export default function WebsitePage() {
               Contact
             </a>
           </nav>
-          <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+          <NavMobile />
+          <div className={styles.navActions}>
             <a href="#contact" className={styles.navPhone}>
               +971 00 000 0000
             </a>
@@ -77,6 +72,7 @@ export default function WebsitePage() {
       >
         <div style={{ maxWidth: 900, margin: "0 auto" }}>
           <div
+            className={styles.animBadge}
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -102,6 +98,7 @@ export default function WebsitePage() {
             <span>Same-day repairs available today</span>
           </div>
           <h1
+            className={styles.animH1}
             style={{
               fontSize: 62,
               fontWeight: 800,
@@ -115,6 +112,7 @@ export default function WebsitePage() {
             Fast, reliable phone &amp; device repairs
           </h1>
           <p
+            className={styles.animSubtitle}
             style={{
               fontSize: 20,
               lineHeight: 1.55,
@@ -127,6 +125,7 @@ export default function WebsitePage() {
             Genuine parts, warranty on every repair.
           </p>
           <div
+            className={styles.animButtons}
             style={{
               display: "flex",
               alignItems: "center",
@@ -159,6 +158,7 @@ export default function WebsitePage() {
             </a>
           </div>
           <div
+            className={styles.animTrust}
             style={{
               display: "flex",
               alignItems: "center",
@@ -208,6 +208,7 @@ export default function WebsitePage() {
       {/* Services */}
       <section
         id="services"
+        className={styles.animSection}
         style={{ padding: "76px 32px 84px", background: "#f7fafc", borderTop: "1px solid #eef2f6" }}
       >
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
@@ -537,7 +538,7 @@ export default function WebsitePage() {
       </section>
 
       {/* How it works */}
-      <section id="how-it-works" style={{ padding: "84px 32px" }}>
+      <section id="how-it-works" className={styles.animSection} style={{ padding: "84px 32px" }}>
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 52 }}>
             <div
@@ -618,6 +619,7 @@ export default function WebsitePage() {
 
       {/* Why choose us */}
       <section
+        className={styles.animSection}
         style={{
           padding: "84px 32px",
           background: "#f7fafc",
@@ -781,7 +783,7 @@ export default function WebsitePage() {
       </section>
 
       {/* Brands */}
-      <section style={{ padding: "60px 32px" }}>
+      <section className={styles.animSection} style={{ padding: "60px 32px" }}>
         <div style={{ maxWidth: 1240, margin: "0 auto", textAlign: "center" }}>
           <div style={{ fontSize: 14, fontWeight: 600, color: "#8a97a4", marginBottom: 28 }}>
             We service all major brands
@@ -807,6 +809,7 @@ export default function WebsitePage() {
       {/* Testimonials */}
       <section
         id="reviews"
+        className={styles.animSection}
         style={{ padding: "76px 32px 84px", background: "#f7fafc", borderTop: "1px solid #eef2f6" }}
       >
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
@@ -906,7 +909,7 @@ export default function WebsitePage() {
       </section>
 
       {/* Quote CTA */}
-      <section id="quote" style={{ padding: "84px 32px", background: "#238be6" }}>
+      <section id="quote" className={styles.animSection} style={{ padding: "84px 32px", background: "#238be6" }}>
         <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
           <h2
             style={{
@@ -956,7 +959,7 @@ export default function WebsitePage() {
       </section>
 
       {/* Contact */}
-      <section id="contact" style={{ padding: "84px 32px" }}>
+      <section id="contact" className={styles.animSection} style={{ padding: "84px 32px" }}>
         <div style={{ maxWidth: 1240, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 48 }}>
             <div
@@ -1097,14 +1100,7 @@ export default function WebsitePage() {
               <div style={{ fontSize: 14.5, color: "#6b7885", marginBottom: 24 }}>
                 We usually reply within the hour during opening times.
               </div>
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: 14,
-                  marginBottom: 14
-                }}
-              >
+              <div className={styles.formInputRow}>
                 <input
                   placeholder="Your name"
                   style={{
@@ -1254,19 +1250,9 @@ export default function WebsitePage() {
               </div>
             </div>
           </div>
-          <div
-            style={{
-              borderTop: "1px solid #26333f",
-              paddingTop: 24,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              fontSize: 13.5,
-              color: "#6d7c8a"
-            }}
-          >
+          <div className={styles.footerBottom}>
             <span>© 2026 Ipro Fix. All rights reserved.</span>
-            <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
+            <div className={styles.footerSocial}>
               <span>Instagram</span>
               <span>Facebook</span>
               <span>Google Maps</span>
