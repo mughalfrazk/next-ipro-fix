@@ -5,27 +5,59 @@
 
 /* ── Animations ─────────────────────────────────────────── */
 @keyframes fadeDown {
-  from { opacity: 0; transform: translateY(-8px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(22px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .animBar      { animation: fadeDown 0.45s ease-out both; }
-  .animNav      { animation: fadeDown 0.45s 0.05s ease-out both; }
-  .animBadge    { animation: fadeUp  0.5s  0.10s ease-out both; }
-  .animH1       { animation: fadeUp  0.6s  0.18s ease-out both; }
-  .animSubtitle { animation: fadeUp  0.6s  0.28s ease-out both; }
-  .animButtons  { animation: fadeUp  0.6s  0.38s ease-out both; }
-  .animTrust    { animation: fadeUp  0.5s  0.48s ease-out both; }
-  .animSection  { animation: fadeIn  0.7s  0.15s ease-out both; }
+  .animBar {
+    animation: fadeDown 0.45s ease-out both;
+  }
+  .animNav {
+    animation: fadeDown 0.45s 0.05s ease-out both;
+  }
+  .animBadge {
+    animation: fadeUp 0.5s 0.1s ease-out both;
+  }
+  .animH1 {
+    animation: fadeUp 0.6s 0.18s ease-out both;
+  }
+  .animSubtitle {
+    animation: fadeUp 0.6s 0.28s ease-out both;
+  }
+  .animButtons {
+    animation: fadeUp 0.6s 0.38s ease-out both;
+  }
+  .animTrust {
+    animation: fadeUp 0.5s 0.48s ease-out both;
+  }
+  .animSection {
+    animation: fadeIn 0.7s 0.15s ease-out both;
+  }
 }
 
 /* Nav links */
@@ -299,14 +331,14 @@
   top: 100%;
   left: 0;
   right: 0;
-  background: rgba(255,255,255,0.97);
+  background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid #eef2f6;
   display: flex;
   flex-direction: column;
   padding: 12px 20px 20px;
   gap: 4px;
-  box-shadow: 0 8px 24px rgba(20,32,44,0.08);
+  box-shadow: 0 8px 24px rgba(20, 32, 44, 0.08);
 }
 
 .mobileLink {
@@ -318,8 +350,12 @@
   border-bottom: 1px solid #f0f4f8;
   transition: color 0.15s;
 }
-.mobileLink:last-of-type { border-bottom: none; }
-.mobileLink:hover { color: #238be6; }
+.mobileLink:last-of-type {
+  border-bottom: none;
+}
+.mobileLink:hover {
+  color: #238be6;
+}
 
 .mobileBookBtn {
   margin-top: 8px;
@@ -333,7 +369,9 @@
   text-align: center;
   transition: background 0.15s;
 }
-.mobileBookBtn:hover { background: #1a6fc0; }
+.mobileBookBtn:hover {
+  background: #1a6fc0;
+}
 
 /* Responsive grid layouts */
 .howItWorksGrid {

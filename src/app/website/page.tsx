@@ -915,7 +915,11 @@ export default function WebsitePage() {
       </section>
 
       {/* Quote CTA */}
-      <section id="quote" className={styles.animSection} style={{ padding: "84px 32px", background: "#238be6" }}>
+      <section
+        id="quote"
+        className={styles.animSection}
+        style={{ padding: "84px 32px", background: "#238be6" }}
+      >
         <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
           <h2
             style={{
@@ -1107,7 +1111,9 @@ export default function WebsitePage() {
                 We usually reply within the hour during opening times.
               </div>
               <div className={styles.formInputRow}>
-                <label htmlFor="contact-name" className={styles.srOnly}>Your name</label>
+                <label htmlFor="contact-name" className={styles.srOnly}>
+                  Your name
+                </label>
                 <input
                   id="contact-name"
                   name="name"
@@ -1124,7 +1130,9 @@ export default function WebsitePage() {
                     colorScheme: "light"
                   }}
                 />
-                <label htmlFor="contact-phone" className={styles.srOnly}>Phone number</label>
+                <label htmlFor="contact-phone" className={styles.srOnly}>
+                  Phone number
+                </label>
                 <input
                   id="contact-phone"
                   name="phone"
@@ -1143,7 +1151,9 @@ export default function WebsitePage() {
                   }}
                 />
               </div>
-              <label htmlFor="contact-device" className={styles.srOnly}>Device</label>
+              <label htmlFor="contact-device" className={styles.srOnly}>
+                Device
+              </label>
               <input
                 id="contact-device"
                 name="device"
@@ -1164,7 +1174,9 @@ export default function WebsitePage() {
                   colorScheme: "light"
                 }}
               />
-              <label htmlFor="contact-message" className={styles.srOnly}>Message</label>
+              <label htmlFor="contact-message" className={styles.srOnly}>
+                Message
+              </label>
               <textarea
                 id="contact-message"
                 name="message"
