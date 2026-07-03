@@ -1,10 +1,13 @@
 import Image from "next/image";
-import { Geist } from "next/font/google";
+import localFont from "next/font/local";
 import IproLogo from "@/components/common/IproLogo";
 import NavMobile from "./NavMobile";
 import styles from "./page.module.css";
 
-const geist = Geist({ subsets: ["latin"] });
+const geist = localFont({
+  src: "../../styles/fonts/GeistVF.woff",
+  variable: "--font-geist"
+});
 
 export default function WebsitePage() {
   return (
