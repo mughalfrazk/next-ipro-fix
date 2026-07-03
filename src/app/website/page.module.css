@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap");
 
 .page {
   margin: 0;
   background: #ffffff;
-  font-family: 'Geist', 'Helvetica Neue', sans-serif;
+  font-family: "Geist", "Helvetica Neue", sans-serif;
 }
 
 /* Nav links */
@@ -14,7 +14,9 @@
   font-weight: 500;
   transition: color 0.15s;
 }
-.navLink:hover { color: #238be6; }
+.navLink:hover {
+  color: #238be6;
+}
 
 .navPhone {
   font-size: 15px;
@@ -33,7 +35,9 @@
   text-decoration: none;
   transition: background 0.15s;
 }
-.bookBtn:hover { background: #1a6fc0; }
+.bookBtn:hover {
+  background: #1a6fc0;
+}
 
 /* Hero buttons */
 .heroPrimary {
@@ -43,11 +47,13 @@
   font-weight: 600;
   padding: 15px 30px;
   border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(35,139,230,0.3);
+  box-shadow: 0 6px 16px rgba(35, 139, 230, 0.3);
   text-decoration: none;
   transition: background 0.15s;
 }
-.heroPrimary:hover { background: #1a6fc0; }
+.heroPrimary:hover {
+  background: #1a6fc0;
+}
 
 .heroSecondary {
   background: #ffffff;
@@ -58,9 +64,14 @@
   padding: 14px 28px;
   border-radius: 12px;
   text-decoration: none;
-  transition: border-color 0.15s, color 0.15s;
+  transition:
+    border-color 0.15s,
+    color 0.15s;
 }
-.heroSecondary:hover { border-color: #238be6; color: #238be6; }
+.heroSecondary:hover {
+  border-color: #238be6;
+  color: #238be6;
+}
 
 .heroWhatsapp {
   display: inline-flex;
@@ -79,11 +90,14 @@
   border: 1px solid #e7edf3;
   border-radius: 14px;
   padding: 26px 24px;
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
 }
 .serviceCard:hover {
   border-color: #b9dcf9;
-  box-shadow: 0 8px 24px rgba(35,139,230,0.1);
+  box-shadow: 0 8px 24px rgba(35, 139, 230, 0.1);
   transform: translateY(-2px);
 }
 
@@ -93,7 +107,9 @@
   text-decoration: none;
   transition: color 0.15s;
 }
-.footerLink:hover { color: #ffffff; }
+.footerLink:hover {
+  color: #ffffff;
+}
 
 /* CTA section buttons */
 .ctaPrimary {
@@ -104,16 +120,18 @@
   padding: 15px 30px;
   border-radius: 12px;
   text-decoration: none;
-  box-shadow: 0 6px 16px rgba(15,60,100,0.25);
+  box-shadow: 0 6px 16px rgba(15, 60, 100, 0.25);
   transition: background 0.15s;
 }
-.ctaPrimary:hover { background: #f0f7fe; }
+.ctaPrimary:hover {
+  background: #f0f7fe;
+}
 
 .ctaSecondary {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  border: 1.5px solid rgba(255,255,255,0.55);
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
   color: #ffffff;
   font-size: 17px;
   font-weight: 600;
@@ -122,7 +140,9 @@
   text-decoration: none;
   transition: background 0.15s;
 }
-.ctaSecondary:hover { background: rgba(255,255,255,0.1); }
+.ctaSecondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
 
 /* Contact form send button */
 .sendBtn {
@@ -138,7 +158,9 @@
   width: 100%;
   transition: background 0.15s;
 }
-.sendBtn:hover { background: #1a6fc0; }
+.sendBtn:hover {
+  background: #1a6fc0;
+}
 
 .employeeLogin {
   display: inline-flex;
@@ -151,7 +173,9 @@
   padding-left: 24px;
   transition: color 0.15s;
 }
-.employeeLogin:hover { color: #6d7c8a; }
+.employeeLogin:hover {
+  color: #6d7c8a;
+}
 
 /* Free diagnosis card link */
 .diagnosisLink {
@@ -169,7 +193,9 @@
   text-decoration: none;
   transition: background 0.15s;
 }
-.diagnosisLink:hover { background: #f0f7fe; }
+.diagnosisLink:hover {
+  background: #f0f7fe;
+}
 
 /* Responsive grid layouts */
 .howItWorksGrid {
@@ -206,14 +232,29 @@
 }
 
 @media (max-width: 900px) {
-  .howItWorksGrid { grid-template-columns: repeat(2, 1fr); }
-  .whyChooseGrid { grid-template-columns: 1fr; gap: 40px; }
-  .testimonialsGrid { grid-template-columns: 1fr; }
-  .contactGrid { grid-template-columns: 1fr; }
-  .footerGrid { grid-template-columns: repeat(2, 1fr); }
+  .howItWorksGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .whyChooseGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .testimonialsGrid {
+    grid-template-columns: 1fr;
+  }
+  .contactGrid {
+    grid-template-columns: 1fr;
+  }
+  .footerGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 600px) {
-  .howItWorksGrid { grid-template-columns: 1fr; }
-  .footerGrid { grid-template-columns: 1fr; }
+  .howItWorksGrid {
+    grid-template-columns: 1fr;
+  }
+  .footerGrid {
+    grid-template-columns: 1fr;
+  }
 }
