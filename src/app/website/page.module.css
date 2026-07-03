@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap');
+
+.page {
+  margin: 0;
+  background: #ffffff;
+  font-family: 'Geist', 'Helvetica Neue', sans-serif;
+}
+
+/* Nav links */
+.navLink {
+  color: #45525f;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.15s;
+}
+.navLink:hover { color: #238be6; }
+
+.navPhone {
+  font-size: 15px;
+  font-weight: 600;
+  color: #238be6;
+  text-decoration: none;
+}
+
+.bookBtn {
+  background: #238be6;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.bookBtn:hover { background: #1a6fc0; }
+
+/* Hero buttons */
+.heroPrimary {
+  background: #238be6;
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 15px 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(35,139,230,0.3);
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.heroPrimary:hover { background: #1a6fc0; }
+
+.heroSecondary {
+  background: #ffffff;
+  color: #1c2733;
+  border: 1.5px solid #d7dfe7;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s;
+}
+.heroSecondary:hover { border-color: #238be6; color: #238be6; }
+
+.heroWhatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #238be6;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 14px 12px;
+  text-decoration: none;
+}
+
+/* Service cards */
+.serviceCard {
+  background: #ffffff;
+  border: 1px solid #e7edf3;
+  border-radius: 14px;
+  padding: 26px 24px;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.serviceCard:hover {
+  border-color: #b9dcf9;
+  box-shadow: 0 8px 24px rgba(35,139,230,0.1);
+  transform: translateY(-2px);
+}
+
+/* Footer links */
+.footerLink {
+  color: #94a3b1;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.footerLink:hover { color: #ffffff; }
+
+/* CTA section buttons */
+.ctaPrimary {
+  background: #ffffff;
+  color: #1a6fc0;
+  font-size: 17px;
+  font-weight: 700;
+  padding: 15px 30px;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(15,60,100,0.25);
+  transition: background 0.15s;
+}
+.ctaPrimary:hover { background: #f0f7fe; }
+
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1.5px solid rgba(255,255,255,0.55);
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 14px 26px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.ctaSecondary:hover { background: rgba(255,255,255,0.1); }
+
+/* Contact form send button */
+.sendBtn {
+  background: #238be6;
+  color: #ffffff;
+  font-size: 16.5px;
+  font-weight: 700;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  transition: background 0.15s;
+}
+.sendBtn:hover { background: #1a6fc0; }
+
+.employeeLogin {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #3d4f5e;
+  text-decoration: none;
+  font-size: 12.5px;
+  border-left: 1px solid #26333f;
+  padding-left: 24px;
+  transition: color 0.15s;
+}
+.employeeLogin:hover { color: #6d7c8a; }
+
+/* Free diagnosis card link */
+.diagnosisLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  color: #1a6fc0;
+  font-size: 14.5px;
+  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: 10px;
+  align-self: flex-start;
+  margin-top: 20px;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.diagnosisLink:hover { background: #f0f7fe; }

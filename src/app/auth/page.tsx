@@ -1,8 +1,8 @@
-import { BackgroundImage, Box, Image, Text, Title, Stack } from "@mantine/core";
+import { BackgroundImage, Box, Text, Title, Stack } from "@mantine/core";
 
 import LoginForm from "@/components/auth/LoginForm";
+import IproLogo from "@/components/common/IproLogo";
 import loginBg from "@/assets/login-bg.jpeg";
-import whiteLogo from "@/assets/white-logo.png";
 
 const Login = () => {
   return (
@@ -27,7 +27,7 @@ const Login = () => {
           border: "1px solid var(--mantine-color-white)"
         }}
       >
-        <Image src={whiteLogo.src} alt="White Logo" w="auto" height={40} />
+        <IproLogo variant="dark" size={38} />
         <Title ta="center" mt={20} c="var(--mantine-color-white)">
           Welcome to Iprofix CRM 👋🏻
         </Title>
