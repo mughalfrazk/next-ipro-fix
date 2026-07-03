@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/mughalfrazk/next-ipro-fix/compare/v1.3.0...v1.4.0) (2026-07-03)
+
+
+### Features
+
+* website page ([#80](https://github.com/mughalfrazk/next-ipro-fix/issues/80)) ([024f5ee](https://github.com/mughalfrazk/next-ipro-fix/commit/024f5eea1fd35a1c9ff4364204c2ec4aefde5657))
+
 ## [1.3.0](https://github.com/mughalfrazk/next-ipro-fix/compare/v1.2.0...v1.3.0) (2026-07-02)
 
 
