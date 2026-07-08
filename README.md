@@ -26,6 +26,8 @@ AUTH_SECRET=<generate with: openssl rand -base64 32>
 NEXT_PUBLIC_IPRO_FIX_BASE_URL=http://localhost:4000/api/
 
 # Server-facing URL — use host.docker.internal when the backend runs on the host machine
+# Note: host.docker.internal works on Mac/Windows Docker Desktop only.
+# On Linux Docker Engine, replace it with the actual backend hostname or IP address.
 IPRO_FIX_BASE_URL=http://host.docker.internal:4000/api/
 ```
 
