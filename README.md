@@ -43,10 +43,10 @@ Open `http://localhost:3000`. Runtime vars are loaded from `.env.local` via `doc
 
 ### Deploy on a server
 
-On the server, create an env file with production values (replace `localhost` URLs with real hostnames), then:
+On the server, create `.env.local` with production values for runtime variables (`AUTH_SECRET`, `IPRO_FIX_BASE_URL`). Then build and start the container, passing `NEXT_PUBLIC_IPRO_FIX_BASE_URL` as a shell variable so it is baked into the JS bundle at build time (placing it in `.env.local` alone is not enough — Docker Compose reads build args from the shell environment, not from `env_file`):
 
 ```bash
-docker-compose up --build -d
+NEXT_PUBLIC_IPRO_FIX_BASE_URL=https://your-api.com/api/ docker-compose up --build -d
 ```
 
 ### Useful commands
