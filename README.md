@@ -29,7 +29,7 @@ NEXT_PUBLIC_IPRO_FIX_BASE_URL=http://localhost:4000/api/
 IPRO_FIX_BASE_URL=http://host.docker.internal:4000/api/
 ```
 
-`AUTH_TRUST_HOST=true` is set automatically by `compose.yml` and does not need to be in the env file.
+`AUTH_TRUST_HOST=true` is set automatically by `docker-compose.yml` and does not need to be in the env file.
 
 ### Run locally
 
@@ -37,7 +37,7 @@ IPRO_FIX_BASE_URL=http://host.docker.internal:4000/api/
 docker-compose up --build
 ```
 
-Open `http://localhost:3000`. Runtime vars are loaded from `.env.local` via `compose.yml`; the build arg uses the Dockerfile default.
+Open `http://localhost:3000`. Runtime vars are loaded from `.env.local` via `docker-compose.yml`; the build arg uses the Dockerfile default.
 
 ### Deploy on a server
 

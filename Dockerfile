@@ -7,10 +7,6 @@ ARG NODE_VERSION=24-alpine
 FROM node:${NODE_VERSION} AS dependencies
 WORKDIR /app
 
-ARG NEXT_PUBLIC_IPRO_FIX_BASE_URL
-ENV NEXT_PUBLIC_IPRO_FIX_BASE_URL=${NEXT_PUBLIC_IPRO_FIX_BASE_URL:-http://localhost:4000/api/}
-RUN echo $NEXT_PUBLIC_IPRO_FIX_BASE_URL
-
 COPY package.json yarn.lock* ./
 
 RUN if [ -f yarn.lock ]; then \
@@ -53,7 +49,6 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
-ENV NEXT_PUBLIC_IPRO_FIX_BASE_URL=${NEXT_PUBLIC_IPRO_FIX_BASE_URL:-http://localhost:4000/api/}
 
 COPY --from=builder --chown=node:node /app/public ./public
 
