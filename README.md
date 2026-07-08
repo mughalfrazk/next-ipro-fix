@@ -4,6 +4,15 @@ This is a Next.js 14 application.
 
 ## Local development
 
+Create `.env.local` with the required variables:
+
+```bash
+AUTH_SECRET=<generate with: openssl rand -base64 32>
+NEXT_PUBLIC_IPRO_FIX_BASE_URL=http://localhost:4000/api/
+```
+
+Then install and start the dev server:
+
 ```bash
 yarn install
 yarn dev
