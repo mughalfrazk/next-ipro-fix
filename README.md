@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# next-ipro-fix
 
-## Getting Started
+This is a Next.js 14 application.
 
-First, run the development server:
+## Local development
+
+Create `.env.local` with the required variables:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+AUTH_SECRET=<generate with: openssl rand -base64 32>
+NEXT_PUBLIC_IPRO_FIX_BASE_URL=http://localhost:4000/api/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then install and start the dev server:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+yarn install
+yarn dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open `http://localhost:3000` in your browser.
 
-## Learn More
+## Docker
 
-To learn more about Next.js, take a look at the following resources:
+Uses a multi-stage build with Next.js `standalone` output.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Environment variables
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Create `.env.local` with the following:
 
-## Deploy on Vercel
+```bash
+AUTH_SECRET=<generate with: openssl rand -base64 32>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Browser-facing URL (baked at build time)
+NEXT_PUBLIC_IPRO_FIX_BASE_URL=http://localhost:4000/api/
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Server-facing URL — use host.docker.internal when the backend runs on the host machine
+# Note: host.docker.internal works on Mac/Windows Docker Desktop only.
+# On Linux Docker Engine, replace it with the actual backend hostname or IP address.
+IPRO_FIX_BASE_URL=http://host.docker.internal:4000/api/
+```
+
+`AUTH_TRUST_HOST=true` is set automatically by `docker-compose.yml` and does not need to be in the env file.
+
+### Run locally
+
+```bash
+docker-compose up --build
+```
+
+Open `http://localhost:3000`. Runtime vars are loaded from `.env.local` via `docker-compose.yml`; the build arg uses the Dockerfile default.
+
+### Deploy on a server
+
+On the server, create `.env.local` with production values for runtime variables (`AUTH_SECRET`, `IPRO_FIX_BASE_URL`). Then build and start the container, passing `NEXT_PUBLIC_IPRO_FIX_BASE_URL` as a shell variable so it is baked into the JS bundle at build time (placing it in `.env.local` alone is not enough — Docker Compose reads build args from the shell environment, not from `env_file`):
+
+```bash
+NEXT_PUBLIC_IPRO_FIX_BASE_URL=https://your-api.com/api/ docker-compose up --build -d
+```
+
+### Useful commands
+
+```bash
+docker-compose logs -f
+docker-compose down
+docker-compose restart
+```
