@@ -5,7 +5,7 @@ import config from "./ipro-fix-config";
 import { auth } from "@/auth";
 
 const defaultOptions = {
-  baseURL: config.NEXT_PUBLIC_IPRO_FIX_BASE_URL
+  baseURL: config.BASE_URL
 };
 
 const getAuthApiClient = () => {
