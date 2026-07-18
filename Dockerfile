@@ -10,7 +10,8 @@ WORKDIR /app
 COPY package.json yarn.lock* ./
 
 RUN if [ -f yarn.lock ]; then \
-    corepack enable yarn && yarn install --frozen-lockfile --production=false; \
+    yarn install --frozen-lockfile --production=false \
+      --network-timeout 1000000 --network-concurrency 1; \
   else \
     echo "No lockfile found." && exit 1; \
   fi
@@ -34,7 +35,7 @@ RUN mkdir -p public
 ENV NODE_ENV=production
 
 RUN if [ -f yarn.lock ]; then \
-    corepack enable yarn && yarn build; \
+    yarn build; \
   else \
     echo "No lockfile found." && exit 1; \
   fi
