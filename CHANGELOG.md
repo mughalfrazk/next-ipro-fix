@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/mughalfrazk/next-ipro-fix/compare/v1.4.0...v1.5.0) (2026-07-18)
+
+
+### Features
+
+* new website page & docker setup ([#83](https://github.com/mughalfrazk/next-ipro-fix/issues/83)) ([14b56e0](https://github.com/mughalfrazk/next-ipro-fix/commit/14b56e0b26f824f15cde60acaa1d90cab8e4ab6e))
+
 ## [1.4.0](https://github.com/mughalfrazk/next-ipro-fix/compare/v1.3.0...v1.4.0) (2026-07-03)
 
 
